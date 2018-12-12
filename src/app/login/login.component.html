@@ -1,0 +1,25 @@
+<section class="container-fluid">
+  <div class="row">
+
+    <!-- we use mat-card and div -->
+    <div class="col-md-4 login-card">
+      <mat-card>
+        <h2 class="text-center">LOGIN</h2>
+
+        <div class="form-wrapper">
+          <mat-form-field floatLabel="auto">
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="Username">
+          </mat-form-field>
+          <mat-form-field floatLabel="auto">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput placeholder="Password">
+          </mat-form-field>
+
+          <button mat-stroked-button class="btn-login">Log in</button>
+          <a mat-button routerLink="/register" class="btn-reg">Register</a>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</section>

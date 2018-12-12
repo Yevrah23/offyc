@@ -1,0 +1,39 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'side' : 'side'" [opened]="!(isHandset$ | async)">
+    <mat-toolbar>
+      <div class="brand">OffycApp</div> 
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink='dashboard'><span>Dashboard</span></a>
+      <a mat-list-item ><span>Notification</span></a>
+      <a mat-list-item><span>Records</span></a>
+      <a mat-list-item ><span>Assesment</span></a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+          <!--*ngIf="isHandset$ | async" -->
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <span class="flex-block"></span>
+
+        <span>Admin</span>
+        <button mat-icon-button [matMenuTriggerFor]="appMenu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+
+        <mat-menu #appMenu="matMenu">
+          <button mat-menu-item>Settings</button>
+          <button mat-menu-item>Sign Out</button>
+        </mat-menu>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    
+    <router-outlet></router-outlet>
+    <!-- Display page output -->
+  </mat-sidenav-content>
+</mat-sidenav-container>
