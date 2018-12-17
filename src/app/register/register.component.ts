@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
-import { user_services } from '../services/user_services';
+import { UserServices } from '../services/user_services';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -32,12 +32,12 @@ export class RegisterComponent implements OnInit {
     {name: 'CITC', detail: 'College of Information Technology and Communication' }
   ];
 
-  constructor( private user : user_services) { }
+  constructor( private user: UserServices) { }
 
   ngOnInit() {
   }
 
-  register(){
+  register() {
     this.data.push(
       {
         'username' : this.username,
@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
         'position' : this.position,
         'dept' : this.dept
       }
-    )
+    );
     console.log(this.data);
   }
 

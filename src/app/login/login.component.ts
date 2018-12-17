@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { user_services } from '../services/user_services';
+import { UserServices } from '../services/user_services';
 
 
 @Component({
@@ -13,19 +13,17 @@ export class LoginComponent implements OnInit {
   password: string;
   credentials = [];
 
-  constructor(public http: HttpClient, private user: user_services) { }
+  constructor(public http: HttpClient, private user: UserServices) { }
 
   ngOnInit() {
   }
 
-   
-  login_user(){
-    this.credentials.push({'username':this.username,'password':this.password})
+  login_user() {
+    this.credentials.push({'username': this.username, 'password': this.password});
     this.user.login(this.credentials).subscribe(
-      (response) => {console.log(response)}
+      (response) => { console.log(response); }
     );
   }
 }
 
 // my commit
-
