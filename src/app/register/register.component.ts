@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
+import { user_services } from '../services/user_services';
+import { HttpClient } from '@angular/common/http';
+
 
 export interface Department { // interface holds data with in array. data types
   name: string;
@@ -12,6 +15,13 @@ export interface Department { // interface holds data with in array. data types
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  username: string;
+  password: string;
+  confirmP: string;
+  email: string;
+  position: string;
+  dept: string;
+  data = [];
 
   // Selecting department validation and data
   departmentControl = new FormControl('', [Validators.required]);
@@ -22,9 +32,22 @@ export class RegisterComponent implements OnInit {
     {name: 'CITC', detail: 'College of Information Technology and Communication' }
   ];
 
-  constructor() { }
+  constructor( private user : user_services) { }
 
   ngOnInit() {
+  }
+
+  register(){
+    this.data.push(
+      {
+        'username' : this.username,
+        'password' : this.password,
+        'email' : this.email,
+        'position' : this.position,
+        'dept' : this.dept
+      }
+    )
+    console.log(this.data);
   }
 
 }
