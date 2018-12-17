@@ -10,6 +10,9 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MaterialModule } from './material.module';
 import { LoginRegLayoutComponent } from './login-reg-layout/login-reg-layout.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from "@angular/http";
+import { user_services } from './services/user_services';
 
 @NgModule({
   declarations: [
@@ -25,9 +28,13 @@ import { LoginRegLayoutComponent } from './login-reg-layout/login-reg-layout.com
     ReactiveFormsModule,
     BrowserAnimationsModule,
     LayoutModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [
+    user_services
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

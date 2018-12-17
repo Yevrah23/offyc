@@ -9,14 +9,14 @@
         <div class="form-wrapper">
           <mat-form-field floatLabel="auto">
             <mat-label>Username</mat-label>
-            <input matInput placeholder="Username">
+            <input [(ngModel)] = "username" matInput placeholder="Username">
           </mat-form-field>
           <mat-form-field floatLabel="auto">
             <mat-label>Password</mat-label>
-            <input type="password" matInput placeholder="Password">
+            <input [(ngModel)]="password" type="password" matInput placeholder="Password">
           </mat-form-field>
 
-          <button mat-stroked-button class="btn-login">Log in</button>
+          <button mat-stroked-button class="btn-login" (click)="login_user()">Log in</button>
           <a mat-button routerLink="/register" class="btn-reg">Register</a>
         </div>
       </mat-card>
