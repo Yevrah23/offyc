@@ -20,15 +20,17 @@
         </button>
         <span class="flex-block"></span>
 
-        <span>Admin</span>
-        <button mat-icon-button [matMenuTriggerFor]="appMenu">
-          <mat-icon>more_vert</mat-icon>
-        </button>
+        <div class="user-type"> 
+          <span>Admin</span>
+          <button mat-icon-button [matMenuTriggerFor]="appMenu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
 
-        <mat-menu #appMenu="matMenu">
-          <button mat-menu-item>Settings</button>
-          <button mat-menu-item>Sign Out</button>
-        </mat-menu>
+          <mat-menu #appMenu="matMenu">
+            <button mat-menu-item>Settings</button>
+            <button mat-menu-item>Sign Out</button>
+          </mat-menu>
+        </div>
       </mat-toolbar-row>
     </mat-toolbar>
 
