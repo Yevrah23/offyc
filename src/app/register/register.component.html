@@ -10,43 +10,44 @@
 
           <mat-form-field floatLabel="auto">
             <mat-label>School ID</mat-label>
-            <input [(ngModel)] = "username" type="text" matInput>
+            <input [formControl] = "username" type="text" matInput>
           </mat-form-field>
 
           <mat-form-field floatLabel="auto">
             <mat-label>Password</mat-label>
-            <input [(ngModel)] = "password" type="password" matInput>
+            <input [formControl] = "password" type="password" matInput>
           </mat-form-field>
 
           <mat-form-field floatLabel="auto">
             <mat-label>Confirm Password</mat-label>
-            <input [(ngModel)] = "confirmP" type="password" matInput>
+            <input (keyup) = "passwordCheck()" [formControl] = "confirmP" type="password" matInput>
           </mat-form-field>
 
           <mat-form-field floatLabel="auto">
             <mat-label>Email</mat-label>
-            <input [(ngModel)] = "email" type="email" matInput>
-          </mat-form-field>
-
-          <mat-form-field floatLabel="auto">
-            <mat-label>Position</mat-label>
-            <input [(ngModel)] = "position" type="text" matInput>
+            <input [formControl] = "email" type="email" matInput>
           </mat-form-field>
 
           <mat-form-field floatLabel="auto">
             <mat-label>Department</mat-label>
-            <mat-select [(ngModel)] = "dept" [formControl]="departmentControl" required>
+            <input [formControl] = "department" type="text" matInput>
+          </mat-form-field>
+
+          <mat-form-field floatLabel="auto">
+            <mat-label>College</mat-label>
+            <mat-select [formControl]="collegeControl" required>
               <mat-option>--</mat-option>
-              <mat-option *ngFor="let department of department" [value]="department">
+              <mat-option *ngFor="let college of college" [value]="college">
                 {{department.name}}
               </mat-option>
             </mat-select>
-            <mat-error *ngIf="departmentControl.hasError('required')">Please choose an department</mat-error>
-            <mat-hint>{{departmentControl.value?.detail}}</mat-hint>
+            <mat-error *ngIf="collegeControl.hasError('required')">Please choose a College</mat-error>
+            <mat-hint>{{collegeControl.value?.detail}}</mat-hint>
           </mat-form-field>
 
           <div class="btn-wrapper">
-            <button (click) = "register()" mat-stroked-button class="btn-submit">Submit</button>
+            <mat-error *ngIf="!checkP">Passwords do not match</mat-error>
+            <button *ngIf="checkP" (click) = "register()" mat-stroked-button class="btn-submit">Submit</button>
             <a mat-button routerLink="/login" class="btn-back">Back</a>
           </div>
 

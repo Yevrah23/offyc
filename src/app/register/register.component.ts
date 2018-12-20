@@ -15,18 +15,19 @@ export interface Department { // interface holds data with in array. data types
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  username: string;
-  password: string;
-  confirmP: string;
-  email: string;
-  position: string;
-  dept: string;
+  checkP: boolean;
+  username = new FormControl('', [Validators.required]);
+  password = new FormControl('', [Validators.required]);
+  confirmP = new FormControl('', [Validators.required]);
+  email = new FormControl('', [Validators.required]);
+  //dept = new FormControl('', [Validators.required]);
+  department = new FormControl('', [Validators.required]);
   data = [];
 
   // Selecting department validation and data
-  departmentControl = new FormControl('', [Validators.required]);
+  collegeControl = new FormControl('', [Validators.required]);
   selectFormControl = new FormControl('', Validators.required);
-  department: Department[] = [
+  college: Department[] = [
     {name: 'CITC', detail: 'College of Information Technology and Communication' },
     {name: 'CEA', detail: 'College of Engineering and Architecture' },
     {name: 'CITC', detail: 'College of Information Technology and Communication' }
@@ -37,14 +38,23 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
+  passwordCheck(){
+    if (this.password != this.confirmP){
+      this.checkP = false;
+    }else{
+      this.checkP = true;
+      console.log('match');
+    }
+  }
+
   register(){
     this.data.push(
       {
         'username' : this.username,
         'password' : this.password,
         'email' : this.email,
-        'position' : this.position,
-        'dept' : this.dept
+        'college' : this.collegeControl,
+        'department' : this.department
       }
     )
     console.log(this.data);
