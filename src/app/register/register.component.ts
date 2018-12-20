@@ -9,6 +9,11 @@ export interface Department { // interface holds data with in array. data types
   detail: string;
 }
 
+export interface College { // interface holds data with in array. data types
+  name: string;
+  detail: string;
+}
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -31,6 +36,16 @@ export class RegisterComponent implements OnInit {
     {name: 'CEA', detail: 'College of Engineering and Architecture' },
     {name: 'CITC', detail: 'College of Information Technology and Communication' }
   ];
+
+   // Selecting department validation and data
+   collegeControl = new FormControl('', [Validators.required]);
+   selectCollegeFormControl = new FormControl('', Validators.required);
+   college: College[] = [
+     {name: 'IT', detail: 'Information Technonology' },
+     {name: 'TCM', detail: 'Techonology of Communication Management' },
+     {name: 'CoE', detail: 'Computer Engineering' }
+   ];
+
 
   constructor( private user: UserServices) { }
 
