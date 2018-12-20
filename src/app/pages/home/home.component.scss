@@ -1,0 +1,33 @@
+// CONTENT STYLE
+
+section.container-fluid {
+  padding: 44px 62px 0 41px;
+}
+
+.row {
+  margin: 0 -7.5px 0 -7.5px;
+
+  div{
+    padding: 15px 7.5px 0 7.5px;
+  }
+}
+
+// CARD STYLES
+
+mat-card.calendar.mat-card {
+  min-height: 707px;
+}
+
+mat-card.dailyTask.mat-card {
+  min-height: 260px;
+}
+
+mat-card.transaction.mat-card {
+  min-height: 255px;
+  margin-bottom: 15px;
+}
+
+mat-card.progressReport.mat-card {
+  min-height: 255px;
+  margin-bottom: 15px;
+}

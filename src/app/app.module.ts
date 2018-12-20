@@ -11,8 +11,8 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MaterialModule } from './material.module';
 import { LoginRegLayoutComponent } from './login-reg-layout/login-reg-layout.component';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpModule } from "@angular/http";
-import { user_services } from './services/user_services';
+import { HttpModule } from '@angular/http';
+import { UserServices } from './services/user_services';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,7 @@ import { user_services } from './services/user_services';
     HttpModule
   ],
   providers: [
-    user_services
+    UserServices
   ],
   bootstrap: [AppComponent]
 })

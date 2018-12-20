@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './pages/home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginRegLayoutComponent } from './login-reg-layout/login-reg-layout.component';
 import { RegisterComponent } from './register/register.component';

@@ -45,6 +45,7 @@ mat-card.mat-card {
   position: absolute;
   top: 50%;
   left: 50%;
+  margin-top: 20px !important;
   padding: 20px;
   min-width: 60%;
 
@@ -52,7 +53,7 @@ mat-card.mat-card {
     width: 100%;
   }
 
-  .btn-wrapper{
+  .btn-wrapper, .college{
     padding-top: 30px;
   }
 
