@@ -4,12 +4,12 @@ import { UserServices } from '../services/user_services';
 import { HttpClient } from '@angular/common/http';
 
 
-export interface Department { // interface holds data with in array. data types
+export interface College { // interface holds data with in array. data types
   name: string;
   detail: string;
 }
 
-export interface College { // interface holds data with in array. data types
+export interface Citc { // interface holds data with in array. data types
   name: string;
   detail: string;
 }
@@ -25,31 +25,34 @@ export class RegisterComponent implements OnInit {
   confirmP: string;
   email: string;
   position: string;
-  dept: string;
+  dept: any;
   data = [];
+  show: Boolean = false;
 
   // Selecting department validation and data
-  departmentControl = new FormControl('', [Validators.required]);
+  collegeControl = new FormControl('', [Validators.required]);
   selectFormControl = new FormControl('', Validators.required);
-  department: Department[] = [
+  college: College[] = [
     {name: 'CITC', detail: 'College of Information Technology and Communication' },
     {name: 'CEA', detail: 'College of Engineering and Architecture' },
     {name: 'CITC', detail: 'College of Information Technology and Communication' }
   ];
 
    // Selecting department validation and data
-   collegeControl = new FormControl('', [Validators.required]);
+   departmentControl = new FormControl('', [Validators.required]);
    selectCollegeFormControl = new FormControl('', Validators.required);
-   college: College[] = [
+   department: Citc[] = [
      {name: 'IT', detail: 'Information Technonology' },
      {name: 'TCM', detail: 'Techonology of Communication Management' },
-     {name: 'CoE', detail: 'Computer Engineering' }
+     {name: 'CpE', detail: 'Computer Engineering' },
+     {name: 'DS', detail: 'Data Science' }
    ];
 
 
   constructor( private user: UserServices) { }
 
   ngOnInit() {
+
   }
 
   register() {
@@ -63,6 +66,15 @@ export class RegisterComponent implements OnInit {
       }
     );
     console.log(this.data);
+  }
+
+  selectedCollege() {
+    console.log(this.dept.name);
+    if (this.dept.name === 'CITC') {
+      this.show = true;
+    } else {
+      this.show = false;
+    }
   }
 
 }
