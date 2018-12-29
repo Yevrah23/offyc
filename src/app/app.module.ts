@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FullCalendarModule } from 'ng-fullcalendar';
 
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { UserServices } from './services/user_services';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    FullCalendarModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     LayoutModule,
