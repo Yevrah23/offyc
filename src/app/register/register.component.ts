@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import { UserServices } from '../services/user_services';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 export interface College { // interface holds data with in array. data types
@@ -51,7 +52,7 @@ export class RegisterComponent implements OnInit {
    ];
 
 
-  constructor( private user: UserServices) { }
+  constructor( private user: UserServices, private router: Router) { }
 
   ngOnInit() {
 
@@ -69,7 +70,20 @@ export class RegisterComponent implements OnInit {
       }
     );
     this.user.register(this.data).subscribe(
-      (response) => { console.log(response); }
+      (response) => { 
+        console.log(response);
+        this.data = [];
+        if (response == 0) {
+          // if (response == 0) {
+            console.log('Username Taken');
+          }else if (response == 1){
+            console.log('Registered');
+            this.router.navigate(['/', 'login']);
+          }else{
+            console.log('Error');
+          }
+        // }
+      }
     );
   }
 
