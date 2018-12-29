@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import {MatTabsModule} from '@angular/material/tabs';
 
 import {
   MatButtonModule,
@@ -12,6 +13,7 @@ import {
   MatInputModule,
   MatSelectModule,
   MatOptionModule
+
 } from '@angular/material';
 
 @NgModule({
@@ -26,7 +28,8 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatOptionModule
+    MatOptionModule,
+    MatTabsModule
   ],
   exports: [
     MatButtonModule,
@@ -39,7 +42,8 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatOptionModule
+    MatOptionModule,
+    MatTabsModule
   ]
 })
 export class MaterialModule {}
