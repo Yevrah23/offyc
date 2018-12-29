@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+
+declare var $;
 
 @Component({
   selector: 'app-home',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  @ViewChild('dataTable') table: ElementRef;
+  dataTable: any;
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.dataTable = $(this.table.nativeElement);
+    this.dataTable.dataTable();
   }
 
 }
