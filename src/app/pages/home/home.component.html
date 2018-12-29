@@ -1,6 +1,6 @@
 <!-- DASHBOARD -->
 
-<section class="container-fluid">
+<section class="container-fluid dasboard">
   <div class="row">
     <!-- we use mat-card and div -->
     <div class="col-md-12">
@@ -10,7 +10,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
       <mat-card class="transaction">
         <h2>Transactions</h2>
 
@@ -236,8 +236,34 @@
       </mat-card>
     </div>
 
-    <div class="col-md-6">
-      <mat-card class="progressReport">Progress Report</mat-card>
+    <div class="col-md-4">
+      <mat-tab-group dynamicHeight class="progressReport">
+        <mat-tab label="COT">
+          <div class="box mat-elevation-z4">
+              Progress Report content
+          </div>
+        </mat-tab>
+        <mat-tab label="CSM">
+          <div class="box mat-elevation-z4">
+              Progress Report content
+          </div>
+        </mat-tab>
+        <mat-tab label="CITC">
+          <div class="box mat-elevation-z4">
+            Progress Report content
+          </div>
+        </mat-tab>
+        <mat-tab label="CSTE">
+          <div class="box mat-elevation-z4">
+            Progress Report content
+          </div>
+        </mat-tab>
+        <mat-tab label="CEA">
+          <div class="box mat-elevation-z4">
+            Progress Report content
+          </div>
+        </mat-tab>
+      </mat-tab-group>
     </div>
   </div>
 </section>
