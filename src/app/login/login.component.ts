@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserServices } from '../services/user_services';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   password: string;
   credentials = [];
 
-  constructor(public http: HttpClient, private user: UserServices) { }
+  constructor(public http: HttpClient, private user: UserServices, private router: Router) { }
 
   ngOnInit() {
   }
@@ -27,7 +28,7 @@ export class LoginComponent implements OnInit {
           console.log('Logged In');
           if(response[1].user_type == "2"){
             console.log("Hello Admin");
-            
+            this.router.navigate(['/','admin']);
           }         
         }
       }
