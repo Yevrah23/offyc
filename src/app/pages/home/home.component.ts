@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-
+import { CalendarComponent } from 'ng-fullcalendar';
+import { Options } from 'fullcalendar';
 declare var $;
 
 @Component({
@@ -8,13 +9,44 @@ declare var $;
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  // Calendar api
+  calendarOptions: Options;
+  events: any;
+  eventService: any;
+  @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
+
+  // data tables
   @ViewChild('dataTable') table: ElementRef;
   dataTable: any;
+
   constructor() { }
 
   ngOnInit(): void {
+
+    this.calendarOptions = {
+      editable: true,
+      eventLimit: false,
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay,listMonth'
+      },
+      selectable: true,
+      events: []
+    };
+
+// Display data tables
     this.dataTable = $(this.table.nativeElement);
     this.dataTable.dataTable();
+
   }
 
+  clearEvents() {
+    this.events = [];
+  }
+  loadEvents() {
+    this.eventService.getEvents().subscribe(data => {
+      this.events = data;
+    });
+  }
 }
