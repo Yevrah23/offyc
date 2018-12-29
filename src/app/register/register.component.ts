@@ -26,8 +26,10 @@ export class RegisterComponent implements OnInit {
   email: string;
   position: string;
   dept: any;
+  coll: any;
   data = [];
   show: Boolean = false;
+  reg: Boolean = false;
 
   // Selecting department validation and data
   collegeControl = new FormControl('', [Validators.required]);
@@ -58,23 +60,37 @@ export class RegisterComponent implements OnInit {
   register() {
     this.data.push(
       {
-        'username' : this.username,
-        'password' : this.password,
+        'id' : this.username,
+        'pass' : this.password,
         'email' : this.email,
         'position' : this.position,
-        'dept' : this.dept
+        'college' : this.coll.name,
+        'dept' : this.dept.name,
       }
     );
-    console.log(this.data);
+    this.user.register(this.data).subscribe(
+      (response) => { console.log(response); }
+    );
   }
 
+
   selectedCollege() {
-    console.log(this.dept.name);
-    if (this.dept.name === 'CITC') {
+    console.log(this.coll.name);
+    if (this.coll.name === 'CITC') {
       this.show = true;
     } else {
       this.show = false;
     }
+  }
+  
+
+  passCheck() {
+    if (this.password == this.confirmP) {
+      this.reg = true;
+    } else {
+      this.reg = false;
+
+    }    
   }
 
 }

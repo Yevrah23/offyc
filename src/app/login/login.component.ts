@@ -21,7 +21,16 @@ export class LoginComponent implements OnInit {
   login_user() {
     this.credentials.push({'username': this.username, 'password': this.password});
     this.user.login(this.credentials).subscribe(
-      (response) => { console.log(response); }
+      (response) => { 
+        this.credentials = [];
+        if(response[0]){
+          console.log('Logged In');
+          if(response[1].user_type == "2"){
+            console.log("Hello Admin");
+            
+          }         
+        }
+      }
     );
   }
 }
