@@ -29,7 +29,7 @@ const routes: Routes = [
         redirectTo: 'dashboard',
         pathMatch: 'full'},
       {
-        path: 'dashboard',
+        path: 'dashboard', 
         component: HomeComponent},
       {
         path: 'records',
