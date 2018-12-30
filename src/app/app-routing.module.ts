@@ -7,7 +7,7 @@ import { LoginRegLayoutComponent } from './login-reg-layout/login-reg-layout.com
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './auth.guard';
 
-// Pages
+// Pages test
 import { HomeComponent } from './pages/home/home.component';
 import { RecordsComponent } from './pages/records/records.component';
 import { AdminComponent } from './admin/admin.component';
