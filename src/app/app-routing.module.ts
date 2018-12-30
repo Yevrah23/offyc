@@ -9,6 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './pages/home/home.component';
 import { RecordsComponent } from './pages/records/records.component';
 import { AdminComponent } from './admin/admin.component';
+import { AssesmentComponent } from './pages/assesment/assesment.component';
 
 const routes: Routes = [
   { path : '', redirectTo: '/login', pathMatch: 'full'},
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path : 'admin', component: AdminComponent, children: [
     {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
     {path: 'dashboard', component: HomeComponent},
-    {path: 'records', component: RecordsComponent}
+    {path: 'records', component: RecordsComponent},
+    {path: 'assesment', component: AssesmentComponent}
   ]},
   {path : '**', component: PageNotFoundComponent}
 ];
@@ -30,4 +32,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 // tslint:disable-next-line:max-line-length
-export const routingComponents = [LoginComponent, RegisterComponent, AdminComponent, HomeComponent, RecordsComponent, PageNotFoundComponent];
+export const routingComponents = [LoginComponent, RegisterComponent, AdminComponent, HomeComponent, RecordsComponent, AssesmentComponent, PageNotFoundComponent];
