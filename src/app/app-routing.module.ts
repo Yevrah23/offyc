@@ -29,7 +29,6 @@ const routes: Routes = [
         redirectTo: 'dashboard',
         pathMatch: 'full'},
       {
-<<<<<<< HEAD
         path: 'dashboard', 
         component: HomeComponent},
       {
@@ -38,10 +37,6 @@ const routes: Routes = [
       {
         path: 'assesment', 
         component: AssesmentComponent}
-=======
-        path: 'dashboard',
-        component: HomeComponent}
->>>>>>> eae4072f2632df33d4c76c421b2f013c2a16a4e5
   ]},
   {path : '**', component: PageNotFoundComponent}
 ];
