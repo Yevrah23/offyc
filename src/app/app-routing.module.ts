@@ -14,33 +14,42 @@ import { AdminComponent } from './admin/admin.component';
 import { AssesmentComponent } from './pages/assesment/assesment.component';
 
 const routes: Routes = [
-  { path : '', redirectTo: '/login', pathMatch: 'full'},
-  { path : '', component: LoginRegLayoutComponent, children: [
-    {path: 'login', component: LoginComponent},
-    {path: 'register', component: RegisterComponent}
-  ]},
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
-    path : 'admin',
+    path: '', component: LoginRegLayoutComponent, children: [
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent }
+    ]
+  },
+  {
+    path: 'admin',
     component: AdminComponent,
     canActivate: [AuthGuard],
     children: [
       {
         path: '',
         redirectTo: 'dashboard',
-        pathMatch: 'full'},
+        pathMatch: 'full'
+      },
       {
         path: 'dashboard',
-        component: HomeComponent},
+        component: HomeComponent
+      },
       {
         path: 'records',
-        component: RecordsComponent},
+        component: RecordsComponent
+      },
       {
         path: 'assesment',
-        component: AssesmentComponent},
-        {path: 'dashboard',
-        component: HomeComponent},
-  ] },
-  {path : '**', component: PageNotFoundComponent }
+        component: AssesmentComponent
+      },
+      {
+        path: 'dashboard',
+        component: HomeComponent
+      },
+    ]
+  },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
