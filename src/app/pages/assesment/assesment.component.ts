@@ -9,16 +9,12 @@ declare var $;
 export class AssesmentComponent implements OnInit {
 
   // data tables
-  @ViewChild('dataTableCOT') tableCOT: ElementRef;
-  dataTableCOT: any;
-  @ViewChild('dataTableCSM') tableCSM: ElementRef;
-  dataTableCSM: any;
-  @ViewChild('dataTableCITC') tableCITC: ElementRef;
-  dataTableCITC: any;
-  @ViewChild('dataTableCSTE') tableCSTE: ElementRef;
-  dataTableCSTE: any;
-  @ViewChild('dataTableCEA') tableCEA: ElementRef;
-  dataTableCEA: any;
+  @ViewChild('proposal') tableProposal: ElementRef;
+  proposal: any;
+  @ViewChild('fileRequest') tableFileRequest: ElementRef;
+  fileRequest: any;
+  @ViewChild('report') tableReport: ElementRef;
+  report: any;
 
   constructor() { }
 
@@ -26,20 +22,14 @@ export class AssesmentComponent implements OnInit {
 
     // Display data tables
       // COT
-      this.dataTableCOT = $(this.tableCOT.nativeElement);
-      this.dataTableCOT.dataTable();
+      this.proposal = $(this.tableProposal.nativeElement);
+      this.proposal.dataTable();
         // CSM
-      this.dataTableCSM = $(this.tableCSM.nativeElement);
-      this.dataTableCSM.dataTable();
+      this.fileRequest = $(this.tableFileRequest.nativeElement);
+      this.fileRequest.dataTable();
         // CITC
-      this.dataTableCITC = $(this.tableCITC.nativeElement);
-      this.dataTableCITC.dataTable();
-        // CSTE
-      this.dataTableCSTE = $(this.tableCSTE.nativeElement);
-      this.dataTableCSTE.dataTable();
-        // CEA
-      this.dataTableCEA = $(this.tableCEA.nativeElement);
-      this.dataTableCEA.dataTable();
+      this.report = $(this.tableReport.nativeElement);
+      this.report.dataTable();
 
   }
 
