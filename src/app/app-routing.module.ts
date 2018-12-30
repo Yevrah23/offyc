@@ -29,21 +29,18 @@ const routes: Routes = [
         redirectTo: 'dashboard',
         pathMatch: 'full'},
       {
-<<<<<<< HEAD
-        path: 'dashboard', 
+        path: 'dashboard',
         component: HomeComponent},
       {
-        path: 'records', 
+        path: 'records',
         component: RecordsComponent},
       {
-        path: 'assesment', 
-        component: AssesmentComponent}
-=======
-        path: 'dashboard',
-        component: HomeComponent}
->>>>>>> eae4072f2632df33d4c76c421b2f013c2a16a4e5
-  ]},
-  {path : '**', component: PageNotFoundComponent}
+        path: 'assesment',
+        component: AssesmentComponent},
+        {path: 'dashboard',
+        component: HomeComponent},
+  ] },
+  {path : '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
