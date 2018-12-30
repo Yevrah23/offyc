@@ -14,6 +14,9 @@ import { LoginRegLayoutComponent } from './login-reg-layout/login-reg-layout.com
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { UserServices } from './services/user_services';
+import { AuthGuard } from "./auth.guard";
+
+
 
 @NgModule({
   declarations: [
@@ -35,7 +38,8 @@ import { UserServices } from './services/user_services';
     HttpModule
   ],
   providers: [
-    UserServices
+    UserServices,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

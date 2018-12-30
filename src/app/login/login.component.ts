@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
         if (response[0]) {
           console.log('Logged In');
           if (response[1].user_type === '2') {
-            console.log('Hello Admin');
+            this.user.isLoggedIn = true;
             this.router.navigate(['/', 'admin']);
           }
         }

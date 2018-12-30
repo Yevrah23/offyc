@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class UserServices {
     private serverUrl = 'http://localhost/';
+    isLoggedIn: boolean;
 
     constructor(private http: HttpClient) { }
 
