@@ -30,7 +30,13 @@ const routes: Routes = [
         pathMatch: 'full'},
       {
         path: 'dashboard', 
-        component: HomeComponent}
+        component: HomeComponent},
+      {
+        path: 'records', 
+        component: RecordsComponent},
+      {
+        path: 'assesment', 
+        component: AssesmentComponent}
   ]},
   {path : '**', component: PageNotFoundComponent}
 ];
