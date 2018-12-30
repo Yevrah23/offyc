@@ -32,13 +32,15 @@ const routes: Routes = [
         path: 'dashboard', 
         component: HomeComponent},
       {
-        path: 'records', 
+        path: 'records',
         component: RecordsComponent},
       {
-        path: 'assesment', 
-        component: AssesmentComponent}
-  ]},
-  {path : '**', component: PageNotFoundComponent}
+        path: 'assesment',
+        component: AssesmentComponent},
+        {path: 'dashboard',
+        component: HomeComponent},
+  ] },
+  {path : '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
