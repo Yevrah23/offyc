@@ -1,39 +1,22 @@
 // CONTENT STYLE
 
 section.container-fluid {
-  padding: 44px 62px 15px 41px;
+  padding: 15px 62px 15px 62px;
+  min-height: 90%;
 }
 
 .row {
   margin: 0 -7.5px 0 -7.5px;
 
   div{
-    padding: 15px 7.5px 0 7.5px;
+    padding: 0 7.5px 0 7.5px;
   }
-}
-
-// CARD STYLES
-
-mat-card.calendar.mat-card {
-  min-height: 707px;
-}
-
-mat-card.dailyTask.mat-card {
-  min-height: 260px;
-}
-
-mat-card.transaction.mat-card {
-  min-height: 255px;
-}
-
-mat-card.progressReport.mat-card {
-  min-height: 255px;
 }
 
 // TABS style
 
 ::ng-deep .mat-tab-label {
-  padding: 0px 10px !important;
+  padding: 0px 20px !important;
   min-width: 45px !important;
 }
 
@@ -52,9 +35,15 @@ mat-card.progressReport.mat-card {
 
 .box {
   background: #fff;
-  height: 300px;
+  min-height: 450px;
   width: 99%;
   margin: 1.5px;
   margin-top: 15px;
 }
 
+// Table style 
+
+::ng-deep .dataTables_wrapper {
+  width: 100% !important;
+  padding: 15px !important;
+}

@@ -18,12 +18,13 @@ import { AuthGuard } from "./auth.guard";
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     SideNavComponent,
     routingComponents,
-    LoginRegLayoutComponent
+    LoginRegLayoutComponent,
   ],
   imports: [
     BrowserModule,

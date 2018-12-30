@@ -96,15 +96,15 @@ export class RegisterComponent implements OnInit {
       this.show = false;
     }
   }
-  
+
 
   passCheck() {
-    if (this.password == this.confirmP) {
+    if (this.password === this.confirmP) {
       this.reg = true;
     } else {
       this.reg = false;
 
-    }    
+    }
   }
 
 }

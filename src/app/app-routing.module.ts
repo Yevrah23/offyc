@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+// Logins
 import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './pages/home/home.component';
-import { AdminComponent } from './admin/admin.component';
 import { LoginRegLayoutComponent } from './login-reg-layout/login-reg-layout.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from "./auth.guard";
 
+// Pages
+import { HomeComponent } from './pages/home/home.component';
+import { RecordsComponent } from './pages/records/records.component';
+import { AdminComponent } from './admin/admin.component';
+import { AssesmentComponent } from './pages/assesment/assesment.component';
 
 const routes: Routes = [
   { path : '', redirectTo: '/login', pathMatch: 'full'},
@@ -36,4 +40,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [LoginComponent, RegisterComponent, AdminComponent, HomeComponent, PageNotFoundComponent];
+// tslint:disable-next-line:max-line-length
+export const routingComponents = [LoginComponent, RegisterComponent, AdminComponent, HomeComponent, RecordsComponent, AssesmentComponent, PageNotFoundComponent];
