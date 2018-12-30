@@ -15,12 +15,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { UserServices } from './services/user_services';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     SideNavComponent,
     routingComponents,
-    LoginRegLayoutComponent
+    LoginRegLayoutComponent,
   ],
   imports: [
     BrowserModule,
