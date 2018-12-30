@@ -5,7 +5,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { LoginComponent } from './login/login.component';
 import { LoginRegLayoutComponent } from './login-reg-layout/login-reg-layout.component';
 import { RegisterComponent } from './register/register.component';
-import { AuthGuard } from "./auth.guard";
+import { AuthGuard } from './auth.guard';
 
 // Pages
 import { HomeComponent } from './pages/home/home.component';
@@ -19,17 +19,17 @@ const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent}
   ]},
-  { 
-    path : 'admin', 
-    component: AdminComponent, 
+  {
+    path : 'admin',
+    component: AdminComponent,
     canActivate: [AuthGuard],
     children: [
       {
-        path: '', 
-        redirectTo: 'dashboard', 
+        path: '',
+        redirectTo: 'dashboard',
         pathMatch: 'full'},
       {
-        path: 'dashboard', 
+        path: 'dashboard',
         component: HomeComponent}
   ]},
   {path : '**', component: PageNotFoundComponent}
