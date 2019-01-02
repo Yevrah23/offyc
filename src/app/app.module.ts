@@ -14,8 +14,8 @@ import { LoginRegLayoutComponent } from './login-reg-layout/login-reg-layout.com
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { UserServices } from './services/user_services';
-import { AuthGuard } from "./auth.guard";
-import { NotificationComponent } from './pages/notification/notification.component';
+import { AuthGuard } from './auth.guard';
+
 
 
 
@@ -26,7 +26,6 @@ import { NotificationComponent } from './pages/notification/notification.compone
     SideNavComponent,
     routingComponents,
     LoginRegLayoutComponent,
-    NotificationComponent,
   ],
   imports: [
     BrowserModule,

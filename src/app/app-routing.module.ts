@@ -12,6 +12,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { RecordsComponent } from './pages/records/records.component';
 import { AdminComponent } from './admin/admin.component';
 import { AssesmentComponent } from './pages/assesment/assesment.component';
+import { NotificationComponent } from './pages/notification/notification.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -44,8 +45,8 @@ const routes: Routes = [
         component: AssesmentComponent
       },
       {
-        path: 'dashboard',
-        component: HomeComponent
+        path: 'notification',
+        component: NotificationComponent
       },
     ]
   },
@@ -58,4 +59,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 // tslint:disable-next-line:max-line-length
-export const routingComponents = [LoginComponent, RegisterComponent, AdminComponent, HomeComponent, RecordsComponent, AssesmentComponent, PageNotFoundComponent];
+export const routingComponents = [LoginComponent, RegisterComponent, AdminComponent, HomeComponent, RecordsComponent, AssesmentComponent, NotificationComponent, PageNotFoundComponent];
