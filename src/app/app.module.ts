@@ -16,6 +16,9 @@ import { HttpModule } from '@angular/http';
 import { UserServices } from './services/user_services';
 import { AuthGuard } from './auth.guard';
 
+// modals component
+import { SubmitProposalComponent } from './modal/submit-proposal/submit-proposal.component';
+
 
 
 
@@ -26,6 +29,7 @@ import { AuthGuard } from './auth.guard';
     SideNavComponent,
     routingComponents,
     LoginRegLayoutComponent,
+    SubmitProposalComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +42,9 @@ import { AuthGuard } from './auth.guard';
     MaterialModule,
     HttpClientModule,
     HttpModule
+  ],
+  entryComponents: [
+    SubmitProposalComponent
   ],
   providers: [
     UserServices,

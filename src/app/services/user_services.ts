@@ -21,8 +21,8 @@ export class UserServices {
         // return this.http.post(this.serverUrl + 'restserver-ci/api/user/users', {'params':params});
     }
     login(params) {
-        // tslint:disable-next-line:max-line-length
         // console.log(params);
+        // tslint:disable-next-line:max-line-length
         return this.http.post(this.serverUrl + 'codeigniter/api/Users/login', {'username': params[0].username, 'password' : params[0].password});
     }
     register(params) {

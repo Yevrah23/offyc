@@ -8,7 +8,7 @@ section.container-fluid {
 .row {
   margin: 0 -7.5px 0 -7.5px;
 
-  div{
+  div {
     padding: 0 7.5px 0 7.5px;
   }
 }
@@ -46,4 +46,18 @@ section.container-fluid {
 ::ng-deep .dataTables_wrapper {
   width: 100% !important;
   padding: 15px !important;
+}
+
+// modal style
+
+button.modal-trigger {
+  position: absolute;
+  right: 65px;
+  margin: 10px;
+  transform: translate(0%, 15%);
+  z-index: 999;
+}
+
+::ng-deep div#DataTables_Table_0_length {
+  display: none;
 }

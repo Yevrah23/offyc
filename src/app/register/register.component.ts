@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import { UserServices } from '../services/user_services';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 
@@ -70,16 +69,16 @@ export class RegisterComponent implements OnInit {
       }
     );
     this.user.register(this.data).subscribe(
-      (response) => { 
+      (response) => {
         console.log(response);
         this.data = [];
-        if (response == 0) {
+        if (response === 0) {
           // if (response == 0) {
             console.log('Username Taken');
-          }else if (response == 1){
+          } else if (response === 1) {
             console.log('Registered');
             this.router.navigate(['/', 'login']);
-          }else{
+          } else {
             console.log('Error');
           }
         // }
