@@ -1,5 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+
+interface check{
+    type: string,
+    success: boolean
+}
 
 @Injectable()
 export class UserServices {
@@ -29,5 +36,12 @@ export class UserServices {
             'dept' : params[0].dept
         });
     }
+
+    check_login(params){
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/check_login',{'token':params});
+    }
+    // logout(){
+    //     return this.http.
+    // }
 
 }

@@ -28,6 +28,8 @@ export class LoginComponent implements OnInit {
           console.log('Logged In');
           if (response[1].user_type === '2') {
             this.user.isLoggedIn = true;
+            sessionStorage.setItem(response[1].user_school_id, response[3]);
+            sessionStorage.setItem('id', response[1].user_school_id);
             this.router.navigate(['/', 'admin']);
           }
         }

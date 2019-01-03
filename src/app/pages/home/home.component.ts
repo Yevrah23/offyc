@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CalendarComponent } from 'ng-fullcalendar';
 import { Options } from 'fullcalendar';
+import { UserServices } from 'src/app/services/user_services';
 declare var $;
 
 @Component({
@@ -9,6 +10,8 @@ declare var $;
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  token: any;
+
   // Calendar api
   calendarOptions: Options;
   events: any;
@@ -19,9 +22,20 @@ export class HomeComponent implements OnInit {
   @ViewChild('dataTable') table: ElementRef;
   dataTable: any;
 
-  constructor() { }
+  constructor(private user:UserServices) { }
 
   ngOnInit(): void {
+    this.token = sessionStorage.getItem(sessionStorage.getItem('id'));
+    this.user.check_login(this.token).subscribe(
+      (response) => {
+        console.log(response);
+      }
+    )
+
+
+
+
+
 
     this.calendarOptions = {
       editable: true,
