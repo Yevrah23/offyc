@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CalendarComponent } from 'ng-fullcalendar';
 import { Options } from 'fullcalendar';
 import { UserServices } from 'src/app/services/user_services';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 declare var $;
 
 @Component({
@@ -22,20 +24,20 @@ export class HomeComponent implements OnInit {
   @ViewChild('dataTable') table: ElementRef;
   dataTable: any;
 
-  constructor(private user:UserServices) { }
+  constructor(private user:UserServices,private cookies: CookieService, private router: Router) { }
 
   ngOnInit(): void {
-    this.token = sessionStorage.getItem(sessionStorage.getItem('id'));
+    this.token = this.cookies.get(this.cookies.get('id'));
     this.user.check_login(this.token).subscribe(
       (response) => {
-        console.log(response);
-      }
-    )
-
-
-
-
-
+        console.log(response[0]);
+          if(response[0]){
+            // this.router.navigate(['/']);
+          }else{
+            // console.log('Hello Admin')
+          }
+        }
+      );
 
     this.calendarOptions = {
       editable: true,

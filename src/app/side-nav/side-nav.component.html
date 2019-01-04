@@ -28,7 +28,7 @@
 
           <mat-menu #appMenu="matMenu">
             <button mat-menu-item>Settings</button>
-            <button mat-menu-item routerLink="/">Sign Out</button>
+            <button mat-menu-item (click)="logout()">Sign Out</button>
           </mat-menu>
         </div>
       </mat-toolbar-row>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserServices } from '../services/user_services';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Component({
@@ -14,9 +15,12 @@ export class LoginComponent implements OnInit {
   password: string;
   credentials = [];
 
-  constructor(public http: HttpClient, private user: UserServices, private router: Router) { }
+  constructor(public http: HttpClient, private user: UserServices, private router: Router, private cookies: CookieService) { }
 
   ngOnInit() {
+    if (this.cookies.get('id').length > 0){
+      this.router.navigate(['/', 'admin']);
+    }
   }
 
   login_user() {
@@ -28,14 +32,16 @@ export class LoginComponent implements OnInit {
           console.log('Logged In');
           if (response[1].user_type === '2') {
             this.user.isLoggedIn = true;
-            sessionStorage.setItem(response[1].user_school_id, response[3]);
-            sessionStorage.setItem('id', response[1].user_school_id);
+            this.cookies.set(response[1].user_school_id, response[3]);
+            this.cookies.set('id', response[1].user_school_id);
             this.router.navigate(['/', 'admin']);
           }
         }
       }
     );
   }
+
+
 }
 
 // my commit

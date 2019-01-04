@@ -39,6 +39,7 @@ export class UserServices {
 
     check_login(params){
         return this.http.post(this.serverUrl + 'codeigniter/api/Users/check_login',{'token':params});
+        // return {'loggedin':'yes'};
     }
     // logout(){
     //     return this.http.
