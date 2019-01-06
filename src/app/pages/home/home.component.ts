@@ -24,16 +24,16 @@ export class HomeComponent implements OnInit {
   @ViewChild('dataTable') table: ElementRef;
   dataTable: any;
 
-  constructor(private user:UserServices,private cookies: CookieService, private router: Router) { }
+  constructor(private user: UserServices, private cookies: CookieService, private router: Router) { }
 
   ngOnInit(): void {
     this.token = this.cookies.get(this.cookies.get('id'));
     this.user.check_login(this.token).subscribe(
       (response) => {
         console.log(response[0]);
-          if(response[0]){
+          if (response[0]) {
             // this.router.navigate(['/']);
-          }else{
+          } else {
             // console.log('Hello Admin')
           }
         }
