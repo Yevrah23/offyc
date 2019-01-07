@@ -1,6 +1,11 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
 
-declare var $;
+import * as $ from 'jquery';
+import 'datatables.net';
+import 'datatables.net-bs4';
+import { HttpClient } from '@angular/common/http';
+
+
 @Component({
   selector: 'app-assesment',
   templateUrl: './assesment.component.html',
@@ -9,28 +14,34 @@ declare var $;
 export class AssesmentComponent implements OnInit {
 
   // data tables
-  @ViewChild('proposal') tableProposal: ElementRef;
-  proposal: any;
-  @ViewChild('fileRequest') tableFileRequest: ElementRef;
-  fileRequest: any;
-  @ViewChild('report') tableReport: ElementRef;
-  report: any;
+  dataTable: any;
 
-  constructor() { }
+  // table data sample
+  records: any[];
 
-  ngOnInit(): void {
+  constructor(private http: HttpClient, private chRef: ChangeDetectorRef) { }
+
+  ngOnInit() {
 
     // Display data tables
-      // COT
-      this.proposal = $(this.tableProposal.nativeElement);
-      this.proposal.dataTable();
-        // CSM
-      this.fileRequest = $(this.tableFileRequest.nativeElement);
-      this.fileRequest.dataTable();
-        // CITC
-      this.report = $(this.tableReport.nativeElement);
-      this.report.dataTable();
+    this.http.get('https://jsonplaceholder.typicode.com/users')
+      .subscribe((data: any[]) => {
+        this.records = data;
 
+        this.chRef.detectChanges();
+        // User
+        // Display data tables
+        // user
+        const table: any = $('table');
+        this.dataTable = table.dataTable();
+      });
+  }
+
+  loadTable() {
+    console.log('table loaded');
+    this.chRef.detectChanges();
+    const table: any = $('table');
+    this.dataTable = table.dataTable();
   }
 
 }

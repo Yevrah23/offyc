@@ -14,6 +14,7 @@ import { AdminComponent } from './admin/admin.component';
 import { AssesmentComponent } from './pages/assesment/assesment.component';
 import { NotificationComponent } from './pages/notification/notification.component';
 
+
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
@@ -23,7 +24,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'admin',
+    path: 'admin' ,
     component: AdminComponent,
     canActivate: [AuthGuard],
     children: [

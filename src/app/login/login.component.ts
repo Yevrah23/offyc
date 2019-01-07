@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(public http: HttpClient, private user: UserServices, private router: Router, private cookies: CookieService) { }
 
   ngOnInit() {
-    if (this.cookies.get('id').length > 0){
+    if (this.cookies.get('id').length > 0) {
       this.router.navigate(['/', 'admin']);
     }
   }
