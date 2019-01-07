@@ -20,6 +20,7 @@ import { CookieService } from 'ngx-cookie-service';
 
 let id: CookieService;
 
+
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
@@ -29,7 +30,11 @@ const routes: Routes = [
     ]
   },
   {
+<<<<<<< HEAD
     path: ':id',
+=======
+    path: 'admin' ,
+>>>>>>> a57748e7dfbe5a5a1b34a5f3e9ab47de904721c0
     component: AdminComponent,
     canActivate: [AuthGuard],
     children: [

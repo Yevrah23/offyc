@@ -8,7 +8,7 @@ import { UserServices } from './services/user_services';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private transac: UserServices){
+  constructor(private transac: UserServices) {
 
   }
 

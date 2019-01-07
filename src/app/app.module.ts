@@ -19,8 +19,9 @@ import { AuthGuard } from './auth.guard';
 // modals component
 import { SubmitProposalComponent } from './modal/submit-proposal/submit-proposal.component';
 
-//Cookies ni jaz
-import { CookieService } from "ngx-cookie-service";
+// Cookies ni jaz
+import { CookieService } from 'ngx-cookie-service';
+
 
 
 

@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
               public acRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    if (this.cookies.get('id').length > 0){
+    if (this.cookies.get('id').length > 0) {
       this.router.navigate(['/', 'admin']);
     }
   }
