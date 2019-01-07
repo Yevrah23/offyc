@@ -3,7 +3,7 @@ import { CalendarComponent } from 'ng-fullcalendar';
 import { Options } from 'fullcalendar';
 import { UserServices } from 'src/app/services/user_services';
 import { CookieService } from 'ngx-cookie-service';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 declare var $;
 
 @Component({
@@ -24,7 +24,9 @@ export class HomeComponent implements OnInit {
   @ViewChild('dataTable') table: ElementRef;
   dataTable: any;
 
-  constructor(private user: UserServices, private cookies: CookieService, private router: Router) { }
+  constructor(private user: UserServices, private cookies: CookieService, private router: Router, private acRoute: ActivatedRoute) { 
+    this.acRoute.params.subscribe(params=>console.log(params));
+  }
 
   ngOnInit(): void {
     this.token = this.cookies.get(this.cookies.get('id'));
