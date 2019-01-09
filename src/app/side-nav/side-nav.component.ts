@@ -20,7 +20,8 @@ export class SideNavComponent {
   constructor(private breakpointObserver: BreakpointObserver, private cookies: CookieService, private router: Router) {}
 
   logout() {
-    this.cookies.deleteAll('/');
+    console.log('hello');
+    this.cookies.deleteAll();
     this.router.navigate(['/']);
   }
 

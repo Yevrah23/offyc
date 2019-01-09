@@ -1,4 +1,4 @@
-<section *ngIf="false" class="container-fluid records admin">
+<section *ngIf="isAdmin" class="container-fluid records admin">
   <div class="row">
     <div class="col-md-12">
       <mat-tab-group dynamicHeight class="progressReport" (selectedTabChange)="loadTable()">
@@ -144,7 +144,7 @@
 </section>
 
 
-<section *ngIf="true" class="container-fluid records user">
+<section *ngIf="isUser" class="container-fluid records user">
   <div class="row">
     <!-- we use mat-card and div -->
     <!-- button modal trigger -->

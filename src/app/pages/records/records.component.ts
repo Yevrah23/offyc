@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import * as $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-bs4';
+import { UserServices } from 'src/app/services/user_services';
 
 
 @Component({
@@ -25,7 +26,12 @@ export class RecordsComponent implements OnInit {
   records: any[];
 
 
-  constructor(public dialog: MatDialog, private http: HttpClient , private chRef: ChangeDetectorRef) { }
+  constructor(public dialog: MatDialog, private http: HttpClient , private chRef: ChangeDetectorRef, private user: UserServices) { 
+    this.isAdmin = this.user.admin;
+    this.isUser = this.user.user;
+    console.log(this.user.admin);
+    console.log(this.user.user);
+  }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(SubmitProposalComponent, {

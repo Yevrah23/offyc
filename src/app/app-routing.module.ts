@@ -13,6 +13,12 @@ import { RecordsComponent } from './pages/records/records.component';
 import { AdminComponent } from './admin/admin.component';
 import { AssesmentComponent } from './pages/assesment/assesment.component';
 import { NotificationComponent } from './pages/notification/notification.component';
+import { CookieService } from 'ngx-cookie-service';
+
+// let cookies : LoginComponent ;
+// let id = cookies.username;
+
+let id: CookieService;
 
 
 const routes: Routes = [
@@ -24,7 +30,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'admin' ,
+    path: ':id',
     component: AdminComponent,
     canActivate: [AuthGuard],
     children: [
@@ -56,7 +62,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers:[CookieService]
 })
 export class AppRoutingModule { }
 // tslint:disable-next-line:max-line-length
