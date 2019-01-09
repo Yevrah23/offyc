@@ -43,7 +43,8 @@
     <div class="upload">
       <label>Upload File : </label><br>
       <button mat-raised-button color="primary" (click)="fileInput.click()">Upload</button>
-      <input hidden type="file" #fileInput>
+      <input hidden type="file" #fileInput (change)="getFiles($event)">
+      <input class="mt-2" id="fileName" type="text" placeholder="No file chosen" readonly="true" matInput>
     </div>  
   </div>
 

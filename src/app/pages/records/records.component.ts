@@ -1,11 +1,11 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { SubmitProposalComponent } from 'src/app/modal/submit-proposal/submit-proposal.component';
+import { HttpClient } from '@angular/common/http';
 
 import * as $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-bs4';
-import { HttpClient } from '@angular/common/http';
 import { UserServices } from 'src/app/services/user_services';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -29,8 +29,16 @@ export class RecordsComponent implements OnInit {
   records: any[];
 
 
+<<<<<<< HEAD
   constructor(public dialog: MatDialog, private http: HttpClient , private chRef: ChangeDetectorRef, private user: UserServices, private cookies: CookieService) { 
   
+=======
+  constructor(public dialog: MatDialog, private http: HttpClient , private chRef: ChangeDetectorRef, private user: UserServices) {
+    this.isAdmin = this.user.admin;
+    this.isUser = this.user.user;
+    console.log(this.user.admin);
+    console.log(this.user.user);
+>>>>>>> 5078c8e4995b10cc668ee4e6df574de1d6b15c37
   }
 
   openDialog(): void {

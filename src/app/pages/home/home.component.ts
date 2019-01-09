@@ -1,16 +1,14 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { CalendarComponent } from 'ng-fullcalendar';
 import { Options } from 'fullcalendar';
 import { UserServices } from 'src/app/services/user_services';
 import { CookieService } from 'ngx-cookie-service';
-import { Router,ActivatedRoute } from '@angular/router';
-// import * as jspdf from 'jspdf';
-// import html2canvas from 'html2canvas';
-// declare var $;
-// interface window {
-//   onePageCanvas: any; 
-// }
-// window.onePageCanvas = window.onePageCanvas || {};
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+
+import * as $ from 'jquery';
+import 'datatables.net';
+import 'datatables.net-bs4';
 
 @Component({
   selector: 'app-home',
@@ -27,12 +25,12 @@ export class HomeComponent implements OnInit {
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
 
   // data tables
-  @ViewChild('dataTable') table: ElementRef;
   dataTable: any;
+  // table data sample
+  records: any[];
 
-  constructor(private user: UserServices, private cookies: CookieService, private router: Router, private acRoute: ActivatedRoute) { 
-    this.acRoute.params.subscribe(params=>console.log(params));
-  }
+  // tslint:disable-next-line:max-line-length
+  constructor(private user: UserServices, private cookies: CookieService, private router: Router, private http: HttpClient , private chRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.token = this.cookies.get(this.cookies.get('id'));
@@ -40,13 +38,12 @@ export class HomeComponent implements OnInit {
       (response) => {
         console.log(response[0]);
         if (response[0]) {
-          this.router.navigate(['/', this.cookies.get('id')]);
+          // this.router.navigate(['/']);
         } else {
           // console.log('Hello Admin')
         }
       }
     );
-
 
     this.calendarOptions = {
       editable: true,
@@ -60,10 +57,25 @@ export class HomeComponent implements OnInit {
       events: []
     };
 
-// Display data tables
-    this.dataTable = $(this.table.nativeElement);
-    this.dataTable.dataTable();
+    this.http.get('https://jsonplaceholder.typicode.com/users')
+    .subscribe((data: any[]) => {
+      this.records = data;
 
+      this.chRef.detectChanges();
+    // User
+    // Display data tables
+    // user
+    const table: any = $('#transaction');
+    this.dataTable = table.dataTable();
+    });
+
+  }
+
+  loadTable() {
+    console.log('table loaded');
+    this.chRef.detectChanges();
+    const table: any = $('table');
+    this.dataTable = table.dataTable();
   }
 
   clearEvents() {
@@ -78,7 +90,7 @@ export class HomeComponent implements OnInit {
   // captureScreen() {
   //   var data = document.getElementById('toPdf');
   //   html2canvas(data).then(canvas => {
-  //     // Few necessary setting options  
+  //     // Few necessary setting options
   //     var pdf = new jspdf('p', 'pt', 'letter');
 
   //           for (var i = 0; i <= data.clientHeight/980; i++) {
@@ -97,7 +109,7 @@ export class HomeComponent implements OnInit {
   //               onePageCanvas.setAttribute('width', 900);
   //               onePageCanvas.setAttribute('height', 980);
   //               var ctx = onePageCanvas.getContext('2d');
-  //               // details on this usage of this function: 
+  //               // details on this usage of this function:
   //               // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images#Slicing
   //               ctx.drawImage(srcImg,sX,sY,sWidth,sHeight,dX,dY,dWidth,dHeight);
 
@@ -121,5 +133,5 @@ export class HomeComponent implements OnInit {
   //           //! after the for loop is finished running, we save the pdf.
   //           pdf.save('Test.pdf');
   //   });
-  // } 
+  // }
 }
