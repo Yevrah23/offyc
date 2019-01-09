@@ -1,11 +1,11 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { SubmitProposalComponent } from 'src/app/modal/submit-proposal/submit-proposal.component';
+import { HttpClient } from '@angular/common/http';
 
 import * as $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-bs4';
-import { HttpClient } from '@angular/common/http';
 
 
 @Component({
