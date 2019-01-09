@@ -6,63 +6,126 @@
       <mat-card>
         <h2 class="text-center">SIGN UP</h2>
 
-        <div class="form-wrapper">
+        <mat-horizontal-stepper [linear]="isLinear" #stepper>
+          <div class="form-wrapper">
 
-          <mat-form-field floatLabel="auto">
-            <mat-label>School ID</mat-label>
-            <input [(ngModel)] = "username" type="text" matInput>
-          </mat-form-field>
+            <mat-step [stepControl]="firstFormGroup">
+              <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Step 1</ng-template>
+                <mat-form-field floatLabel="auto">
+                  <mat-label>School ID</mat-label>
+                  <input [(ngModel)]="username" type="text" matInput formControlName="firstCtrl">
+                </mat-form-field>
 
-          <mat-form-field floatLabel="auto">
-            <mat-label>Password</mat-label>
-            <input (keyup) = "passCheck()" [(ngModel)] = "password" type="password" matInput>
-          </mat-form-field>
+                <mat-form-field floatLabel="auto">
+                  <mat-label>Password</mat-label>
+                  <input (keyup)="passCheck()" [(ngModel)]="password" type="password" matInput formControlName="firstCtrl">
+                </mat-form-field>
 
-          <mat-form-field floatLabel="auto">
-            <mat-label>Confirm Password</mat-label>
-            <input (keyup) = "passCheck()" [(ngModel)] = "confirmP" type="password" matInput>
-          </mat-form-field>
+                <mat-form-field floatLabel="auto">
+                  <mat-label>Confirm Password</mat-label>
+                  <input (keyup)="passCheck()" [(ngModel)]="confirmP" type="password" matInput formControlName="firstCtrl">
+                </mat-form-field>
 
-          <mat-form-field floatLabel="auto">
-            <mat-label>Email</mat-label>
-            <input [(ngModel)] = "email" type="email" matInput>
-          </mat-form-field>
+                <mat-form-field floatLabel="auto">
+                  <mat-label>Email</mat-label>
+                  <input [(ngModel)]="email" type="email" matInput formControlName="firstCtrl">
+                </mat-form-field>
 
-          <mat-form-field floatLabel="auto">
-            <mat-label>Position</mat-label>
-            <input [(ngModel)] = "position" type="text" matInput>
-          </mat-form-field>
+                <div class="btn-wrapper">
+                  <button mat-raised-button matStepperNext>Next</button>
+                  <!-- <button *ngIf="reg" (click)="register()" mat-stroked-button class="btn-submit">Submit</button> -->
+                  <a mat-button routerLink="/login" class="btn-back">Back</a>
+                </div>
+              </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+              <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Step 2</ng-template>
+                <mat-form-field floatLabel="auto">
+                  <mat-label>Position</mat-label>
+                  <input [(ngModel)]="position" type="text" matInput formControlName="secondCtrl">
+                </mat-form-field>
 
-          <mat-form-field floatLabel="auto">
-            <mat-label>College</mat-label>
-            <mat-select [(ngModel)] = "coll"  [formControl]="collegeControl" required>
-              <mat-option>--</mat-option>
-              <mat-option *ngFor="let college of college" (click) = "selectedCollege()" [value]="college">
-                {{college.name}}
-              </mat-option>
-            </mat-select>
-            <mat-error *ngIf="departmentControl.hasError('required')">Please choose an department</mat-error>
-            <mat-hint>{{departmentControl.value?.detail}}</mat-hint>
-          </mat-form-field>
+                <mat-form-field floatLabel="auto">
+                  <mat-label>College</mat-label>
+                  <mat-select [(ngModel)]="coll" [formControl]="collegeControl" required>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let college of college" (click)="selectedCollege()" [value]="college">
+                      {{college.name}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="departmentControl.hasError('required')">Please choose an department</mat-error>
+                  <mat-hint>{{collegeControl.value?.detail}}</mat-hint>
+                </mat-form-field>
 
-          <mat-form-field *ngIf="show" class="college" floatLabel="auto">
-            <mat-label>Department</mat-label>
-            <mat-select [(ngModel)] = "dept" [formControl]="departmentControl" required>
-              <mat-option>--</mat-option>
-              <mat-option *ngFor="let department of department" [value]="department">
-                {{department.name}}
-              </mat-option>
-            </mat-select>
-            <mat-error *ngIf="departmentControl.hasError('required')">Please choose an college</mat-error>
-            <mat-hint>{{departmentControl.value?.detail}}</mat-hint>
-          </mat-form-field>
+                <mat-form-field *ngIf="show" class="college" floatLabel="auto">
+                  <mat-label>Department</mat-label>
+                  <mat-select [(ngModel)]="dept" [formControl]="departmentControl" required>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let department of department" [value]="department">
+                      {{department.name}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="departmentControl.hasError('required')">Please choose an college</mat-error>
+                  <mat-hint>{{departmentControl.value?.detail}}</mat-hint>
+                </mat-form-field>
+                <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-raised-button matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+            <mat-step>
+              <ng-template matStepLabel>Step 3</ng-template>
+              <form [formGroup]="thirdFormGroup">
+                <ng-template matStepLabel>Step 2</ng-template>
+                <mat-form-field floatLabel="auto">
+                  <mat-label>Name</mat-label>
+                  <input [(ngModel)]="fName" type="text" matInput formControlName="thirdCtrl">
+                </mat-form-field>
 
-          <div class="btn-wrapper">
-            <button *ngIf="reg" (click) = "register()" mat-stroked-button class="btn-submit">Submit</button>
-            <a mat-button routerLink="/login" class="btn-back">Back</a>
+                <mat-form-field floatLabel="auto">
+                  <mat-label>Middle Name</mat-label>
+                  <input [(ngModel)]="mMname" type="text" matInput formControlName="thirdCtrl">
+                </mat-form-field>
+                <mat-form-field floatLabel="auto">
+                  <mat-label>Last Name</mat-label>
+                  <input [(ngModel)]="lName" type="text" matInput formControlName="thirdCtrl">
+                </mat-form-field>
+                <mat-form-field floatLabel="auto">
+                  <mat-label>Last Name</mat-label>
+                  <input [(ngModel)]="lName" type="text" matInput formControlName="thirdCtrl">
+                </mat-form-field>
+                <mat-form-field floatLabel="auto">
+                  <mat-label>Gender</mat-label>
+                  <input [(ngModel)]="gender" type="text" matInput formControlName="thirdCtrl">
+                </mat-form-field>
+                <mat-form-field floatLabel="auto">
+                  <mat-label>Age</mat-label>
+                  <input [(ngModel)]="age" type="text" matInput formControlName="thirdCtrl">
+                </mat-form-field>
+                <mat-form-field floatLabel="auto">
+                  <mat-label>Contact Number</mat-label>
+                  <input [(ngModel)]="cNumber" type="text" matInput formControlName="thirdCtrl">
+                </mat-form-field>
+
+                <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-raised-button matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+            <mat-step>
+              <ng-template matStepLabel>Done</ng-template>
+              You are now done.
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+              </div>
+            </mat-step>
           </div>
-
-        </div>
+        </mat-horizontal-stepper>
       </mat-card>
     </div>
   </div>

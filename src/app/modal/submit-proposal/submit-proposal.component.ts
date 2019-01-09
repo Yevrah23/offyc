@@ -38,8 +38,8 @@ export class SubmitProposalComponent implements OnInit {
       'b_target' : this.beneficiary,
       'b_gender' : this.bene_gender,
       'venue' : this.venue,
-      'trans_type' : this.cookies.get('set') 
-    })
+      'trans_type' : this.cookies.get('set')
+    });
     console.log(this.proposal);
   }
 

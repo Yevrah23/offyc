@@ -3,9 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
-interface check{
-    type: string,
-    success: boolean
+interface Check {
+    type: string;
+    success: boolean;
 }
 
 @Injectable()
@@ -39,8 +39,8 @@ export class UserServices {
         });
     }
 
-    check_login(params){
-        return this.http.post(this.serverUrl + 'codeigniter/api/Users/check_login',{'token':params});
+    check_login(params) {
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/check_login', {'token': params});
         // return {'loggedin':'yes'};
     }
     // logout(){

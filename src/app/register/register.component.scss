@@ -28,7 +28,7 @@ mat-card.mat-card {
   background: url(../../assets/img/logins/bg1@2x.png);
   background-position: 30% 55%;
   display: block;
-  height: 631px;
+  min-height: 560px;
   max-width: 458px;
   margin: 0 auto;
   border-radius: 9px;
@@ -48,29 +48,41 @@ mat-card.mat-card {
   margin-top: 20px !important;
   padding: 20px;
   min-width: 60%;
-
-  mat-form-field{
-    width: 100%;
-  }
-
-  .btn-wrapper, .college{
-    padding-top: 30px;
-  }
-
-  .btn-submit{
-    color: #3075FC;
-    border: 1px solid #3075FC;
-    border-radius: 18px;
-
-    width: 94px;
-    height: 36px;
-    margin: 0 auto;
-    display: block;
-  }
-
-  .btn-back{
-    margin: 0 auto;
-    display: block;
-  }
 }
 
+mat-form-field {
+  width: 70%;
+}
+
+.btn-wrapper,
+.college {
+  padding-top: 30px;
+}
+
+.btn-submit {
+  color: #3075FC;
+  border: 1px solid #3075FC;
+  border-radius: 18px;
+
+  width: 94px;
+  height: 36px;
+  margin: 0 auto;
+  display: block;
+}
+
+.btn-back {
+  margin: 0 auto;
+  display: block;
+}
+
+::ng-deep form{
+  text-align: center;
+}
+
+::ng-deep .mat-stepper-horizontal, .mat-stepper-vertical {
+  background-color: unset;
+}
+
+::ng-deep .mat-stepper-horizontal-line.ng-tns-c4-0.ng-star-inserted {
+  display: none;
+}
