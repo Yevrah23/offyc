@@ -3,23 +3,12 @@ import { CalendarComponent } from 'ng-fullcalendar';
 import { Options } from 'fullcalendar';
 import { UserServices } from 'src/app/services/user_services';
 import { CookieService } from 'ngx-cookie-service';
-<<<<<<< HEAD
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 import * as $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-bs4';
-=======
-import { Router,ActivatedRoute } from '@angular/router';
-// import * as jspdf from 'jspdf';
-// import html2canvas from 'html2canvas';
-// declare var $;
-// interface window {
-//   onePageCanvas: any; 
-// }
-// window.onePageCanvas = window.onePageCanvas || {};
->>>>>>> c29d3718cccca8ecc10c07314b869d082fd5e839
 
 @Component({
   selector: 'app-home',
@@ -55,10 +44,6 @@ export class HomeComponent implements OnInit {
         }
       }
     );
-<<<<<<< HEAD
-=======
-
->>>>>>> c29d3718cccca8ecc10c07314b869d082fd5e839
 
     this.calendarOptions = {
       editable: true,
@@ -105,7 +90,7 @@ export class HomeComponent implements OnInit {
   // captureScreen() {
   //   var data = document.getElementById('toPdf');
   //   html2canvas(data).then(canvas => {
-  //     // Few necessary setting options  
+  //     // Few necessary setting options
   //     var pdf = new jspdf('p', 'pt', 'letter');
 
   //           for (var i = 0; i <= data.clientHeight/980; i++) {
@@ -124,7 +109,7 @@ export class HomeComponent implements OnInit {
   //               onePageCanvas.setAttribute('width', 900);
   //               onePageCanvas.setAttribute('height', 980);
   //               var ctx = onePageCanvas.getContext('2d');
-  //               // details on this usage of this function: 
+  //               // details on this usage of this function:
   //               // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images#Slicing
   //               ctx.drawImage(srcImg,sX,sY,sWidth,sHeight,dX,dY,dWidth,dHeight);
 
@@ -148,5 +133,5 @@ export class HomeComponent implements OnInit {
   //           //! after the for loop is finished running, we save the pdf.
   //           pdf.save('Test.pdf');
   //   });
-  // } 
+  // }
 }

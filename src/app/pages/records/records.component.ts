@@ -26,7 +26,7 @@ export class RecordsComponent implements OnInit {
   records: any[];
 
 
-  constructor(public dialog: MatDialog, private http: HttpClient , private chRef: ChangeDetectorRef, private user: UserServices) { 
+  constructor(public dialog: MatDialog, private http: HttpClient , private chRef: ChangeDetectorRef, private user: UserServices) {
     this.isAdmin = this.user.admin;
     this.isUser = this.user.user;
     console.log(this.user.admin);
