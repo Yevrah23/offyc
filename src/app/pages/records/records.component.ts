@@ -29,16 +29,8 @@ export class RecordsComponent implements OnInit {
   records: any[];
 
 
-<<<<<<< HEAD
   constructor(public dialog: MatDialog, private http: HttpClient , private chRef: ChangeDetectorRef, private user: UserServices, private cookies: CookieService) { 
   
-=======
-  constructor(public dialog: MatDialog, private http: HttpClient , private chRef: ChangeDetectorRef, private user: UserServices) {
-    this.isAdmin = this.user.admin;
-    this.isUser = this.user.user;
-    console.log(this.user.admin);
-    console.log(this.user.user);
->>>>>>> 5078c8e4995b10cc668ee4e6df574de1d6b15c37
   }
 
   openDialog(): void {
