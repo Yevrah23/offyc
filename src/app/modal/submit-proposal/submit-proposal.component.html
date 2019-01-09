@@ -5,38 +5,39 @@
   <div class="form-wrapper">
     <mat-form-field floatLabel="auto">
       <mat-label>Title</mat-label>
-      <input type="text" matInput>
+      <input [(ngModel)] = "title" type="text" matInput>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput [matDatepicker]="start" placeholder="Start Date">
+      <input [(ngModel)] = "sdate" matInput [matDatepicker]="start" placeholder="Start Date">
       <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
       <mat-datepicker #start></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput [matDatepicker]="end" placeholder="End Date">
+      <input [(ngModel)] = "edate" matInput [matDatepicker]="end" placeholder="End Date">
       <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
       <mat-datepicker #end></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field floatLabel="auto">
       <mat-label>Target Benificiary</mat-label>
-      <input type="text" matInput>
+      <input [(ngModel)] = "beneficiary" type="text" matInput>
     </mat-form-field>
 
     <label> Gender Benificiary </label> <br>
     <mat-checkbox class="gender-box">Male</mat-checkbox>
     <mat-checkbox class="gender-box">Female</mat-checkbox>
+    
 
     <mat-form-field floatLabel="auto">
       <mat-label>Event Partner</mat-label>
-      <input type="text" matInput>
+      <input [(ngModel)] = "partner" type="text" matInput>
     </mat-form-field>
 
     <mat-form-field floatLabel="auto">
       <mat-label>Event Venue</mat-label>
-      <input type="text" matInput>
+      <input [(ngModel)] = "venue" type="text" matInput>
     </mat-form-field>
 
     <div class="upload">

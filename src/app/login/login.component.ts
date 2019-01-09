@@ -37,15 +37,9 @@ export class LoginComponent implements OnInit {
           this.cookies.set('random', '1x1784c89488ceec89a2');
           this.cookies.set(response[1].user_school_id, response[3]);
           this.cookies.set('id', response[1].user_school_id);
+          this.cookies.set('set', response[1].user_type);
           // this.router.navigate(['/', 'admin']);
           this.router.navigate(['/', response[1].user_school_id]);
-          if (response[1].user_type === '2') {
-            this.user.admin = false;
-            this.user.user = true;
-          } else if (response[1].user_type === '1'){
-            this.user.admin = true;
-            this.user.user = false;
-          }
         }
       }
     );

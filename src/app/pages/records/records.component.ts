@@ -7,6 +7,7 @@ import 'datatables.net';
 import 'datatables.net-bs4';
 import { HttpClient } from '@angular/common/http';
 import { UserServices } from 'src/app/services/user_services';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Component({
@@ -17,7 +18,9 @@ import { UserServices } from 'src/app/services/user_services';
 export class RecordsComponent implements OnInit {
 
   isAdmin = true;
-  isUser = false;
+  isUser = true;
+  token: any;
+
 
   // data tables
   dataTable: any;
@@ -26,11 +29,8 @@ export class RecordsComponent implements OnInit {
   records: any[];
 
 
-  constructor(public dialog: MatDialog, private http: HttpClient , private chRef: ChangeDetectorRef, private user: UserServices) { 
-    this.isAdmin = this.user.admin;
-    this.isUser = this.user.user;
-    console.log(this.user.admin);
-    console.log(this.user.user);
+  constructor(public dialog: MatDialog, private http: HttpClient , private chRef: ChangeDetectorRef, private user: UserServices, private cookies: CookieService) { 
+  
   }
 
   openDialog(): void {
@@ -45,7 +45,12 @@ export class RecordsComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.token = this.cookies.get('set');
+    if(this.token == "1"){
+      this.isUser = false;
+    }else{
+      this.isAdmin = false;
+    }
     this.http.get('https://jsonplaceholder.typicode.com/users')
     .subscribe((data: any[]) => {
       this.records = data;
