@@ -11,7 +11,9 @@ interface check{
 @Injectable()
 export class UserServices {
     private serverUrl = 'http://localhost/';
-    isLoggedIn: boolean;
+    // isLoggedIn: boolean;
+    admin: boolean;
+    user: boolean;
 
     constructor(private http: HttpClient) { }
 
