@@ -81,7 +81,7 @@
               <form [formGroup]="thirdFormGroup">
                 <ng-template matStepLabel>Step 2</ng-template>
                 <mat-form-field floatLabel="auto">
-                  <mat-label>Name</mat-label>
+                  <mat-label>First Name</mat-label>
                   <input [(ngModel)]="fName" type="text" matInput formControlName="thirdCtrl">
                 </mat-form-field>
 
@@ -93,18 +93,21 @@
                   <mat-label>Last Name</mat-label>
                   <input [(ngModel)]="lName" type="text" matInput formControlName="thirdCtrl">
                 </mat-form-field>
-                <mat-form-field floatLabel="auto">
-                  <mat-label>Last Name</mat-label>
-                  <input [(ngModel)]="lName" type="text" matInput formControlName="thirdCtrl">
+                <mat-form-field>
+                  <input [(ngModel)]="bDay" matInput [matDatepicker]="start" placeholder="Birthday" formControlName="thirdCtrl">
+                  <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+                  <mat-datepicker #start></mat-datepicker>
                 </mat-form-field>
-                <mat-form-field floatLabel="auto">
-                  <mat-label>Gender</mat-label>
-                  <input [(ngModel)]="gender" type="text" matInput formControlName="thirdCtrl">
+
+                <mat-form-field class="gender">
+                  <mat-radio-group formControlName="thirdCtrl">
+                    <mat-label>Gender</mat-label>
+                    <input type="text" matInput formControlName="thirdCtrl" readonly="readonly">
+                    <mat-radio-button value="M">Male</mat-radio-button>
+                    <mat-radio-button value="F">Female</mat-radio-button>
+                  </mat-radio-group>
                 </mat-form-field>
-                <mat-form-field floatLabel="auto">
-                  <mat-label>Age</mat-label>
-                  <input [(ngModel)]="age" type="text" matInput formControlName="thirdCtrl">
-                </mat-form-field>
+
                 <mat-form-field floatLabel="auto">
                   <mat-label>Contact Number</mat-label>
                   <input [(ngModel)]="cNumber" type="text" matInput formControlName="thirdCtrl">
@@ -112,17 +115,9 @@
 
                 <div>
                   <button mat-button matStepperPrevious>Back</button>
-                  <button mat-raised-button matStepperNext>Next</button>
+                  <button mat-raised-button (click)="register()">Submit</button>
                 </div>
               </form>
-            </mat-step>
-            <mat-step>
-              <ng-template matStepLabel>Done</ng-template>
-              You are now done.
-              <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button (click)="stepper.reset()">Reset</button>
-              </div>
             </mat-step>
           </div>
         </mat-horizontal-stepper>

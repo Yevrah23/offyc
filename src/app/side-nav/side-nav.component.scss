@@ -51,3 +51,11 @@ mat-nav-list a{
   }
 }
   
+span.notif-icon {
+  padding: 0 15px;
+  cursor: pointer;
+}
+
+.mat-menu-panel.notif {
+  max-width: 400px !important;
+}

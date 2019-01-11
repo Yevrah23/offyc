@@ -21,6 +21,7 @@
         <span class="flex-block"></span>
 
         <div class="user-type"> 
+          <button mat-icon-button [matMenuTriggerFor]="notif" class="notif-icon"><i class="far fa-bell"></i></button>
           <span>Admin</span>
           <button mat-icon-button [matMenuTriggerFor]="appMenu">
             <mat-icon>more_vert</mat-icon>
@@ -29,6 +30,11 @@
           <mat-menu #appMenu="matMenu">
             <button mat-menu-item>Settings</button>
             <button mat-menu-item (click)="logout()">Sign Out</button>
+          </mat-menu>
+          
+          <mat-menu class="notif" #notif="matMenu">
+            <button mat-menu-item>1 Notification notification notification notification notification notification</button>
+            <button mat-menu-item>2 Notification notificatio</button>
           </mat-menu>
         </div>
       </mat-toolbar-row>
