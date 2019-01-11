@@ -32,7 +32,12 @@
             <tr *ngFor="let record of records">
               <td>{{record.name}}</td>
               <td>{{record.address['street']}}</td>
-              <td>settings</td>
+              <td>
+                <div class="actions">
+                  <button mat-raised-button>Download</button>
+                  <button mat-raised-button>View</button>
+                </div>
+              </td>
             </tr>
           </tbody>
           <tfoot>

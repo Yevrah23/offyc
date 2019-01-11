@@ -1,0 +1,47 @@
+@import "~@angular/material/theming";
+@include mat-core();
+
+$my-blue: (
+  50: #022163,
+  100: #022163,
+  200: #022163,
+  300: #022163,
+  400: #022163,
+  500: #022163,
+  600: #022163,
+  700: #022163,
+  800: #022163,
+  900: #022163,
+  A100: #022163,
+  A200: #022163,
+  A400: #022163,
+  A700: #022163,
+  contrast: (
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+// below creates a primary palette with three shades of blue
+
+
+$custom-primary: mat-palette($mat-blue);
+$custom-accent: mat-palette($mat-red);
+
+$custom-theme: mat-light-theme($custom-primary, $custom-accent);
+
+$my-primary: mat-palette($my-blue);
+
+$my-theme: mat-light-theme($my-primary, $custom-accent);
+
+@include angular-material-theme($my-theme);
