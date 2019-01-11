@@ -17,11 +17,8 @@ import {
   MatDatepickerModule,
   MatNativeDateModule,
   MatCheckboxModule,
-<<<<<<< HEAD
-  MatRadioModule
-=======
+  MatRadioModule,
   MatStepperModule
->>>>>>> d7776e76bec43765adca5d9f9679e0dd1cb273c4
 
 } from '@angular/material';
 
@@ -43,11 +40,8 @@ import {
     MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
-<<<<<<< HEAD
-    MatRadioModule
-=======
+    MatRadioModule,
     MatStepperModule
->>>>>>> d7776e76bec43765adca5d9f9679e0dd1cb273c4
   ],
   exports: [
     MatButtonModule,
@@ -66,11 +60,8 @@ import {
     MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
-<<<<<<< HEAD
-    MatRadioModule
-=======
+    MatRadioModule,
     MatStepperModule
->>>>>>> d7776e76bec43765adca5d9f9679e0dd1cb273c4
   ]
 })
 export class MaterialModule {}
