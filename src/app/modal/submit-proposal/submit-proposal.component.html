@@ -26,8 +26,12 @@
     </mat-form-field>
 
     <label> Gender Benificiary </label> <br>
-    <mat-checkbox class="gender-box">Male</mat-checkbox>
-    <mat-checkbox class="gender-box">Female</mat-checkbox>
+    <mat-radio-group [(ngModel)]="bene_gender">
+      <mat-radio-button class="gender-box" value="Male">Male</mat-radio-button>
+      <mat-radio-button class="gender-box" value="Female">Female</mat-radio-button>
+      <mat-radio-button class="gender-box" value="Both">Both</mat-radio-button>
+    </mat-radio-group>
+
     
 
     <mat-form-field floatLabel="auto">
@@ -43,7 +47,8 @@
     <div class="upload">
       <label>Upload File : </label><br>
       <button mat-raised-button color="primary" (click)="fileInput.click()">Upload</button>
-      <input hidden type="file" #fileInput (change)="getFiles($event)">
+<!-- <input hidden type="file" #fileInput (change)="getFiles($event,$event.target.files)"> -->
+      <input hidden type="file" #fileInput>
       <input class="mt-2" id="fileName" type="text" placeholder="No file chosen" readonly="true" matInput>
     </div>  
   </div>
