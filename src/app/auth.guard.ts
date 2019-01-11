@@ -16,11 +16,11 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-      if(this.cookies.get('random').length > 0){
-        return true;
-      }else{
-        return false;
-      }
-    // return true ;
+      // if (this.cookies.get('random').length > 0) {
+      //   return true;
+      // } else {
+      //   return false;
+      // }
+    return true ;
   }
 }

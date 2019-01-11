@@ -47,8 +47,13 @@
     <div class="upload">
       <label>Upload File : </label><br>
       <button mat-raised-button color="primary" (click)="fileInput.click()">Upload</button>
+<<<<<<< HEAD
 <!-- <input hidden type="file" #fileInput (change)="getFiles($event,$event.target.files)"> -->
       <input hidden type="file" #fileInput>
+=======
+      <input hidden type="file" #fileInput (change)="getFiles($event)" accept=
+      "application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf">
+>>>>>>> d7776e76bec43765adca5d9f9679e0dd1cb273c4
       <input class="mt-2" id="fileName" type="text" placeholder="No file chosen" readonly="true" matInput>
     </div>  
   </div>

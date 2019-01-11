@@ -29,8 +29,9 @@ export class RecordsComponent implements OnInit {
   records: any[];
 
 
-  constructor(public dialog: MatDialog, private http: HttpClient , private chRef: ChangeDetectorRef, private user: UserServices, private cookies: CookieService) { 
-  
+  // tslint:disable-next-line:max-line-length
+  constructor(public dialog: MatDialog, private http: HttpClient , private chRef: ChangeDetectorRef, private user: UserServices, private cookies: CookieService) {
+
   }
 
   openDialog(): void {
@@ -46,9 +47,9 @@ export class RecordsComponent implements OnInit {
 
   ngOnInit() {
     this.token = this.cookies.get('set');
-    if(this.token == "1"){
+    if (this.token === '1') {
       this.isUser = false;
-    }else{
+    } else {
       this.isAdmin = false;
     }
     this.http.get('https://jsonplaceholder.typicode.com/users')
