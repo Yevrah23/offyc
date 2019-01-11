@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
@@ -14,6 +14,7 @@ export class UserServices {
     // isLoggedIn: boolean;
     admin: boolean;
     user: boolean;
+    fileToGo: File = null;
 
     constructor(private http: HttpClient) { }
 
@@ -43,6 +44,34 @@ export class UserServices {
         return this.http.post(this.serverUrl + 'codeigniter/api/Users/check_login', {'token': params});
         // return {'loggedin':'yes'};
     }
+
+
+    submit_proposal(params){
+        // this.fileToGo = params[0].file;
+        console.log(params);
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/submit_proposal',{
+            'title': params[0].title,
+            'date_start': params[0].date_start,
+            'date_end': params[0].date_end,
+            'b_target': params[0].b_target,
+            'b_gender': params[0].b_gender,
+            'venue': params[0].venue,
+            'trans_type': 1,
+            'token': params[0].token,
+        })
+    }
+
+    // file_upload(){
+    //     console.log(this.fileToGo);
+    //     const formData = new FormData();
+    //     formData.append('file',
+    //         this.fileToGo);
+        
+    //     // const headers = new HttpHeaders();
+    //     // headers.append('Content-Type', 'multipart/form-data');
+    //     // headers.append('Accept', 'application/json');
+    //     return this.http.post(this.serverUrl + 'codeigniter/api/Users/file_upload', {'file':formData,'file2':this.fileToGo.name});
+    // }
     // logout(){
     //     return this.http.
     // }
