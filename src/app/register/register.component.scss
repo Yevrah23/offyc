@@ -70,9 +70,21 @@ mat-form-field {
   display: block;
 }
 
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+  font-size: 15px;
+}
+
 .btn-back {
   margin: 0 auto;
   display: block;
+}
+::ng-deep .gender .mat-form-field-underline.ng-tns-c5-12.ng-star-inserted {
+  display: none;
+}
+
+::ng-deep .mat-form-field-label-wrapper{
+  font-size: 15px;
 }
 
 ::ng-deep form{
