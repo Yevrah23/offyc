@@ -173,7 +173,7 @@
   <div class="row">
     <!-- we use mat-card and div -->
     <!-- button modal trigger -->
-    <button class="modal-trigger" color="primary" mat-raised-button (click)="openDialog()">Submit Proposal</button>
+    <button class="modal-trigger" color="primary" mat-raised-button (click)="submitProposal()">Submit Proposal</button>
 
 
     <div class="col-md-12">
@@ -196,7 +196,7 @@
                   <td>
                     <div class="actions">
                       <button mat-raised-button>Download</button>
-                      <button mat-raised-button>View</button>
+                      <button mat-raised-button (click)="viewProposal()">View</button>
                     </div>
                   </td>
                 </tr>

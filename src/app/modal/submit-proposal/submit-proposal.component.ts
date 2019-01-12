@@ -43,14 +43,14 @@ export class SubmitProposalComponent implements OnInit {
       'venue': this.venue,
       'token': this.cookies.get(this.cookies.get('id')),
       'file': this.file
-    })
+    });
     this.user.submit_proposal(this.proposal).subscribe(
       (response) => {
-        if(response){
-          this.dialogRef.close("Proposal Successfully Submitted");
+        if (response) {
+          this.dialogRef.close('Proposal Successfully Submitted');
         }
       }
-    )
+    );
     // this.upload();
   }
 

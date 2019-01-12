@@ -3,8 +3,7 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~datatables.net-bs4/css/dataTables.bootstrap4.css";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-
-
+@import "theme.scss";
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;  }
@@ -13,6 +12,35 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;  }
 // section.container-fluid {
 //   // background: #ececec;
 // }
+
+// Colors
+
+
+.color-primary {
+  color: mat-color($my-primary) !important;
+}
+
+.color-primaryVariant {
+  color: mat-color($my-primaryVariant) !important;
+}
+
+.color-accent {
+  color: mat-color($my-accent) !important;
+}
+
+.color-warn {
+  color: mat-color($my-warn) !important;
+}
+
+.color-secondary {
+  color: mat-color($my-secondary) !important;
+}
+
+.color-secondaryVariant {
+  color: mat-color($my-secondaryVariant) !important;
+}
+
+//custom global css
 
 td {
   .actions {
