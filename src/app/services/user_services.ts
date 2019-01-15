@@ -5,12 +5,14 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class UserServices {
-    private serverUrl = 'http://localhost/';
-    // private serverUrl = 'http://192.168.0.15/';
+    // private serverUrl = 'http://localhost/';
+    private serverUrl = 'http://192.168.0.18/';
     // isLoggedIn: boolean;
     admin: boolean;
     user: boolean;
     fileToGo: File = null;
+    tempo: any;
+
 
     constructor(private http: HttpClient) { }
 
@@ -69,6 +71,9 @@ export class UserServices {
     }
     get_proposals(){
         return this.http.get(this.serverUrl + 'codeigniter/api/Users/get_proposals');
+    }
+    get_proposal(params){
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/get_proposal',{'id':params});
     }
 
     getEvents(){

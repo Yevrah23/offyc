@@ -21,6 +21,9 @@ export class RecordsComponent implements OnInit {
   isAdmin = true;
   isUser = true;
   token: any;
+  
+  // tempo: any;
+
 
 
   // data tables
@@ -51,15 +54,22 @@ export class RecordsComponent implements OnInit {
     });
   }
 
-  viewProposal(): void {
-    const dialogRef = this.dialog.open(ViewPorposalComponent, {
-      width: '768px'
-    });
+  viewProposal(data): void {
+    this.user.get_proposal(data).subscribe(
+      (response) => {
+        this.user.tempo = response;
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result);
-    });
+        const dialogRef = this.dialog.open(ViewPorposalComponent, {
+          width: '768px'
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+          console.log('The dialog was closed');
+          console.log(result);
+        });
+      }
+    )
+    
   }
 
   fileDetails(): void {

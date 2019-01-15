@@ -6,19 +6,19 @@
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-3"><small class="color-secondaryVariant" for="">Request form from :</small></div>
-      <div class="col-md-7"> Juan Dela Cruz</div>
+      <div class="col-md-7"> {{tempo.ui_Fname}} {{tempo.ui_Mname}} {{tempo.ui_Lname}}</div>
     </div>
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-3"><small class="color-secondaryVariant" for="">Project Title :</small></div>
       <div class="col-md-7">
-        <h4 class="color-accent">Proposal Submission</h4>
+<h4 class="color-accent">{{tempo.proposal_title}}</h4>
       </div>
     </div>
     <div class="row">
       <div class="col-md-2"></div>
-      <div class="col-md-3"><small class="color-secondaryVariant" for="">Department :</small></div>
-      <div class="col-md-7"> CITC </div>
+      <div class="col-md-3"><small class="color-secondaryVariant" for="">College :</small></div>
+      <div class="col-md-7"> {{tempo.ui_college}} </div>
     </div>
     <div class="row">
       <div class="col-md-2"></div>
@@ -33,26 +33,26 @@
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-3"><small class="color-secondaryVariant" for="">Target Benificiary:</small></div>
-      <div class="col-md-7"> Teens </div>
+      <div class="col-md-7"> {{tempo.proposal_beneficiaries}} </div>
     </div>
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-3"><small class="color-secondaryVariant" for="">Gender of Benificiary :</small></div>
-      <div class="col-md-7"> Both </div>
+      <div class="col-md-7"> {{tempo.proposal_bene_gender}} </div>
     </div>
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-3"><small class="color-secondaryVariant" for="">Event Venue :</small></div>
-      <div class="col-md-7"> Katipunan Street, Barangay 6, Villanueva, Misamis Oriental, 9000 </div>
+      <div class="col-md-7"> {{tempo.proposal_venue}} </div>
     </div>
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-3 align-middle"><small class="color-secondaryVariant" for="">Date :</small></div>
       <div class="col-md-7">
         <small class="color-secondaryVariant">Start</small> <br>
-        <p>Mon, 17/ Dec/ 2019</p>
+        <p>{{tempo.proposal_date_start}}</p>
         <small class="color-secondaryVariant">End</small> <br>
-        <p>Tues, 18/ Dec/ 2019</p>
+        <p>{{tempo.proposal_date_end}}</p>
       </div>
     </div>
     <div class="row">
