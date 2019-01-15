@@ -4,7 +4,7 @@
     <!-- we use mat-card and div -->
     <div class="col-md-4 login-card">
       <mat-card>
-        <h2 class="text-center">SIGN UP</h2>
+      <h2 contenteditable class="text-center">SIGN UP</h2>
 
         <mat-horizontal-stepper [linear]="isLinear" #stepper>
           <div class="form-wrapper">
@@ -87,7 +87,7 @@
 
                 <mat-form-field floatLabel="auto">
                   <mat-label>Middle Name</mat-label>
-                  <input [(ngModel)]="mMname" type="text" matInput formControlName="thirdCtrl">
+                  <input [(ngModel)]="mName" type="text" matInput formControlName="thirdCtrl">
                 </mat-form-field>
                 <mat-form-field floatLabel="auto">
                   <mat-label>Last Name</mat-label>
@@ -100,7 +100,7 @@
                 </mat-form-field>
 
                 <mat-form-field class="gender">
-                  <mat-radio-group formControlName="thirdCtrl">
+                  <mat-radio-group [(ngModel)]="gender" formControlName="thirdCtrl">
                     <mat-label>Gender</mat-label>
                     <input type="text" matInput formControlName="thirdCtrl" readonly="readonly">
                     <mat-radio-button value="M">Male</mat-radio-button>

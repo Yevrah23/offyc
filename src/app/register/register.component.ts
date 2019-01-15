@@ -38,6 +38,12 @@ export class RegisterComponent implements OnInit {
   dept: any;
   coll: any;
   data = [];
+  fName: string;
+  mName: string;
+  lName: string;
+  bDay: string;
+  gender: string;
+  cNumber: string;
   show: Boolean = false;
   reg: Boolean = false;
 
@@ -86,6 +92,12 @@ export class RegisterComponent implements OnInit {
         'position': this.position,
         'college': this.coll.name,
         'dept': this.dept.name,
+        'fName' : this.fName,
+        'mName' : this.mName,
+        'lName' : this.lName,
+        'bDay' : this.bDay,
+        'gender' : this.gender,
+        'cNumber' : this.cNumber
       }
     );
     this.user.register(this.data).subscribe(

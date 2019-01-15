@@ -8,22 +8,26 @@
               <table id="Proposal" class="table table-striped table-bordered">
                 <thead>
                   <tr>
-                    <th>Title</th>
-                    <th>Description</th>
+                    <th>Extension Project Title</th>
+                    <th>Extension Project Leader</th>
+                    <th>Extension Project Status</th>
                     <th>Options</th>
+
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let record of records">
-                    <td>{{record.name}}</td>
-                    <td>{{record.address['street']}}</td>
+                  <tr *ngFor="let record of proposals">
+                    <td>{{record.proposal_title}}</td>
+                    <td>{{record.ui_Fname}} {{record.ui_Mname}} {{record.ui_Lname}}</td>
+                    <td>{{record.proposal_status}}</td>
                     <td>settings</td>
                   </tr>
                 </tbody>
                 <tfoot>
                   <tr>
-                    <th>Title</th>
-                    <th>Description</th>
+                    <th>Extension Project Title</th>
+                    <th>Extension Project Leader</th>
+                    <th>Extension Project Status</th>
                     <th>Options</th>
                   </tr>
                 </tfoot>

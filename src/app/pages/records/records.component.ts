@@ -27,6 +27,11 @@ export class RecordsComponent implements OnInit {
 
   // table data sample
   records: any[];
+  CITC:any[];
+  COT:any[];
+  CEA:any[];
+  CSM:any[];
+  CSTE:any[];
 
 
   // tslint:disable-next-line:max-line-length
@@ -52,17 +57,29 @@ export class RecordsComponent implements OnInit {
     } else {
       this.isAdmin = false;
     }
-    this.http.get('https://jsonplaceholder.typicode.com/users')
-    .subscribe((data: any[]) => {
-      this.records = data;
+    this.user.get_des_proposals().subscribe(
+      (response)=>{
+        if (response[0]){
+          this.CITC = response[1].CITC;
+          this.COT  = response[1].COT;
+          this.CEA  = response[1].CEA;
+          this.CSM  = response[1].CSM;
+          this.CSTE  = response[1].CSTE;
+        }
+        console.log(this.CITC);
+        console.log(this.COT);
+        console.log(this.CEA);
+        console.log(this.CSM);
+        console.log(this.CSTE);
 
-      this.chRef.detectChanges();
-    // User
-    // Display data tables
-    // user
-    const table: any = $('table');
-    this.dataTable = table.dataTable();
-    });
+        this.chRef.detectChanges();
+        // User
+        // Display data tables
+        // user
+        const table: any = $('table');
+        this.dataTable = table.dataTable();
+      }
+    )
   }
 
   loadTable() {

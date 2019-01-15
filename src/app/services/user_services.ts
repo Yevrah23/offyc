@@ -3,14 +3,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
-interface Check {
-    type: string;
-    success: boolean;
-}
-
 @Injectable()
 export class UserServices {
     private serverUrl = 'http://localhost/';
+    // private serverUrl = 'http://192.168.0.15/';
     // isLoggedIn: boolean;
     admin: boolean;
     user: boolean;
@@ -36,7 +32,14 @@ export class UserServices {
             'email' : params[0].email,
             'position' : params[0].position,
             'college' : params[0].college,
-            'dept' : params[0].dept
+            'dept' : params[0].dept,
+            'fName': params[0].fName,
+            'mName': params[0].mName,
+            'lName': params[0].lName,
+            'bDay': params[0].bDay,
+            'gender': params[0].gender,
+            'cNumber': params[0].cNumber,
+            'type' : 2
         });
     }
 
@@ -59,6 +62,13 @@ export class UserServices {
             'trans_type': 1,
             'token': params[0].token,
         })
+    }
+
+    get_des_proposals(){
+        return this.http.get(this.serverUrl + 'codeigniter/api/Users/get_des_proposals');
+    }
+    get_proposals(){
+        return this.http.get(this.serverUrl + 'codeigniter/api/Users/get_proposals');
     }
 
     // file_upload(){

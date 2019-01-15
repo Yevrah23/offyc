@@ -4,6 +4,7 @@ import * as $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-bs4';
 import { HttpClient } from '@angular/common/http';
+import { UserServices } from 'src/app/services/user_services';
 
 
 @Component({
@@ -18,15 +19,25 @@ export class AssesmentComponent implements OnInit {
 
   // table data sample
   records: any[];
+  proposals: any[];
 
-  constructor(private http: HttpClient, private chRef: ChangeDetectorRef) { }
+  constructor(private http: HttpClient, private chRef: ChangeDetectorRef, private user: UserServices) { }
 
   ngOnInit() {
+    // this.token = this.cookies.get('set');
+    // if (this.token === '1') {
+    //   this.isUser = false;
+    // } else {
+    //   this.isAdmin = false;
+    // }
+    this.user.get_proposals().subscribe(
+      (response)=>{
+        console.log(response);
 
-    // Display data tables
-    this.http.get('https://jsonplaceholder.typicode.com/users')
-      .subscribe((data: any[]) => {
-        this.records = data;
+        if (response[0]){
+          this.proposals = response[1];
+        }
+        console.log(this.proposals);
 
         this.chRef.detectChanges();
         // User
@@ -34,7 +45,8 @@ export class AssesmentComponent implements OnInit {
         // user
         const table: any = $('table');
         this.dataTable = table.dataTable();
-      });
+      }
+    )
   }
 
   loadTable() {
