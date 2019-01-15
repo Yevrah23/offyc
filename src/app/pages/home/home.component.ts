@@ -44,18 +44,18 @@ export class HomeComponent implements OnInit {
         }
       }
     );
-
-    this.calendarOptions = {
-      editable: true,
-      eventLimit: false,
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'month,agendaWeek,agendaDay,listMonth'
-      },
-      selectable: true,
-      events: []
-    };
+    this.user.getEvents().subscribe(data => {
+      this.calendarOptions = {
+        editable: false,
+        eventLimit: false,
+        header: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'month,agendaWeek,agendaDay,listMonth'
+        },
+        events: data
+      };
+    });
 
     this.http.get('https://jsonplaceholder.typicode.com/users')
     .subscribe((data: any[]) => {

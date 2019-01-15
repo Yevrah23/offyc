@@ -71,6 +71,10 @@ export class UserServices {
         return this.http.get(this.serverUrl + 'codeigniter/api/Users/get_proposals');
     }
 
+    getEvents(){
+        return this.http.get(this.serverUrl + 'codeigniter/api/Users/get_events');
+    }
+
     // file_upload(){
     //     console.log(this.fileToGo);
     //     const formData = new FormData();

@@ -16,9 +16,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let record of records">
+                  <tr *ngFor="let record of proposals">
                     <td>{{record.proposal_title}}</td>
                     <td>{{record.ui_Fname}} {{record.ui_Mname}} {{record.ui_Lname}}</td>
+                    <td>{{record.proposal_status}}</td>
                     <td>
                       <div class="actions">
                         <button mat-raised-button>Approval</button>

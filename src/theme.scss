@@ -1,0 +1,112 @@
+@import "~@angular/material/_theming";
+@include mat-core();
+
+// Custom Color
+$my-primary: (
+  50: #95A5A6,
+  100: #022163,
+  200: #022163,
+  300: #022163,
+  400: #022163,
+  500: #022163,
+  600: #022163,
+  700: #022163,
+  800: #022163,
+  900: #022163,
+  A100: #022163,
+  A200: #022163,
+  A400: #022163,
+  A700: #022163,
+  contrast: (
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+$my-accent: (
+  50: #3075FC,
+  100: #3075FC,
+  200: #3075FC,
+  300: #3075FC,
+  400: #3075FC,
+  500: #3075FC,
+  600: #3075FC,
+  700: #3075FC,
+  800: #3075FC,
+  900: #3075FC,
+  A100: #3075FC,
+  A200: #3075FC,
+  A400: #3075FC,
+  A700: #3075FC,
+  contrast: (
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+$my-gray: (
+  50: #95A5A6,
+  100: #95A5A6,
+  200: #95A5A6,
+  300: #95A5A6,
+  400: #95A5A6,
+  500: #95A5A6,
+  600: #95A5A6,
+  700: #95A5A6,
+  800: #95A5A6,
+  900: #95A5A6,
+  A100: #95A5A6,
+  A200: #95A5A6,
+  A400: #95A5A6,
+  A700: #95A5A6,
+  contrast: (
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+// below creates a primary palette with three shades of blue
+
+
+$my-secondary: mat-palette($my-primary);
+$my-secondaryVariant: mat-palette($my-gray);
+$my-primaryVariant: mat-palette($my-primary);
+$my-primary: mat-palette($my-primary);
+$my-accent: mat-palette($my-accent );
+$my-warn: mat-palette($mat-red);
+
+$my-theme: mat-light-theme($my-secondary, $my-secondaryVariant, $my-primaryVariant,$my-primary, $my-accent, $my-warn);
+
+@include angular-material-theme($my-theme);
