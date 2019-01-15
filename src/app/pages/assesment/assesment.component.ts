@@ -1,10 +1,11 @@
-import { Component, OnInit, ElementRef, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { MatDialog } from '@angular/material';
+import { ViewPorposalComponent } from 'src/app/modal/view-porposal/view-porposal.component';
 
 import * as $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-bs4';
-import { HttpClient } from '@angular/common/http';
-
 
 @Component({
   selector: 'app-assesment',
@@ -19,7 +20,23 @@ export class AssesmentComponent implements OnInit {
   // table data sample
   records: any[];
 
-  constructor(private http: HttpClient, private chRef: ChangeDetectorRef) { }
+  constructor(
+    public dialog: MatDialog,
+    private http: HttpClient,
+    private chRef: ChangeDetectorRef
+    ) { }
+
+  viewProposal(): void {
+    const dialogRef = this.dialog.open(ViewPorposalComponent, {
+      width: '768px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+    });
+  }
+
 
   ngOnInit() {
 
