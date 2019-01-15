@@ -1,4 +1,4 @@
-<h2 mat-diaglog-title class="text-center">Proposal Details</h2>
+<h4 mat-diaglog-title class="text-center">Proposal Details</h4>
 
 
 <mat-dialog-content>
@@ -69,7 +69,13 @@
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-9">
-        <button mat-raised-button mat-dialog-close color="warn" class="form-control">Close</button>
+        <div *ngIf="false">
+          <button mat-raised-button mat-dialog-close color="warn" class="form-control">Close</button>
+        </div>
+        <div *ngIf="true">
+          <button mat-button mat-dialog-close color="warn">Deny</button>
+          <button mat-raised-button color="primary">Accept</button>
+        </div>
       </div>
     </div>
   </div>

@@ -97,10 +97,42 @@ $my-gray: (
     A700: white,
   )
 );
+
+$my-darkGray: (
+  50: #707070,
+  100: #707070,
+  200: #707070,
+  300: #707070,
+  400: #707070,
+  500: #707070,
+  600: #707070,
+  700: #707070,
+  800: #707070,
+  900: #707070,
+  A100: #707070,
+  A200: #707070,
+  A400: #707070,
+  A700: #707070,
+  contrast: (
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
 // below creates a primary palette with three shades of blue
 
 
-$my-secondary: mat-palette($my-primary);
+$my-secondary: mat-palette($my-darkGray);
 $my-secondaryVariant: mat-palette($my-gray);
 $my-primaryVariant: mat-palette($my-primary);
 $my-primary: mat-palette($my-primary);
