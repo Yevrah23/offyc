@@ -1,15 +1,15 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { SubmitProposalComponent } from 'src/app/modal/submit-proposal/submit-proposal.component';
+import { ViewPorposalComponent } from 'src/app/modal/view-porposal/view-porposal.component';
+import { FileDetailsComponent } from 'src/app/modal/file-details/file-details.component';
 import { HttpClient } from '@angular/common/http';
+import { UserServices } from 'src/app/services/user_services';
+import { CookieService } from 'ngx-cookie-service';
 
 import * as $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-bs4';
-import { UserServices } from 'src/app/services/user_services';
-import { CookieService } from 'ngx-cookie-service';
-import { ViewPorposalComponent } from 'src/app/modal/view-porposal/view-porposal.component';
-
 
 @Component({
   selector: 'app-records',
@@ -54,6 +54,17 @@ export class RecordsComponent implements OnInit {
   viewProposal(): void {
     const dialogRef = this.dialog.open(ViewPorposalComponent, {
       width: '768px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+    });
+  }
+
+  fileDetails(): void {
+    const dialogRef = this.dialog.open(FileDetailsComponent, {
+      width: '580px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
