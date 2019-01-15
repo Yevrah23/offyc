@@ -19,6 +19,7 @@ import { AuthGuard } from './auth.guard';
 // modals component
 import { SubmitProposalComponent } from './modal/submit-proposal/submit-proposal.component';
 import { ViewPorposalComponent } from './modal/view-porposal/view-porposal.component';
+import { FileDetailsComponent } from './modal/file-details/file-details.component';
 
 // Cookies ni jaz
 import { CookieService } from 'ngx-cookie-service';
@@ -36,6 +37,7 @@ import { CookieService } from 'ngx-cookie-service';
     LoginRegLayoutComponent,
     SubmitProposalComponent,
     ViewPorposalComponent,
+    FileDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,8 @@ import { CookieService } from 'ngx-cookie-service';
   ],
   entryComponents: [
     SubmitProposalComponent,
-    ViewPorposalComponent
+    ViewPorposalComponent,
+    FileDetailsComponent
   ],
   providers: [
     UserServices,

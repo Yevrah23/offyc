@@ -46,10 +46,10 @@ export class UserServices {
     }
 
 
-    submit_proposal(params){
+    submit_proposal(params) {
         // this.fileToGo = params[0].file;
         console.log(params);
-        return this.http.post(this.serverUrl + 'codeigniter/api/Users/submit_proposal',{
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/submit_proposal', {
             'title': params[0].title,
             'date_start': params[0].date_start,
             'date_end': params[0].date_end,
@@ -58,7 +58,7 @@ export class UserServices {
             'venue': params[0].venue,
             'trans_type': 1,
             'token': params[0].token,
-        })
+        });
     }
 
     // file_upload(){
@@ -66,7 +66,6 @@ export class UserServices {
     //     const formData = new FormData();
     //     formData.append('file',
     //         this.fileToGo);
-        
     //     // const headers = new HttpHeaders();
     //     // headers.append('Content-Type', 'multipart/form-data');
     //     // headers.append('Accept', 'application/json');
