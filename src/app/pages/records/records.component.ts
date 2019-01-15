@@ -8,6 +8,7 @@ import 'datatables.net';
 import 'datatables.net-bs4';
 import { UserServices } from 'src/app/services/user_services';
 import { CookieService } from 'ngx-cookie-service';
+import { ViewPorposalComponent } from 'src/app/modal/view-porposal/view-porposal.component';
 
 
 @Component({
@@ -39,9 +40,20 @@ export class RecordsComponent implements OnInit {
 
   }
 
-  openDialog(): void {
+  submitProposal(): void {
     const dialogRef = this.dialog.open(SubmitProposalComponent, {
       width: '350px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+    });
+  }
+
+  viewProposal(): void {
+    const dialogRef = this.dialog.open(ViewPorposalComponent, {
+      width: '768px'
     });
 
     dialogRef.afterClosed().subscribe(result => {

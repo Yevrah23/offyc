@@ -16,11 +16,15 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let record of proposals">
+                  <tr *ngFor="let record of records">
                     <td>{{record.proposal_title}}</td>
                     <td>{{record.ui_Fname}} {{record.ui_Mname}} {{record.ui_Lname}}</td>
-                    <td>{{record.proposal_status}}</td>
-                    <td>settings</td>
+                    <td>
+                      <div class="actions">
+                        <button mat-raised-button>Approval</button>
+                        <button mat-raised-button>View</button>
+                      </div>
+                    </td>
                   </tr>
                 </tbody>
                 <tfoot>
@@ -48,7 +52,12 @@
                   <tr *ngFor="let record of records">
                     <td>{{record.name}}</td>
                     <td>{{record.address['street']}}</td>
-                    <td>settings</td>
+                    <td>
+                      <div class="actions">
+                        <button mat-raised-button>Approval</button>
+                        <button mat-raised-button>View</button>
+                      </div>
+                    </td>
                   </tr>
                 </tbody>
                 <tfoot>
@@ -75,7 +84,12 @@
                   <tr *ngFor="let record of records">
                     <td>{{record.name}}</td>
                     <td>{{record.address['street']}}</td>
-                    <td>settings</td>
+                    <td>
+                      <div class="actions">
+                        <button mat-raised-button>Approval</button>
+                        <button mat-raised-button>View</button>
+                      </div>
+                    </td>
                   </tr>
                 </tbody>
                 <tfoot>
