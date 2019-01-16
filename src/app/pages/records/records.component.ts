@@ -48,7 +48,8 @@ export class RecordsComponent implements OnInit {
 
   viewProposal(): void {
     const dialogRef = this.dialog.open(ViewPorposalComponent, {
-      width: '768px'
+      width: '535px',
+      panelClass: 'custom-dialog-view'
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -59,7 +60,8 @@ export class RecordsComponent implements OnInit {
 
   fileDetails(): void {
     const dialogRef = this.dialog.open(FileDetailsComponent, {
-      width: '580px'
+      width: '439px',
+      panelClass: 'custom-dialog-file'
     });
 
     dialogRef.afterClosed().subscribe(result => {

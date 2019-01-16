@@ -46,6 +46,16 @@ body { margin: 0; font-family: 'Poppins', sans-serif !important;  }
   color: mat-color($my-secondaryVariant) !important;
 }
 
+// font-size
+
+.text-regular-14 {
+  font-size: 14px;
+}
+
+.text-regular-16 {
+  font-size: 16px;
+}
+
 //custom global css
 
 td {
@@ -58,3 +68,14 @@ td {
     }
   }
 }
+
+//modal
+  // view Proposal
+.custom-dialog-view mat-dialog-container {
+  background: url(assets/img/modal/Proposal-Details-approval.png) !important;
+}
+
+  //File details
+  .custom-dialog-file mat-dialog-container {
+    background: url(assets/img/modal/File-Details.png) !important;
+  }
