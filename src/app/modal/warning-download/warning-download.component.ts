@@ -1,22 +1,22 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
-import { WarningDownloadComponent } from '../warning-download/warning-download.component';
+import { SuccessComponent } from '../success/success.component';
 
 @Component({
-  selector: 'app-file-details',
-  templateUrl: './file-details.component.html',
-  styleUrls: ['./file-details.component.scss']
+  selector: 'app-warning-download',
+  templateUrl: './warning-download.component.html',
+  styleUrls: ['./warning-download.component.scss']
 })
-export class FileDetailsComponent implements OnInit {
+export class WarningDownloadComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    public dialogRef: MatDialogRef<FileDetailsComponent>,
+    public dialogRef: MatDialogRef<WarningDownloadComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
-  showWarning(): void {
-    const dialogRef = this.dialog.open(WarningDownloadComponent, {
+  showSuccess(): void {
+    const dialogRef = this.dialog.open(SuccessComponent, {
       width: '435px'
     });
 
@@ -25,6 +25,7 @@ export class FileDetailsComponent implements OnInit {
       console.log(result);
     });
   }
+
   ngOnInit() {
   }
 

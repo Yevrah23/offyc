@@ -4,12 +4,12 @@
   <div class="container dialog-wrapper">
     <div class="row">
       <div class="col-md-3"><small class="color-secondaryVariant" for="">Project Title :</small></div>
-      <div class="col-md-9"> <h5 class="color-accent">CITC: Proposal Submission</h5> </div>
+      <div class="col-md"> <h5 class="color-accent">CITC: Proposal Submission</h5> </div>
     </div><!-- end row -->
 
     <div class="row">
       <div class="col-md-3"><small class="color-secondaryVariant" for="">Attached File :</small></div>
-      <div class="col-md-9"> <p class="color-secondary">Filename.pdf</p> </div>
+      <div class="col-md"> <p class="color-secondary">Filename.pdf</p> </div>
     </div><!-- end row -->
   </div><!-- end wrapper -->
 </mat-dialog-content>
@@ -17,10 +17,9 @@
 <mat-dialog-actions>
   <div class="container Form-action-wrapper">
     <div class="row">
-      <div class="col-md"></div>
-      <div class="col-md-5">
+      <div class="col-md text-right">
         <button mat-button mat-dialog-close>Close</button>
-        <button mat-raised-button color="primary">Download</button>
+        <button mat-raised-button mat-dialog-close color="primary" (click)="showWarning()">Download</button>
       </div>
     </div>
   </div>

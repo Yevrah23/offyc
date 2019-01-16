@@ -1,0 +1,22 @@
+<h4 mat-diaglog-title class="text-center color-warn">WARNING!</h4>
+
+<mat-dialog-content>
+  <div class="container dialog-wrapper">
+    <div class="row">
+      <div class="col-md">
+        <p class="text-center">You don't have permission to download this document.</p>
+      </div>
+    </div><!-- end row -->
+  </div><!-- end wrapper -->
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <div class="container Form-action-wrapper">
+    <div class="row">
+      <div class="col-md text-right">
+        <button mat-button mat-dialog-close>Close</button>
+        <button mat-raised-button mat-dialog-close color="primary" (click)="showSuccess()">REQUEST</button>
+      </div>
+    </div>
+  </div>
+</mat-dialog-actions>
