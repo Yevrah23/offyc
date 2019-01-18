@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class UserServices {
-    // private serverUrl = 'http://localhost/';
-    private serverUrl = 'http://192.168.0.18/';
+    private serverUrl = 'http://localhost/';
+    // private serverUrl = 'http://192.168.0.18/';
     // isLoggedIn: boolean;
     admin: boolean;
     user: boolean;
@@ -89,8 +89,8 @@ export class UserServices {
         return this.http.get(this.serverUrl + 'codeigniter/api/Users/get_events');
     }
 
-    getNotifs_admin(){
-        return this.http.post(this.serverUrl + 'codeigntier/api/Users/getNotifs',{'receiver': 'admin'});
+    getNotifs(params){
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/getNotifs',{'id': params});
     }
     // getNotifs_user(){
     //     return this.http.post(this.)

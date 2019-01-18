@@ -55,25 +55,6 @@ export class AssesmentComponent implements OnInit {
       }
     )
 
-<<<<<<< HEAD
-=======
-  constructor(
-    public dialog: MatDialog,
-    private http: HttpClient,
-    private chRef: ChangeDetectorRef
-    ) { }
-
-  viewProposal(): void {
-    const dialogRef = this.dialog.open(ViewPorposalComponent, {
-      width: '768px',
-      panelClass: 'custom-dialog-container'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result);
-    });
->>>>>>> accabd1883d41d86040d82f17c14331dece7653e
   }
 
 
