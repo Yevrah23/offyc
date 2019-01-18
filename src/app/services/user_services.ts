@@ -12,6 +12,8 @@ export class UserServices {
     user: boolean;
     fileToGo: File = null;
     tempo: any;
+    pending: boolean;
+    approved: boolean;
 
 
     constructor(private http: HttpClient) { }
@@ -65,6 +67,13 @@ export class UserServices {
             'token': params[0].token,
         });
     }
+    proposal_approval(params){
+        console.log(params);
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/proposal_approval', {
+            'id' : params[0].id,
+            'decision': params[0].decision
+        })
+    }
 
     get_des_proposals(){
         return this.http.get(this.serverUrl + 'codeigniter/api/Users/get_des_proposals');
@@ -79,6 +88,13 @@ export class UserServices {
     getEvents(){
         return this.http.get(this.serverUrl + 'codeigniter/api/Users/get_events');
     }
+
+    getNotifs_admin(){
+        return this.http.post(this.serverUrl + 'codeigntier/api/Users/getNotifs',{'receiver': 'admin'});
+    }
+    // getNotifs_user(){
+    //     return this.http.post(this.)
+    // }
 
     // file_upload(){
     //     console.log(this.fileToGo);

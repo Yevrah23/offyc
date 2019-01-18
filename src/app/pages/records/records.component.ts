@@ -58,6 +58,12 @@ export class RecordsComponent implements OnInit {
     this.user.get_proposal(data).subscribe(
       (response) => {
         this.user.tempo = response;
+        if (this.user.tempo.proposal_status == 2 || this.user.tempo.proposal_status == 1){
+          this.user.approved = true;
+          this.user.pending = false;
+          console.log(this.user.approved);
+        }
+        
 
         const dialogRef = this.dialog.open(ViewPorposalComponent, {
           width: '768px'

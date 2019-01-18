@@ -25,15 +25,36 @@ export class AssesmentComponent implements OnInit {
 
   constructor(private http: HttpClient, private chRef: ChangeDetectorRef, private user: UserServices, public dialog: MatDialog) { } 
 
-  viewProposal(): void {
-    const dialogRef = this.dialog.open(ViewPorposalComponent, {
-      width: '768px'
-    });
+  viewProposal(data): void {
+    this.user.get_proposal(data).subscribe(
+      (response) => {
+        this.user.tempo = response;
+        if (this.user.tempo.proposal_status == 0) {
+          this.user.approved = false;
+          this.user.pending = true;
+          console.log(this.user.approved);
+        }
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result);
-    });
+
+        const dialogRef = this.dialog.open(ViewPorposalComponent, {
+          width: '768px'
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+          console.log('The dialog was closed');
+          this.proposals = result[1];
+          console.log(this.proposals);
+          this.chRef.detectChanges();
+          // User
+          // Display data tables
+          // user
+          const table: any = $('table');
+          this.dataTable = table.dataTable();
+
+        });
+      }
+    )
+
   }
 
 
