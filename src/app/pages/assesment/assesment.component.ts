@@ -1,11 +1,9 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { ViewPorposalComponent } from 'src/app/modal/view-porposal/view-porposal.component';
 
 import * as $ from 'jquery';
-import 'datatables.net';
-import 'datatables.net-bs4';
 
 @Component({
   selector: 'app-assesment',
@@ -14,17 +12,21 @@ import 'datatables.net-bs4';
 })
 export class AssesmentComponent implements OnInit {
 
-  // data tables
-  dataTable: any;
-
   // table data sample
-  records: any[];
+  // records: any[];
+
+  // mat-table
+  displayedColumns: string[] = ['id', 'name', 'username', 'settings'];
+  dataSource: MatTableDataSource<any>;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(
     public dialog: MatDialog,
     private http: HttpClient,
     private chRef: ChangeDetectorRef
-    ) { }
+  ) { }
 
   viewProposal(): void {
     const dialogRef = this.dialog.open(ViewPorposalComponent, {
@@ -44,22 +46,26 @@ export class AssesmentComponent implements OnInit {
     // Display data tables
     this.http.get('https://jsonplaceholder.typicode.com/users')
       .subscribe((data: any[]) => {
-        this.records = data;
+        this.dataSource = new MatTableDataSource(data); // for mat-table
 
-        this.chRef.detectChanges();
-        // User
+        // mat table
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+
+        // this.chRef.detectChanges();
         // Display data tables
-        // user
-        const table: any = $('table');
-        this.dataTable = table.dataTable();
+        // const table: any = $('table');
+        // this.dataTable = table.dataTable();
       });
   }
 
-  loadTable() {
-    console.log('table loaded');
-    this.chRef.detectChanges();
-    const table: any = $('table');
-    this.dataTable = table.dataTable();
+  // search table
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
 }

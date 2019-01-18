@@ -25,26 +25,25 @@ section.container-fluid {
 }
 
 .box {
-  display: flex;
+  // display: flex;
   align-items: center;
   justify-content: center;
   margin: 16px;
-  padding: 16px;
-  border-radius: 8px;
+  padding: 16px !important;
+  border-radius: 6px;
 }
 
-.box {
-  // background: #fff;
-  min-height: 450px;
-  width: 99%;
-  margin: 1.5px;
-  margin-top: 15px;
+// material table style
+
+table {
+  width: 100%;
 }
 
-// Table style 
-
-::ng-deep .dataTables_wrapper {
-  width: 100% !important;
-  padding: 15px !important;
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
 }
 
+td, th {
+  width: 25%;
+}

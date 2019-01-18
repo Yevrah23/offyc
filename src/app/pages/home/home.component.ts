@@ -8,8 +8,6 @@ import { HttpClient } from '@angular/common/http';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 
 import * as $ from 'jquery';
-import 'datatables.net';
-import 'datatables.net-bs4';
 
 @Component({
   selector: 'app-home',
@@ -65,11 +63,11 @@ export class HomeComponent implements OnInit {
       events: []
     };
 
+    // retrieve data  via HTTP
     this.http.get('https://jsonplaceholder.typicode.com/users')
       .subscribe((data: any[]) => {
         // this.records = data;
         this.dataSource = new MatTableDataSource(data); // for mat-table
-        console.log(this.dataSource);
 
         // mat table
         this.dataSource.paginator = this.paginator;
