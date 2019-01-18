@@ -34,6 +34,9 @@ section.container-fluid {
 .color-warn {
   color: mat-color($my-warn) !important;
 }
+.color-success {
+  color: #84CE80 !important;
+}
 
 .color-secondary {
   color: mat-color($my-secondary) !important;
@@ -43,7 +46,17 @@ section.container-fluid {
   color: mat-color($my-secondaryVariant) !important;
 }
 
-// //custom global css
+// font-size
+
+.text-regular-14 {
+  font-size: 14px;
+}
+
+.text-regular-16 {
+  font-size: 16px;
+}
+
+//custom global css
 
 td {
   .actions {
@@ -55,3 +68,14 @@ td {
     }
   }
 }
+
+//modal
+  // view Proposal
+.custom-dialog-view mat-dialog-container {
+  background: url(assets/img/modal/Proposal-Details-approval.png) !important;
+}
+
+  //File details
+  .custom-dialog-file mat-dialog-container {
+    background: url(assets/img/modal/File-Details.png) !important;
+  }

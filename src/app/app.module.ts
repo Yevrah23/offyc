@@ -20,6 +20,8 @@ import { AuthGuard } from './auth.guard';
 import { SubmitProposalComponent } from './modal/submit-proposal/submit-proposal.component';
 import { ViewPorposalComponent } from './modal/view-porposal/view-porposal.component';
 import { FileDetailsComponent } from './modal/file-details/file-details.component';
+import { WarningDownloadComponent } from './modal/warning-download/warning-download.component';
+import { SuccessComponent } from './modal/success/success.component';
 
 // Cookies ni jaz
 import { CookieService } from 'ngx-cookie-service';
@@ -38,6 +40,8 @@ import { CookieService } from 'ngx-cookie-service';
     SubmitProposalComponent,
     ViewPorposalComponent,
     FileDetailsComponent,
+    WarningDownloadComponent,
+    SuccessComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +58,9 @@ import { CookieService } from 'ngx-cookie-service';
   entryComponents: [
     SubmitProposalComponent,
     ViewPorposalComponent,
-    FileDetailsComponent
+    FileDetailsComponent,
+    WarningDownloadComponent,
+    SuccessComponent
   ],
   providers: [
     UserServices,

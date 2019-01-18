@@ -80,7 +80,8 @@ export class RecordsComponent implements OnInit {
 
   fileDetails(): void {
     const dialogRef = this.dialog.open(FileDetailsComponent, {
-      width: '580px'
+      width: '439px',
+      panelClass: 'custom-dialog-file'
     });
 
     dialogRef.afterClosed().subscribe(result => {

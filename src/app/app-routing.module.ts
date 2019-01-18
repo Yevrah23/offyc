@@ -13,12 +13,12 @@ import { RecordsComponent } from './pages/records/records.component';
 import { AdminComponent } from './admin/admin.component';
 import { AssesmentComponent } from './pages/assesment/assesment.component';
 import { NotificationComponent } from './pages/notification/notification.component';
+import { ActivitiesComponent } from './pages/activities/activities.component';
 import { CookieService } from 'ngx-cookie-service';
 
 // let cookies : LoginComponent ;
 // let id = cookies.username;
-
-let id: CookieService;
+// let id: CookieService;
 
 
 const routes: Routes = [
@@ -55,6 +55,10 @@ const routes: Routes = [
         path: 'notification',
         component: NotificationComponent
       },
+      {
+        path: 'activites',
+        component: ActivitiesComponent
+      },
     ]
   },
   { path: '**', component: PageNotFoundComponent }
@@ -63,8 +67,8 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers:[CookieService]
+  providers: [CookieService]
 })
 export class AppRoutingModule { }
 // tslint:disable-next-line:max-line-length
-export const routingComponents = [LoginComponent, RegisterComponent, AdminComponent, HomeComponent, RecordsComponent, AssesmentComponent, NotificationComponent, PageNotFoundComponent];
+export const routingComponents = [LoginComponent, RegisterComponent, AdminComponent, HomeComponent, RecordsComponent, AssesmentComponent, NotificationComponent, ActivitiesComponent, PageNotFoundComponent];
