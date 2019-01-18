@@ -5,6 +5,7 @@ import { UserServices } from 'src/app/services/user_services';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 
 import * as $ from 'jquery';
 import 'datatables.net';
@@ -26,11 +27,18 @@ export class HomeComponent implements OnInit {
 
   // data tables
   dataTable: any;
-  // table data sample
-  records: any[];
+  // records: any[];
+
+  // mat-table
+  displayedColumns: string[] = ['id', 'name', 'username'];
+  dataSource: MatTableDataSource<any>;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   // tslint:disable-next-line:max-line-length
-  constructor(private user: UserServices, private cookies: CookieService, private router: Router, private http: HttpClient , private chRef: ChangeDetectorRef) { }
+  constructor(private user: UserServices, private cookies: CookieService, private router: Router, private http: HttpClient, private chRef: ChangeDetectorRef) {
+  }
 
   ngOnInit(): void {
     this.token = this.cookies.get(this.cookies.get('id'));
@@ -58,25 +66,38 @@ export class HomeComponent implements OnInit {
     };
 
     this.http.get('https://jsonplaceholder.typicode.com/users')
-    .subscribe((data: any[]) => {
-      this.records = data;
+      .subscribe((data: any[]) => {
+        // this.records = data;
+        this.dataSource = new MatTableDataSource(data); // for mat-table
+        console.log(this.dataSource);
 
-      this.chRef.detectChanges();
-    // User
-    // Display data tables
-    // user
-    const table: any = $('#transaction');
-    this.dataTable = table.dataTable();
-    });
-
+        // mat table
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        // this.chRef.detectChanges();
+        // User
+        // Display data tables
+        // // user
+        // const table: any = $('#transaction');
+        // this.dataTable = table.dataTable();
+      });
   }
 
-  loadTable() {
-    console.log('table loaded');
-    this.chRef.detectChanges();
-    const table: any = $('table');
-    this.dataTable = table.dataTable();
+  // search table
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
+
+  // loadTable() {
+  //   console.log('table loaded');
+  //   this.chRef.detectChanges();
+  //   const table: any = $('table');
+  //   this.dataTable = table.dataTable();
+  // }
 
   clearEvents() {
     this.events = [];

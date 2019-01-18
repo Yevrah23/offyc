@@ -18,7 +18,10 @@ import {
   MatNativeDateModule,
   MatCheckboxModule,
   MatStepperModule,
-  MatRadioModule
+  MatRadioModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule
 
 } from '@angular/material';
 
@@ -41,7 +44,10 @@ import {
     MatNativeDateModule,
     MatCheckboxModule,
     MatStepperModule,
-    MatRadioModule
+    MatRadioModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   exports: [
     MatButtonModule,
@@ -61,7 +67,10 @@ import {
     MatNativeDateModule,
     MatCheckboxModule,
     MatStepperModule,
-    MatRadioModule
+    MatRadioModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ]
 })
 export class MaterialModule {}

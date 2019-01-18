@@ -2,7 +2,7 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'side' : 'side'" [opened]="!(isHandset$ | async)">
     <mat-toolbar>
-      <div class="brand">OffycApp</div> 
+      <div class="brand">OffycApp</div>
     </mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink='dashboard'><span>Dashboard</span></a>
@@ -21,7 +21,7 @@
         </button>
         <span class="flex-block"></span>
 
-        <div class="user-type"> 
+        <div class="user-type">
           <button mat-icon-button [matMenuTriggerFor]="notif" class="notif-icon"><i class="far fa-bell"></i></button>
           <span>Admin</span>
           <button mat-icon-button [matMenuTriggerFor]="appMenu">
@@ -32,16 +32,29 @@
             <button mat-menu-item>Settings</button>
             <button mat-menu-item (click)="logout()">Sign Out</button>
           </mat-menu>
-          
+
           <mat-menu class="notif" #notif="matMenu">
-            <button mat-menu-item>1 Notification notification notification notification notification notification</button>
-            <button mat-menu-item>2 Notification notificatio</button>
+            <mat-list role="list">
+              <button mat-menu-item>
+                <mat-list-item role="listitem"><small>CITC: Proposal Submission</small></mat-list-item>
+              </button>
+              <button mat-menu-item>
+                <mat-list-item role="listitem"><small>CITC: Proposal Submission</small></mat-list-item>
+              </button>
+            </mat-list>
+            <div class="container more">
+              <div class="row">
+                <button routerLink='notification' mat-menu-item>
+                  <div class="col-md text-center"><small>more</small></div>
+                </button>
+              </div>
+            </div>
           </mat-menu>
         </div>
       </mat-toolbar-row>
     </mat-toolbar>
 
-    
+
     <router-outlet></router-outlet>
     <!-- Display page output -->
   </mat-sidenav-content>
