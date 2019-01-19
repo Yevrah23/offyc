@@ -19,6 +19,8 @@ export class SideNavComponent implements OnInit {
   notif_count: any;
   
 
+  hasNotif = true;
+
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)

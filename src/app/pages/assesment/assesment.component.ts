@@ -1,13 +1,10 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { ViewPorposalComponent } from 'src/app/modal/view-porposal/view-porposal.component';
 
 import * as $ from 'jquery';
-import 'datatables.net';
-import 'datatables.net-bs4';
 import { UserServices } from 'src/app/services/user_services';
-
 
 @Component({
   selector: 'app-assesment',
@@ -16,45 +13,68 @@ import { UserServices } from 'src/app/services/user_services';
 })
 export class AssesmentComponent implements OnInit {
 
-  // data tables
-  dataTable: any;
-
   // table data sample
   records: any[];
   proposals: any[];
 
-  constructor(private http: HttpClient, private chRef: ChangeDetectorRef, private user: UserServices, public dialog: MatDialog) { } 
+  // constructor(private http: HttpClient, private chRef: ChangeDetectorRef, private user: UserServices, public dialog: MatDialog) { } 
 
-  viewProposal(data): void {
-    this.user.get_proposal(data).subscribe(
-      (response) => {
-        this.user.tempo = response;
-        if (this.user.tempo.proposal_status == 0) {
-          this.user.approved = false;
-          this.user.pending = true;
-          console.log(this.user.approved);
-        }
+  // viewProposal(data): void {
+  //   this.user.get_proposal(data).subscribe(
+  //     (response) => {
+  //       this.user.tempo = response;
+  //       if (this.user.tempo.proposal_status == 0) {
+  //         this.user.approved = false;
+  //         this.user.pending = true;
+  //         console.log(this.user.approved);
+  //       }
 
 
-        const dialogRef = this.dialog.open(ViewPorposalComponent, {
-          width: '768px'
-        });
+  //       const dialogRef = this.dialog.open(ViewPorposalComponent, {
+  //         width: '768px'
+  //       });
 
-        dialogRef.afterClosed().subscribe(result => {
-          console.log('The dialog was closed');
-          this.proposals = result[1];
-          console.log(this.proposals);
-          this.chRef.detectChanges();
-          // User
-          // Display data tables
-          // user
-          const table: any = $('table');
-          this.dataTable = table.dataTable();
+  //       dialogRef.afterClosed().subscribe(result => {
+  //         console.log('The dialog was closed');
+  //         this.proposals = result[1];
+  //         console.log(this.proposals);
+  //         this.chRef.detectChanges();
+  //         // User
+  //         // Display data tables
+  //         // user
+  //         const table: any = $('table');
+  //         this.dataTable = table.dataTable();
 
-        });
-      }
-    )
+  //       });
+  //     }
+  //   )
 
+  // records: any[];
+
+  // mat-table
+  displayedColumns: string[] = ['id', 'name', 'username', 'settings'];
+  dataSource: MatTableDataSource<any>;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+  constructor(
+    public dialog: MatDialog,
+    private http: HttpClient,
+    private chRef: ChangeDetectorRef,
+    private user: UserServices
+  ) { }
+
+  viewProposal(): void {
+    const dialogRef = this.dialog.open(ViewPorposalComponent, {
+      width: '535px',
+      panelClass: 'custom-dialog-view'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+    });
   }
 
 
@@ -70,25 +90,28 @@ export class AssesmentComponent implements OnInit {
         console.log(response);
 
         if (response[0]){
-          this.proposals = response[1];
+          this.dataSource = new MatTableDataSource(response[1]); // for mat-table
         }
-        console.log(this.proposals);
+        console.log(this.dataSource);
 
-        this.chRef.detectChanges();
-        // User
+        // mat table
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+
+        // this.chRef.detectChanges();
         // Display data tables
-        // user
-        const table: any = $('table');
-        this.dataTable = table.dataTable();
-      }
-    )
+        // const table: any = $('table');
+        // this.dataTable = table.dataTable();
+      });
   }
 
-  loadTable() {
-    console.log('table loaded');
-    this.chRef.detectChanges();
-    const table: any = $('table');
-    this.dataTable = table.dataTable();
+  // search table
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
 }

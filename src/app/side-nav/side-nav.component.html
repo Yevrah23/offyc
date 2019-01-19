@@ -2,7 +2,7 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'side' : 'side'" [opened]="!(isHandset$ | async)">
     <mat-toolbar>
-      <div class="brand">OffycApp</div> 
+      <div class="brand">OffycApp</div>
     </mat-toolbar>
     <mat-nav-list>
       <a (click) = "check_notifs" mat-list-item routerLink='dashboard'><span>Dashboard</span></a>
@@ -21,10 +21,16 @@
         </button>
         <span class="flex-block"></span>
 
-        <div class="user-type"> 
-          <button (click)="unblink()" mat-icon-button [matMenuTriggerFor]="notif" class="notif-icon"><i class="far fa-bell"></i></button>
+        <div class="user-type">
+        <button (click)="unblink()" mat-icon-button [matMenuTriggerFor]="notif" class="notif-icon">
+            <i class="far fa-bell myfont"></i>
+            <span *ngIf="hasNotif" class="notif-badge">2</span>
+          </button>
           <span>Admin</span>
           <button mat-icon-button [matMenuTriggerFor]="appMenu">
+            <div class="avatar">
+              <i class="fas fa-camera" style="color:#fff;"></i>
+            </div>
             <mat-icon>more_vert</mat-icon>
           </button>
 
@@ -32,16 +38,29 @@
             <button mat-menu-item>Settings</button>
             <button mat-menu-item (click)="logout()">Sign Out</button>
           </mat-menu>
-          
+
           <mat-menu class="notif" #notif="matMenu">
-            <button style="background: rgb(69, 69, 184);" mat-menu-item *ngFor="let read of unread">{{read.notif_type_id}}</button>
-            <button mat-menu-item *ngFor="let read of read">{{read.notif_type_id}}</button>
+            <mat-list role="list">
+            <button mat-menu-item *ngFor="let read of unread">
+              <mat-list-item role="listitem"><small>{{read.notif_type_id}}</small></mat-list-item>
+              </button>
+            <button mat-menu-item *ngFor="let read of read">
+              <mat-list-item role="listitem"><small>{{read.notif_type_id}}</small></mat-list-item>
+              </button>
+            </mat-list>
+            <div class="container more">
+              <div class="row">
+                <button routerLink='notification' mat-menu-item>
+                  <div class="col-md text-center"><small>more</small></div>
+                </button>
+              </div>
+            </div>
           </mat-menu>
         </div>
       </mat-toolbar-row>
     </mat-toolbar>
 
-    
+
     <router-outlet></router-outlet>
     <!-- Display page output -->
   </mat-sidenav-content>

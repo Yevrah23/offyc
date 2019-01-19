@@ -1,11 +1,12 @@
-.flex-block{
+.flex-block {
   /* This fills the remaining space, by using flexbox. 
      Every toolbar row uses a flexbox row layout. */
   flex: 1 1 auto;
 }
 
 .user-type {
-  padding-right: 30px;
+  position: relative;
+  right: 70px;
 }
 
 .sidenav-container {
@@ -28,7 +29,8 @@
 
 //Custom style
 
-mat-toolbar.mat-toolbar.mat-toolbar-multiple-rows { //Navigation sticky
+mat-toolbar.mat-toolbar.mat-toolbar-multiple-rows {
+  //Navigation sticky
   position: sticky;
   position: -webkit-sticky;
   top: 0;
@@ -39,21 +41,42 @@ mat-toolbar.mat-toolbar.mat-toolbar-multiple-rows { //Navigation sticky
 //   background: #fff !important;
 // }
 
-.brand{
+.brand {
   display: block;
   margin: 0 auto;
 }
 
-mat-nav-list a{
-  span{   
+mat-nav-list a {
+  span {
     width: 100%;
     text-align: center !important;
   }
 }
-  
-span.notif-icon {
-  padding: 0 15px;
-  cursor: pointer;
+
+// notification
+.myfont {
+  font-size: 16px !important;
+}
+
+button.notif-icon {
+  // color: white;
+  display: inline-block;
+  /* Inline elements with width and height. TL;DR they make the icon buttons stack from left-to-right instead of top-to-bottom */
+  position: relative;
+  /* All 'absolute'ly positioned elements are relative to this one */
+  padding: 2px 5px;
+
+  /* Add some padding so it looks nice */
+  span.notif-badge {
+    background-color: #F15A6E;
+    border-radius: 2px;
+    color: white;
+    padding: 0px 3px;
+    font-size: 9px;
+    position: relative;
+    top: -7px;
+    right: 5px;
+  }
 }
 
 .mat-menu-panel.notif {
@@ -76,4 +99,14 @@ span.notif-icon {
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
   animation-duration: 1s;
+}
+// Avatar
+
+.avatar {
+  display: inline-block;
+  background: #707070;
+  width: 40px;
+  height: 40px;
+  margin: 0 5px;
+  border-radius: 50%;
 }
