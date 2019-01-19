@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 })
 export class SideNavComponent {
 
+  hasNotif = true;
+
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
