@@ -6,7 +6,7 @@
     </mat-toolbar>
     <mat-nav-list>
       <a (click) = "check_notifs" mat-list-item routerLink='dashboard'><span>Dashboard</span></a>
-      <a (click) = "check_notifs" mat-list-item routerLink='notification'><span>Notification</span></a>
+      <a (click) = "check_notifs" mat-list-item routerLink='notification'><span>Notification ({{notif_count}})</span></a>
       <a (click) = "check_notifs" mat-list-item routerLink='records'><span>Records</span></a>
       <a (click) = "check_notifs" mat-list-item routerLink='activites'><span>Activities</span></a>
       <a (click) = "check_notifs" mat-list-item routerLink='assesment'><span>Assesment</span></a>
@@ -22,7 +22,7 @@
         <span class="flex-block"></span>
 
         <div class="user-type"> 
-          <button mat-icon-button [matMenuTriggerFor]="notif" class="notif-icon"><i class="far fa-bell"></i></button>
+          <button (click)="unblink()" mat-icon-button [matMenuTriggerFor]="notif" class="notif-icon"><i class="far fa-bell"></i></button>
           <span>Admin</span>
           <button mat-icon-button [matMenuTriggerFor]="appMenu">
             <mat-icon>more_vert</mat-icon>
@@ -34,8 +34,8 @@
           </mat-menu>
           
           <mat-menu class="notif" #notif="matMenu">
-            <button mat-menu-item>1 Notification notification notification notification notification notification</button>
-            <button mat-menu-item>2 Notification notificatio</button>
+            <button style="background: rgb(69, 69, 184);" mat-menu-item *ngFor="let read of unread">{{read.notif_type_id}}</button>
+            <button mat-menu-item *ngFor="let read of read">{{read.notif_type_id}}</button>
           </mat-menu>
         </div>
       </mat-toolbar-row>

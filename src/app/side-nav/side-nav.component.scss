@@ -45,7 +45,7 @@ mat-toolbar.mat-toolbar.mat-toolbar-multiple-rows { //Navigation sticky
 }
 
 mat-nav-list a{
-  span{
+  span{   
     width: 100%;
     text-align: center !important;
   }
@@ -58,4 +58,22 @@ span.notif-icon {
 
 .mat-menu-panel.notif {
   max-width: 400px !important;
+}
+
+@keyframes annoy {
+  from,to {
+    color: red;
+  }
+  50% {
+    color: unset;
+  }
+}
+
+
+
+.unread{
+  animation-name: annoy;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-duration: 1s;
 }

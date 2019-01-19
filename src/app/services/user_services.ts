@@ -14,6 +14,9 @@ export class UserServices {
     tempo: any;
     pending: boolean;
     approved: boolean;
+    notifs: any[];
+    read = [];
+    unread = [];
 
 
     constructor(private http: HttpClient) { }
