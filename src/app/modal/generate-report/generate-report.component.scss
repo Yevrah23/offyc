@@ -2,9 +2,19 @@
   margin-left: 16px;
 }
 
+.dialog-wrapper .mat-form-field~.mat-form-field{
+  margin-left: 16px;
+}
+
 // radio button box
 .dialog-wrapper {
   padding-top: 62px;
+  text-align: center;
+}
+
+.Form-action-wrapper {
+  display: block;
+  width: 100%;
   text-align: center;
 }
 
