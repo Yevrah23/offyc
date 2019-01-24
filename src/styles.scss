@@ -56,7 +56,34 @@ section.container-fluid {
   font-size: 16px;
 }
 
+.text-heading-24 {
+  font-size: 24px;
+}
+
 //custom global css
+
+//custom scroll {
+  /* width */
+::-webkit-scrollbar {
+  width: 4px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+
+.box { // card color
+  background: #fff;
+}
 
 td {
   .actions {
@@ -64,7 +91,7 @@ td {
     margin: 0 auto;
     
     button.mat-raised-button {
-      margin-left: 15px;
+      margin: 5px 7.5px;
     }
   }
 }

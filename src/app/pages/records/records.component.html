@@ -1,3 +1,5 @@
+<!-- <app-data-spinner *ngIf="true"></app-data-spinner> -->
+
 <section *ngIf="isAdmin" class="container-fluid records admin">
   <div class="row">
     <div class="col-md-12">
@@ -56,7 +58,8 @@
               <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
             </mat-form-field>
 
-            <table mat-table [dataSource]="COT" matSort>
+            <table app-data-spinner *ngIf="showSpinner"></table>
+            <table *ngIf="showData" mat-table [dataSource]="COT" matSort>
 
               <!--- Note that these columns can be defined in any order.
                       The actual rendered columns are set as a property on the row definition" -->
@@ -151,7 +154,8 @@
               <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
             </mat-form-field>
 
-            <table mat-table [dataSource]="CSM" matSort>
+            <table app-data-spinner *ngIf="showSpinner"></table>
+            <table *ngIf="showData" mat-table [dataSource]="CSM" matSort>
 
               <!--- Note that these columns can be defined in any order.
                       The actual rendered columns are set as a property on the row definition" -->
@@ -246,7 +250,8 @@
               <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
             </mat-form-field>
 
-            <table mat-table [dataSource]="CITC" matSort>
+            <table app-data-spinner *ngIf="showSpinner"></table>
+            <table *ngIf="showData" mat-table [dataSource]="CITC" matSort>
 
               <!--- Note that these columns can be defined in any order.
                       The actual rendered columns are set as a property on the row definition" -->
@@ -341,7 +346,8 @@
               <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
             </mat-form-field>
 
-            <table mat-table [dataSource]="CSTE" matSort>
+            <table app-data-spinner *ngIf="showSpinner"></table>
+            <table *ngIf="showData" mat-table [dataSource]="CSTE" matSort>
 
               <!--- Note that these columns can be defined in any order.
                       The actual rendered columns are set as a property on the row definition" -->
@@ -436,7 +442,8 @@
               <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
             </mat-form-field>
 
-            <table mat-table [dataSource]="CEA" matSort>
+            <table app-data-spinner *ngIf="showSpinner"></table>
+            <table *ngIf="showData" mat-table [dataSource]="CEA" matSort>
 
               <!--- Note that these columns can be defined in any order.
                       The actual rendered columns are set as a property on the row definition" -->
@@ -487,7 +494,6 @@
 
 <section *ngIf="isUser" class="container-fluid records user">
   <div class="row">
-    <!-- we use mat-card and div -->
     <!-- button modal trigger -->
     <button class="modal-trigger" color="primary" mat-raised-button (click)="submitProposal()">Submit Proposal</button>
 
@@ -530,7 +536,8 @@
               <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
             </mat-form-field>
 
-            <table mat-table [dataSource]="CITC" matSort>
+            <table app-data-spinner *ngIf="showSpinner"></table>
+            <table *ngIf="showData" mat-table [dataSource]="CITC" matSort>
 
               <!--- Note that these columns can be defined in any order.
                     The actual rendered columns are set as a property on the row definition" -->

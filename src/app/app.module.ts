@@ -22,10 +22,13 @@ import { SubmitProposalComponent } from './modal/submit-proposal/submit-proposal
 import { ViewPorposalComponent } from './modal/view-porposal/view-porposal.component';
 import { FileDetailsComponent } from './modal/file-details/file-details.component';
 import { WarningDownloadComponent } from './modal/warning-download/warning-download.component';
+import { GenerateReportComponent } from './modal/generate-report/generate-report.component';
 import { SuccessComponent } from './modal/success/success.component';
 
 // Cookies ni jaz
 import { CookieService } from 'ngx-cookie-service';
+// spinner
+import { DataSpinnerComponent } from './loading/data-spinner/data-spinner.component';
 
 
 
@@ -43,6 +46,8 @@ import { CookieService } from 'ngx-cookie-service';
     FileDetailsComponent,
     WarningDownloadComponent,
     SuccessComponent,
+    DataSpinnerComponent,
+    GenerateReportComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +66,8 @@ import { CookieService } from 'ngx-cookie-service';
     ViewPorposalComponent,
     FileDetailsComponent,
     WarningDownloadComponent,
-    SuccessComponent
+    SuccessComponent,
+    GenerateReportComponent
   ],
   providers: [
     UserServices,

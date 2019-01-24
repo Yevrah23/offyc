@@ -1,0 +1,35 @@
+<h2 mat-diaglog-title class="text-center">Report</h2>
+
+<div class="content-wrapper">
+  <mat-dialog-content>
+    <div class="dialog-wrapper">
+      <!-- radio group -->
+      <mat-radio-group>
+        <mat-radio-button value="bar">
+          <div class="optionBox">
+            <span class="checked"><i class="fas fa-check"></i></span>
+            <span class="boxVal">b.a.r</span>
+          </div>
+        </mat-radio-button>
+        <mat-radio-button value="prexc">
+          <div class="optionBox">
+            <span class="checked"><i class="fas fa-check"></i></span>
+            <span class="boxVal">p.r.e.x.c</span>
+          </div>
+        </mat-radio-button>
+        <mat-radio-button value="hemis">
+          <div class="optionBox">
+            <span class="checked"><i class="fas fa-check"></i></span>
+            <span class="boxVal">h.e.m.i.s</span>
+          </div>
+        </mat-radio-button>
+      </mat-radio-group>
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+</div>

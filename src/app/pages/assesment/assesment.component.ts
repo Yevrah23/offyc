@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { ViewPorposalComponent } from 'src/app/modal/view-porposal/view-porposal.component';
+import { GenerateReportComponent } from 'src/app/modal/generate-report/generate-report.component';
 
 import * as $ from 'jquery';
 import { UserServices } from 'src/app/services/user_services';
@@ -50,7 +51,9 @@ export class AssesmentComponent implements OnInit {
   //   )
 
   // records: any[];
-
+  // spinner
+  showSpinner = true;
+  showData = false;
   // mat-table
   displayedColumns: string[] = ['Title', 'Target', 'Venue', 'Settings'];
   dataSource: MatTableDataSource<any>;
@@ -64,6 +67,20 @@ export class AssesmentComponent implements OnInit {
     private chRef: ChangeDetectorRef,
     private user: UserServices
   ) { }
+
+
+  // Modal triggers
+  generateReport(): void {
+    const dialogRef = this.dialog.open(GenerateReportComponent, {
+      width: '535px',
+      panelClass: 'custom-dialog-report'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+    });
+  }
 
   viewProposal(): void {
     const dialogRef = this.dialog.open(ViewPorposalComponent, {
@@ -87,6 +104,8 @@ export class AssesmentComponent implements OnInit {
     // }
     this.user.get_proposals().subscribe(
       (response)=>{
+        this.showSpinner = false;
+        this.showData = true;
         console.log(response);
 
         if (response[0]){
