@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class UserServices {
     // private serverUrl = 'http://localhost/';
-    private serverUrl = 'http://192.168.1.12/';
+    private serverUrl = 'http://169.254.240.35/';
     // isLoggedIn: boolean;
     admin: boolean;
     user: boolean;
