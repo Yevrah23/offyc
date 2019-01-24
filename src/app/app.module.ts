@@ -24,6 +24,7 @@ import { FileDetailsComponent } from './modal/file-details/file-details.componen
 import { WarningDownloadComponent } from './modal/warning-download/warning-download.component';
 import { GenerateReportComponent } from './modal/generate-report/generate-report.component';
 import { SuccessComponent } from './modal/success/success.component';
+import { ReportTemplateComponent } from './modal/report-template/report-template.component';
 
 // Cookies ni jaz
 import { CookieService } from 'ngx-cookie-service';
@@ -48,6 +49,7 @@ import { DataSpinnerComponent } from './loading/data-spinner/data-spinner.compon
     SuccessComponent,
     DataSpinnerComponent,
     GenerateReportComponent,
+    ReportTemplateComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +69,8 @@ import { DataSpinnerComponent } from './loading/data-spinner/data-spinner.compon
     FileDetailsComponent,
     WarningDownloadComponent,
     SuccessComponent,
-    GenerateReportComponent
+    GenerateReportComponent,
+    ReportTemplateComponent
   ],
   providers: [
     UserServices,
