@@ -26,7 +26,9 @@ export class HomeComponent implements OnInit {
   // data tables
   dataTable: any;
   // records: any[];
-
+  // spinner
+  showSpinner = true;
+  showData = false;
   // mat-table
   displayedColumns: string[] = ['id', 'name', 'username'];
   dataSource: MatTableDataSource<any>;
@@ -66,6 +68,8 @@ export class HomeComponent implements OnInit {
     // retrieve data  via HTTP
     this.http.get('https://jsonplaceholder.typicode.com/users')
       .subscribe((data: any[]) => {
+        this.showSpinner = false;
+        this.showData = true;
         // this.records = data;
         this.dataSource = new MatTableDataSource(data); // for mat-table
 
@@ -89,13 +93,6 @@ export class HomeComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
-  // loadTable() {
-  //   console.log('table loaded');
-  //   this.chRef.detectChanges();
-  //   const table: any = $('table');
-  //   this.dataTable = table.dataTable();
-  // }
 
   clearEvents() {
     this.events = [];

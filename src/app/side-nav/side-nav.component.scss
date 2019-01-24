@@ -79,7 +79,8 @@ button.notif-icon {
   }
 }
 
-.mat-menu-panel.notif {
+::ng-deep .mat-menu-panel.notif {
+  min-width: 280px !important;
   max-width: 400px !important;
 }
 
