@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class UserServices {
-    private serverUrl = 'http://localhost/';
-    // private serverUrl = 'http://192.168.0.18/';
+    // private serverUrl = 'http://localhost/';
+    private serverUrl = 'http://192.168.1.12/';
     // isLoggedIn: boolean;
     admin: boolean;
     user: boolean;
@@ -68,6 +68,7 @@ export class UserServices {
             'venue': params[0].venue,
             'trans_type': 1,
             'token': params[0].token,
+            'fileName': params[0].filename
         });
     }
     proposal_approval(params){

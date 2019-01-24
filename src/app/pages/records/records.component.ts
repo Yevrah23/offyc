@@ -26,19 +26,23 @@ export class RecordsComponent implements OnInit {
   // records: any[];
 
   // mat-table
-  displayedColumns: string[] = ['id', 'name', 'username', 'settings'];
-  dataSource: MatTableDataSource<any>;
+  displayedColumns: string[] = ['Title', 'Target', 'Venue', 'Settings'];
+  CITC: MatTableDataSource<any>;
+  COT: MatTableDataSource<any>;
+  CEA: MatTableDataSource<any>;
+  CSM: MatTableDataSource<any>;
+  CSTE: MatTableDataSource<any>;
 
   // data tables
   dataTable: any;
 
   // table data sample
   records: any[];
-  CITC:any[];
-  COT:any[];
-  CEA:any[];
-  CSM:any[];
-  CSTE:any[];
+  // CITC:any[];
+  // COT:any[];
+  // CEA:any[];
+  // CSM:any[];
+  // CSTE:any[];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -102,51 +106,74 @@ export class RecordsComponent implements OnInit {
     } else {
       this.isAdmin = false;
     }
-    // this.user.get_des_proposals().subscribe(
-    //   (response)=>{
-    //     if (response[0]){
-    //       this.CITC = response[1].CITC;
-    //       this.COT  = response[1].COT;
-    //       this.CEA  = response[1].CEA;
-    //       this.CSM  = response[1].CSM;
-    //       this.CSTE  = response[1].CSTE;
-    //     }
-    //     console.log(this.CITC);
-    //     console.log(this.COT);
-    //     console.log(this.CEA);
-    //     console.log(this.CSM);
-    //     console.log(this.CSTE);
+    this.user.get_des_proposals().subscribe(
+      (response)=>{
+        if (response[0]){
+          console.log(response[1]);
+          this.CITC = new MatTableDataSource(response[1].CITC);
+          this.COT  = new MatTableDataSource(response[1].COT);
+          this.CEA  = new MatTableDataSource(response[1].CEA);
+          this.CSM  = new MatTableDataSource(response[1].CSM);
+          this.CSTE  = new MatTableDataSource(response[1].CSTE);
 
-    //     this.chRef.detectChanges();
-    //     // User
+          // mat table
+          this.CITC.paginator = this.paginator;
+          this.COT.paginator = this.paginator;
+          this.CEA.paginator = this.paginator;
+          this.CSM.paginator = this.paginator;
+          this.CSTE.paginator = this.paginator;
+
+          this.CITC.sort = this.sort;
+          this.COT.sort = this.sort;
+          this.CEA.sort = this.sort;
+          this.CSM.sort = this.sort;
+          this.CSTE.sort = this.sort;
+        }
+        console.log(this.CITC);
+        console.log(this.COT);
+        console.log(this.CEA);
+        console.log(this.CSM);
+        console.log(this.CSTE);
+      }
+    )
+    // this.http.get('https://jsonplaceholder.typicode.com/users')
+    //   .subscribe((data: any[]) => {
+    //     // this.records = data;
+    //     this.dataSource = new MatTableDataSource(data); // for mat-table
+
+    //     // mat table
+    //     this.dataSource.paginator = this.paginator;
+    //     this.dataSource.sort = this.sort;
+
+    //     // this.chRef.detectChanges();
     //     // Display data tables
-    //     // user
-    //     const table: any = $('table');
-    //     this.dataTable = table.dataTable();
-    //   }
-    // )
-    this.http.get('https://jsonplaceholder.typicode.com/users')
-      .subscribe((data: any[]) => {
-        // this.records = data;
-        this.dataSource = new MatTableDataSource(data); // for mat-table
-
-        // mat table
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-
-        // this.chRef.detectChanges();
-        // Display data tables
-        // const table: any = $('table');
-        // this.dataTable = table.dataTable();
-      });
+    //     // const table: any = $('table');
+    //     // this.dataTable = table.dataTable();
+    //   });
   }
 
   // search table
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.CITC.filter = filterValue.trim().toLowerCase();
+    this.COT.filter = filterValue.trim().toLowerCase();
+    this.CSM.filter = filterValue.trim().toLowerCase();
+    this.CSTE.filter = filterValue.trim().toLowerCase();
+    this.CEA.filter = filterValue.trim().toLowerCase();
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+    if (this.CITC.paginator) {
+      this.CITC.paginator.firstPage();
+    }
+    if (this.COT.paginator) {
+      this.COT.paginator.firstPage();
+    }
+    if (this.CSM.paginator) {
+      this.CSM.paginator.firstPage();
+    }
+    if (this.CSTE.paginator) {
+      this.CSTE.paginator.firstPage();
+    }
+    if (this.CEA.paginator) {
+      this.CEA.paginator.firstPage();
     }
   }
 

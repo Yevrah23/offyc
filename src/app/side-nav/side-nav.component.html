@@ -24,7 +24,7 @@
         <div class="user-type">
         <button (click)="unblink()" mat-icon-button [matMenuTriggerFor]="notif" class="notif-icon">
             <i class="far fa-bell myfont"></i>
-            <span *ngIf="hasNotif" class="notif-badge">2</span>
+            <span *ngIf="hasNotif" class="notif-badge">{{notif_count}}</span>
           </button>
           <span>Admin</span>
           <button mat-icon-button [matMenuTriggerFor]="appMenu">
@@ -42,10 +42,10 @@
           <mat-menu class="notif" #notif="matMenu">
             <mat-list role="list">
             <button mat-menu-item *ngFor="let read of unread">
-              <mat-list-item role="listitem"><small>{{read.notif_type_id}}</small></mat-list-item>
+              <mat-list-item role="listitem"><small>{{read.ui_Fname}} {{read.notif_type_id}}</small></mat-list-item>
               </button>
             <button mat-menu-item *ngFor="let read of read">
-              <mat-list-item role="listitem"><small>{{read.notif_type_id}}</small></mat-list-item>
+              <mat-list-item role="listitem"><small>{{read.ui_Fname}} {{read.notif_type_id}}</small></mat-list-item>
               </button>
             </mat-list>
             <div class="container more">

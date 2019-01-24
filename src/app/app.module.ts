@@ -14,6 +14,7 @@ import { LoginRegLayoutComponent } from './login-reg-layout/login-reg-layout.com
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { UserServices } from './services/user_services';
+import { UploadService } from './services/upload.service' 
 import { AuthGuard } from './auth.guard';
 
 // modals component
@@ -64,6 +65,7 @@ import { CookieService } from 'ngx-cookie-service';
   ],
   providers: [
     UserServices,
+    UploadService,
     AuthGuard,
     CookieService
   ],

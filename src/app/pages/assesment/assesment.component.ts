@@ -52,7 +52,7 @@ export class AssesmentComponent implements OnInit {
   // records: any[];
 
   // mat-table
-  displayedColumns: string[] = ['id', 'name', 'username', 'settings'];
+  displayedColumns: string[] = ['Title', 'Target', 'Venue', 'Settings'];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

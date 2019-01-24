@@ -1,0 +1,36 @@
+According to W3Schools, elements with position: absolute is positioned relative to the nearest positioned ancestor pero if walay positioned ancestors, it will use the document body
+
+positioned element = any element with the position attribute except the "static" value
+
+first activity done, used display: table.
+
+
+Handling absolutes (If ang parent is position relative or static, unsay mahitabo)
+	If ang parent is position relative == The element positioned absolutely would position itself relative to the parent
+	Static(<== What is the default value of "position") == The element would position itself relative to the viewport/document body
+	
+Position Fixed + Overflow Hidden on parent (what happens?)
+	As per observation, the element with a fixed position is just hidden during the application of overflow hidden. The element would still position itself relative to the window/viewport regardless of parent positioning
+
+When do the positioning rules take effect? (e.g. left, bottom, right, top, z-index) (The question is why doesn't it sometimes work?)
+	Observation: Positioning rules only work on positioned elements. But there is this weird interaction between z-index and positioned elements.
+
+What can happen when a parent has a different z-index with its child
+	There becomes a weird interaction, if you give a z-index attribute to a child element, the z-index works as intended, but once the parent is given a z-index value, the z-index no longer works, even if you position/stack them correctly
+
+What happens to the parent DIV when all DIVs inside it are floats.
+	F.1 Once all child DIVs inside a parent DIV are floats, the parent div doens't seem to contain the child divs anymore
+
+What is the CSS "Clear" rule for?
+	The clear property specifies on which sides of an element floating elements are not allowed to float.
+
+Inverting the order of DIVs for mobile. (NO SCRIPTS) (DIV1 vs DIV2 = DIV1 should be the one to fall)
+	I don't how this is done but I used display: flex and flex-direction: column reverse
+
+When you set padding-top to 100%, where does it get its value in px?
+	It takes the size of the content
+
+
+contenteditable for attribute/pdf printing
+
+

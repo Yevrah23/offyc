@@ -5,7 +5,10 @@ import { CookieService } from 'ngx-cookie-service';
 import * as $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-bs4';
+import { HttpClient, HttpHeaders, HttpEventType, HttpResponse} from '@angular/common/http';
 import { UserServices } from 'src/app/services/user_services';
+import { UploadService } from 'src/app/services/upload.service';
+
 
 @Component({
   selector: 'app-submit-proposal',
@@ -26,7 +29,7 @@ export class SubmitProposalComponent implements OnInit {
   fileName: string;
   files: FileList;
   constructor(public dialogRef: MatDialogRef<SubmitProposalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, private cookies: CookieService, private user: UserServices) { }
+    @Inject(MAT_DIALOG_DATA) public data: any, private cookies: CookieService, private user: UserServices, private http: HttpClient, private upload: UploadService) { }
 
   ngOnInit() {
 
@@ -42,16 +45,17 @@ export class SubmitProposalComponent implements OnInit {
       'b_gender': this.bene_gender,
       'venue': this.venue,
       'token': this.cookies.get(this.cookies.get('id')),
-      'file': this.file
+      'filename': this.fileName,
+      // 'file' : this.files[0]
     });
     this.user.submit_proposal(this.proposal).subscribe(
       (response) => {
         if (response) {
-          this.dialogRef.close('Proposal Successfully Submitted');
+          console.log(response);
+          this.uploadFile();
         }
       }
     );
-    // this.upload();
   }
 
   // upload(){
@@ -62,11 +66,46 @@ export class SubmitProposalComponent implements OnInit {
   //   )
   // }
 
-  getFiles(event, files: FileList) {
-    this.file = files.item(0);
+  getFiles(event) {
+    
+    // this.file = files.item(0);
     this.files = event.target.files;
+    console.log(this.files);
     this.fileName = this.files[0]['name'];
     $('#fileName').val(this.files[0]['name']);
   }
 
+
+  // selectFile(event) {
+  //   this.uploadFile(event.target.files);
+  // }
+
+
+  uploadFile() {
+    let file = this.files[0];
+    console.log(file);
+
+    this.upload.uploadFile('http://192.168.1.12/codeigniter/api/Users/file_upload', file,this.proposal)
+      .subscribe(
+        event => {
+          if (event.type == HttpEventType.UploadProgress) {
+            const percentDone = Math.round(100 * event.loaded / event.total);
+            console.log(`File is ${percentDone}% loaded.`);
+          } else if (event instanceof HttpResponse) {
+            console.log('File is completely loaded!');
+          }
+        },
+        (err) => {
+          console.log("Upload Error:", err);
+          this.dialogRef.close('Proposal Successfully Submitted');
+
+        }, () => {
+          console.log("Upload done");
+          this.dialogRef.close('Proposal Successfully Submitted');
+        }
+      )
+  }
+
 }
+
+
