@@ -9,7 +9,7 @@
       <a mat-list-item routerLink='notification'><span>Notification</span></a>
       <a mat-list-item routerLink='records'><span>Records</span></a>
       <a mat-list-item routerLink='activites'><span>Activities</span></a>
-      <a mat-list-item routerLink='assesment'><span>Assesment</span></a>
+      <a mat-list-item routerLink='assesment' *ngIf="isAdmin"><span>Assesment</span></a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
