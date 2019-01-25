@@ -19,6 +19,8 @@ export class SideNavComponent implements OnInit {
   notif_count: any;
   
 
+  isAdmin = true;
+  token: any;
   hasNotif = true;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -31,6 +33,11 @@ export class SideNavComponent implements OnInit {
   ngOnInit(){
     this.read = [];
     this.unread = [];
+    this.token = this.cookies.get('set');
+    if (this.token === '2') {
+      this.isAdmin = false;
+    } else {
+    }
 
     this.user.getNotifs(this.cookies.get('id')).subscribe(
       (response) => {

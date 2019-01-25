@@ -1,31 +1,41 @@
-<h2 mat-diaglog-title class="text-center">H.E.M.I.S Report</h2>
+<h2 mat-diaglog-title class="text-center">Gnerated Report</h2>
 
-<mat-dialog-content>
-  <section>
-    <!-- <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-5">
-              <span>*</span> An Extension Program/Project is defined as a set of activities aimed to transfer knowledge or
-              technology or to provide services to the community in consonance with the programs offered. The Extension Program
-              is conducted not as part of academic requirement but as an outreach towards the improvement of the community's
-              quality of life. Please attach Board Action/Resolutioon approving the Extension Program and/or
-              Citation/Recognition Received. For Program/Project Components or activities not specified in the approved Board
-              Action/Resolution, please attach budget indication such.
-            </div>
-          </div>
-        </div> -->
-
+<section>
+  <div class=" container-fluid text-right">
+    <div class="row">
+      <div class="col-md">
+        <button mat-button mat-dialog-close (click)="generatePDF()" class="color-primary"><i class="fas fa-download"></i>
+          Export as PDF</button>
+      </div>
+    </div>
+  </div>
+  <mat-dialog-content id="contentToConvert" class="html2canvas-container">
+    <h2 mat-diaglog-title class="text-center">H.E.M.I.S Report</h2>
+    <div class="container-fluid py-3">
+      <div class="row">
+        <div class="col-md-7 text-left">
+          <span>*</span> An Extension Program/Project is defined as a set of activities aimed to transfer knowledge or
+          technology or to provide services to the community in consonance with the programs offered. The Extension
+          Program is conducted not as part of academic requirement but as an outreach towards the improvement of the
+          community's
+          quality of life. Please attach Board Action/Resolutioon approving the Extension Program and/or
+          Citation/Recognition Received. For Program/Project Components or activities not specified in the approved
+          Board
+          Action/Resolution, please attach budget indication such.
+        </div>
+      </div>
+    </div>
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm table-responsive-sm">
-          <table class="table table-striped table-sm text-center">
+          <table class="table table-striped table-sm text-center color-secondary">
             <thead>
               <tr>
-                <th scope="col" rowspan="2">TITLE</th>
-                <th scope="col" rowspan="2">Keyword/s</th>
-                <th scope="col" rowspan="2">Duration / Number of Hours</th>
-                <th scope="col" rowspan="2">Number of Trainees/ Beneficiaries</th>
-                <th scope="col" colspan="3">Citation / Recognition Received</th>
+                <th scope="col" rowspan="2" class="color-accent">TITLE</th>
+                <th scope="col" rowspan="2" class="color-accent">Keyword/s</th>
+                <th scope="col" rowspan="2" class="color-accent">Duration / Number of Hours</th>
+                <th scope="col" rowspan="2" class="color-accent">Number of Trainees/ Beneficiaries</th>
+                <th scope="col" colspan="3" class="color-accent">Citation / Recognition Received</th>
               </tr>
               <tr>
                 <th>Title</th>
@@ -94,10 +104,8 @@
         </div>
       </div>
     </div>
-
-  </section>
-
-</mat-dialog-content>
+  </mat-dialog-content>
+</section>
 
 <mat-dialog-actions>
   <div class="Form-action-wrapper">
