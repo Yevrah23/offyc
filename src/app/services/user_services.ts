@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class UserServices {
     // private serverUrl = 'http://localhost/';
-    private serverUrl = 'http://169.254.240.35/';
+    private serverUrl = 'http://192.168.43.31/';
     // isLoggedIn: boolean;
     admin: boolean;
     user: boolean;
@@ -75,7 +75,8 @@ export class UserServices {
         console.log(params);
         return this.http.post(this.serverUrl + 'codeigniter/api/Users/proposal_approval', {
             'id' : params[0].id,
-            'decision': params[0].decision
+            'decision': params[0].decision,
+            'title' : params[0].title
         })
     }
 

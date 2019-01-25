@@ -30,7 +30,8 @@ export class ViewPorposalComponent implements OnInit {
   verdict(data){
     this.params.push({
       'id' : this.tempo.proposal_id,
-      'decision': data
+      'decision': data,
+      'title': this.tempo.proposal_title
     });
     this.user.proposal_approval(this.params).subscribe(
       (response) => {

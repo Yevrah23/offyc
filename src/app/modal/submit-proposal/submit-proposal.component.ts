@@ -52,7 +52,28 @@ export class SubmitProposalComponent implements OnInit {
       (response) => {
         if (response) {
           console.log(response);
-          this.uploadFile();
+          let file = this.files[0];
+          console.log(file);
+
+          this.upload.uploadFile('http://192.168.43.31/codeigniter/api/Users/file_upload', file, this.proposal)
+            .subscribe(
+              event => {
+                if (event.type == HttpEventType.UploadProgress) {
+                  const percentDone = Math.round(100 * event.loaded / event.total);
+                  console.log(`File is ${percentDone}% loaded.`);
+                } else if (event instanceof HttpResponse) {
+                  console.log('File is completely loaded!');
+                }
+              },
+              (err) => {
+                console.log("Upload Error:", err);
+                this.dialogRef.close('Proposal Successfully Submitted');
+
+              }, () => {
+                console.log("Upload done");
+                this.dialogRef.close('Proposal Successfully Submitted');
+              }
+            )
         }
       }
     );
@@ -81,30 +102,30 @@ export class SubmitProposalComponent implements OnInit {
   // }
 
 
-  uploadFile() {
-    let file = this.files[0];
-    console.log(file);
+  // uploadFile() {
+  //   let file = this.files[0];
+  //   console.log(file);
 
-    this.upload.uploadFile('http://169.254.240.35/codeigniter/api/Users/file_upload', file,this.proposal)
-      .subscribe(
-        event => {
-          if (event.type == HttpEventType.UploadProgress) {
-            const percentDone = Math.round(100 * event.loaded / event.total);
-            console.log(`File is ${percentDone}% loaded.`);
-          } else if (event instanceof HttpResponse) {
-            console.log('File is completely loaded!');
-          }
-        },
-        (err) => {
-          console.log("Upload Error:", err);
-          this.dialogRef.close('Proposal Successfully Submitted');
+  //   this.upload.uploadFile('http://localhost/codeigniter/api/Users/file_upload', file,this.proposal)
+  //     .subscribe(
+  //       event => {
+  //         if (event.type == HttpEventType.UploadProgress) {
+  //           const percentDone = Math.round(100 * event.loaded / event.total);
+  //           console.log(`File is ${percentDone}% loaded.`);
+  //         } else if (event instanceof HttpResponse) {
+  //           console.log('File is completely loaded!');
+  //         }
+  //       },
+  //       (err) => {
+  //         console.log("Upload Error:", err);
+  //         this.dialogRef.close('Proposal Successfully Submitted');
 
-        }, () => {
-          console.log("Upload done");
-          this.dialogRef.close('Proposal Successfully Submitted');
-        }
-      )
-  }
+  //       }, () => {
+  //         console.log("Upload done");
+  //         this.dialogRef.close('Proposal Successfully Submitted');
+  //       }
+  //     )
+  // }
 
 }
 
