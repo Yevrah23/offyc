@@ -6,7 +6,7 @@
 
 
       <mat-dialog-content>
-        <div class="container dialog-wrapper">
+        <div class="container dialog-wrapper py-5">
           <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-3"><small class="color-secondaryVariant" for="">Request form from :</small></div>
@@ -25,9 +25,8 @@
             <div class="col-md-7"> {{data.data.ui_college}} </div>
           </div>
           <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-3 align-middle"><small class="color-secondaryVariant" for="">Event Partner :</small></div>
-            <div class="col-md-7">
+            <div class="col-md-5 align-middle"><small class="color-secondaryVariant" for="">Partner Agency :</small></div>
+            <div class="col-md">
               <small class="color-secondaryVariant">College</small> <br>
               <p>Proposal Submission</p>
               <small class="color-secondaryVariant">External Partner</small> <br>
@@ -86,6 +85,9 @@
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Accept</ng-template>
+
+    <mat-dialog-content></mat-dialog-content>
+
     <mat-dialog-actions>
       <div class="container Form-action-wrapper">
         <div class="row">
@@ -104,7 +106,7 @@
     <h4 mat-diaglog-title class="text-center">Requirements for Implementaion</h4>
 
     <mat-dialog-content>
-      <div class="container dialog-wrapper">
+      <div class="container dialog-wrapper py-5">
         <div class="row form-wrapper">
           <div class="col-md">
             <div class="upload">
@@ -145,6 +147,8 @@
   <mat-step>
     <ng-template matStepLabel>Implementaion</ng-template>
 
+    <mat-dialog-content></mat-dialog-content>
+
     <mat-dialog-actions>
       <div class="container Form-action-wrapper">
         <div class="row">
@@ -166,7 +170,7 @@
       <ng-template matStepLabel>Accomplishment Report</ng-template>
       <h4 mat-diaglog-title class="text-center">Accomplishment Data</h4>
       <mat-dialog-content>
-        <div class="container dialog-wrapper">
+        <div class="container dialog-wrapper py-5">
           <div class="row form-wrapper">
             <div class="col-md-6">
               <mat-form-field floatLabel="auto">
@@ -178,7 +182,7 @@
                 <input type="number" matInput>
               </mat-form-field>
               <div class="upload">
-                <label>Upload File : </label><br>
+                <label>Attach File : </label><br>
                 <button mat-raised-button color="primary" (click)="fileInput.click()">Upload</button>
                 <input hidden type="file" #fileInput (change)="getFiles($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf">
                 <input class="mt-2" id="fileName" type="text" placeholder="No file chosen" readonly="true" matInput>
@@ -220,7 +224,10 @@
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
-    You are now done.
+
+    <mat-dialog-content>You are now done.</mat-dialog-content>
+
+    
     <mat-dialog-actions>
       <div class="container Form-action-wrapper">
         <div class="row">

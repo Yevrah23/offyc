@@ -25,7 +25,7 @@ export interface Citc { // interface holds data with in array. data types
 })
 export class RegisterComponent implements OnInit {
   // stepper
-  isLinear = true;
+  isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
