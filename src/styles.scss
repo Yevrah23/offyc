@@ -99,7 +99,8 @@ td {
 //modal
   // view Proposal
 .custom-dialog-view mat-dialog-container {
-  background: url(assets/img/modal/Proposal-Details-approval.png) !important;
+  background: #fff url(assets/img/modal/Proposal-Details-approval.png) no-repeat 100% 0% !important;
+  min-height: 621px;
 }
 
   //File details

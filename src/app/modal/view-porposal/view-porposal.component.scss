@@ -6,6 +6,10 @@
   width: 70%;
 }
 
+.mat-stepper-horizontal {
+  background-color: unset !important;
+}
+
 .container.Form-action-wrapper {
   text-align: center;
 }
@@ -20,8 +24,11 @@
   }
 }
 
-//forms style
+::ng-deep mat-dialog-content.mat-dialog-content {
+  min-height: 414.391px !important;
+}
 
+//forms style
 .mat-form-field {
   width: 100% !important;
 }
