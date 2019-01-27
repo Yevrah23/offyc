@@ -55,7 +55,7 @@ export class SubmitProposalComponent implements OnInit {
           let file = this.files[0];
           console.log(file);
 
-          this.upload.uploadFile('http://192.168.43.31/codeigniter/api/Users/file_upload', file, this.proposal)
+          this.upload.uploadFile(file, 'proposal',this.title)
             .subscribe(
               event => {
                 if (event.type == HttpEventType.UploadProgress) {
