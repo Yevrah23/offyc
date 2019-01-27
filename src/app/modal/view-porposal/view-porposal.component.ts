@@ -12,6 +12,7 @@ export class ViewPorposalComponent implements OnInit {
   approved: boolean;
   pending: boolean;
   params = [];
+  isLinear = false;
 
   constructor(
     public dialogRef: MatDialogRef<ViewPorposalComponent>,

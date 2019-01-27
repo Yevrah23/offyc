@@ -6,7 +6,7 @@
       <mat-card>
       <h2 contenteditable class="text-center">SIGN UP</h2>
 
-        <mat-horizontal-stepper [linear]="isLinear" #stepper>
+        <mat-horizontal-stepper [linear]="!isLinear" #stepper>
           <div class="form-wrapper">
 
             <mat-step [stepControl]="firstFormGroup">

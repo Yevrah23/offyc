@@ -96,7 +96,8 @@ export class AssesmentComponent implements OnInit {
 
 
         const dialogRef = this.dialog.open(ViewPorposalComponent, {
-          width: '768px',
+          width: '1000px',
+          panelClass: 'custom-dialog-view',
           data: {
             data: this.record
           }
