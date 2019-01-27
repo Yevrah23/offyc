@@ -4,6 +4,7 @@ import { SubmitProposalComponent } from '../submit-proposal/submit-proposal.comp
 
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
+import { UserServices } from 'src/app/services/user_services';
 
 @Component({
   selector: 'app-report-template',
@@ -18,9 +19,14 @@ export class ReportTemplateComponent implements OnInit {
   bar: boolean;
   prexc: boolean;
 
+  dataPrexc: any;
+  dataHemis: any [];
+  dataBar: any [];
+
   constructor(
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<SubmitProposalComponent>,
+    private user: UserServices,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
@@ -37,7 +43,17 @@ export class ReportTemplateComponent implements OnInit {
     this.prexc = true;
     this.titleReport = 'P.R.E.X.C';
     this.filename = 'Prexc';
+     this.user.get_prexc("1").subscribe(
+       (response) => {
+         this.dataPrexc = response;
+         console.log(this.dataPrexc);
+       }
+     )
    }
+
+  
+
+
   }
 
   generatePDF(quality = 1) {

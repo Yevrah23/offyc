@@ -206,164 +206,44 @@
             <table class="table table-bordered table-striped table-sm text-center color-secondary">
               <thead>
                 <tr>
-                  <th scope="col" rowspan="2" class="color-accent">TITLE</th>
-                  <th scope="col" rowspan="2" class="color-accent">Keyword/s</th>
-                  <th scope="col" rowspan="2" class="color-accent">Duration / Number of Hours</th>
-                  <th scope="col" rowspan="2" class="color-accent">Number of Trainees/ Beneficiaries</th>
-                  <th scope="col" colspan="3" class="color-accent">Citation / Recognition Received</th>
+                  <th scope="col" rowspan="2" class="color-accent">College</th>
+                  <th scope="col" rowspan="2" class="color-accent">Program</th>
+                  <th scope="col" rowspan="2" class="color-accent">Title of Training Conducted</th>
+                  <th scope="col" rowspan="2" class="color-accent">Partner Agency</th>
+                  <th scope="col" rowspan="2" class="color-accent">Place/Venue</th>
+                  <th scope="col" rowspan="2" class="color-accent">Date of Training/<br>Activity</th>
+                  <th scope="col" rowspan="2" class="color-accent">Beneficiaries/<br>Participant</th>
+                  <th scope="col" rowspan="2" class="color-accent">No. of<br>persons<br>trained</th>
+                  <th scope="col" rowspan="2" class="color-accent">Weight</th>
+                  <th scope="col" rowspan="2" class="color-accent">No. of<br>persons<br>trained<br>weighted by<br>length of<br>training</th>
+                  <th scope="col" colspan="4" class="color-accent">No. of clients who rated the QUALITY<br>AND RELEVANCE of project as</th>
                 </tr>
                 <tr>
-                  <th>Title</th>
-                  <th>Conferring Agency or Body</th>
-                  <th>Year Received</th>
+                  <th>SATISFACTORY</th>
+                  <th>VERY<br>SATISFACTORY</th>
+                  <th>EXCELLENT</th>
+                  <th>TOTAL</th>
                 </tr>
               </thead>
               <tbody>
 
-                <tr>
-                  <td scope="row">Bookkeeping Training</td>
-                  <td></td>
-                  <td>January 14 / February 11 & 18, 2018</td>
-                  <td>91</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                <tr *ngFor = "let data of dataPrexc">
+                  <td scope="row">{{data.ui_college}}</td>
+                  <td>{{data.ui_dept}}</td>
+                  <td>{{data.proposal_title}}</td>
+                  <td>{{data.proposal_partner}}</td>
+                  <td>{{data.proposal_venue}}</td>
+                  <td>{{data.proposal_date_start}}</td>
+                  <td>{{data.proposal_beneficiaries}}</td>
+                  <td>{{data.persons_trained}}</td>
+                  <td>{{data.weight}}</td>
+                  <td>{{data.points}}</td>
+                  <td>{{data.rate_satisfactory}}</td>
+                  <td>{{data.rate_v_satisfactory}}</td>
+                  <td>{{data.rate_excellent}}</td>
+                  <td>{{data.raters}}</td>
                 </tr>
-                <tr>
-                  <td scope="row">Bookkeeping Training</td>
-                  <td></td>
-                  <td>January 14 / February 11 & 18, 2018</td>
-                  <td>91</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td scope="row">Bookkeeping Training</td>
-                  <td></td>
-                  <td>January 14 / February 11 & 18, 2018</td>
-                  <td>91</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td scope="row">Bookkeeping Training</td>
-                  <td></td>
-                  <td>January 14 / February 11 & 18, 2018</td>
-                  <td>91</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td scope="row">Bookkeeping Training</td>
-                  <td></td>
-                  <td>January 14 / February 11 & 18, 2018</td>
-                  <td>91</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td scope="row">Bookkeeping Training</td>
-                  <td></td>
-                  <td>January 14 / February 11 & 18, 2018</td>
-                  <td>91</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td scope="row">Bookkeeping Training</td>
-                  <td></td>
-                  <td>January 14 / February 11 & 18, 2018</td>
-                  <td>91</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td scope="row">Bookkeeping Training</td>
-                  <td></td>
-                  <td>January 14 / February 11 & 18, 2018</td>
-                  <td>91</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td scope="row">Bookkeeping Training</td>
-                  <td></td>
-                  <td>January 14 / February 11 & 18, 2018</td>
-                  <td>91</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td scope="row">Bookkeeping Training</td>
-                  <td></td>
-                  <td>January 14 / February 11 & 18, 2018</td>
-                  <td>91</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td scope="row">Bookkeeping Training</td>
-                  <td></td>
-                  <td>January 14 / February 11 & 18, 2018</td>
-                  <td>91</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td scope="row">Bookkeeping Training</td>
-                  <td></td>
-                  <td>January 14 / February 11 & 18, 2018</td>
-                  <td>91</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td scope="row">Bookkeeping Training</td>
-                  <td></td>
-                  <td>January 14 / February 11 & 18, 2018</td>
-                  <td>91</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td scope="row">Bookkeeping Training</td>
-                  <td></td>
-                  <td>January 14 / February 11 & 18, 2018</td>
-                  <td>91</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td scope="row">Bookkeeping Training</td>
-                  <td></td>
-                  <td>January 14 / February 11 & 18, 2018</td>
-                  <td>91</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td scope="row">Bookkeeping Training</td>
-                  <td></td>
-                  <td>January 14 / February 11 & 18, 2018</td>
-                  <td>91</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
+                
               </tbody>
             </table>
           </div>

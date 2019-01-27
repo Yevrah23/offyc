@@ -23,7 +23,7 @@ export class UploadService {
       reportProgress: true,
     };
 
-    const req = new HttpRequest('POST', 'http://localhost/codeigniter/api/Users/file_upload', formData, options);
+    const req = new HttpRequest('POST', 'http://192.168.0.11/codeigniter/api/Users/file_upload', formData, options);
     return this.http.request(req);
     // return this.http.post(url,);
   }
