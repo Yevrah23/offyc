@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA, MatStepper } from '@angular/material';
 import { UseExistingWebDriver } from 'protractor/built/driverProviders';
 import { UserServices } from 'src/app/services/user_services';
 
@@ -9,10 +9,16 @@ import { UserServices } from 'src/app/services/user_services';
   styleUrls: ['./view-porposal.component.scss']
 })
 export class ViewPorposalComponent implements OnInit {
-  approved: boolean;
-  pending: boolean;
+  @ViewChild('stepper') stepper: MatStepper;
+
+  approved: boolean = false;
+  pending: boolean = false;
+  moa: boolean = false;
+  report: boolean = false;
+  done: boolean = false;
   params = [];
   isLinear = false;
+  activeStep: number = 0;
 
   constructor(
     public dialogRef: MatDialogRef<ViewPorposalComponent>,
@@ -25,7 +31,10 @@ export class ViewPorposalComponent implements OnInit {
       this.pending = true;
     }else{
       this.approved = true;
+      this.activeStep += 1;
     }
+    this.stepper.selectedIndex = this.activeStep;
+
   }
 
   verdict(data){
