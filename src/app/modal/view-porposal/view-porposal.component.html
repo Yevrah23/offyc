@@ -1,74 +1,216 @@
-<div class="dialog-section">
-  <h4 mat-diaglog-title class="text-center">Proposal Details</h4>
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step>
+    <ng-template matStepLabel>Submit</ng-template>
+    <div class="dialog-section">
+      <h4 mat-diaglog-title class="text-center">Proposal Details</h4>
 
 
-  <mat-dialog-content>
-    <div class="container dialog-wrapper">
-      <div class="row">
-        <div class="col-md-5"><small class="color-secondaryVariant" for="">Request form from :</small></div>
-        <div class="col-md"> Juan Dela Cruz</div>
-      </div>
-      <div class="row">
-        <div class="col-md-5"><small class="color-secondaryVariant" for="">Project Title :</small></div>
-        <div class="col-md">
-          <span class="color-accent">Proposal Submission</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-5"><small class="color-secondaryVariant" for="">Department :</small></div>
-        <div class="col-md"> CITC </div>
-      </div>
-      <div class="row">
-        <div class="col-md-5 align-middle"><small class="color-secondaryVariant" for="">Event Partner :</small></div>
-        <div class="col-md">
-          <small class="color-secondaryVariant">College</small> <br>
-          <p>Proposal Submission</p>
-          <small class="color-secondaryVariant">External Partner</small> <br>
-          <p>Proposal Submission</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-5"><small class="color-secondaryVariant" for="">Target Benificiary :</small></div>
-        <div class="col-md"> Teens </div>
-      </div>
-      <div class="row">
-        <div class="col-md-5"><small class="color-secondaryVariant" for="">Gender of Benificiary :</small></div>
-        <div class="col-md"> Both </div>
-      </div>
-      <div class="row">
-        <div class="col-md-5"><small class="color-secondaryVariant" for="">Event Venue :</small></div>
-        <div class="col-md"> Katipunan Street, Barangay 6, Villanueva, Misamis Oriental, 9000 </div>
-      </div>
-      <div class="row">
-        <div class="col-md-5 align-middle"><small class="color-secondaryVariant" for="">Date :</small></div>
-        <div class="col-md">
-          <small class="color-secondaryVariant">Start</small> <br>
-          <p>Mon, 17/ Dec/ 2019</p>
-          <small class="color-secondaryVariant">End</small> <br>
-          <p>Tues, 18/ Dec/ 2019</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-5"><small class="color-secondaryVariant" for="">Attached File :</small></div>
-        <div class="col-md"> <a href="#"><u>Proposal101.pdf</u></a></div>
-      </div>
-    </div>
-    <!--End wrapper -->
-  </mat-dialog-content>
-
-  <mat-dialog-actions>
-    <div class="container Form-action-wrapper">
-      <div class="row">
-        <div class="col-md text-center">
-          <div *ngIf="false">
-            <button mat-raised-button mat-dialog-close color="warn" class="form-control">Close</button>
+      <mat-dialog-content>
+        <div class="container dialog-wrapper">
+          <div class="row">
+            <div class="col-md-5"><small class="color-secondaryVariant" for="">Request form from :</small></div>
+            <div class="col-md"> Juan Dela Cruz</div>
           </div>
-          <div *ngIf="true">
-            <button mat-button mat-dialog-close color="warn">Deny</button>
-            <button mat-raised-button color="primary">Accept</button>
+          <div class="row">
+            <div class="col-md-5"><small class="color-secondaryVariant" for="">Project Title :</small></div>
+            <div class="col-md">
+              <span class="color-accent">Proposal Submission</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-5"><small class="color-secondaryVariant" for="">Department :</small></div>
+            <div class="col-md"> CITC </div>
+          </div>
+          <div class="row">
+            <div class="col-md-5 align-middle"><small class="color-secondaryVariant" for="">Event Partner :</small></div>
+            <div class="col-md">
+              <small class="color-secondaryVariant">College</small> <br>
+              <p>Proposal Submission</p>
+              <small class="color-secondaryVariant">External Partner</small> <br>
+              <p>Proposal Submission</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-5"><small class="color-secondaryVariant" for="">Target Benificiary :</small></div>
+            <div class="col-md"> Teens </div>
+          </div>
+          <div class="row">
+            <div class="col-md-5"><small class="color-secondaryVariant" for="">Gender of Benificiary :</small></div>
+            <div class="col-md"> Both </div>
+          </div>
+          <div class="row">
+            <div class="col-md-5"><small class="color-secondaryVariant" for="">Event Venue :</small></div>
+            <div class="col-md"> Katipunan Street, Barangay 6, Villanueva, Misamis Oriental, 9000 </div>
+          </div>
+          <div class="row">
+            <div class="col-md-5 align-middle"><small class="color-secondaryVariant" for="">Date :</small></div>
+            <div class="col-md">
+              <small class="color-secondaryVariant">Start</small> <br>
+              <p>Mon, 17/ Dec/ 2019</p>
+              <small class="color-secondaryVariant">End</small> <br>
+              <p>Tues, 18/ Dec/ 2019</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-5"><small class="color-secondaryVariant" for="">Attached File :</small></div>
+            <div class="col-md"> <a href="#"><u>Proposal101.pdf</u></a></div>
           </div>
         </div>
-      </div>
+        <!--End wrapper -->
+      </mat-dialog-content>
+
+      <mat-dialog-actions>
+        <div class="container Form-action-wrapper">
+          <div class="row">
+            <div class="col-md text-center">
+              <div *ngIf="false">
+                <button mat-raised-button mat-dialog-close color="warn" class="form-control">Close</button>
+              </div>
+              <div *ngIf="true">
+                <button mat-button mat-dialog-close>Need Revision</button>
+                <button mat-raised-button matStepperNext color="primary">Accept</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-dialog-actions>
     </div>
-  </mat-dialog-actions>
-</div>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Accept</ng-template>
+
+    <mat-dialog-actions>
+      <div class="container Form-action-wrapper">
+        <div class="row">
+          <div class="col-md text-center">
+            <div *ngIf="false">
+              <button mat-raised-button mat-dialog-close color="warn" class="form-control">Close</button>
+            </div>
+            <div *ngIf="true">
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-raised-button matStepperNext color="primary">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-dialog-actions>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>MOA</ng-template>
+
+    <mat-dialog-actions>
+      <div class="container Form-action-wrapper">
+        <div class="row">
+          <div class="col-md text-center">
+            <div *ngIf="false">
+              <button mat-raised-button mat-dialog-close color="warn" class="form-control">Close</button>
+            </div>
+            <div *ngIf="true">
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-raised-button matStepperNext color="primary">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-dialog-actions>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Implementaion</ng-template>
+
+    <mat-dialog-actions>
+      <div class="container Form-action-wrapper">
+        <div class="row">
+          <div class="col-md text-center">
+            <div *ngIf="false">
+              <button mat-raised-button mat-dialog-close color="warn" class="form-control">Close</button>
+            </div>
+            <div *ngIf="true">
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-raised-button matStepperNext color="primary">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-dialog-actions>
+  </mat-step>
+  <mat-step>
+    <form>
+      <ng-template matStepLabel>Accomplishment Report</ng-template>
+      <h4 mat-diaglog-title class="text-center">Accomplishment Data</h4>
+      <mat-dialog-content>
+        <div class="container dialog-wrapper">
+          <div class="row form-wrapper">
+            <div class="col-md-6">
+              <mat-form-field floatLabel="auto">
+                <mat-label>No. of Persons Trained</mat-label>
+                <input type="number" matInput>
+              </mat-form-field>
+              <mat-form-field floatLabel="auto">
+                <mat-label>No. of Days</mat-label>
+                <input type="number" matInput>
+              </mat-form-field>
+              <div class="upload">
+                <label>Upload File : </label><br>
+                <button mat-raised-button color="primary" (click)="fileInput.click()">Upload</button>
+                <input hidden type="file" #fileInput (change)="getFiles($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf">
+                <input class="mt-2" id="fileName" type="text" placeholder="No file chosen" readonly="true" matInput>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field floatLabel="auto">
+                <mat-label>Satisfactory</mat-label>
+                <input type="number" matInput>
+              </mat-form-field>
+              <mat-form-field floatLabel="auto">
+                <mat-label>Very Satisfactory</mat-label>
+                <input type="number" matInput>
+              </mat-form-field>
+              <mat-form-field floatLabel="auto">
+                <mat-label>Excellent</mat-label>
+                <input type="number" matInput>
+              </mat-form-field>
+            </div>
+
+
+
+
+          </div>
+        </div>
+      </mat-dialog-content>
+      <mat-dialog-actions>
+        <div class="container Form-action-wrapper">
+          <div class="row">
+            <div class="col-md text-center">
+              <div *ngIf="false">
+                <button mat-raised-button mat-dialog-close color="warn" class="form-control">Close</button>
+              </div>
+              <div *ngIf="true">
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-raised-button matStepperNext color="primary">Next</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-dialog-actions>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    You are now done.
+    <mat-dialog-actions>
+      <div class="container Form-action-wrapper">
+        <div class="row">
+          <div class="col-md text-center">
+            <div *ngIf="false">
+              <button mat-raised-button mat-dialog-close color="warn" class="form-control">Close</button>
+            </div>
+            <div *ngIf="true">
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-raised-button matStepperNext color="primary">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-dialog-actions>
+  </mat-step>
+</mat-horizontal-stepper>

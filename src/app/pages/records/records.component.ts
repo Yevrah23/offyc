@@ -54,7 +54,7 @@ export class RecordsComponent implements OnInit {
 
   viewProposal(): void {
     const dialogRef = this.dialog.open(ViewPorposalComponent, {
-      width: '535px',
+      width: '100px',
       panelClass: 'custom-dialog-view'
     });
 

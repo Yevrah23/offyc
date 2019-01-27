@@ -7,6 +7,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./view-porposal.component.scss']
 })
 export class ViewPorposalComponent implements OnInit {
+  isLinear = false;
 
   constructor(
     public dialogRef: MatDialogRef<ViewPorposalComponent>,
