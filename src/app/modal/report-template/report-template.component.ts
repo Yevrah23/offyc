@@ -45,6 +45,10 @@ export class ReportTemplateComponent implements OnInit {
     this.filename = 'Prexc';
      this.user.get_prexc("1").subscribe(
        (response) => {
+        // this.dataPrexc.forEach(element => {
+          
+        // });
+
          this.dataPrexc = response;
          console.log(this.dataPrexc);
        }

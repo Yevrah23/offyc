@@ -57,6 +57,7 @@ export class AssesmentComponent implements OnInit {
   // mat-table
   displayedColumns: string[] = ['Title', 'Target', 'Venue', 'Settings'];
   dataSource: MatTableDataSource<any>;
+  record: any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -88,16 +89,17 @@ export class AssesmentComponent implements OnInit {
   viewProposal(data): void {
     this.user.get_proposal(data).subscribe(
       (response) => {
-        this.user.tempo = response;
-        if (this.user.tempo.proposal_status == 0) {
-          this.user.approved = false;
-          this.user.pending = true;
-          console.log(this.user.approved);
-        }
+        this.record = response;
+
+        this.record.proposal_date_start = this.record.proposal_date_start.substring(0, 10);
+        this.record.proposal_date_end = this.record.proposal_date_end.substring(0, 10);
 
 
         const dialogRef = this.dialog.open(ViewPorposalComponent, {
-          width: '768px'
+          width: '768px',
+          data: {
+            data: this.record
+          }
         });
 
         dialogRef.afterClosed().subscribe(result => {

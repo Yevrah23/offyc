@@ -38,7 +38,7 @@ export class RecordsComponent implements OnInit {
   CSTE: MatTableDataSource<any>;
 
   // data tables
-  dataTable: any;
+  record:any;
 
   // table data sample
   records: any[];
@@ -72,16 +72,17 @@ export class RecordsComponent implements OnInit {
   viewProposal(data): void {
     this.user.get_proposal(data).subscribe(
       (response) => {
-        this.user.tempo = response;
-        if (this.user.tempo.proposal_status == 2 || this.user.tempo.proposal_status == 1){
-          this.user.approved = true;
-          this.user.pending = false;
-          console.log(this.user.approved);
-        }
-        
+        this.record = response;
 
+        this.record.proposal_date_start = this.record.proposal_date_start.substring(0, 10);
+        this.record.proposal_date_end = this.record.proposal_date_end.substring(0,10);
+
+        
         const dialogRef = this.dialog.open(ViewPorposalComponent, {
-          width: '768px'
+          width: '768px',
+          data:{
+            data : this.record
+          }
         });
 
         dialogRef.afterClosed().subscribe(result => {

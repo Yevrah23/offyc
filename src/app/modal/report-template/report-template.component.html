@@ -14,17 +14,6 @@
       <h2 mat-diaglog-title class="text-center">{{titleReport}} Report</h2>
       <div class="container-fluid py-3">
         <div class="row">
-          <div class="col-md-7 text-left">
-            <span>*</span> An Extension Program/Project is defined as a set of activities aimed to transfer knowledge
-            or
-            technology or to provide services to the community in consonance with the programs offered. The Extension
-            Program is conducted not as part of academic requirement but as an outreach towards the improvement of the
-            community's
-            quality of life. Please attach Board Action/Resolutioon approving the Extension Program and/or
-            Citation/Recognition Received. For Program/Project Components or activities not specified in the approved
-            Board
-            Action/Resolution, please attach budget indication such.
-          </div>
         </div>
       </div>
       <div class="container-fluid">
@@ -203,7 +192,7 @@
       <div class="container-fluid py-3">
         <div class="row">
           <div class="col-sm">
-            <table class="table table-bordered table-striped table-sm text-center color-secondary">
+          <table class="table table-bordered table-striped table-sm text-center color-secondary">
               <thead>
                 <tr>
                   <th scope="col" rowspan="2" class="color-accent">College</th>
@@ -224,11 +213,12 @@
                   <th>EXCELLENT</th>
                   <th>TOTAL</th>
                 </tr>
+                
               </thead>
               <tbody>
 
                 <tr *ngFor = "let data of dataPrexc">
-                  <td scope="row">{{data.ui_college}}</td>
+                  <td class="bold" scope="row">{{data.ui_college}}</td>
                   <td>{{data.ui_dept}}</td>
                   <td>{{data.proposal_title}}</td>
                   <td>{{data.proposal_partner}}</td>

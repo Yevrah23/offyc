@@ -9,7 +9,6 @@ import { UserServices } from 'src/app/services/user_services';
   styleUrls: ['./view-porposal.component.scss']
 })
 export class ViewPorposalComponent implements OnInit {
-  tempo: any;
   approved: boolean;
   pending: boolean;
   params = [];
@@ -18,20 +17,21 @@ export class ViewPorposalComponent implements OnInit {
     public dialogRef: MatDialogRef<ViewPorposalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
     ,private user: UserServices) { 
-      this.tempo = this.user.tempo;
-      this.approved = this.user.approved;
-      this.pending = this.user.pending;
     }
 
   ngOnInit() {
-    console.log(this.tempo);
+    if(this.data.data.proposal_status == "0"){
+      this.pending = true;
+    }else{
+      this.approved = true;
+    }
   }
 
   verdict(data){
     this.params.push({
-      'id' : this.tempo.proposal_id,
+      'id' :this.data.data.proposal_id,
       'decision': data,
-      'title': this.tempo.proposal_title
+      'title':this.data.data.proposal_title
     });
     this.user.proposal_approval(this.params).subscribe(
       (response) => {

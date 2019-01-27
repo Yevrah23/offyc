@@ -12,10 +12,15 @@ table {
   th,
   td {
     vertical-align: middle;
+    font-size: 72%;
   }
 }
 
 .Form-action-wrapper {
   width: 100%;
   text-align: right;
+}
+
+.bold{
+  font-weight: bold;
 }
