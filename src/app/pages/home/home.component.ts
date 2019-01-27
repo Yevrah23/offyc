@@ -8,6 +8,8 @@ import { HttpClient } from '@angular/common/http';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 
 import * as $ from 'jquery';
+import * as jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-home',
@@ -103,51 +105,52 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  // captureScreen() {
-  //   var data = document.getElementById('toPdf');
-  //   html2canvas(data).then(canvas => {
-  //     // Few necessary setting options
-  //     var pdf = new jspdf('p', 'pt', 'letter');
+  captureScreen(quality = 1) {
+    const data = document.getElementById('toPdf');
+    html2canvas(data, {scale: quality}).then(canvas => {
+      // Few necessary setting options
+      const pdf = new jspdf('l', 'pt', 'A4');
 
-  //           for (var i = 0; i <= data.clientHeight/980; i++) {
-  //               //! This is all just html2canvas stuff
-  //               var srcImg  = canvas;
-  //               var sX      = 0;
-  //               var sY      = 980*i; // start 980 pixels down for every new page
-  //               var sWidth  = 900;
-  //               var sHeight = 980;
-  //               var dX      = 0;
-  //               var dY      = 0;
-  //               var dWidth  = 900;
-  //               var dHeight = 980;
+            for (let i = 0; i <= data.clientHeight / 980; i++) {
+                // ! This is all just html2canvas stuff
+                const srcImg  = canvas;
+                const sX      = 0;
+                const sY      = 980 * i; // start 980 pixels down for every new page
+                const sWidth  = data.clientWidth;
+                const sHeight = 980;
+                const dX      = 0;
+                const dY      = 0;
+                const dWidth  = data.clientWidth;
+                const dHeight = 980;
 
-  //               window.onePageCanvas = document.createElement("canvas");
-  //               onePageCanvas.setAttribute('width', 900);
-  //               onePageCanvas.setAttribute('height', 980);
-  //               var ctx = onePageCanvas.getContext('2d');
-  //               // details on this usage of this function:
-  //               // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images#Slicing
-  //               ctx.drawImage(srcImg,sX,sY,sWidth,sHeight,dX,dY,dWidth,dHeight);
+                // tslint:disable-next-line:prefer-const
+                let onePageCanvas = document.createElement('canvas');
+                onePageCanvas.setAttribute('width', '1158');
+                onePageCanvas.setAttribute('height', '980');
+                const ctx = onePageCanvas.getContext('2d');
+                // details on this usage of this function:
+                // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images#Slicing
+                ctx.drawImage(srcImg, sX, sY, sWidth, sHeight, dX, dY, dWidth, dHeight);
 
-  //               // document.body.appendChild(canvas);
-  //               var canvasDataURL = onePageCanvas.toDataURL("image/png", 1.0);
+                // document.body.appendChild(onePageCanvas);
+                const canvasDataURL = onePageCanvas.toDataURL('image/png', 1.0);
 
-  //               var width         = onePageCanvas.width;
-  //               var height        = onePageCanvas.clientHeight;
+                const width         = onePageCanvas.width;
+                const height        = onePageCanvas.clientHeight;
 
-  //               //! If we're on anything other than the first page,
-  //               // add another page
-  //               if (i > 0) {
-  //                   pdf.addPage(612, 791); //8.5" x 11" in pts (in*72)
-  //               }
-  //               //! now we declare that we're working on that page
-  //               pdf.setPage(i+1);
-  //               //! now we add content to that page!
-  //               pdf.addImage(canvasDataURL, 'PNG', 20, 40, (width*.62), (height*.62));
-
-  //           }
-  //           //! after the for loop is finished running, we save the pdf.
-  //           pdf.save('Test.pdf');
-  //   });
-  // }
+                // ! If we're on anything other than the first page,
+                // add another page
+                if (i > 0) {
+                    pdf.addPage('A4', 'l'); // 791, 612 8.5" x 11" in pts (in*72)
+                    // 842, 595, 8.27 × 11.69 inches A4 in pts (in*72)
+                }
+                // ! now we declare that we're working on that page
+                pdf.setPage(i + 1);
+                // !now we add content to that page! 20, 40
+                pdf.addImage(canvasDataURL, 'PNG', 40, 0, (width * .62), (height * .62));
+            }
+            // ! after the for loop is finished running, we save the pdf.
+            pdf.save('Test.pdf');
+    });
+  }
 }
