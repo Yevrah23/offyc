@@ -33,6 +33,14 @@
   width: 100% !important;
 }
 
-// ::ng-deep .mat-horizontal-stepper-header {
-//   pointer-events: none !important;
-// }
+//button start-end
+button.start-end {
+  width: 124px !important;
+}
+
+// table style
+#contentToConvert {
+  table {
+    width: 815px !important;
+  }
+}
