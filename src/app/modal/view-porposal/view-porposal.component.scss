@@ -1,4 +1,3 @@
-
 //modal style
 
 .container.dialog-wrapper,
@@ -24,13 +23,18 @@
   }
 }
 
-::ng-deep mat-dialog-content.mat-dialog-content {
+mat-dialog-content.mat-dialog-content {
   min-height: 414.391px !important;
 }
 
 //forms style
 .mat-form-field {
   width: 100% !important;
+}
+
+//check box
+.gender-box {
+  padding: 5px;
 }
 
 //button start-end

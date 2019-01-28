@@ -6,6 +6,7 @@ import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
 import { UploadService } from 'src/app/services/upload.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { CommentComponent } from '../comment/comment.component';
 
 @Component({
   selector: 'app-view-porposal',
@@ -39,7 +40,19 @@ export class ViewPorposalComponent implements OnInit {
     public dialogRef: MatDialogRef<ViewPorposalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
     ,private user: UserServices, private upload: UploadService) { 
-    }
+  }
+
+  showComment(): void {
+    const dialogRef = this.dialog.open(CommentComponent, {
+      width: '400px',
+      panelClass: 'custom-dialog-comment'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+    });
+  }
 
   ngOnInit() {
     if (parseInt(this.data.data.proposal_status) < 0){
@@ -171,7 +184,6 @@ export class ViewPorposalComponent implements OnInit {
       // // ! after the for loop is finished running, we save the pdf.
       pdf.save('Proposal-Cover.pdf');
       this.dialog.closeAll();
-      console.log(imgHeight, canvas.height, canvas.width, heightLeft);
       // $('#contentToConvert').css('overflow', 'auto');
     });
   }
