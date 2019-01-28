@@ -4,6 +4,8 @@ import { UseExistingWebDriver } from 'protractor/built/driverProviders';
 import { UserServices } from 'src/app/services/user_services';
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
+import { UploadService } from 'src/app/services/upload.service';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-view-porposal',
@@ -18,6 +20,8 @@ export class ViewPorposalComponent implements OnInit {
   moa: boolean = false;
   report: boolean = false;
   done: boolean = false;
+  budget: boolean = false;
+  
   params = [];
   isUser: true;
   state: number;
@@ -25,21 +29,44 @@ export class ViewPorposalComponent implements OnInit {
   isLinear = false;
   activeStep: number = 0;
 
+  moa_file: File = null;
+  signed: File = null;
+  fileName: string;
+  files: FileList;
+
   constructor(
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<ViewPorposalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-    ,private user: UserServices) { 
+    ,private user: UserServices, private upload: UploadService) { 
     }
 
   ngOnInit() {
-    if(this.data.data.proposal_status == "0"){
+    if (parseInt(this.data.data.proposal_status) < 0){
       this.pending = true;
-    }else{
-      this.approved = true;
-      this.activeStep += 1;
     }
-    this.stepper.selectedIndex = this.activeStep;
+    if (parseInt(this.data.data.proposal_status) > 0){
+      this.approved = true;
+    }
+    if (parseInt(this.data.data.proposal_status) > 1) {
+      this.moa = true;
+    }
+    if (parseInt(this.data.data.proposal_status) > 2) {
+      this.report = true;
+    }
+    if (parseInt(this.data.data.proposal_status) > 3) {
+      this.approved = true;
+    }
+    if (parseInt(this.data.data.proposal_status) > 4) {
+      this.done = true;
+    }
+    // this.activeStep += parseInt(this.data.data.proposal_status);
+
+
+    if(this.data.data.budget_total > 0){
+      this.budget = true;
+    }
+    this.stepper.selectedIndex = parseInt(this.data.data.proposal_status);
 
   }
 
@@ -70,6 +97,17 @@ export class ViewPorposalComponent implements OnInit {
     } else {
       this.stateLabel = 'Accepted';
     }
+  }
+
+  download_pdf(id,status){
+    this.user.update_proj_stat({'id':id,'status':status}).subscribe(
+      (response)=>{
+        if (response){
+          this.dialogRef.close();
+          this.generatePDF();
+        }
+      }
+    )
   }
 
   generatePDF(quality = 1) {
@@ -136,6 +174,46 @@ export class ViewPorposalComponent implements OnInit {
       console.log(imgHeight, canvas.height, canvas.width, heightLeft);
       // $('#contentToConvert').css('overflow', 'auto');
     });
+  }
+
+  upload_moa(event) {
+    
+    // this.file = files.item(0);
+    this.files = event.target.files;
+    this.moa_file = this.files[0];
+    this.fileName = this.files[0]['name'];
+    $('#moaName').val(this.files[0]['name']);
+  }
+
+  upload_signed(event) {
+
+    // this.file = files.item(0);
+    this.files = event.target.files;
+    this.signed = this.files[0];
+    this.fileName = this.files[0]['name'];
+    $('#signedName').val(this.files[0]['name']);
+  }
+
+  upload_files(title,id){
+    this.upload.moa_c(this.moa_file,this.signed,title,id)
+      .subscribe(
+        event => {
+          if (event.type == HttpEventType.UploadProgress) {
+            const percentDone = Math.round(100 * event.loaded / event.total);
+            console.log(`File is ${percentDone}% loaded.`);
+          } else if (event instanceof HttpResponse) {
+            console.log('File is completely loaded!');
+          }
+        },
+        (err) => {
+          console.log("Upload Error:", err);
+          this.dialogRef.close('Proposal Successfully Submitted');
+
+        }, () => {
+          console.log("Upload done");
+          this.dialogRef.close('Proposal Successfully Submitted');
+        }
+      )
   }
 
 }

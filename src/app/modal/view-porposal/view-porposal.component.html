@@ -118,7 +118,7 @@
         <table style="width: 864px; margin-left: auto; margin-right: auto; height: 19px;" border="1">
           <tbody>
             <tr style="height: 12px;">
-              <td style="height: 12px; width: 1716px;" colspan="6">PROJECT TITLE:</td>
+              <td style="height: 12px; width: 1716px;" colspan="6">PROJECT TITLE: {{data.data.proposal_title}}</td>
             </tr>
             <tr style="height: 12px;">
               <td style="height: 12px; width: 1716px;" colspan="6">TYPE OF PROJECT</td>
@@ -132,29 +132,29 @@
               <td style="height: 8px; width: 848px; text-align: left;" colspan="3">PROGRAM:</td>
             </tr>
             <tr style="height: 8px; text-align: center;">
-              <td style="height: 40px; width: 868px; text-align: left;" colspan="3" rowspan="5">&nbsp;</td>
-              <td style="height: 8px; width: 848px; text-align: left;" colspan="3">&nbsp;</td>
+              <td style="height: 40px; width: 868px; text-align: left;" colspan="3" rowspan="5">&nbsp; {{data.data.proponents}}</td>
+              <td style="height: 8px; width: 848px; text-align: left;" colspan="3">&nbsp; {{data.data.ui_dept}}</td>
             </tr>
             <tr style="height: 8px; text-align: center;">
               <td style="height: 8px; width: 848px; text-align: left;" colspan="3">ACCREDITATION LEVEL:</td>
             </tr>
             <tr style="height: 8px; text-align: center;">
+              <td style="height: 8px; width: 848px; text-align: left;" colspan="3">&nbsp; {{data.data.accreditation_level}}</td>
+            </tr>
+            <tr style="height: 8px; text-align: center;">
+              <td style="height: 8px; width: 848px; text-align: left;" colspan="3">COLLEGE: {{data.data.ui_college}}</td>
+            </tr>
+            <tr style="height: 8px; text-align: center;">
               <td style="height: 8px; width: 848px; text-align: left;" colspan="3">&nbsp;</td>
             </tr>
             <tr style="height: 8px; text-align: center;">
-              <td style="height: 8px; width: 848px; text-align: left;" colspan="3">COLLEGE:</td>
+              <td style="height: 8px; width: 848px; text-align: left;" colspan="6">&nbsp;TARGET GROUPS/BENIFICIARY: {{data.data.proposal_beneficiaries}}</td>
             </tr>
             <tr style="height: 8px; text-align: center;">
-              <td style="height: 8px; width: 848px; text-align: left;" colspan="3">&nbsp;</td>
+              <td style="height: 8px; width: 848px; text-align: left;" colspan="6">PROJECT LOCATION: {{data.data.proposal_venue}}</td>
             </tr>
             <tr style="height: 8px; text-align: center;">
-              <td style="height: 8px; width: 848px; text-align: left;" colspan="6">&nbsp;TARGET GROUPS/BENIFICIARY:</td>
-            </tr>
-            <tr style="height: 8px; text-align: center;">
-              <td style="height: 8px; width: 848px; text-align: left;" colspan="6">PROJECT LOCATION:</td>
-            </tr>
-            <tr style="height: 8px; text-align: center;">
-              <td style="height: 8px; width: 848px; text-align: left;" colspan="6">PARTNER AGENCY:</td>
+              <td style="height: 8px; width: 848px; text-align: left;" colspan="6">PARTNER AGENCY: {{data.data.proposal_partner}}</td>
             </tr>
             <tr style="height: 8px; text-align: center;">
               <td style="height: 8px; width: 848px; text-align: left;" colspan="6">BUDGET REQUIREMENT:</td>
@@ -165,16 +165,16 @@
               <td style="height: 8px; width: 848px; text-align: center;" colspan="2">Total&nbsp;</td>
             </tr>
             <tr style="height: 8px; text-align: center;">
-              <td style="height: 8px; width: 848px; text-align: center;" colspan="2">0</td>
-              <td style="height: 8px; width: 848px; text-align: center;" colspan="2">0</td>
-              <td style="height: 8px; width: 848px; text-align: center;" colspan="2">0</td>
+              <td style="height: 8px; width: 848px; text-align: center;" colspan="2">{{data.data.budget_ustp}}</td>
+              <td style="height: 8px; width: 848px; text-align: center;" colspan="2">{{data.data.budget_partner}}</td>
+              <td style="height: 8px; width: 848px; text-align: center;" colspan="2">{{data.data.budget_total}}</td>
             </tr>
             <tr style="height: 8px; text-align: center;">
               <td style="height: 8px; width: 848px; text-align: left;" colspan="4">TOTAL DAYS OF IMPLEMENTATION:</td>
               <td style="height: 8px; width: 848px; text-align: left;" colspan="2">&nbsp;TOTAL NUMBER OF HOURS:</td>
             </tr>
             <tr style="height: 8px; text-align: center;">
-              <td style="height: 8px; width: 848px; text-align: left;" colspan="4">Febuary-April 2019</td>
+              <td style="height: 8px; width: 848px; text-align: left;" colspan="4"> {{data.data.proposal_date_start}} - {{data.data.proposal_date_end}}</td>
               <td style="height: 8px; width: 848px;" colspan="2">40</td>
             </tr>
             <tr style="height: 8px; text-align: center;">
@@ -183,7 +183,7 @@
             <tr style="height: 40px; text-align: center;">
               <td style="height: 40px; text-align: left; border: 0 !important;" colspan="1">&nbsp;</td>
               <td style="height: 40px; width: 848px; border: 0px !important;" colspan="4">
-                <p style="text-align: left;">Submitted by:</p>
+              <p style="text-align: left;">Submitted by: {{data.data.ui_Lname}}, {{data.data.ui_Fname}} {{data.data.ui_Mname}}</p>
                 <div class="container">
                   <div class="row py-4">
                     <div class="col-md text-center">
@@ -234,7 +234,7 @@
                 </div>
               </td>
             </tr>
-            <tr *ngIf="false" style="height: 40px; text-align: center;">
+            <tr *ngIf="budget" style="height: 40px; text-align: center;">
               <td style="height: 40px; text-align: left; border: 0 !Important;" colspan="6">
                 <div class="container">
                   <div class="row">
@@ -260,8 +260,9 @@
       <div class="container Form-action-wrapper">
         <div class="row">
           <div class="col-md text-center">
-            <div *ngIf="true">
-              <button mat-raised-button matStepperNext color="primary" (click)="generatePDF()">Download</button>
+            <div>
+              <button *ngIf="!moa" mat-raised-button color="primary" (click)="download_pdf(data.data.proposal_id,2)">Download</button>
+              <button *ngIf="moa" mat-raised-button matStepperNext color="primary">Next</button>
             </div>
           </div>
         </div>
@@ -278,17 +279,17 @@
           <div class="col-md">
             <div class="upload">
               <label>Memorandum of Agreement : </label><br>
-              <button mat-raised-button color="primary" (click)="fileInput.click()">Add File</button>
-              <input hidden type="file" #fileInput (change)="getFiles($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf">
-              <input class="mt-2" id="fileName" type="text" placeholder="No file chosen" readonly="true" matInput>
+              <button mat-raised-button color="primary" (click)="moa_add.click()">Add File</button>
+              <input hidden type="file" #moa_add (change)="upload_moa($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf">
+              <input class="mt-2" id="moaName" type="text" placeholder="No file chosen" readonly="true" matInput>
             </div>
           </div>
           <div class="col-md">
             <div class="upload">
               <label>Signed Proposal - Extension Form 02 : </label><br>
-              <button mat-raised-button color="primary" (click)="fileInput.click()">Add File</button>
-              <input hidden type="file" #fileInput (change)="getFiles($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf">
-              <input class="mt-2" id="fileName" type="text" placeholder="No file chosen" readonly="true" matInput>
+              <button mat-raised-button color="primary" (click)="add_signed.click()">Add File</button>
+              <input hidden type="file" #add_signed (change)="upload_signed($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf">
+              <input class="mt-2" id="signedName" type="text" placeholder="No file chosen" readonly="true" matInput>
             </div>
           </div>
         </div>
@@ -299,12 +300,12 @@
       <div class="container Form-action-wrapper">
         <div class="row">
           <div class="col-md text-center">
-            <div *ngIf="false">
-              <button mat-raised-button mat-dialog-close color="warn" class="form-control">Close</button>
+            <div *ngIf="!report">
+              <button (click)="upload_files(data.data.proposal_title,data.data.proposal_id)" mat-raised-button color="primary">Submit</button>
             </div>
-            <div *ngIf="true">
+            <div *ngIf="report">
               <button mat-button matStepperPrevious>Back</button>
-              <button mat-raised-button matStepperNext color="primary">Submit</button>
+              <button mat-raised-button matStepperNext>Next</button>
             </div>
           </div>
         </div>

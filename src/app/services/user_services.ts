@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class UserServices {
-    // private serverUrl = 'http://localhost/';
-    private serverUrl = 'http://192.168.0.11/';
+    private serverUrl = 'http://localhost/';
+    // private serverUrl = 'http://192.168.0.11/';
     // isLoggedIn: boolean;
     admin: boolean;
     user: boolean;
@@ -103,6 +103,11 @@ export class UserServices {
     }
     get_hemis(params) {
         return this.http.post(this.serverUrl + 'codeigniter/api/Users/get_hemis', { 'quarter': params });
+    }
+
+    update_proj_stat(params){
+        console.log(params);
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/update_project_status', { 'id': params.id,'status':params.status });
     }
     // getNotifs_user(){
     //     return this.http.post(this.)
