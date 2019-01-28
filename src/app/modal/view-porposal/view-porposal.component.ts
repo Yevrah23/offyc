@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
+import { CommentComponent } from '../comment/comment.component';
 
 @Component({
   selector: 'app-view-porposal',
@@ -19,7 +20,19 @@ export class ViewPorposalComponent implements OnInit {
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<ViewPorposalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-    ) { }
+  ) { }
+
+  showComment(): void {
+    const dialogRef = this.dialog.open(CommentComponent, {
+      width: '400px',
+      panelClass: 'custom-dialog-comment'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+    });
+  }
 
   ngOnInit() {
     if (this.state === 0) {

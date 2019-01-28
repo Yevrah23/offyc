@@ -5,7 +5,7 @@
       <h4 mat-diaglog-title class="text-center">Proposal Details</h4>
       <p *ngIf="isUser" class="text-center"><small>( {{stateLabel}} )</small></p>
       <mat-dialog-content>
-        <div *ngIf="false" class="container dialog-wrapper py-5">
+        <div *ngIf="true" class="container dialog-wrapper py-5">
           <div class="row">
             <div class="col-md-5"><small class="color-secondaryVariant" for="">Request form from :</small></div>
             <div class="col-md"> Juan Dela Cruz</div>
@@ -65,7 +65,7 @@
         <!--End wrapper -->
 
         <!-- User edit mode only -->
-        <div *ngIf="true" class="container dialog-wrapper py-5">
+        <div *ngIf="false" class="container dialog-wrapper py-5">
           <div class="row">
             <div class="col-md">
               <mat-form-field floatLabel="auto">
@@ -167,15 +167,18 @@
           <div class="row">
             <div class="col-md text-center">
               <div *ngIf="false">
+                <!-- user call to action -->
                 <button mat-button mat-dialog-close>close</button>
                 <button mat-raised-button matStepperNext color="primary">Edit</button>
               </div>
-              <div *ngIf="true">
+              <div *ngIf="false">
+                <!-- user forms call to action -->
                 <button mat-button mat-dialog-close>close</button>
                 <button mat-raised-button mat-dialog-close color="primary">Update</button>
               </div>
-              <div *ngIf="false">
-                <button mat-button mat-dialog-close>Revise</button>
+              <div *ngIf="true">
+                <!-- admin call to action -->
+                <button mat-button mat-dialog-close (click)="showComment()">Revise</button>
                 <button mat-raised-button matStepperNext color="primary">Accept</button>
               </div>
             </div>

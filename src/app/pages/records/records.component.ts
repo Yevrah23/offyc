@@ -33,7 +33,6 @@ export class RecordsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-
   // tslint:disable-next-line:max-line-length
   constructor(public dialog: MatDialog, private http: HttpClient, private chRef: ChangeDetectorRef, private user: UserServices, private cookies: CookieService) {
 
@@ -99,6 +98,15 @@ export class RecordsComponent implements OnInit {
         // const table: any = $('table');
         // this.dataTable = table.dataTable();
       });
+  }
+
+  // fixed for matSort not working if using ngIf on table
+  @ViewChild(MatSort) set matSort(ms: MatSort) {
+    this.sort = ms;
+    this.setDataSourceAttributes();
+  }
+  setDataSourceAttributes() {
+    this.dataSource.sort = this.sort;
   }
 
   // search table

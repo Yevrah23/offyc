@@ -57,11 +57,10 @@ export class AssesmentComponent implements OnInit {
     });
   }
 
-
   ngOnInit() {
 
     // Display data tables
-    this.http.get('https://jsonplaceholder.typicode.com/users')
+    this.http.get('https://jsonplaceholder.typicode.com/posts')
       .subscribe((data: any[]) => {
         this.showSpinner = false;
         this.showData = true;
@@ -77,6 +76,16 @@ export class AssesmentComponent implements OnInit {
         // this.dataTable = table.dataTable();
       });
   }
+
+  // fixed for matSort not working if using ngIf on table
+  @ViewChild(MatSort) set matSort(ms: MatSort) {
+    this.sort = ms;
+    this.setDataSourceAttributes();
+  }
+  setDataSourceAttributes() {
+    this.dataSource.sort = this.sort;
+  }
+
 
   // search table
   applyFilter(filterValue: string) {
