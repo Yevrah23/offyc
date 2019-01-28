@@ -3,10 +3,7 @@
     <ng-template matStepLabel>Submit</ng-template>
     <div class="dialog-section">
       <h4 mat-diaglog-title class="text-center">Proposal Details</h4>
-      <p *ngIf="isUser" class="text-center"><small>({{stateLabel}})</small></p>
-
-
-
+      <p *ngIf="isUser" class="text-center"><small>( {{stateLabel}} )</small></p>
       <mat-dialog-content>
         <div class="container dialog-wrapper py-5">
           <div class="row">
@@ -59,24 +56,25 @@
           </div>
         </div>
         <!--End wrapper -->
-      </mat-dialog-content>
+          </mat-dialog-content>
 
-      <mat-dialog-actions>
-        <div class="container Form-action-wrapper">
-          <div class="row">
-            <div class="col-md text-center">
-              <div *ngIf="false">
-                <button mat-raised-button mat-dialog-close color="warn" class="form-control">Close</button>
-              </div>
-              <div *ngIf="true">
-                <button mat-button mat-dialog-close>Need Revision</button>
-                <button mat-raised-button matStepperNext color="primary">Accept</button>
+          <mat-dialog-actions>
+            <div class="container Form-action-wrapper">
+              <div class="row">
+                <div class="col-md text-center">
+                  <div *ngIf="false">
+                    <button mat-button mat-dialog-close>close</button>
+                    <button mat-raised-button matStepperNext color="primary">Edit</button>
+                  </div>
+                  <div *ngIf="true">
+                    <button mat-button mat-dialog-close>Revise</button>
+                    <button mat-raised-button matStepperNext color="primary">Accept</button>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          </mat-dialog-actions>
         </div>
-      </mat-dialog-actions>
-    </div>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Accept</ng-template>
@@ -86,8 +84,8 @@
         <table style="height: 187px; width: 864px; margin-left: auto; margin-right: auto;" border="0">
           <tbody>
             <tr>
-              <td style="width: 131px;"><img id="ustp-logo" src="../../../assets/img/modal/logo.jpg" alt=""
-                  width="150" height="150" /></td>
+              <td style="width: 131px;"><img id="ustp-logo" src="../../../assets/img/modal/logo.jpg" alt="" width="150"
+                  height="150" /></td>
               <td style="width: 627px;">
                 <h5 style="text-align: center;">University of Science and Technology of Southern Philippines</h5>
                 <h6 style="text-align: center;">Alubijid | Cagayan de Oro | Claveria | Jasaan | Oroquieta | Panaon</h6>

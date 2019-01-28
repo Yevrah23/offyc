@@ -10,8 +10,8 @@ import html2canvas from 'html2canvas';
   styleUrls: ['./view-porposal.component.scss']
 })
 export class ViewPorposalComponent implements OnInit {
-  isUser: true;
-  state: number;
+  isUser = true;
+  state = 0;
   stateLabel: string;
   isLinear = false;
 
@@ -90,7 +90,6 @@ export class ViewPorposalComponent implements OnInit {
       // // ! after the for loop is finished running, we save the pdf.
       pdf.save('Proposal-Cover.pdf');
       this.dialog.closeAll();
-      console.log(imgHeight, canvas.height, canvas.width, heightLeft);
       // $('#contentToConvert').css('overflow', 'auto');
     });
   }

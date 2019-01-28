@@ -4,25 +4,51 @@
 <mat-dialog-content>
   <div class="form-wrapper">
     <mat-form-field floatLabel="auto">
-      <mat-label>Title</mat-label>
-      <input [(ngModel)] = "title" type="text" matInput>
+      <mat-label>Project Title</mat-label>
+      <input [(ngModel)]="title" type="text" matInput>
+    </mat-form-field>
+
+    <label>Type of Project</label> <br>
+    <mat-radio-group [(ngModel)]="ProjType">
+      <mat-radio-button class="gender-box" value="new">New</mat-radio-button>
+      <mat-radio-button class="gender-box" value="continuing">Continuing</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field floatLabel="auto">
+      <mat-label>Proponents</mat-label>
+      <input type="text" matInput>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="auto">
+      <mat-label>Program</mat-label>
+      <input type="text" matInput>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="auto">
+      <mat-label>Accreditation Level</mat-label>
+      <input type="text" matInput>
     </mat-form-field>
 
     <mat-form-field>
-      <input [(ngModel)] = "sdate" matInput [matDatepicker]="start" placeholder="Start Date">
+      <input [(ngModel)]="sdate" matInput [matDatepicker]="start" placeholder="Start Date">
       <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
       <mat-datepicker #start></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field>
-      <input [(ngModel)] = "edate" matInput [matDatepicker]="end" placeholder="End Date">
+      <input [(ngModel)]="edate" matInput [matDatepicker]="end" placeholder="End Date">
       <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
       <mat-datepicker #end></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field floatLabel="auto">
+      <mat-label>Total Number of Hours</mat-label>
+      <input type="text" matInput>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="auto">
       <mat-label>Target Benificiary</mat-label>
-      <input [(ngModel)] = "beneficiary" type="text" matInput>
+      <input [(ngModel)]="beneficiary" type="text" matInput>
     </mat-form-field>
 
     <label> Gender Benificiary </label> <br>
@@ -32,25 +58,36 @@
       <mat-radio-button class="gender-box" value="Both">Both</mat-radio-button>
     </mat-radio-group>
 
-    
-
     <mat-form-field floatLabel="auto">
-      <mat-label>Event Partner</mat-label>
-      <input [(ngModel)] = "partner" type="text" matInput>
+      <mat-label>Project Location</mat-label>
+      <input [(ngModel)]="venue" type="text" matInput>
     </mat-form-field>
 
     <mat-form-field floatLabel="auto">
-      <mat-label>Event Venue</mat-label>
-      <input [(ngModel)] = "venue" type="text" matInput>
+      <mat-label>Partner Agency</mat-label>
+      <input [(ngModel)]="partner" type="text" matInput>
+    </mat-form-field>
+
+    <label> Budget Requirements </label>
+    <mat-form-field floatLabel="auto">
+      <mat-label>USTP</mat-label>
+      <input type="number" matInput>
+    </mat-form-field>
+    <mat-form-field floatLabel="auto">
+      <mat-label>Partner Agency</mat-label>
+      <input type="number" matInput>
+    </mat-form-field>
+    <mat-form-field floatLabel="auto">
+      <mat-label>Total</mat-label>
+      <input type="number" matInput>
     </mat-form-field>
 
     <div class="upload">
-      <label>Upload File : </label><br>
+      <label>Attach File : </label><br>
       <button mat-raised-button color="primary" (click)="fileInput.click()">Upload</button>
-      <input hidden type="file" #fileInput (change)="getFiles($event)" accept=
-      "application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf">
+      <input hidden type="file" #fileInput (change)="getFiles($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf">
       <input class="mt-2" id="fileName" type="text" placeholder="No file chosen" readonly="true" matInput>
-    </div>  
+    </div>
   </div>
 
 </mat-dialog-content>
