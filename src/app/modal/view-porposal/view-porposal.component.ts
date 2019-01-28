@@ -10,6 +10,9 @@ import html2canvas from 'html2canvas';
   styleUrls: ['./view-porposal.component.scss']
 })
 export class ViewPorposalComponent implements OnInit {
+  isUser: true;
+  state: number;
+  stateLabel: string;
   isLinear = false;
 
   constructor(
@@ -19,6 +22,11 @@ export class ViewPorposalComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    if (this.state === 0) {
+      this.stateLabel = 'For Revision';
+    } else {
+      this.stateLabel = 'Accepted';
+    }
   }
 
   generatePDF(quality = 1) {

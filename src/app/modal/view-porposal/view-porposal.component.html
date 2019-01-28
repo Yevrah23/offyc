@@ -3,6 +3,8 @@
     <ng-template matStepLabel>Submit</ng-template>
     <div class="dialog-section">
       <h4 mat-diaglog-title class="text-center">Proposal Details</h4>
+      <p *ngIf="isUser" class="text-center"><small>({{stateLabel}})</small></p>
+
 
 
       <mat-dialog-content>
