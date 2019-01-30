@@ -1,0 +1,70 @@
+// CONTENT STYLE
+
+section.container-fluid {
+  padding: 15px 62px 15px 62px;
+  min-height: 90%;
+}
+
+.row {
+  margin: 0 -7.5px 0 -7.5px;
+
+  div {
+    padding: 0 7.5px 0 7.5px;
+  }
+}
+
+// TABS style
+
+::ng-deep .mat-tab-label {
+  padding: 0px 20px !important;
+  min-width: 45px !important;
+}
+
+::ng-deep .mat-tab-header {
+  border: unset !important;
+}
+
+.box {
+  // display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px;
+  padding: 16px !important;
+  border-radius: 6px;
+}
+
+// Table style 
+
+::ng-deep .dataTables_wrapper {
+  width: 100% !important;
+  padding: 15px !important;
+}
+
+// modal style
+
+button.modal-trigger {
+  position: absolute;
+  right: 65px;
+  margin: 10px;
+  transform: translate(0%, 15%);
+  z-index: 999;
+}
+
+::ng-deep div#DataTables_Table_0_length {
+  display: none;
+}
+
+// material table style
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}

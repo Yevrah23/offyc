@@ -1,0 +1,48 @@
+<h2 mat-diaglog-title class="text-center">Report</h2>
+
+<div class="content-wrapper">
+  <mat-dialog-content>
+    <div class="dialog-wrapper">
+      <!-- radio group -->
+      <mat-radio-group [(ngModel)]="selectedReport">
+        <mat-radio-button value="bar">
+          <div class="optionBox">
+            <span class="checked"><i class="fas fa-check"></i></span>
+            <span class="boxVal">b.a.r</span>
+          </div>
+        </mat-radio-button>
+        <mat-radio-button value="prexc">
+          <div class="optionBox">
+            <span class="checked"><i class="fas fa-check"></i></span>
+            <span class="boxVal">p.r.e.x.c</span>
+          </div>
+        </mat-radio-button>
+        <mat-radio-button value="hemis">
+          <div class="optionBox">
+            <span class="checked"><i class="fas fa-check"></i></span>
+            <span class="boxVal">h.e.m.i.s</span>
+          </div>
+        </mat-radio-button>
+      </mat-radio-group>
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="start" placeholder="From">
+        <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+        <mat-datepicker #start startView="year" [startAt]="startDate"></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="end" placeholder="To">
+        <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+        <mat-datepicker #end startView="year" [startAt]="startDate"></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <div class="Form-action-wrapper">
+      <button mat-button mat-dialog-close><u>Cancel</u></button>
+      <button mat-raised-button mat-dialog-close color="primary" (click)="showTemplate()">Submit</button>
+    </div>
+  </mat-dialog-actions>
+</div>

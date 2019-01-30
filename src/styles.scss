@@ -1,0 +1,109 @@
+// /* You can add global styles to this file, and also import other style files */
+@import "styles-variables";
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~datatables.net-bs4/css/dataTables.bootstrap4.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "theme.scss";
+
+// FONT import
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600');
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Poppins', sans-serif !important;  }
+//Custome styles
+
+section.container-fluid {
+  background: #ececec;
+}
+
+// // Colors
+
+
+.color-primary {
+  color: mat-color($my-primary) !important;
+}
+
+.color-primaryVariant {
+  color: mat-color($my-primaryVariant) !important;
+}
+
+.color-accent {
+  color: mat-color($my-accent) !important;
+}
+
+.color-warn {
+  color: mat-color($my-warn) !important;
+}
+.color-success {
+  color: #84CE80 !important;
+}
+
+.color-secondary {
+  color: mat-color($my-secondary) !important;
+}
+
+.color-secondaryVariant {
+  color: mat-color($my-secondaryVariant) !important;
+}
+
+// font-size
+
+.text-regular-14 {
+  font-size: 14px !important;
+}
+
+.text-regular-16 {
+  font-size: 16px !important;
+}
+
+.text-heading-24 {
+  font-size: 24px !important;
+}
+
+//custom global css
+
+//custom scroll {
+  /* width */
+::-webkit-scrollbar {
+  width: 4px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+
+.box { // card color
+  background: #fff;
+}
+
+td {
+  .actions {
+    width: fit-content;
+    margin: 0 auto;
+    
+    button.mat-raised-button {
+      margin: 5px 7.5px;
+    }
+  }
+}
+
+//modal
+  // view Proposal
+.custom-dialog-view mat-dialog-container {
+  background: #fff url(assets/img/modal/Proposal-Details-approval.png) no-repeat 100% 0% !important;
+  min-height: 621px;
+}
+
+  //File details
+  .custom-dialog-file mat-dialog-container {
+    background: url(assets/img/modal/File-Details.png) !important;
+  }

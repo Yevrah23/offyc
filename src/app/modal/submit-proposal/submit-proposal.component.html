@@ -1,0 +1,108 @@
+<h2 mat-diaglog-title class="text-center">Proposal</h2>
+
+
+<mat-dialog-content>
+  <div class="form-wrapper">
+    <mat-form-field floatLabel="auto">
+      <mat-label>Project Title</mat-label>
+      <input [(ngModel)]="title" type="text" matInput>
+    </mat-form-field>
+
+    <label>Type of Project</label> <br>
+    <mat-radio-group [(ngModel)]="ProjType">
+      <mat-radio-button class="gender-box" value="new">New</mat-radio-button>
+      <mat-radio-button class="gender-box" value="continuing">Continuing</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field floatLabel="auto">
+      <mat-label>Proponents (Separate Multiple Proponents w/ commas)</mat-label>
+      <textarea [(ngModel)] = "proponents" cols="30" rows="10" matInput></textarea>
+      <!-- <input type="text" matInput> -->
+    </mat-form-field>
+
+    <mat-form-field floatLabel="auto">
+      <mat-label>Program</mat-label>
+      <input type="text" matInput>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="auto">
+      <mat-label>Accreditation Level</mat-label>
+      <input [(ngModel)]= "accre_level" type="text" matInput>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input [(ngModel)]="sdate" matInput [matDatepicker]="start" placeholder="Start Date">
+      <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+      <mat-datepicker #start></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input [(ngModel)]="edate" matInput [matDatepicker]="end" placeholder="End Date">
+      <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+      <mat-datepicker #end></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="auto">
+      <mat-label>Total Number of Hours</mat-label>
+<input [(ngModel)]="total_hours" type="text" matInput>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="auto">
+      <mat-label>Target Benificiary</mat-label>
+      <input [(ngModel)]="beneficiary" type="text" matInput>
+    </mat-form-field>
+
+    <label> Gender Benificiary </label> <br>
+    <mat-radio-group [(ngModel)]="bene_gender">
+      <mat-radio-button class="gender-box" value="Male">Male</mat-radio-button>
+      <mat-radio-button class="gender-box" value="Female">Female</mat-radio-button>
+      <mat-radio-button class="gender-box" value="Both">Both</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field floatLabel="auto">
+      <mat-label>Project Location</mat-label>
+      <input [(ngModel)]="venue" type="text" matInput>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="auto">
+      <mat-label>Partner Agency</mat-label>
+      <input [(ngModel)]="partner" type="text" matInput>
+    </mat-form-field>
+
+    <label> Budget Requirements </label>
+    <mat-form-field floatLabel="auto">
+      <mat-label>USTP</mat-label>
+      <input [(ngModel)] = "budget_ustp" type="number" matInput>
+    </mat-form-field>
+    <mat-form-field floatLabel="auto">
+      <mat-label>Partner Agency</mat-label>
+      <input [(ngModel)] = "budget_partner" type="number" matInput>
+    </mat-form-field>
+    <mat-form-field floatLabel="auto">
+      <mat-label>Total</mat-label>
+      <input type="number" matInput>
+    </mat-form-field>
+
+    <div class="upload">
+      <label>Attach File : </label><br>
+      <button mat-raised-button color="primary" (click)="fileInput.click()">Upload</button>
+      <input hidden type="file" #fileInput (change)="getFiles($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf">
+      <input class="mt-2" id="fileName" type="text" placeholder="No file chosen" readonly="true" matInput>
+    </div>
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <div class="Form-action-wrapper">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button (click)="save()">Submit</button>
+  </div>
+</mat-dialog-actions>
+
+
+<!-- <div>
+<input style="display: none" type="file" (change)="selectFile($event)" #fileInput>
+<button (click)="fileInput.click()">Select File</button>
+<button (click)="uploadFile()">Upload!</button>
+</div> -->

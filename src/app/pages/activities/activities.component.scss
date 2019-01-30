@@ -1,0 +1,31 @@
+// CONTENT STYLE
+.flex-block{
+  /* This fills the remaining space, by using flexbox. 
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+section.container-fluid {
+  padding: 15px 62px 15px 42px;
+  min-height: 90%;
+}
+
+.row {
+  margin: 0 -7.5px 0 -7.5px;
+
+  div{
+    padding: 0 7.5px 0 7.5px;
+  }
+}
+
+// divider
+
+mat-list-item.mat-list-item {
+  border-radius: 4px;
+  margin-bottom: 5px;
+  background: #007bff0a;
+}
+
+// mat-list-item.mat-list-item {
+//   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+// }

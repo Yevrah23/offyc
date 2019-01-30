@@ -1,0 +1,65 @@
+.mat-radio-button~.mat-radio-button {
+  margin-left: 16px;
+}
+
+.dialog-wrapper .mat-form-field~.mat-form-field{
+  margin-left: 16px;
+}
+
+// radio button box
+.dialog-wrapper {
+  padding-top: 62px;
+  text-align: center;
+}
+
+.Form-action-wrapper {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+::ng-deep .mat-radio-container {
+  display: none !important;
+}
+
+.optionBox {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  border: 1px solid #022163;
+  border-radius: 15px;
+
+  text-align: center;
+  line-height: 130px;
+
+  span.checked {
+    color: #3075FC;
+    position: absolute;
+    right: 0;
+    transform: translate(-90%, -35%);
+    opacity: 0;
+    -webkit-transition: opacity .5s;
+    transition: opacity .5s;
+  }
+
+  span.boxVal {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+    text-transform: uppercase;
+    font-size: 24px;
+  }
+}
+
+::ng-deep .mat-radio-checked {
+  .optionBox {
+    background: url(../../../assets/img/modal/Reports-logo.png) no-repeat center;
+
+    span.checked {
+      opacity: 1 !important;
+    }
+    span.boxVal {
+      color: #022163;
+    }
+  }
+}

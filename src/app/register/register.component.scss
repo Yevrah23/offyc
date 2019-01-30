@@ -1,0 +1,100 @@
+section {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  overflow: auto;
+
+  div.row {
+    margin-top: 15px !important;
+    margin: 0;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 20px;
+    overflow: auto;
+  }
+}
+
+.login-card {
+  display: block;
+  margin: 0 auto;
+}
+
+mat-card.mat-card {
+  background: url(../../assets/img/logins/bg1@2x.png);
+  background-position: 30% 55%;
+  display: block;
+  min-height: 560px;
+  max-width: 458px;
+  margin: 0 auto;
+  border-radius: 9px;
+
+  //drop-shadow
+  -webkit-box-shadow: 7px 7px 6px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 7px 7px 6px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 7px 7px 6px 0px rgba(0, 0, 0, 0.15);
+}
+
+.form-wrapper {
+  margin: 0;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: 20px !important;
+  padding: 20px;
+  min-width: 60%;
+}
+
+mat-form-field {
+  width: 70%;
+}
+
+.btn-wrapper,
+.college {
+  padding-top: 30px;
+}
+
+.btn-submit {
+  color: #3075FC;
+  border: 1px solid #3075FC;
+  border-radius: 18px;
+
+  width: 94px;
+  height: 36px;
+  margin: 0 auto;
+  display: block;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+  font-size: 15px;
+}
+
+.btn-back {
+  margin: 0 auto;
+  display: block;
+}
+::ng-deep .gender .mat-form-field-underline.ng-tns-c5-12.ng-star-inserted {
+  display: none;
+}
+
+::ng-deep .mat-form-field-label-wrapper{
+  font-size: 15px;
+}
+
+::ng-deep form{
+  text-align: center;
+}
+
+::ng-deep .mat-stepper-horizontal, .mat-stepper-vertical {
+  background-color: unset;
+}
+
+::ng-deep .mat-stepper-horizontal-line.ng-tns-c4-0.ng-star-inserted {
+  display: none;
+}

@@ -1,0 +1,540 @@
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step>
+    <ng-template matStepLabel>Submit</ng-template>
+    <div class="dialog-section">
+      <h4 mat-diaglog-title class="text-center">Proposal Details</h4>
+      <p *ngIf="isUser" class="text-center"><small>( {{stateLabel}} )</small></p>
+      <mat-dialog-content>
+        <div *ngIf="true" class="container dialog-wrapper py-5">
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-3"><small class="color-secondaryVariant" for="">Request form from :</small></div>
+            <div class="col-md-7"> {{data.data.ui_Fname}} {{data.data.ui_Mname}} {{data.data.ui_Lname}}</div>
+          </div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-3"><small class="color-secondaryVariant" for="">Project Title :</small></div>
+            <div class="col-md-7">
+              <h4 class="color-accent">{{data.data.proposal_title}}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-3"><small class="color-secondaryVariant" for="">College :</small></div>
+            <div class="col-md-7"> {{data.data.ui_college}} </div>
+          </div>
+          <div class="row">
+            <div class="col-md-5 align-middle"><small class="color-secondaryVariant" for="">Partner Agency :</small></div>
+            <div class="col-md">
+              <small class="color-secondaryVariant">College</small> <br>
+              <p>Proposal Submission</p>
+              <small class="color-secondaryVariant">External Partner</small> <br>
+              <p>Proposal Submission</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-3"><small class="color-secondaryVariant" for="">Target Benificiary:</small></div>
+            <div class="col-md-7"> {{data.data.proposal_beneficiaries}} </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-3"><small class="color-secondaryVariant" for="">Gender of Benificiary :</small></div>
+            <div class="col-md-7"> {{data.data.proposal_bene_gender}} </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-3"><small class="color-secondaryVariant" for="">Event Venue :</small></div>
+            <div class="col-md-7"> {{data.data.proposal_venue}} </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-3 align-middle"><small class="color-secondaryVariant" for="">Date :</small></div>
+            <div class="col-md-7">
+              <small class="color-secondaryVariant">Start</small> <br>
+              <p>{{data.data.proposal_date_start}}</p>
+              <small class="color-secondaryVariant">End</small> <br>
+              <p>{{data.data.proposal_date_end}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-5"><small class="color-secondaryVariant" for="">Attached File :</small></div>
+            <div class="col-md"> <a href="{{data.data.proposal_directory}}" target="_blank"><u>{{data.data.proposal_directory}}</u></a></div>
+          </div>
+          <div *ngIf = "false" class="row comment">
+            <div class="col-md-5">
+              <small class="color-warn" for="">Comment :</small>
+            </div>
+            <div class="col-md">Nesciunt dolor tenetur illum. Dolor necessitatibus magnam veniam. Fugiat sint hic quae
+              qui. Qui cupiditate numquam enim ipsam sunt.</div>
+          </div>
+        </div>
+        <!--End wrapper -->
+
+        <!-- User edit mode only -->
+        <div *ngIf="false" class="container dialog-wrapper py-5">
+          <div class="row">
+            <div class="col-md">
+              <mat-form-field floatLabel="auto">
+                <mat-label>Project Title</mat-label>
+                <input [(ngModel)]="title" type="text" matInput>
+              </mat-form-field>
+
+              <label>Type of Project</label> <br>
+              <mat-radio-group [(ngModel)]="ProjType">
+                <mat-radio-button class="gender-box" value="new">New</mat-radio-button>
+                <mat-radio-button class="gender-box" value="continuing">Continuing</mat-radio-button>
+              </mat-radio-group>
+
+              <mat-form-field floatLabel="auto">
+                <mat-label>Proponents</mat-label>
+                <input type="text" matInput>
+              </mat-form-field>
+
+              <mat-form-field floatLabel="auto">
+                <mat-label>Program</mat-label>
+                <input type="text" matInput>
+              </mat-form-field>
+
+              <mat-form-field floatLabel="auto">
+                <mat-label>Accreditation Level</mat-label>
+                <input type="text" matInput>
+              </mat-form-field>
+
+              <mat-form-field>
+                <input [(ngModel)]="sdate" matInput [matDatepicker]="start" placeholder="Start Date">
+                <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+                <mat-datepicker #start></mat-datepicker>
+              </mat-form-field>
+
+              <mat-form-field>
+                <input [(ngModel)]="edate" matInput [matDatepicker]="end" placeholder="End Date">
+                <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+                <mat-datepicker #end></mat-datepicker>
+              </mat-form-field>
+
+              <mat-form-field floatLabel="auto">
+                <mat-label>Total Number of Hours</mat-label>
+                <input type="text" matInput>
+              </mat-form-field>
+            </div>
+            <div class="col-md">
+              <mat-form-field floatLabel="auto">
+                <mat-label>Target Benificiary</mat-label>
+                <input [(ngModel)]="beneficiary" type="text" matInput>
+              </mat-form-field>
+
+              <label> Gender Benificiary </label> <br>
+              <mat-radio-group [(ngModel)]="bene_gender">
+                <mat-radio-button class="gender-box" value="Male">Male</mat-radio-button>
+                <mat-radio-button class="gender-box" value="Female">Female</mat-radio-button>
+                <mat-radio-button class="gender-box" value="Both">Both</mat-radio-button>
+              </mat-radio-group>
+
+              <mat-form-field floatLabel="auto">
+                <mat-label>Project Location</mat-label>
+                <input [(ngModel)]="venue" type="text" matInput>
+              </mat-form-field>
+
+              <mat-form-field floatLabel="auto">
+                <mat-label>Partner Agency</mat-label>
+                <input [(ngModel)]="partner" type="text" matInput>
+              </mat-form-field>
+
+              <label> Budget Requirements </label>
+              <mat-form-field floatLabel="auto">
+                <mat-label>USTP</mat-label>
+                <input type="number" matInput>
+              </mat-form-field>
+              <mat-form-field floatLabel="auto">
+                <mat-label>Partner Agency</mat-label>
+                <input type="number" matInput>
+              </mat-form-field>
+              <mat-form-field floatLabel="auto">
+                <mat-label>Total</mat-label>
+                <input type="number" matInput>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md">
+              <div class="upload">
+                <label>Attach Updated File : </label><br>
+                <button mat-raised-button color="primary" (click)="fileInput.click()">Upload</button>
+                <input hidden type="file" #fileInput (change)="getFiles($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf">
+                <input class="mt-2" id="fileName" type="text" placeholder="No file chosen" readonly="true" matInput>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-dialog-content>
+
+      <mat-dialog-actions>
+        <div class="container Form-action-wrapper">
+          <div class="row">
+            <div class="col-md text-center">
+              <div *ngIf="false">
+                <!-- user call to action -->
+                <button mat-button mat-dialog-close>close</button>
+                <button mat-raised-button matStepperNext color="primary">Edit</button>
+              </div>
+              <div *ngIf="false">
+                <!-- user forms call to action -->
+                <button mat-button mat-dialog-close>close</button>
+                <button mat-raised-button mat-dialog-close color="primary">Update</button>
+              </div>
+              <div *ngIf="!approved">
+                <!-- admin call to action -->
+                <button (click)="verdict()" mat-button mat-dialog-close (click)="showComment()">Revise</button>
+                <button (click)="verdict(1)" mat-raised-button color="primary">Accept</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-dialog-actions>
+    </div>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Accept</ng-template>
+    <h4 mat-diaglog-title class="text-center">Download Proposal Cover Page</h4>
+    <mat-dialog-content>
+      <div id="contentToConvert">
+        <table style="height: 187px; width: 864px; margin-left: auto; margin-right: auto;" border="0">
+          <tbody>
+            <tr>
+              <td style="width: 131px;"><img id="ustp-logo" src="../../../assets/img/modal/logo.jpg" alt="" width="150"
+                  height="150" /></td>
+              <td style="width: 627px;">
+                <h5 style="text-align: center;">University of Science and Technology of Southern Philippines</h5>
+                <h6 style="text-align: center;">Alubijid | Cagayan de Oro | Claveria | Jasaan | Oroquieta | Panaon</h6>
+              </td>
+              <td style="width: 130px;"></td>
+            </tr>
+          </tbody>
+        </table>
+        <table style="width: 864px; margin-left: auto; margin-right: auto;" border="0">
+          <tbody>
+            <tr style="height: 23px;">
+              <td style="width: 587px; height: 23px; text-align: right;">&nbsp;Extension Form 02</td>
+            </tr>
+            <tr style="height: 23px;">
+              <td style="width: 587px; height: 23px;">
+                <h5 style="text-align: center;">Extension Project Proposal Cover</h5>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table style="width: 864px; margin-left: auto; margin-right: auto; height: 19px;" border="1">
+          <tbody>
+            <tr style="height: 12px;">
+              <td style="height: 12px; width: 1716px;" colspan="6">PROJECT TITLE: {{data.data.proposal_title}}</td>
+            </tr>
+            <tr style="height: 12px;">
+              <td style="height: 12px; width: 1716px;" colspan="6">TYPE OF PROJECT</td>
+            </tr>
+            <tr style="height: 8px; text-align: center;">
+              <td style="height: 8px; width: unset;" colspan="3"><input type="checkbox" />New Project</td>
+              <td style="height: 8px; width: 848px;" colspan="3"><input type="checkbox" />Continuing Project</td>
+            </tr>
+            <tr style="height: 8px; text-align: center;">
+              <td style="height: 8px; width: 868px; text-align: left;" colspan="3">PROPONENTS:</td>
+              <td style="height: 8px; width: 848px; text-align: left;" colspan="3">PROGRAM:</td>
+            </tr>
+            <tr style="height: 8px; text-align: center;">
+              <td style="height: 40px; width: 868px; text-align: left;" colspan="3" rowspan="5">&nbsp; {{data.data.proponents}}</td>
+              <td style="height: 8px; width: 848px; text-align: left;" colspan="3">&nbsp; {{data.data.ui_dept}}</td>
+            </tr>
+            <tr style="height: 8px; text-align: center;">
+              <td style="height: 8px; width: 848px; text-align: left;" colspan="3">ACCREDITATION LEVEL:</td>
+            </tr>
+            <tr style="height: 8px; text-align: center;">
+              <td style="height: 8px; width: 848px; text-align: left;" colspan="3">&nbsp; {{data.data.accreditation_level}}</td>
+            </tr>
+            <tr style="height: 8px; text-align: center;">
+              <td style="height: 8px; width: 848px; text-align: left;" colspan="3">COLLEGE: {{data.data.ui_college}}</td>
+            </tr>
+            <tr style="height: 8px; text-align: center;">
+              <td style="height: 8px; width: 848px; text-align: left;" colspan="3">&nbsp;</td>
+            </tr>
+            <tr style="height: 8px; text-align: center;">
+              <td style="height: 8px; width: 848px; text-align: left;" colspan="6">&nbsp;TARGET GROUPS/BENIFICIARY: {{data.data.proposal_beneficiaries}}</td>
+            </tr>
+            <tr style="height: 8px; text-align: center;">
+              <td style="height: 8px; width: 848px; text-align: left;" colspan="6">PROJECT LOCATION: {{data.data.proposal_venue}}</td>
+            </tr>
+            <tr style="height: 8px; text-align: center;">
+              <td style="height: 8px; width: 848px; text-align: left;" colspan="6">PARTNER AGENCY: {{data.data.proposal_partner}}</td>
+            </tr>
+            <tr style="height: 8px; text-align: center;">
+              <td style="height: 8px; width: 848px; text-align: left;" colspan="6">BUDGET REQUIREMENT:</td>
+            </tr>
+            <tr style="height: 8px; text-align: center;">
+              <td style="height: 8px; width: 848px; text-align: center;" colspan="2">&nbsp;USTP</td>
+              <td style="height: 8px; width: 848px; text-align: center;" colspan="2">&nbsp;Partner Agency</td>
+              <td style="height: 8px; width: 848px; text-align: center;" colspan="2">Total&nbsp;</td>
+            </tr>
+            <tr style="height: 8px; text-align: center;">
+              <td style="height: 8px; width: 848px; text-align: center;" colspan="2">{{data.data.budget_ustp}}</td>
+              <td style="height: 8px; width: 848px; text-align: center;" colspan="2">{{data.data.budget_partner}}</td>
+              <td style="height: 8px; width: 848px; text-align: center;" colspan="2">{{data.data.budget_total}}</td>
+            </tr>
+            <tr style="height: 8px; text-align: center;">
+              <td style="height: 8px; width: 848px; text-align: left;" colspan="4">TOTAL DAYS OF IMPLEMENTATION:</td>
+              <td style="height: 8px; width: 848px; text-align: left;" colspan="2">&nbsp;TOTAL NUMBER OF HOURS:</td>
+            </tr>
+            <tr style="height: 8px; text-align: center;">
+              <td style="height: 8px; width: 848px; text-align: left;" colspan="4"> {{data.data.proposal_date_start}} - {{data.data.proposal_date_end}}</td>
+              <td style="height: 8px; width: 848px;" colspan="2">40</td>
+            </tr>
+            <tr style="height: 8px; text-align: center;">
+              <td style="height: 8px; width: 848px; text-align: left;" colspan="6">&nbsp;</td>
+            </tr>
+            <tr style="height: 40px; text-align: center;">
+              <td style="height: 40px; text-align: left; border: 0 !important;" colspan="1">&nbsp;</td>
+              <td style="height: 40px; width: 848px; border: 0px !important;" colspan="4">
+              <p style="text-align: left;">Submitted by: {{data.data.ui_Lname}}, {{data.data.ui_Fname}} {{data.data.ui_Mname}}</p>
+                <div class="container">
+                  <div class="row py-4">
+                    <div class="col-md text-center">
+                      <p class="mx-auto" style="width: 300px; border-top: 1px solid #000; text-align: center;">Main
+                        Proponent/Project Leader</p>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td style="height: 40px; text-align: left; border: 0 !important;" colspan="1">&nbsp;</td>
+            </tr>
+            <tr style="height: 40px; text-align: center; border: 1;">
+              <td style="height: 40px; text-align: left;" colspan="6">
+                <p>Endorsed by:</p>
+                <div class="container">
+                  <div class="row py-4">
+                    <div class="col-md">
+                      <p class="mx-auto" style="width: 300px; border-top: 1px solid #000; text-align: center;">Program
+                        Chair</p>
+                    </div>
+                    <div class="col-md">
+                      <p class="mx-auto" style="width: 300px; border-top: 1px solid #000; text-align: center;">College
+                        Dean</p>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr style="height: 40px; text-align: center;">
+              <td style="height: 40px; text-align: left; border: 0 !important;" colspan="6">
+                <p>Recommending Approval:</p>
+                <div class="container">
+                  <div class="row py-4">
+                    <div class="col-md text-center">
+                      <p class="mx-auto" style="width: 300px; border-top: 1px solid #000; text-align: center;">Director,
+                        Extension &amp; Community Relations</p>
+                    </div>
+                  </div>
+                  <div class="row py-4">
+                    <div class="col-md">
+                      <p class="mx-auto" style="width: 300px; border-top: 1px solid #000; text-align: center;">VCASA</p>
+                    </div>
+                    <div class="col-md">
+                      <p class="mx-auto" style="width: 300px; border-top: 1px solid #000; text-align: center;">Vice-Chancellor
+                        for Research and Innovation</p>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr *ngIf="budget" style="height: 40px; text-align: center;">
+              <td style="height: 40px; text-align: left; border: 0 !Important;" colspan="6">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md">
+                      Funds Available
+                      <p class="mx-auto my-5" style="width: 300px; border-top: 1px solid #000; text-align: center;">Accountant
+                        III</p>
+                    </div>
+                    <div class="col-md">
+                      Approved:
+                      <p class="mx-auto my-5" style="width: 300px; border-top: 1px solid #000; text-align: center;">Chancellor</p>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+      <div class="container Form-action-wrapper">
+        <div class="row">
+          <div class="col-md text-center">
+            <div>
+<button *ngIf="!moa" mat-raised-button color="primary" (click)="download_pdf(data.data.proposal_id,2,data.data.user_id)">Download</button>
+              <button *ngIf="moa" mat-raised-button matStepperNext color="primary">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-dialog-actions>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>MOA</ng-template>
+    <h4 mat-diaglog-title class="text-center">Requirements for Implementaion</h4>
+
+    <mat-dialog-content>
+      <div class="container dialog-wrapper py-5">
+        <div class="row form-wrapper">
+          <div class="col-md">
+            <div class="upload">
+              <label>Memorandum of Agreement : </label><br>
+              <button mat-raised-button color="primary" (click)="moa_add.click()">Add File</button>
+              <input hidden type="file" #moa_add (change)="upload_moa($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf">
+              <input class="mt-2" id="moaName" type="text" placeholder="No file chosen" readonly="true" matInput>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="upload">
+              <label>Signed Proposal - Extension Form 02 : </label><br>
+              <button mat-raised-button color="primary" (click)="add_signed.click()">Add File</button>
+              <input hidden type="file" #add_signed (change)="upload_signed($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf">
+              <input class="mt-2" id="signedName" type="text" placeholder="No file chosen" readonly="true" matInput>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+      <div class="container Form-action-wrapper">
+        <div class="row">
+          <div class="col-md text-center">
+            <div *ngIf="!report">
+              <button (click)="upload_files(data.data.proposal_title,data.data.proposal_id)" mat-raised-button color="primary">Submit</button>
+            </div>
+            <div *ngIf="report">
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-raised-button matStepperNext>Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-dialog-actions>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Implementaion</ng-template>
+    <h4 mat-diaglog-title class="text-center">Ready for Implementaion</h4>
+    <mat-dialog-content>
+      <div class="container dialog-wrapper py-4" style="width: 370px;">
+        <div class="row form-wrapper">
+          <div class="col-md text-center">
+            <button mat-raised-button color="primary" class="text-heading-24 start-end">START</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md">
+            <h6>Status :</h6>
+            <div class="mx-auto" style="width: fit-content;">
+              <span class="color-primary">Extension Project Started :</span>
+              <p><span class="date text-regular-14 color-accent">December 30, 2018</span></p>
+              <span class="color-primary ">Extension Project Ended :</span>
+              <p><span class="date color-accent text-regular-14">December 30, 2018</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+      <div class="container Form-action-wrapper">
+        <div class="row">
+          <div class="col-md text-center">
+            <div *ngIf="true">
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-raised-button matStepperNext color="primary">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-dialog-actions>
+  </mat-step>
+  <mat-step>
+    <form>
+      <ng-template matStepLabel>Accomplishment Report</ng-template>
+      <h4 mat-diaglog-title class="text-center">Accomplishment Data</h4>
+      <mat-dialog-content>
+        <div class="container dialog-wrapper py-5">
+          <div class="row form-wrapper">
+            <div class="col-md-6">
+              <mat-form-field floatLabel="auto">
+                <mat-label>No. of Persons Trained</mat-label>
+                <input type="number" matInput>
+              </mat-form-field>
+              <mat-form-field floatLabel="auto">
+                <mat-label>No. of Days</mat-label>
+                <input type="number" matInput>
+              </mat-form-field>
+              <div class="upload">
+                <label>Attach File : </label><br>
+                <button mat-raised-button color="primary" (click)="fileInput.click()">Upload</button>
+                <input hidden type="file" #fileInput (change)="getFiles($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf">
+                <input class="mt-2" id="fileName" type="text" placeholder="No file chosen" readonly="true" matInput>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field floatLabel="auto">
+                <mat-label>Satisfactory</mat-label>
+                <input type="number" matInput>
+              </mat-form-field>
+              <mat-form-field floatLabel="auto">
+                <mat-label>Very Satisfactory</mat-label>
+                <input type="number" matInput>
+              </mat-form-field>
+              <mat-form-field floatLabel="auto">
+                <mat-label>Excellent</mat-label>
+                <input type="number" matInput>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </mat-dialog-content>
+      <mat-dialog-actions>
+        <div class="container Form-action-wrapper">
+          <div class="row">
+            <div class="col-md text-center">
+              <div *ngIf="false">
+                <button mat-raised-button mat-dialog-close color="warn" class="form-control">Close</button>
+              </div>
+              <div *ngIf="true">
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-raised-button matStepperNext color="primary">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-dialog-actions>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+
+    <mat-dialog-content>You are now done.</mat-dialog-content>
+
+
+    <mat-dialog-actions>
+      <div class="container Form-action-wrapper">
+        <div class="row">
+          <div class="col-md text-center">
+            <div *ngIf="false">
+              <button mat-raised-button mat-dialog-close color="warn" class="form-control">Close</button>
+            </div>
+            <div *ngIf="true">
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-raised-button matStepperNext color="primary">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-dialog-actions>
+  </mat-step>
+</mat-horizontal-stepper>
