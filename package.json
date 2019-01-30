@@ -39,7 +39,10 @@
     "node-sass": "^4.11.0",
     "popper.js": "^1.14.5",
     "rxjs": "~6.3.3",
+<<<<<<< HEAD
     "sweetalert2": "^8.0.3",
+=======
+>>>>>>> 85c5673b5c3703aa6bd8a5a49efa2651c6f9e4ca
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

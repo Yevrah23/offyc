@@ -77,12 +77,17 @@ export class UserServices {
             'budget_partner': params[0].budget_partner
         });
     }
+<<<<<<< HEAD
     proposal_approval(params) {
+=======
+    proposal_approval(params){
+>>>>>>> 85c5673b5c3703aa6bd8a5a49efa2651c6f9e4ca
         console.log(params);
         return this.http.post(this.serverUrl + 'codeigniter/api/Users/proposal_approval', {
             'id' : params[0].id,
             'decision': params[0].decision,
             'title' : params[0].title
+<<<<<<< HEAD
         });
     }
 
@@ -106,14 +111,45 @@ export class UserServices {
 
     get_prexc(params) {
         return this.http.post(this.serverUrl + 'codeigniter/api/Users/get_prexc', {'quarter': params});
+=======
+        })
+    }
+
+    get_des_proposals(){
+        return this.http.get(this.serverUrl + 'codeigniter/api/Users/get_des_proposals');
+    }
+    get_proposals(){
+        return this.http.get(this.serverUrl + 'codeigniter/api/Users/get_proposals');
+    }
+    get_proposal(params){
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/get_proposal',{'id':params});
+    }
+
+    getEvents(){
+        return this.http.get(this.serverUrl + 'codeigniter/api/Users/get_events');
+    }
+
+    getNotifs(params){
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/getNotifs',{'id': params});
+    }
+
+    get_prexc(params){
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/get_prexc',{'quarter':params});
+>>>>>>> 85c5673b5c3703aa6bd8a5a49efa2651c6f9e4ca
     }
     get_hemis(params) {
         return this.http.post(this.serverUrl + 'codeigniter/api/Users/get_hemis', { 'quarter': params });
     }
 
+<<<<<<< HEAD
     update_proj_stat(params) {
         console.log(params);
         return this.http.post(this.serverUrl + 'codeigniter/api/Users/update_project_status', { 'id': params.id, 'status': params.status });
+=======
+    update_proj_stat(params){
+        console.log(params);
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/update_project_status', { 'id': params.id,'status':params.status });
+>>>>>>> 85c5673b5c3703aa6bd8a5a49efa2651c6f9e4ca
     }
     // getNotifs_user(){
     //     return this.http.post(this.)

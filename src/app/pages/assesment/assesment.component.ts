@@ -18,7 +18,7 @@ export class AssesmentComponent implements OnInit {
   records: any[];
   proposals: any[];
 
-  // constructor(private http: HttpClient, private chRef: ChangeDetectorRef, private user: UserServices, public dialog: MatDialog) { } 
+  // constructor(private http: HttpClient, private chRef: ChangeDetectorRef, private user: UserServices, public dialog: MatDialog) { }
 
   // viewProposal(data): void {
   //   this.user.get_proposal(data).subscribe(
@@ -108,8 +108,8 @@ export class AssesmentComponent implements OnInit {
           this.proposals = result[1];
 
         });
-      })
-  } 
+      });
+  }
 
   // viewProposal(): void {
   //   const dialogRef = this.dialog.open(ViewPorposalComponent, {
@@ -132,12 +132,12 @@ export class AssesmentComponent implements OnInit {
     //   this.isAdmin = false;
     // }
     this.user.get_proposals().subscribe(
-      (response)=>{
+      (response) => {
         this.showSpinner = false;
         this.showData = true;
         console.log(response);
 
-        if (response[0]){
+        if (response[0]) {
           this.dataSource = new MatTableDataSource(response[1]); // for mat-table
         }
         console.log(this.dataSource);
