@@ -55,22 +55,22 @@ export class ViewPorposalComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (parseInt(this.data.data.proposal_status) < 0){
+    if (parseInt(this.data.data.proposal_status) == 0){
       this.pending = true;
     }
-    if (parseInt(this.data.data.proposal_status) > 0){
+    if (parseInt(this.data.data.proposal_status) == 1){
       this.approved = true;
     }
-    if (parseInt(this.data.data.proposal_status) > 1) {
+    if (parseInt(this.data.data.proposal_status) == 2) {
       this.moa = true;
     }
-    if (parseInt(this.data.data.proposal_status) > 2) {
+    if (parseInt(this.data.data.proposal_status) == 3) {
       this.report = true;
     }
-    if (parseInt(this.data.data.proposal_status) > 3) {
+    if (parseInt(this.data.data.proposal_status) == 4) {
       this.approved = true;
     }
-    if (parseInt(this.data.data.proposal_status) > 4) {
+    if (parseInt(this.data.data.proposal_status) == 5) {
       this.done = true;
     }
     // this.activeStep += parseInt(this.data.data.proposal_status);
@@ -206,8 +206,8 @@ export class ViewPorposalComponent implements OnInit {
     $('#signedName').val(this.files[0]['name']);
   }
 
-  upload_files(title,id){
-    this.upload.moa_c(this.moa_file,this.signed,title,id)
+  upload_files(title,id,user_id){
+    this.upload.moa_c(this.moa_file,this.signed,title,id,user_id)
       .subscribe(
         event => {
           if (event.type == HttpEventType.UploadProgress) {

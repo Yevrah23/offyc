@@ -27,11 +27,12 @@ export class UploadService {
     return this.http.request(req);
     // return this.http.post(url,);
   }
-  moa_c(moa: File, cover: File,folder,proposal_id): Observable<HttpEvent<any>> {
+  moa_c(moa: File, cover: File,folder,proposal_id,user_id): Observable<HttpEvent<any>> {
     let formData = new FormData();
     formData.append('moa', moa);
     formData.append('cover', cover);
     formData.append('id', this.cookies.get('id'));
+    formData.append('user_id', user_id);
     formData.append('prop_id', proposal_id);
     formData.append('folder', folder);
 

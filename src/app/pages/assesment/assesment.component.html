@@ -51,7 +51,7 @@
             </mat-paginator>
           </div>
         </mat-tab>
-        <mat-tab label="File Request">
+        <mat-tab *ngIf = "false" label="File Request">
           <div class="box mat-elevation-z4">
             <mat-form-field>
               <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">

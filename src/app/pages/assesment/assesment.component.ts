@@ -154,13 +154,13 @@ export class AssesmentComponent implements OnInit {
   }
 
   // fixed for matSort not working if using ngIf on table
-  @ViewChild(MatSort) set matSort(ms: MatSort) {
-    this.sort = ms;
-    this.setDataSourceAttributes();
-  }
-  setDataSourceAttributes() {
-    this.dataSource.sort = this.sort;
-  }
+  // @ViewChild(MatSort) set matSort(ms: MatSort) {
+  //   this.sort = ms;
+  //   this.setDataSourceAttributes();
+  // }
+  // setDataSourceAttributes() {
+  //   this.dataSource.sort = this.sort;
+  // }
 
 
   // search table

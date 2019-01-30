@@ -24,6 +24,12 @@ export class SubmitProposalComponent implements OnInit {
   bene_gender: string;
   partner: string;
   venue: string;
+  proponents: string;
+  accre_level: string;
+  total_hours: string;
+  budget_ustp: string;
+  budget_partner: string;
+
   file: File = null;
 
   fileName: string;
@@ -46,6 +52,12 @@ export class SubmitProposalComponent implements OnInit {
       'venue': this.venue,
       'token': this.cookies.get(this.cookies.get('id')),
       'filename': this.fileName,
+      'partner': this.partner,
+      'proponents': this.proponents,
+      'accre_level': this.accre_level,
+      'total_hours': this.total_hours,
+      'budget_ustp': this.budget_ustp,
+      'budget_partner': this.budget_partner
       // 'file' : this.files[0]
     });
     this.user.submit_proposal(this.proposal).subscribe(

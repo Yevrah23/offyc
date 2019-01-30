@@ -59,7 +59,7 @@ export class RecordsComponent implements OnInit {
   // Modal triggers
   submitProposal(): void {
     const dialogRef = this.dialog.open(SubmitProposalComponent, {
-      width: '350px'
+      width: '500px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -163,17 +163,17 @@ export class RecordsComponent implements OnInit {
   }
 
   // fixed for matSort not working if using ngIf on table
-  @ViewChild(MatSort) set matSort(ms: MatSort) {
-    this.sort = ms;
-    this.setDataSourceAttributes();
-  }
-  setDataSourceAttributes() {
-    this.CITC.sort = this.sort;
-    this.COT.sort = this.sort;
-    this.CEA.sort = this.sort;
-    this.CSM.sort = this.sort;
-    this.CSTE.sort = this.sort;
-  }
+  // @ViewChild(MatSort) set matSort(ms: MatSort) {
+  //   this.sort = ms;
+  //   this.setDataSourceAttributes();
+  // }
+  // setDataSourceAttributes() {
+  //   this.CITC.sort = this.sort;
+  //   this.COT.sort = this.sort;
+  //   this.CEA.sort = this.sort;
+  //   this.CSM.sort = this.sort;
+  //   this.CSTE.sort = this.sort;
+  // }
 
   // search table
   applyFilter(filterValue: string) {

@@ -15,8 +15,9 @@
     </mat-radio-group>
 
     <mat-form-field floatLabel="auto">
-      <mat-label>Proponents</mat-label>
-      <input type="text" matInput>
+      <mat-label>Proponents (Separate Multiple Proponents w/ commas)</mat-label>
+      <textarea [(ngModel)] = "proponents" cols="30" rows="10" matInput></textarea>
+      <!-- <input type="text" matInput> -->
     </mat-form-field>
 
     <mat-form-field floatLabel="auto">
@@ -26,7 +27,7 @@
 
     <mat-form-field floatLabel="auto">
       <mat-label>Accreditation Level</mat-label>
-      <input type="text" matInput>
+      <input [(ngModel)]= "accre_level" type="text" matInput>
     </mat-form-field>
 
     <mat-form-field>
@@ -43,7 +44,7 @@
 
     <mat-form-field floatLabel="auto">
       <mat-label>Total Number of Hours</mat-label>
-      <input type="text" matInput>
+<input [(ngModel)]="total_hours" type="text" matInput>
     </mat-form-field>
 
     <mat-form-field floatLabel="auto">
@@ -71,11 +72,11 @@
     <label> Budget Requirements </label>
     <mat-form-field floatLabel="auto">
       <mat-label>USTP</mat-label>
-      <input type="number" matInput>
+      <input [(ngModel)] = "budget_ustp" type="number" matInput>
     </mat-form-field>
     <mat-form-field floatLabel="auto">
       <mat-label>Partner Agency</mat-label>
-      <input type="number" matInput>
+      <input [(ngModel)] = "budget_partner" type="number" matInput>
     </mat-form-field>
     <mat-form-field floatLabel="auto">
       <mat-label>Total</mat-label>
