@@ -16,19 +16,19 @@ import { CommentComponent } from '../comment/comment.component';
 export class ViewPorposalComponent implements OnInit {
   @ViewChild('stepper') stepper: MatStepper;
 
-  approved: boolean = false;
-  pending: boolean = false;
-  moa: boolean = false;
-  report: boolean = false;
-  done: boolean = false;
-  budget: boolean = false;
-  
+  approved = false;
+  pending = false;
+  moa = false;
+  report = false;
+  done = false;
+  budget = false;
+
   params = [];
   isUser: true;
   state: number;
   stateLabel: string;
   isLinear = false;
-  activeStep: number = 0;
+  activeStep = 0;
 
   moa_file: File = null;
   signed: File = null;
@@ -39,7 +39,7 @@ export class ViewPorposalComponent implements OnInit {
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<ViewPorposalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-    ,private user: UserServices, private upload: UploadService) { 
+    , private user: UserServices, private upload: UploadService) {
   }
 
   showComment(): void {
@@ -55,48 +55,55 @@ export class ViewPorposalComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (parseInt(this.data.data.proposal_status) == 0){
+    // tslint:disable-next-line:radix
+    if (parseInt(this.data.data.proposal_status) === 0) {
       this.pending = true;
     }
-    if (parseInt(this.data.data.proposal_status) == 1){
+    // tslint:disable-next-line:radix
+    if (parseInt(this.data.data.proposal_status) === 1) {
       this.approved = true;
     }
-    if (parseInt(this.data.data.proposal_status) == 2) {
+    // tslint:disable-next-line:radix
+    if (parseInt(this.data.data.proposal_status) === 2) {
       this.moa = true;
     }
-    if (parseInt(this.data.data.proposal_status) == 3) {
+    // tslint:disable-next-line:radix
+    if (parseInt(this.data.data.proposal_status) === 3) {
       this.report = true;
     }
-    if (parseInt(this.data.data.proposal_status) == 4) {
+    // tslint:disable-next-line:radix
+    if (parseInt(this.data.data.proposal_status) === 4) {
       this.approved = true;
     }
-    if (parseInt(this.data.data.proposal_status) == 5) {
+    // tslint:disable-next-line:radix
+    if (parseInt(this.data.data.proposal_status) === 5) {
       this.done = true;
     }
     // this.activeStep += parseInt(this.data.data.proposal_status);
 
 
-    if(this.data.data.budget_total > 0){
+    if (this.data.data.budget_total > 0) {
       this.budget = true;
     }
+    // tslint:disable-next-line:radix
     this.stepper.selectedIndex = parseInt(this.data.data.proposal_status);
 
   }
 
-  verdict(data){
+  verdict(data) {
     this.params.push({
-      'id' :this.data.data.proposal_id,
+      'id' : this.data.data.proposal_id,
       'decision': data,
-      'title':this.data.data.proposal_title
+      'title': this.data.data.proposal_title
     });
     this.user.proposal_approval(this.params).subscribe(
       (response) => {
-        if (response){
+        if (response) {
           this.user.get_proposals().subscribe(
             (result) => {
-              console.log(result)
+              console.log(result);
               this.dialogRef.close(result);
-              if (data == 1) {
+              if (data === 1) {
                 console.log('Proposal Successfully Approved');
               } else {
                 console.log('Proposal Successfully Denied');
@@ -112,15 +119,15 @@ export class ViewPorposalComponent implements OnInit {
     }
   }
 
-  download_pdf(id,status){
-    this.user.update_proj_stat({'id':id,'status':status}).subscribe(
-      (response)=>{
-        if (response){
+  download_pdf(id, status) {
+    this.user.update_proj_stat({'id': id, 'status': status}).subscribe(
+      (response) => {
+        if (response) {
           this.dialogRef.close();
           this.generatePDF();
         }
       }
-    )
+    );
   }
 
   generatePDF(quality = 1) {
@@ -189,7 +196,7 @@ export class ViewPorposalComponent implements OnInit {
   }
 
   upload_moa(event) {
-    
+
     // this.file = files.item(0);
     this.files = event.target.files;
     this.moa_file = this.files[0];
@@ -206,11 +213,11 @@ export class ViewPorposalComponent implements OnInit {
     $('#signedName').val(this.files[0]['name']);
   }
 
-  upload_files(title,id,user_id){
-    this.upload.moa_c(this.moa_file,this.signed,title,id,user_id)
+  upload_files(title, id, user_id) {
+    this.upload.moa_c(this.moa_file, this.signed, title, id, user_id)
       .subscribe(
         event => {
-          if (event.type == HttpEventType.UploadProgress) {
+          if (event.type === HttpEventType.UploadProgress) {
             const percentDone = Math.round(100 * event.loaded / event.total);
             console.log(`File is ${percentDone}% loaded.`);
           } else if (event instanceof HttpResponse) {
@@ -218,14 +225,14 @@ export class ViewPorposalComponent implements OnInit {
           }
         },
         (err) => {
-          console.log("Upload Error:", err);
+          console.log('Upload Error:', err);
           this.dialogRef.close('Proposal Successfully Submitted');
 
         }, () => {
-          console.log("Upload done");
+          console.log('Upload done');
           this.dialogRef.close('Proposal Successfully Submitted');
         }
-      )
+      );
   }
 
 }

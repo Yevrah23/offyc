@@ -14,7 +14,7 @@ import { LoginRegLayoutComponent } from './login-reg-layout/login-reg-layout.com
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { UserServices } from './services/user_services';
-import { UploadService } from './services/upload.service' 
+import { UploadService } from './services/upload.service';
 import { AuthGuard } from './auth.guard';
 
 // modals component
@@ -26,6 +26,7 @@ import { GenerateReportComponent } from './modal/generate-report/generate-report
 import { SuccessComponent } from './modal/success/success.component';
 import { ReportTemplateComponent } from './modal/report-template/report-template.component';
 import { CommentComponent } from './modal/comment/comment.component';
+import { RegViewComponent } from './modal/reg-view/reg-view.component';
 
 // Cookies ni jaz
 import { CookieService } from 'ngx-cookie-service';
@@ -52,6 +53,7 @@ import { DataSpinnerComponent } from './loading/data-spinner/data-spinner.compon
     GenerateReportComponent,
     ReportTemplateComponent,
     CommentComponent,
+    RegViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,7 +75,8 @@ import { DataSpinnerComponent } from './loading/data-spinner/data-spinner.compon
     SuccessComponent,
     GenerateReportComponent,
     ReportTemplateComponent,
-    CommentComponent
+    CommentComponent,
+    RegViewComponent
   ],
   providers: [
     UserServices,

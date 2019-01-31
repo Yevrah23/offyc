@@ -20,7 +20,7 @@ export class RecordsComponent implements OnInit {
   isAdmin = true;
   isUser = true;
   token: any;
-  
+
   // tempo: any;
 
   // table data sample
@@ -38,7 +38,7 @@ export class RecordsComponent implements OnInit {
   CSTE: MatTableDataSource<any>;
 
   // data tables
-  record:any;
+  record: any;
 
   // table data sample
   records: any[];
@@ -74,13 +74,12 @@ export class RecordsComponent implements OnInit {
         this.record = response;
 
         this.record.proposal_date_start = this.record.proposal_date_start.substring(0, 10);
-        this.record.proposal_date_end = this.record.proposal_date_end.substring(0,10);
+        this.record.proposal_date_end = this.record.proposal_date_end.substring(0, 10);
 
-        
         const dialogRef = this.dialog.open(ViewPorposalComponent, {
           width: '1000px',
           panelClass: 'custom-dialog-view',
-          data:{
+          data: {
             data : this.record
           }
         });
@@ -90,8 +89,8 @@ export class RecordsComponent implements OnInit {
           console.log(result);
         });
       }
-    )
-    
+    );
+
   }
 
   fileDetails(): void {
@@ -114,11 +113,11 @@ export class RecordsComponent implements OnInit {
       this.isAdmin = false;
     }
     this.user.get_des_proposals().subscribe(
-      (response)=>{
+      (response) => {
         this.showSpinner = false;
         this.showData = true;
 
-        if (response[0]){
+        if (response[0]) {
           console.log(response[1]);
           this.CITC = new MatTableDataSource(response[1].CITC);
           this.COT  = new MatTableDataSource(response[1].COT);
@@ -145,7 +144,7 @@ export class RecordsComponent implements OnInit {
         console.log(this.CSM);
         console.log(this.CSTE);
       }
-    )
+    );
     // this.http.get('https://jsonplaceholder.typicode.com/users')
     //   .subscribe((data: any[]) => {
     //     // this.records = data;

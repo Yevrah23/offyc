@@ -43,21 +43,17 @@ export class ReportTemplateComponent implements OnInit {
     this.prexc = true;
     this.titleReport = 'P.R.E.X.C';
     this.filename = 'Prexc';
-     this.user.get_prexc("1").subscribe(
+     this.user.get_prexc('1').subscribe(
        (response) => {
         // this.dataPrexc.forEach(element => {
-          
+
         // });
 
          this.dataPrexc = response;
          console.log(this.dataPrexc);
        }
-     )
+     );
    }
-
-  
-
-
   }
 
   generatePDF(quality = 1) {
