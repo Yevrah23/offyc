@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col-md">
         <mat-form-field class="example-full-width">
-          <textarea rows="6" matInput placeholder="Comment"></textarea>
+          <textarea [(ngModel)] = "comment" rows="6" matInput placeholder="Comment"></textarea>
         </mat-form-field>
       </div>
     </div><!-- end row -->
@@ -16,7 +16,7 @@
   <div class="container Form-action-wrapper">
     <div class="row">
       <div class="col-md text-right">
-        <button mat-button mat-dialog-close>Close</button>
+        <button (click) = "send_comment()" mat-button mat-dialog-close>Close</button>
       </div>
     </div>
   </div>
