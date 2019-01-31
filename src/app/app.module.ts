@@ -32,6 +32,7 @@ import { RegViewComponent } from './modal/reg-view/reg-view.component';
 import { CookieService } from 'ngx-cookie-service';
 // spinner
 import { DataSpinnerComponent } from './loading/data-spinner/data-spinner.component';
+import { ProfileSettingsComponent } from './modal/profile-settings/profile-settings.component';
 
 
 
@@ -54,6 +55,7 @@ import { DataSpinnerComponent } from './loading/data-spinner/data-spinner.compon
     ReportTemplateComponent,
     CommentComponent,
     RegViewComponent,
+    ProfileSettingsComponent,
   ],
   imports: [
     BrowserModule,

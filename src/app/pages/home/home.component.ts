@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
   showSpinner = true;
   showData = false;
   // mat-table
-  displayedColumns: string[] = ['id', 'name', 'username'];
+  transactionCol: string[] = ['transaction', 'date'];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
