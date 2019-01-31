@@ -106,17 +106,17 @@ export class UserServices {
             'id' : params[0].id,
             'decision': params[0].decision,
             'title' : params[0].title
-        })
+        });
     }
 
-    get_des_proposals(){
+    get_des_proposals() {
         return this.http.get(this.serverUrl + 'codeigniter/api/Users/get_des_proposals');
     }
-    get_proposals(){
+    get_proposals() {
         return this.http.get(this.serverUrl + 'codeigniter/api/Users/get_proposals');
     }
-    get_proposal(params){
-        return this.http.post(this.serverUrl + 'codeigniter/api/Users/get_proposal',{'id':params});
+    get_proposal(params) {
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/get_proposal', {'id': params});
     }
 
     get_proposals_user(params){
@@ -127,12 +127,12 @@ export class UserServices {
         return this.http.get(this.serverUrl + 'codeigniter/api/Users/get_events');
     }
 
-    getNotifs(params){
-        return this.http.post(this.serverUrl + 'codeigniter/api/Users/getNotifs',{'id': params});
+    getNotifs(params) {
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/getNotifs', {'id': params});
     }
 
-    get_prexc(params){
-        return this.http.post(this.serverUrl + 'codeigniter/api/Users/get_prexc',{'quarter':params});
+    get_prexc(params) {
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/get_prexc', {'quarter': params});
     }
     get_hemis(params) {
         return this.http.post(this.serverUrl + 'codeigniter/api/Users/get_hemis', { 'quarter': params });
@@ -144,7 +144,7 @@ export class UserServices {
 
     update_proj_stat(params){
         console.log(params);
-        return this.http.post(this.serverUrl + 'codeigniter/api/Users/update_project_status', { 'id': params.id,'status':params.status });
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/update_project_status', { 'id': params.id, 'status': params.status });
     }
     implementation_status(status,prop_id){
         return this.http.post(this.serverUrl + 'codeigniter/api/Users/implementation_status', { 'prop_id': prop_id, 'status': status });

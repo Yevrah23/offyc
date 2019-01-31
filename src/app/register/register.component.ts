@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { UserServices } from '../services/user_services';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { SuccessComponent } from '../modal/success/success.component';
 
 
 export interface College { // interface holds data with in array. data types
@@ -63,13 +65,28 @@ export class RegisterComponent implements OnInit {
   selectDepartmentFormControl = new FormControl('', Validators.required);
   department: Department[];
 
-
-
   constructor(
+    public dialog: MatDialog,
     private user: UserServices,
     private router: Router,
     private _formBuilder: FormBuilder
   ) {}
+
+// Alert register success
+showSuccess(page): void {
+  const dialogRef = this.dialog.open(SuccessComponent, {
+    width: '435px',
+    panelClass: 'custom-dialog-success',
+    data: {
+      page: page
+    }
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('The dialog was closed');
+    console.log(result);
+  });
+}
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -108,8 +125,10 @@ export class RegisterComponent implements OnInit {
           // if (response == 0) {
           console.log('Username Taken');
         } else if (response === 1) {
-          console.log('Registered');
+          const page = 'fromReg'; // para makita asa na page ang gkan g click ang  success na dialog, para dynamic ang success na modal.
+          console.log('Registered', page);
           this.router.navigate(['/', 'login']);
+          this.showSuccess(page);
         } else {
           console.log('Error');
         }
@@ -179,5 +198,4 @@ export class RegisterComponent implements OnInit {
 
     }
   }
-
 }

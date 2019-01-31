@@ -18,7 +18,7 @@ export class AssesmentComponent implements OnInit {
   records: any[];
   proposals: any[];
 
-  // constructor(private http: HttpClient, private chRef: ChangeDetectorRef, private user: UserServices, public dialog: MatDialog) { } 
+  // constructor(private http: HttpClient, private chRef: ChangeDetectorRef, private user: UserServices, public dialog: MatDialog) { }
 
   // viewProposal(data): void {
   //   this.user.get_proposal(data).subscribe(
@@ -55,7 +55,10 @@ export class AssesmentComponent implements OnInit {
   showSpinner = true;
   showData = false;
   // mat-table
-  displayedColumns: string[] = ['Title', 'Target', 'Venue', 'Settings'];
+  proposalColumns: string[] = ['Title', 'Target', 'Venue', 'Settings'];
+  Report: string[] = ['Title', 'Target', 'Venue', 'Settings'];
+  userRequest: string[] = ['userID', 'name', 'College', 'Settings'];
+
   dataSource: MatTableDataSource<any>;
   record: any;
 
@@ -67,10 +70,7 @@ export class AssesmentComponent implements OnInit {
     private http: HttpClient,
     private chRef: ChangeDetectorRef,
     private user: UserServices
-  ) 
-  { 
-    
-  }
+  ) {}
 
 
   // Modal triggers
@@ -109,8 +109,8 @@ export class AssesmentComponent implements OnInit {
           this.proposals = result[1];
 
         });
-      })
-  } 
+      });
+  }
 
   // viewProposal(): void {
   //   const dialogRef = this.dialog.open(ViewPorposalComponent, {
@@ -133,12 +133,12 @@ export class AssesmentComponent implements OnInit {
     //   this.isAdmin = false;
     // }
     this.user.get_proposals().subscribe(
-      (response)=>{
+      (response) => {
         this.showSpinner = false;
         this.showData = true;
         console.log(response);
 
-        if (response[0]){
+        if (response[0]) {
           this.dataSource = new MatTableDataSource(response[1]); // for mat-table
         }
         console.log(this.dataSource);
