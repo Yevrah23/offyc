@@ -100,7 +100,8 @@ export class AssesmentComponent implements OnInit {
           width: '1000px',
           panelClass: 'custom-dialog-view',
           data: {
-            data: this.record
+            data: this.record,
+            admin: true
           }
         });
 

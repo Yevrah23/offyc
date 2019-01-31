@@ -37,6 +37,8 @@ export class RecordsComponent implements OnInit {
   CSM: MatTableDataSource<any>;
   CSTE: MatTableDataSource<any>;
 
+  User: MatTableDataSource<any>;
+
   // data tables
   record: any;
 
@@ -80,7 +82,9 @@ export class RecordsComponent implements OnInit {
           width: '1000px',
           panelClass: 'custom-dialog-view',
           data: {
-            data : this.record
+            data : this.record,
+            admin: this.isAdmin,
+            user : this.isUser
           }
         });
 
@@ -112,53 +116,57 @@ export class RecordsComponent implements OnInit {
     } else {
       this.isAdmin = false;
     }
-    this.user.get_des_proposals().subscribe(
-      (response) => {
-        this.showSpinner = false;
-        this.showData = true;
 
-        if (response[0]) {
-          console.log(response[1]);
-          this.CITC = new MatTableDataSource(response[1].CITC);
-          this.COT  = new MatTableDataSource(response[1].COT);
-          this.CEA  = new MatTableDataSource(response[1].CEA);
-          this.CSM  = new MatTableDataSource(response[1].CSM);
-          this.CSTE  = new MatTableDataSource(response[1].CSTE);
+    if (this.isAdmin) {
+      this.user.get_des_proposals().subscribe(
+        (response) => {
+          this.showSpinner = false;
+          this.showData = true;
 
-          // mat table
-          this.CITC.paginator = this.paginator;
-          this.COT.paginator = this.paginator;
-          this.CEA.paginator = this.paginator;
-          this.CSM.paginator = this.paginator;
-          this.CSTE.paginator = this.paginator;
+          if (response[0]) {
+            console.log(response[1]);
+            this.CITC = new MatTableDataSource(response[1].CITC);
+            this.COT = new MatTableDataSource(response[1].COT);
+            this.CEA = new MatTableDataSource(response[1].CEA);
+            this.CSM = new MatTableDataSource(response[1].CSM);
+            this.CSTE = new MatTableDataSource(response[1].CSTE);
 
-          this.CITC.sort = this.sort;
-          this.COT.sort = this.sort;
-          this.CEA.sort = this.sort;
-          this.CSM.sort = this.sort;
-          this.CSTE.sort = this.sort;
+            // mat table
+            this.CITC.paginator = this.paginator;
+            this.COT.paginator = this.paginator;
+            this.CEA.paginator = this.paginator;
+            this.CSM.paginator = this.paginator;
+            this.CSTE.paginator = this.paginator;
+
+            this.CITC.sort = this.sort;
+            this.COT.sort = this.sort;
+            this.CEA.sort = this.sort;
+            this.CSM.sort = this.sort;
+            this.CSTE.sort = this.sort;
+          }
         }
-        console.log(this.CITC);
-        console.log(this.COT);
-        console.log(this.CEA);
-        console.log(this.CSM);
-        console.log(this.CSTE);
-      }
-    );
-    // this.http.get('https://jsonplaceholder.typicode.com/users')
-    //   .subscribe((data: any[]) => {
-    //     // this.records = data;
-    //     this.dataSource = new MatTableDataSource(data); // for mat-table
+      );
+    } else {
+      this.user.get_proposals_user(this.cookies.get('id')).subscribe(
+        (response) => {
+          this.showSpinner = false;
+          this.showData = true;
 
-    //     // mat table
-    //     this.dataSource.paginator = this.paginator;
-    //     this.dataSource.sort = this.sort;
+          if (response[0]) {
+            console.log(response);
+            this.User = new MatTableDataSource(response[1]);
 
-    //     // this.chRef.detectChanges();
-    //     // Display data tables
-    //     // const table: any = $('table');
-    //     // this.dataTable = table.dataTable();
-    //   });
+
+            // mat table
+            this.User.paginator = this.paginator;
+
+
+            this.User.sort = this.sort;
+
+          }
+        }
+      );
+    }
   }
 
   // fixed for matSort not working if using ngIf on table
@@ -181,6 +189,7 @@ export class RecordsComponent implements OnInit {
     this.CSM.filter = filterValue.trim().toLowerCase();
     this.CSTE.filter = filterValue.trim().toLowerCase();
     this.CEA.filter = filterValue.trim().toLowerCase();
+    this.User.filter = filterValue.trim().toLowerCase();
 
     if (this.CITC.paginator) {
       this.CITC.paginator.firstPage();
@@ -196,6 +205,10 @@ export class RecordsComponent implements OnInit {
     }
     if (this.CEA.paginator) {
       this.CEA.paginator.firstPage();
+    }
+
+    if (this.User.paginator) {
+      this.User.paginator.firstPage();
     }
   }
 

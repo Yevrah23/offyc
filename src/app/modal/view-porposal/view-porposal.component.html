@@ -5,7 +5,7 @@
       <h4 mat-diaglog-title class="text-center">Proposal Details</h4>
       <p *ngIf="isUser" class="text-center"><small>( {{stateLabel}} )</small></p>
       <mat-dialog-content>
-        <div *ngIf="true" class="container dialog-wrapper py-5">
+        <div *ngIf="!revision_edit" class="container dialog-wrapper py-5">
           <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-3"><small class="color-secondaryVariant" for="">Request form from :</small></div>
@@ -61,19 +61,24 @@
             <div class="col-md-5"><small class="color-secondaryVariant" for="">Attached File :</small></div>
             <div class="col-md"> <a href="{{data.data.proposal_directory}}" target="_blank"><u>{{data.data.proposal_directory}}</u></a></div>
           </div>
-          <div *ngIf = "false" class="row comment">
+          <div *ngIf = "revision || revision_edit || isAdmin" class="row comment">
             <div class="col-md-5">
               <small class="color-warn" for="">Comment :</small>
             </div>
-            <div class="col-md">Nesciunt dolor tenetur illum. Dolor necessitatibus magnam veniam. Fugiat sint hic quae
-              qui. Qui cupiditate numquam enim ipsam sunt.</div>
+            <div class="col-md">{{data.data.comment}}</div>
           </div>
         </div>
         <!--End wrapper -->
 
         <!-- User edit mode only -->
-        <div *ngIf="false" class="container dialog-wrapper py-5">
+        <div *ngIf="revision_edit" class="container dialog-wrapper py-5">
           <div class="row">
+            <div class="row comment">
+              <div class="col-md-5">
+                <small class="color-warn" for="">Comment</small>
+              </div>
+              <div class="col-md">{{data.data.comment}}</div>
+            </div>
             <div class="col-md">
               <mat-form-field floatLabel="auto">
                 <mat-label>Project Title</mat-label>
@@ -88,17 +93,17 @@
 
               <mat-form-field floatLabel="auto">
                 <mat-label>Proponents</mat-label>
-                <input type="text" matInput>
+                <textarea [(ngModel)]="proponents" cols="20" rows="10" type="text" matInput></textarea>
               </mat-form-field>
 
               <mat-form-field floatLabel="auto">
-                <mat-label>Program</mat-label>
-                <input type="text" matInput>
+                <mat-label>Program (If you have other partner deparments. Separate with comma)</mat-label>
+                <textarea [(ngModel)]="dept" cols="20" rows="10" type="text" matInput></textarea>
               </mat-form-field>
 
               <mat-form-field floatLabel="auto">
                 <mat-label>Accreditation Level</mat-label>
-                <input type="text" matInput>
+                <input [(ngModel)]="accre_level" type="text" matInput>
               </mat-form-field>
 
               <mat-form-field>
@@ -115,7 +120,7 @@
 
               <mat-form-field floatLabel="auto">
                 <mat-label>Total Number of Hours</mat-label>
-                <input type="text" matInput>
+                <input [(ngModel)]="total_hours" type="text" matInput>
               </mat-form-field>
             </div>
             <div class="col-md">
@@ -144,15 +149,11 @@
               <label> Budget Requirements </label>
               <mat-form-field floatLabel="auto">
                 <mat-label>USTP</mat-label>
-                <input type="number" matInput>
+                <input [(ngModel)]="budget_ustp" type="number" matInput>
               </mat-form-field>
               <mat-form-field floatLabel="auto">
                 <mat-label>Partner Agency</mat-label>
-                <input type="number" matInput>
-              </mat-form-field>
-              <mat-form-field floatLabel="auto">
-                <mat-label>Total</mat-label>
-                <input type="number" matInput>
+                <input [(ngModel)]="budget_partner" type="number" matInput>
               </mat-form-field>
             </div>
           </div>
@@ -173,19 +174,19 @@
         <div class="container Form-action-wrapper">
           <div class="row">
             <div class="col-md text-center">
-              <div *ngIf="false">
+              <div *ngIf="revision && isUser">
                 <!-- user call to action -->
-                <button mat-button mat-dialog-close>close</button>
-                <button mat-raised-button matStepperNext color="primary">Edit</button>
+                <button mat-button mat-dialog-close>Close</button>
+                <button (click)="revise()" mat-raised-button color="primary">Edit</button>
               </div>
-              <div *ngIf="false">
+              <div *ngIf="revision_edit && isUser">
                 <!-- user forms call to action -->
-                <button mat-button mat-dialog-close>close</button>
-                <button mat-raised-button mat-dialog-close color="primary">Update</button>
+                <button mat-button mat-dialog-close>Close</button>
+                <button (click)="final_revision()" mat-raised-button color="primary">Update</button>
               </div>
-              <div *ngIf="!approved">
+              <div *ngIf="!approved && isAdmin">
                 <!-- admin call to action -->
-                <button (click)="verdict()" mat-button mat-dialog-close (click)="showComment()">Revise</button>
+                <button (click)="verdict()" mat-button mat-dialog-close>Revise</button>
                 <button (click)="verdict(1)" mat-raised-button color="primary">Accept</button>
               </div>
             </div>
@@ -198,7 +199,10 @@
     <ng-template matStepLabel>Accept</ng-template>
     <h4 mat-diaglog-title class="text-center">Download Proposal Cover Page</h4>
     <mat-dialog-content>
-      <div id="contentToConvert">
+      <div *ngIf = "isUser && !moa">
+        Waiting for Extension Staff Action: Download of Filed Proposal Cover
+      </div>
+      <div *ngIf = "isAdmin" id="contentToConvert">
         <table style="height: 187px; width: 864px; margin-left: auto; margin-right: auto;" border="0">
           <tbody>
             <tr>
@@ -284,7 +288,7 @@
             </tr>
             <tr style="height: 8px; text-align: center;">
               <td style="height: 8px; width: 848px; text-align: left;" colspan="4"> {{data.data.proposal_date_start}} - {{data.data.proposal_date_end}}</td>
-              <td style="height: 8px; width: 848px;" colspan="2">40</td>
+              <td style="height: 8px; width: 848px;" colspan="2">{{data.data.total_hours}}</td>
             </tr>
             <tr style="height: 8px; text-align: center;">
               <td style="height: 8px; width: 848px; text-align: left;" colspan="6">&nbsp;</td>
@@ -370,8 +374,9 @@
         <div class="row">
           <div class="col-md text-center">
             <div>
-<button *ngIf="!moa" mat-raised-button color="primary" (click)="download_pdf(data.data.proposal_id,2,data.data.user_id)">Download</button>
+              <button *ngIf="!moa && isAdmin" mat-raised-button color="primary" (click)="download_pdf(data.data.proposal_id,2)">Download</button>
               <button *ngIf="moa" mat-raised-button matStepperNext color="primary">Next</button>
+              <button *ngIf="!moa && isUser" mat-raised-button mat-dialog-close color="primary">Close</button>
             </div>
           </div>
         </div>
@@ -383,7 +388,25 @@
     <h4 mat-diaglog-title class="text-center">Requirements for Implementaion</h4>
 
     <mat-dialog-content>
-      <div class="container dialog-wrapper py-5">
+      <div *ngIf="isUser" class="container dialog-wrapper py-5">
+        <div class="row form-wrapper">
+          <div class="col-md">
+            <div class="upload">
+              <label>Memorandum of Agreement : </label><br>
+              <a *ngIf = "report" href="{{data.data.moa_directory}}" download target="_blank">Download Scanned Notarized MOA</a>
+              <p *ngIf = "!report">The Extension Staff hasn't uploaded this file yet</p>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="upload">
+              <label>Signed Proposal - Extension Form 02 : </label><br>
+              <a *ngIf = "report" href="{{data.data.cover_directory}}" download target="_blank">Download Scanned Signed Proposal Cover</a>
+              <p *ngIf = "!report">The Extension Staff hasn't uploaded this file yet</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="isAdmin" class="container dialog-wrapper py-5">
         <div class="row form-wrapper">
           <div class="col-md">
             <div class="upload">
@@ -410,7 +433,7 @@
         <div class="row">
           <div class="col-md text-center">
             <div *ngIf="!report">
-              <button (click)="upload_files(data.data.proposal_title,data.data.proposal_id)" mat-raised-button color="primary">Submit</button>
+              <button (click)="upload_files(data.data.proposal_title,data.data.proposal_id,data.data.user_id)" mat-raised-button color="primary">Submit</button>
             </div>
             <div *ngIf="report">
               <button mat-button matStepperPrevious>Back</button>
@@ -428,17 +451,20 @@
       <div class="container dialog-wrapper py-4" style="width: 370px;">
         <div class="row form-wrapper">
           <div class="col-md text-center">
-            <button mat-raised-button color="primary" class="text-heading-24 start-end">START</button>
+            <button *ngIf = "implementing == 0" (click)="implementation_status(1)" mat-raised-button color="primary" class="text-heading-24 start-end">START</button>
+          </div>
+          <div class="col-md text-center">
+            <button *ngIf = "implementing == 1" (click)="implementation_status(2)" mat-raised-button color="primary" class="text-heading-24 start-end">END</button>
           </div>
         </div>
         <div class="row">
           <div class="col-md">
-            <h6>Status :</h6>
+            <h6>Stated Dates of Implementation :</h6>
             <div class="mx-auto" style="width: fit-content;">
               <span class="color-primary">Extension Project Started :</span>
-              <p><span class="date text-regular-14 color-accent">December 30, 2018</span></p>
+              <p><span class="date text-regular-14 color-accent">{{data.data.proposal_date_start}}</span></p>
               <span class="color-primary ">Extension Project Ended :</span>
-              <p><span class="date color-accent text-regular-14">December 30, 2018</span></p>
+              <p><span class="date color-accent text-regular-14">{{data.data.proposal_date_end}}</span></p>
             </div>
           </div>
         </div>
@@ -449,7 +475,7 @@
       <div class="container Form-action-wrapper">
         <div class="row">
           <div class="col-md text-center">
-            <div *ngIf="true">
+            <div *ngIf="implementing == 2">
               <button mat-button matStepperPrevious>Back</button>
               <button mat-raised-button matStepperNext color="primary">Next</button>
             </div>
