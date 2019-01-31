@@ -17,22 +17,22 @@ import { CookieService } from 'ngx-cookie-service';
 export class ViewPorposalComponent implements OnInit {
   @ViewChild('stepper') stepper: MatStepper;
 
-  approved: boolean = false;
-  pending: boolean = false;
-  revision: boolean = false;
-  revision_edit: boolean = false;
-  moa: boolean = false;
-  report: boolean = false;
-  done: boolean = false;
-  budget: boolean = false;
-  isUser: boolean = false;
-  isAdmin: boolean = false;
-  
+  approved = false;
+  pending = false;
+  revision = false;
+  revision_edit = false;
+  moa = false;
+  report = false;
+  done = false;
+  budget = false;
+  isUser = false;
+  isAdmin = false;
+
   params = [];
   state: number;
   stateLabel: string;
   isLinear = false;
-  activeStep: number = 0;
+  activeStep = 0;
 
   moa_file: File = null;
   signed: File = null;
@@ -57,15 +57,15 @@ export class ViewPorposalComponent implements OnInit {
   dept: string;
   implementing: string;
 
-  started: boolean = false;
-  ended: boolean = false;
+  started = false;
+  ended = false;
 
   constructor(
     public cookies: CookieService,
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<ViewPorposalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-    ,private user: UserServices, private upload: UploadService) { 
+    , private user: UserServices, private upload: UploadService) {
     this.prop_id = this.data.data.proposal_id;
     this.title = this.data.data.proposal_title;
     this.sdate = this.data.data.proposal_date_start;
@@ -97,7 +97,7 @@ export class ViewPorposalComponent implements OnInit {
   }
 
 
-  revise() { 
+  revise() {
     this.revision = false;
     this.revision_edit = true;
   }
@@ -124,13 +124,13 @@ export class ViewPorposalComponent implements OnInit {
       (response) => {
         if (response) {
           console.log(response);
-          let file = this.files[0];
+          const file = this.files[0];
           console.log(file);
 
           this.upload.uploadFile(file, 'proposal', this.title)
             .subscribe(
               event => {
-                if (event.type == HttpEventType.UploadProgress) {
+                if (event.type === HttpEventType.UploadProgress) {
                   const percentDone = Math.round(100 * event.loaded / event.total);
                   console.log(`File is ${percentDone}% loaded.`);
                 } else if (event instanceof HttpResponse) {
@@ -138,14 +138,14 @@ export class ViewPorposalComponent implements OnInit {
                 }
               },
               (err) => {
-                console.log("Upload Error:", err);
+                console.log('Upload Error:', err);
                 this.dialogRef.close('Proposal Successfully Submitted');
 
               }, () => {
-                console.log("Upload done");
+                console.log('Upload done');
                 this.dialogRef.close('Proposal Successfully Submitted');
               }
-            )
+            );
         }
       }
     );
@@ -167,26 +167,33 @@ export class ViewPorposalComponent implements OnInit {
     this.isAdmin = this.data.admin;
 
 
-    if (parseInt(this.data.data.proposal_status) == 0){
+    // tslint:disable-next-line:radix
+    if (parseInt(this.data.data.proposal_status) === 0) {
       this.pending = true;
     }
-    if (parseInt(this.data.data.proposal_status) == 1){
+    // tslint:disable-next-line:radix
+    if (parseInt(this.data.data.proposal_status) === 1) {
       this.approved = true;
       this.stateLabel = 'Accepted';
     }
-    if (parseInt(this.data.data.proposal_status) == 2) {
+    // tslint:disable-next-line:radix
+    if (parseInt(this.data.data.proposal_status) === 2) {
       this.moa = true;
     }
-    if (parseInt(this.data.data.proposal_status) == 3) {
+    // tslint:disable-next-line:radix
+    if (parseInt(this.data.data.proposal_status) === 3) {
       this.report = true;
     }
-    if (parseInt(this.data.data.proposal_status) == 4) {
+    // tslint:disable-next-line:radix
+    if (parseInt(this.data.data.proposal_status) === 4) {
       this.approved = true;
     }
-    if (parseInt(this.data.data.proposal_status) == 5) {
+    // tslint:disable-next-line:radix
+    if (parseInt(this.data.data.proposal_status) === 5) {
       this.done = true;
     }
-    if (parseInt(this.data.data.proposal_status) == 6) {
+    // tslint:disable-next-line:radix
+    if (parseInt(this.data.data.proposal_status) === 6) {
       console.log('hello');
       this.revision = true;
       this.stateLabel = 'For Revision';
@@ -194,30 +201,32 @@ export class ViewPorposalComponent implements OnInit {
     // this.activeStep += parseInt(this.data.data.proposal_status);
 
 
-    if(this.data.data.budget_total > 0){
+    if (this.data.data.budget_total > 0) {
       this.budget = true;
     }
+    // tslint:disable-next-line:radix
     if (parseInt(this.data.data.proposal_status) < 6) {
-      this.stepper.selectedIndex = parseInt(this.data.data.proposal_status);    
+      // tslint:disable-next-line:radix
+      this.stepper.selectedIndex = parseInt(this.data.data.proposal_status);
     }
 
     console.log(this.stateLabel);
 
   }
 
-  verdict(data){
+  verdict(data) {
     this.params.push({
-      'id' :this.data.data.proposal_id,
+      'id' : this.data.data.proposal_id,
       'decision': data,
-      'title':this.data.data.proposal_title
+      'title': this.data.data.proposal_title
     });
     this.user.proposal_approval(this.params).subscribe(
       (response) => {
-        if (response){
+        if (response) {
           this.user.get_proposals().subscribe(
             (result) => {
-              console.log(result)
-              if (data == 1) {
+              console.log(result);
+              if (data === 1) {
                 console.log('Proposal Successfully Approved');
               } else {
                 this.showComment();
@@ -228,18 +237,18 @@ export class ViewPorposalComponent implements OnInit {
         }
       }
     );
-    
+
   }
 
-  download_pdf(id,status){
-    this.user.update_proj_stat({'id':id,'status':status}).subscribe(
-      (response)=>{
-        if (response){
+  download_pdf(id, status) {
+    this.user.update_proj_stat({'id': id, 'status': status}).subscribe(
+      (response) => {
+        if (response) {
           this.dialogRef.close();
           this.generatePDF();
         }
       }
-    )
+    );
   }
 
   generatePDF(quality = 1) {
@@ -308,7 +317,7 @@ export class ViewPorposalComponent implements OnInit {
   }
 
   upload_moa(event) {
-    
+
     // this.file = files.item(0);
     this.files = event.target.files;
     this.moa_file = this.files[0];
@@ -325,12 +334,12 @@ export class ViewPorposalComponent implements OnInit {
     $('#signedName').val(this.files[0]['name']);
   }
 
-  upload_files(title,id,user_id){
-    if (this.moa_file != null && this.signed){
+  upload_files(title, id, user_id) {
+    if (this.moa_file != null && this.signed) {
         this.upload.moa_c(this.moa_file, this.signed, title, id, user_id)
           .subscribe(
             event => {
-              if (event.type == HttpEventType.UploadProgress) {
+              if (event.type === HttpEventType.UploadProgress) {
                 const percentDone = Math.round(100 * event.loaded / event.total);
                 console.log(`File is ${percentDone}% loaded.`);
               } else if (event instanceof HttpResponse) {
@@ -338,28 +347,28 @@ export class ViewPorposalComponent implements OnInit {
               }
             },
             (err) => {
-              console.log("Upload Error:", err);
+              console.log('Upload Error:', err);
               this.dialogRef.close('Proposal Successfully Submitted');
 
             }, () => {
-              console.log("Upload done");
+              console.log('Upload done');
               this.dialogRef.close('Proposal Successfully Submitted');
             }
-          )
-      }else{
+          );
+      } else {
         console.log('Please upload the two file simultaneously');
       }
     }
-  implementation_status(status){
-    this.user.implementation_status(status,this.prop_id).subscribe(
+  implementation_status(status) {
+    this.user.implementation_status(status, this.prop_id).subscribe(
       (response) => {
-        if(response){
+        if (response) {
           this.dialogRef.close();
-        }else{
+        } else {
           console.log('Something went Wrong');
         }
       }
-    )
+    );
 
   }
 

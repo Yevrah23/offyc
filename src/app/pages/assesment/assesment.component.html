@@ -122,13 +122,13 @@
               <!-- Position Column -->
               <ng-container matColumnDef="userID">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> User ID </th>
-                <td mat-cell *matCellDef="let record"> {{record.proposal_title}} </td>
+                <td mat-cell *matCellDef="let record" (click)="regRequest()"> {{record.proposal_title}} </td>
               </ng-container>
 
               <!-- Name Column -->
               <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Full Name </th> <!-- Concat first name and last name -->
-                <td mat-cell *matCellDef="let record"> {{record.proposal_beneficiaries}} </td>
+                <td mat-cell *matCellDef="let record" (click)="regRequest()"> {{record.proposal_beneficiaries}} </td>
               </ng-container>
 
               <!-- Weight Column -->
@@ -142,8 +142,10 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
                 <td mat-cell *matCellDef="let record">
                   <div class="actions">
-                    <button mat-raised-button (click)="fileDetails()">Download</button>
-                    <button mat-raised-button (click)="viewProposal()">View</button>
+                    <!-- accpet or delete nlng drtso sa mga request. 
+                      then if e click ang row sa table ayha mo popup ang detailed na details sa na register -->
+                    <button mat-raised-button>Accept</button>
+                    <button mat-button>Delete</button>
                   </div>
                 </td>
               </ng-container>

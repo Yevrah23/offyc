@@ -7,9 +7,16 @@
       <div class="col-md"> <p class="color-accent">CITC: Proposal Submission</p> </div>
     </div><!-- end row -->
 
-    <div class="row">
-      <div class="col-md-4"><small class="color-secondaryVariant" for="">Attached File :</small></div>
-      <div class="col-md"> <p class="color-secondary text-regular-14">Filename.pdf</p> </div>
+    <!-- diri makita ang mga files na naka attached sa kani nga project -->
+    <div class="row"> 
+      <div class="col-md-4"><small class="color-secondaryVariant" for="">Attached files:</small></div>
+      <div class="col-md"> 
+       <a href="#"><p class="color-secondary text-regular-14">Proposal-Cover.pdf</p></a> 
+       <a href="#"><p class="color-secondary text-regular-14">MOA.pdf</p></a> 
+       <a href="#"><p class="color-secondary text-regular-14">SignedProposal.pdf</p></a>
+       <!-- dili rani tulo. apil tong mga attendance ug ang kato na e upload nila sa accomplishment report makita dri 
+      pag e click a ng filename nlng guro ma dl nila ang file. kai wala nmn restriction ana si maam.-->
+      </div>
     </div><!-- end row -->
   </div><!-- end wrapper -->
 </mat-dialog-content>
@@ -19,7 +26,6 @@
     <div class="row">
       <div class="col-md text-right">
         <button mat-button mat-dialog-close>Close</button>
-        <button mat-raised-button mat-dialog-close color="primary" (click)="showWarning()">Download</button>
       </div>
     </div>
   </div>

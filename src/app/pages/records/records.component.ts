@@ -20,7 +20,7 @@ export class RecordsComponent implements OnInit {
   isAdmin = true;
   isUser = true;
   token: any;
-  
+
   // tempo: any;
 
   // table data sample
@@ -40,7 +40,7 @@ export class RecordsComponent implements OnInit {
   User: MatTableDataSource<any>;
 
   // data tables
-  record:any;
+  record: any;
 
   // table data sample
   records: any[];
@@ -76,13 +76,12 @@ export class RecordsComponent implements OnInit {
         this.record = response;
 
         this.record.proposal_date_start = this.record.proposal_date_start.substring(0, 10);
-        this.record.proposal_date_end = this.record.proposal_date_end.substring(0,10);
+        this.record.proposal_date_end = this.record.proposal_date_end.substring(0, 10);
 
-        
         const dialogRef = this.dialog.open(ViewPorposalComponent, {
           width: '1000px',
           panelClass: 'custom-dialog-view',
-          data:{
+          data: {
             data : this.record,
             admin: this.isAdmin,
             user : this.isUser
@@ -94,8 +93,8 @@ export class RecordsComponent implements OnInit {
           console.log(result);
         });
       }
-    )
-    
+    );
+
   }
 
   fileDetails(): void {
@@ -117,8 +116,8 @@ export class RecordsComponent implements OnInit {
     } else {
       this.isAdmin = false;
     }
-    
-    if(this.isAdmin){
+
+    if (this.isAdmin) {
       this.user.get_des_proposals().subscribe(
         (response) => {
           this.showSpinner = false;
@@ -146,8 +145,8 @@ export class RecordsComponent implements OnInit {
             this.CSTE.sort = this.sort;
           }
         }
-      )
-    }else{
+      );
+    } else {
       this.user.get_proposals_user(this.cookies.get('id')).subscribe(
         (response) => {
           this.showSpinner = false;
@@ -166,7 +165,7 @@ export class RecordsComponent implements OnInit {
 
           }
         }
-      )
+      );
     }
   }
 
@@ -207,7 +206,7 @@ export class RecordsComponent implements OnInit {
     if (this.CEA.paginator) {
       this.CEA.paginator.firstPage();
     }
-    
+
     if (this.User.paginator) {
       this.User.paginator.firstPage();
     }

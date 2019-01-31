@@ -6,6 +6,7 @@ import { GenerateReportComponent } from 'src/app/modal/generate-report/generate-
 
 import * as $ from 'jquery';
 import { UserServices } from 'src/app/services/user_services';
+import { RegViewComponent } from 'src/app/modal/reg-view/reg-view.component';
 
 @Component({
   selector: 'app-assesment',
@@ -110,6 +111,19 @@ export class AssesmentComponent implements OnInit {
 
         });
       });
+  }
+
+    // Registration Request View  modal if e click ang name ug user id.
+    regRequest(): void {
+    const dialogRef = this.dialog.open(RegViewComponent, {
+      width: '535px',
+      panelClass: 'custom-dialog-regRequest'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+    });
   }
 
   // viewProposal(): void {
