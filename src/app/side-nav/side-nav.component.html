@@ -35,7 +35,8 @@
           </button>
 
           <mat-menu #appMenu="matMenu">
-            <button mat-menu-item>Settings</button>
+            <!-- Account settings -->
+            <button mat-menu-item (click)="showSettings()">Settings</button>
             <button mat-menu-item (click)="logout()">Sign Out</button>
           </mat-menu>
 

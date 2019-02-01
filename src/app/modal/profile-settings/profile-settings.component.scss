@@ -1,0 +1,13 @@
+// avatar - profiles
+.avatar {
+  display: grid;
+  background: #707070;
+  width: 104px;
+  height: 104px;
+  margin: 0 auto;
+  border-radius: 50%;
+
+  span {
+    margin: auto;
+  }
+}

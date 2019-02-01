@@ -6,6 +6,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { UserServices } from '../services/user_services';
 import * as $ from 'jquery';
+import { MatDialog } from '@angular/material';
+import { ProfileSettingsComponent } from '../modal/profile-settings/profile-settings.component';
 
 
 @Component({
@@ -29,7 +31,25 @@ export class SideNavComponent implements OnInit {
     );
 
   // tslint:disable-next-line:max-line-length
-  constructor(private breakpointObserver: BreakpointObserver, private cookies: CookieService, private router: Router, private user: UserServices) {}
+  constructor(
+    public dialog: MatDialog,
+    private breakpointObserver: BreakpointObserver,
+    private cookies: CookieService,
+    private router: Router,
+    private user: UserServices
+  ) { }
+
+  showSettings(): void {
+    const dialogRef = this.dialog.open(ProfileSettingsComponent, {
+      width: '800px',
+      panelClass: 'custom-dialog-porfileSettings'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+    });
+  }
 
   ngOnInit() {
     this.read = [];
