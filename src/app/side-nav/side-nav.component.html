@@ -26,7 +26,8 @@
             <i class="far fa-bell myfont"></i>
             <span *ngIf="hasNotif" class="notif-badge">{{notif_count}}</span>
           </button>
-          <span>Admin</span>
+          <span *ngIf="isAdmin">Admin</span>
+          <span *ngIf = "isUser">User</span>
           <button mat-icon-button [matMenuTriggerFor]="appMenu">
             <div class="avatar">
               <i class="fas fa-camera" style="color:#fff;"></i>

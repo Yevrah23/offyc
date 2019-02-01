@@ -10,19 +10,28 @@ export class SuccessComponent implements OnInit {
 
   fromReg: boolean;
   test: boolean;
+  fromLogin: boolean = false;
+  fromRegApproval: boolean = false;
+  RegApproval: boolean = false;
+  loginStatus: any;
 
   constructor(
     public dialogRef: MatDialogRef<SuccessComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    if (this.data.page === 'fromReg' ) {
-      this.fromReg = true;
-    } else {
-      this.test = true;
-    }
+    
    }
 
   ngOnInit() {
+    if (this.data.page === 'fromReg') {
+      this.fromReg = true;
+    } else if(this.data.page === 'frmLogin'){
+      this.fromLogin = true;
+      this.loginStatus = this.data.status;
+    } else if (this.data.page === 'frmRegApproval'){
+      this.RegApproval = this.data.status;
+      this.fromRegApproval = true;
+    }
   }
 
 }

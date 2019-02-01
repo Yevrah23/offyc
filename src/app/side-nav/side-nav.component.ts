@@ -19,7 +19,8 @@ export class SideNavComponent implements OnInit {
   notif_count: any;
   
 
-  isAdmin = true;
+  isAdmin : boolean = false;
+  isUser : boolean = false;
   token: any;
   hasNotif = true;
 
@@ -31,12 +32,36 @@ export class SideNavComponent implements OnInit {
   constructor(private breakpointObserver: BreakpointObserver, private cookies: CookieService, private router: Router, private user: UserServices) {}
   
   ngOnInit(){
+    this.token = this.cookies.get(this.cookies.get('id'));
+    if(this.user.isLoggedIn){
+      this.user.check_login(this.token).subscribe(
+        (response) => {
+          console.log(response[0]);
+          if (response[0]) {
+            this.user.isLoggedIn = true;
+            if (response[1] == 1) {
+              this.isAdmin = true;
+            } else {
+              this.isUser = true;
+            }
+          } else {
+            this.router.navigate(['/']);
+            console.log('You Sneaky Bastard');
+          }
+        }
+      );
+    }else{
+      this.router.navigate(['/']);
+      console.log('You Sneaky Bastard');
+    }
+
     this.read = [];
     this.unread = [];
     this.token = this.cookies.get('set');
     if (this.token === '2') {
       this.isAdmin = false;
     } else {
+
     }
 
     this.user.getNotifs(this.cookies.get('id')).subscribe(
@@ -100,6 +125,7 @@ export class SideNavComponent implements OnInit {
   logout() {
     console.log('hello');
     this.cookies.deleteAll();
+    this.user.isLoggedIn = false;
     this.router.navigate(['/']);
   }
 

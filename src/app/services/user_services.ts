@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 export class UserServices {
     private serverUrl = 'http://localhost/';
     // private serverUrl = 'http://192.168.43.31/';
-    // isLoggedIn: boolean;
+    isLoggedIn: boolean = false;
     admin: boolean;
     user: boolean;
     fileToGo: File = null;
@@ -148,5 +148,14 @@ export class UserServices {
     }
     implementation_status(status,prop_id){
         return this.http.post(this.serverUrl + 'codeigniter/api/Users/implementation_status', { 'prop_id': prop_id, 'status': status });
+    }
+
+    get_unregistered(){
+        return this.http.get(this.serverUrl + 'codeigniter/api/Users/get_unregistered');
+    }
+
+    approve_registration(id,status){
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/approve_registration', { 'id': id, 'status': status });
+
     }
 }

@@ -18,6 +18,7 @@ import html2canvas from 'html2canvas';
 })
 export class HomeComponent implements OnInit {
   token: any;
+  session:any;
 
   // Calendar api
   calendarOptions: Options;
@@ -43,17 +44,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.token = this.cookies.get(this.cookies.get('id'));
-    this.user.check_login(this.token).subscribe(
-      (response) => {
-        console.log(response[0]);
-        if (response[0]) {
-          // this.router.navigate(['/']);
-        } else {
-          // console.log('Hello Admin')
-        }
-      }
-    );
     this.user.getEvents().subscribe(data => {
       this.calendarOptions = {
         editable: false,
@@ -68,23 +58,23 @@ export class HomeComponent implements OnInit {
     });
 
     // retrieve data  via HTTP
-    this.http.get('https://jsonplaceholder.typicode.com/users')
-      .subscribe((data: any[]) => {
-        this.showSpinner = false;
-        this.showData = true;
-        // this.records = data;
-        this.dataSource = new MatTableDataSource(data); // for mat-table
+    // this.http.get('https://jsonplaceholder.typicode.com/users')
+    //   .subscribe((data: any[]) => {
+    //     this.showSpinner = false;
+    //     this.showData = true;
+    //     // this.records = data;
+    //     this.dataSource = new MatTableDataSource(data); // for mat-table
 
-        // mat table
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-        // this.chRef.detectChanges();
-        // User
-        // Display data tables
-        // // user
-        // const table: any = $('#transaction');
-        // this.dataTable = table.dataTable();
-      });
+    //     // mat table
+    //     this.dataSource.paginator = this.paginator;
+    //     this.dataSource.sort = this.sort;
+    //     // this.chRef.detectChanges();
+    //     // User
+    //     // Display data tables
+    //     // // user
+    //     // const table: any = $('#transaction');
+    //     // this.dataTable = table.dataTable();
+    //   });
   }
 
   // search table

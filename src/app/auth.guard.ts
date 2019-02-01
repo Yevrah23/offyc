@@ -8,19 +8,18 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-
+  isLoggedIn : boolean = false;
   constructor(private transac: UserServices, private cookies: CookieService) {
-
+    this.isLoggedIn = transac.isLoggedIn;
   }
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-      // if (this.cookies.get('random').length > 0) {
-      //   return true;
-      // } else {
-      //   return false;
-      // }
-    return true ;
+      if (this.isLoggedIn) {
+        return true;
+      } else {
+        return false;
+      }
   }
 }
