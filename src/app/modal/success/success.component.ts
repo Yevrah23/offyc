@@ -9,14 +9,18 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class SuccessComponent implements OnInit {
 
   fromReg: boolean;
+  fromProfileSettings: boolean;
   test: boolean;
 
   constructor(
     public dialogRef: MatDialogRef<SuccessComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
+    // check which template to display.
     if (this.data.page === 'fromReg' ) {
       this.fromReg = true;
+    } else if (this.data.page === 'fromProfileSettings') {
+      this.fromProfileSettings = true;
     } else {
       this.test = true;
     }

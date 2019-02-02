@@ -126,7 +126,6 @@ showSuccess(page): void {
           console.log('Username Taken');
         } else if (response === 1) {
           const page = 'fromReg'; // para makita asa na page ang gkan g click ang  success na dialog, para dynamic ang success na modal.
-          console.log('Registered', page);
           this.router.navigate(['/', 'login']);
           this.showSuccess(page);
         } else {

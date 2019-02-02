@@ -22,8 +22,20 @@
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">Name :</span>
         </div>
-        <div class="col-md"> Jazer Kemuel Zayas</div>
-        <div class="col-md color-secondary"> <a mat-button> Edit </a> </div>
+        <div class="col-md">
+          <span *ngIf="nameEdit;else nameInput"> Jazer Kemuel Zayas </span>
+          <ng-template #nameInput>
+            <mat-form-field>
+              <input type="text" name="nameVal" matInput [readOnly]="NameReadOnly">
+            </mat-form-field>
+          </ng-template>
+        </div>
+        <div class="col-md color-secondary">
+          <button *ngIf="editNameButton;else saveName" mat-button (click)="edit('name')"> Edit </button>
+          <ng-template #saveName>
+            <button mat-button (click)="edit('saveName')"> Save </button>
+          </ng-template>
+        </div>
       </div>
       <!-- Username -->
       <div class="row">
@@ -37,16 +49,40 @@
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">Password :</span>
         </div>
-        <div class="col-md">******</div>
-        <div class="col-md color-secondary"> <a mat-button> Edit </a> </div>
+        <div class="col-md">
+          <span *ngIf="passEdit;else passInput">******</span>
+          <ng-template #passInput>
+            <mat-form-field>
+              <input type="password" name="passVal" matInput [readOnly]="passReadOnly">
+            </mat-form-field>
+          </ng-template>
+        </div>
+        <div class="col-md color-secondary">
+          <button *ngIf="editPassButton;else savePass" mat-button (click)="edit('pass')"> Edit </button>
+          <ng-template #savePass>
+            <button mat-button (click)="edit('savePass')"> Save </button>
+          </ng-template>
+        </div>
       </div>
       <!-- Email -->
       <div class="row">
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">Email :</span>
         </div>
-        <div class="col-md">jaz@rocketstack.net</div>
-        <div class="col-md color-secondary"> <a mat-button> Edit </a> </div>
+        <div class="col-md">
+          <span *ngIf="emailEdit;else emailInput">jaz@rocketstack.net</span>
+          <ng-template #emailInput>
+            <mat-form-field>
+              <input type="email" name="emailVal" matInput [readOnly]="EmailReadOnly">
+            </mat-form-field>
+          </ng-template>
+        </div>
+        <div class="col-md color-secondary">
+          <button *ngIf="editEmailButton;else saveEmail" mat-button (click)="edit('email')"> Edit </button>
+          <ng-template #saveEmail>
+            <button mat-button (click)="edit('saveEmail')"> Save </button>
+          </ng-template>
+        </div>
       </div>
       <!-- Postion -->
       <div class="row">
@@ -81,9 +117,31 @@
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">Contact Number :</span>
         </div>
-        <div class="col-md">(+63)9959556723</div>
-        <div class="col-md color-secondary"> <a mat-button> Edit </a> </div>
+        <div class="col-md">
+          <span *ngIf="numberEdit;else numberInput">(+63) 9959556723</span>
+          <ng-template #numberInput>
+            <mat-form-field>
+              <input type="number" name="numberVal" matInput [readOnly]="NumberReadOnly">
+            </mat-form-field>
+          </ng-template>
+        </div>
+        <div class="col-md color-secondary">
+          <button *ngIf="editNumberButton;else saveNumber" mat-button (click)="edit('number')"> Edit </button>
+          <ng-template #saveNumber>
+            <button mat-button (click)="edit('saveNumber')"> Save </button>
+          </ng-template>
+        </div>
       </div>
     </div>
   </mat-dialog-content>
+  <mat-dialog-actions>
+    <div class="container Form-action-wrapper">
+      <div class="row">
+        <div class="col-md text-center">
+          <button mat-button mat-dialog-close color="primary">Back</button>
+          <button mat-raised-button mat-dialog-close color="primary" (click)="saveSettings()">save</button>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-actions>
 </div>
