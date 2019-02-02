@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
                public acRoute: ActivatedRoute, public dialog: MatDialog) { }
 
   ngOnInit() {
+    this.cookies.deleteAll('/','localhost');
     console.log(this.user.isLoggedIn);
     if (this.user.isLoggedIn){
       this.router.navigate(['/', this.cookies.get('id')]);
@@ -45,15 +46,15 @@ export class LoginComponent implements OnInit {
   login_user() {
     this.credentials.push({ 'username': this.username, 'password': this.password });
     this.user.login(this.credentials).subscribe(
-      (response) => {
+      (response) => { 
         console.log(response);
         this.credentials = [];
-        if (response[1][0]) {
+        if (response[0]) {
           this.showSuccess('frmLogin', response['message'], true);
           this.user.isLoggedIn = true;
-          this.cookies.set('id', response[1][1].user_school_id);
-          this.cookies.set(response[1][1].user_school_id, response[1][3]);
-          this.router.navigate(['/', response[1][1].user_school_id]);
+          this.cookies.set('id', response[1].user_school_id);
+          this.cookies.set(response[1].user_school_id, response[3]);
+          this.router.navigate(['/', response[1].user_school_id]);
           //   // this.router.navigate(['/', 'admin']);
           }else{
             this.showSuccess('frmLogin', response['message'],false);

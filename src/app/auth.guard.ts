@@ -8,7 +8,7 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  isLoggedIn : boolean = false;
+  isLoggedIn : boolean = true;
   constructor(private transac: UserServices, private cookies: CookieService) {
     this.isLoggedIn = transac.isLoggedIn;
   }
@@ -19,7 +19,12 @@ export class AuthGuard implements CanActivate {
       if (this.isLoggedIn) {
         return true;
       } else {
-        return false;
+        if (this.cookies.get('id').length > 0) {
+          this.transac.isLoggedIn = true;
+          return true;
+        } else {
+          return false;
+        }
       }
   }
 }

@@ -22,7 +22,7 @@ export class SideNavComponent implements OnInit {
   isAdmin : boolean = false;
   isUser : boolean = false;
   token: any;
-  hasNotif = true;
+  hasNotif : boolean = false;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -87,11 +87,12 @@ export class SideNavComponent implements OnInit {
             }
 
           });
-          this.notif_count = this.unread.length;
         }
 
         if (this.unread.length > 0){
+          this.hasNotif = true;
           $(".notif-icon").addClass("unread");
+          this.notif_count = this.unread.length;
         }
       }
     )
@@ -123,8 +124,7 @@ export class SideNavComponent implements OnInit {
   }
 
   logout() {
-    console.log('hello');
-    this.cookies.deleteAll();
+    this.cookies.deleteAll('/', 'localhost');
     this.user.isLoggedIn = false;
     this.router.navigate(['/']);
   }

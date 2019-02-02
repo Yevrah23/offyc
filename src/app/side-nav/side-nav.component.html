@@ -6,7 +6,7 @@
     </mat-toolbar>
     <mat-nav-list>
       <a (click) = "check_notifs" mat-list-item routerLink='dashboard'><span>Dashboard</span></a>
-      <a (click) = "check_notifs" mat-list-item routerLink='notification'><span>Notification ({{notif_count}})</span></a>
+      <a (click) = "check_notifs" mat-list-item routerLink='notification'><span>Notification <span *ngIf = "hasNotif">({{notif_count}})</span></span></a>
       <a (click) = "check_notifs" mat-list-item routerLink='records'><span>Records</span></a>
       <a (click) = "check_notifs" mat-list-item routerLink='activites'><span>Activities</span></a>
       <a (click) = "check_notifs" mat-list-item routerLink='assesment'  *ngIf="isAdmin"><span>Assesment</span></a>

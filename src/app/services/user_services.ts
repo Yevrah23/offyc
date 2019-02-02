@@ -29,7 +29,11 @@ export class UserServices {
     login(params) {
         // console.log(params);
         // tslint:disable-next-line:max-line-length
-        return this.http.post(this.serverUrl + 'codeigniter/api/Users/login', {'username': params[0].username, 'password' : params[0].password});
+        return this.http.post(
+            this.serverUrl + 'codeigniter/api/Users/login', 
+            {'username': params[0].username, 'password' : params[0].password},
+            {reportProgress : true}
+        );
     }
     register(params) {
         // console.log(params[0]);
