@@ -26,15 +26,17 @@
       </mat-radio-group>
 
       <mat-form-field>
-        <input matInput [matDatepicker]="start" placeholder="From">
-        <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
-        <mat-datepicker #start startView="year" [startAt]="startDate"></mat-datepicker>
+        <mat-select placeholder="Quarter">
+          <mat-option value="1Q">1st Quarter</mat-option>
+          <mat-option value="2Q">2nd Quarter</mat-option>
+          <mat-option value="3Q">3rd Quarter</mat-option>
+          <mat-option value="4Q">4th Quarter</mat-option>
+        </mat-select>
       </mat-form-field>
 
-      <mat-form-field>
-        <input matInput [matDatepicker]="end" placeholder="To">
-        <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
-        <mat-datepicker #end startView="year" [startAt]="startDate"></mat-datepicker>
+      <mat-form-field floatLabel="auto">
+        <mat-label>No. of Assignatories</mat-label>
+        <input type="number" matInput>
       </mat-form-field>
     </div>
   </mat-dialog-content>

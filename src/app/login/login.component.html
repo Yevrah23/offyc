@@ -1,4 +1,4 @@
-<section class="container-fluid">
+<section *ngIf="showPage" class="container-fluid">
   <div class="row">
 
     <!-- we use mat-card and div -->
@@ -23,3 +23,5 @@
     </div>
   </div>
 </section>
+
+<section *ngIf="showSpinner" app-data-spinner></section>

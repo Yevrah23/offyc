@@ -27,6 +27,7 @@ import { SuccessComponent } from './modal/success/success.component';
 import { ReportTemplateComponent } from './modal/report-template/report-template.component';
 import { CommentComponent } from './modal/comment/comment.component';
 import { RegViewComponent } from './modal/reg-view/reg-view.component';
+import { ProfileSettingsComponent } from './modal/profile-settings/profile-settings.component';
 
 // Cookies ni jaz
 import { CookieService } from 'ngx-cookie-service';
@@ -54,6 +55,7 @@ import { DataSpinnerComponent } from './loading/data-spinner/data-spinner.compon
     ReportTemplateComponent,
     CommentComponent,
     RegViewComponent,
+    ProfileSettingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,7 +78,8 @@ import { DataSpinnerComponent } from './loading/data-spinner/data-spinner.compon
     GenerateReportComponent,
     ReportTemplateComponent,
     CommentComponent,
-    RegViewComponent
+    RegViewComponent,
+    ProfileSettingsComponent
   ],
   providers: [
     UserServices,

@@ -101,10 +101,9 @@ export class UserServices {
             'budget_ustp': params[0].budget_ustp,
             'budget_partner': params[0].budget_partner,
             'prop_id': params[0].prop_id,
-            
         });
     }
-    proposal_approval(params){
+    proposal_approval(params) {
         console.log(params);
         return this.http.post(this.serverUrl + 'codeigniter/api/Users/proposal_approval', {
             'id' : params[0].id,
@@ -123,11 +122,11 @@ export class UserServices {
         return this.http.post(this.serverUrl + 'codeigniter/api/Users/get_proposal', {'id': params});
     }
 
-    get_proposals_user(params){
-        return this.http.post(this.serverUrl + 'codeigniter/api/Users/get_proposals_user',{'user_id':params});
+    get_proposals_user(params) {
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/get_proposals_user', {'user_id': params});
     }
 
-    getEvents(){
+    getEvents() {
         return this.http.get(this.serverUrl + 'codeigniter/api/Users/get_events');
     }
 
@@ -142,15 +141,15 @@ export class UserServices {
         return this.http.post(this.serverUrl + 'codeigniter/api/Users/get_hemis', { 'quarter': params });
     }
 
-    revise_proposal(prop_id,comment){
-        return this.http.post(this.serverUrl + 'codeigniter/api/Users/revise_proposal', { 'prop_id': prop_id,'comment':comment });
+    revise_proposal(prop_id, comment) {
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/revise_proposal', { 'prop_id': prop_id, 'comment': comment });
     }
 
-    update_proj_stat(params){
+    update_proj_stat(params) {
         console.log(params);
         return this.http.post(this.serverUrl + 'codeigniter/api/Users/update_project_status', { 'id': params.id, 'status': params.status });
     }
-    implementation_status(status,prop_id){
+    implementation_status(status, prop_id) {
         return this.http.post(this.serverUrl + 'codeigniter/api/Users/implementation_status', { 'prop_id': prop_id, 'status': status });
     }
 

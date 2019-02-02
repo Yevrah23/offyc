@@ -13,6 +13,10 @@ import { SuccessComponent } from '../modal/success/success.component';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  // spiiner condition
+  showPage = true;
+  showSpinner: boolean;
+
   username: string;
   password: string;
   credentials = [];
@@ -54,6 +58,9 @@ export class LoginComponent implements OnInit {
           this.user.isLoggedIn = true;
           this.cookies.set('id', response[1].user_school_id);
           this.cookies.set(response[1].user_school_id, response[3]);
+          this.showPage = true;
+          this.showSpinner = false;
+          // this.router.navigate(['/', 'admin']);
           this.router.navigate(['/', response[1].user_school_id]);
           //   // this.router.navigate(['/', 'admin']);
           }else{

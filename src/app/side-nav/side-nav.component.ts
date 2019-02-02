@@ -6,6 +6,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { UserServices } from '../services/user_services';
 import * as $ from 'jquery';
+import { MatDialog } from '@angular/material';
+import { ProfileSettingsComponent } from '../modal/profile-settings/profile-settings.component';
 
 
 @Component({
@@ -17,7 +19,7 @@ export class SideNavComponent implements OnInit {
   read = [];
   unread = [];
   notif_count: any;
-  
+
 
   isAdmin : boolean = false;
   isUser : boolean = false;
@@ -29,11 +31,33 @@ export class SideNavComponent implements OnInit {
       map(result => result.matches)
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, private cookies: CookieService, private router: Router, private user: UserServices) {}
-  
-  ngOnInit(){
+  // tslint:disable-next-line:max-line-length
+  constructor(
+    public dialog: MatDialog,
+    private breakpointObserver: BreakpointObserver,
+    private cookies: CookieService,
+    private router: Router,
+    private user: UserServices
+  ) { }
+
+  showSettings(): void {
+    const dialogRef = this.dialog.open(ProfileSettingsComponent, {
+      width: '800px',
+      panelClass: 'custom-dialog-porfileSettings'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+    });
+  }
+
+  ngOnInit() {
+    this.read = [];
+    this.unread = [];
+
     this.token = this.cookies.get(this.cookies.get('id'));
-    if(this.user.isLoggedIn){
+    if (this.user.isLoggedIn) {
       this.user.check_login(this.token).subscribe(
         (response) => {
           console.log(response[0]);
@@ -50,40 +74,31 @@ export class SideNavComponent implements OnInit {
           }
         }
       );
-    }else{
+    } else {
       this.router.navigate(['/']);
       console.log('You Sneaky Bastard');
     }
 
-    this.read = [];
-    this.unread = [];
-    this.token = this.cookies.get('set');
-    if (this.token === '2') {
-      this.isAdmin = false;
-    } else {
-
-    }
-
     this.user.getNotifs(this.cookies.get('id')).subscribe(
       (response) => {
-        if (response[0]){
+        if (response[0]) {
           response[1].forEach(element => {
-            if (element.notif_type_id == 1) {
-              element.notif_type_id = "sent an Extension Project Proposal";
-            } else if (element.notif_type_id == 2) {
-              element.notif_type_id = "You're proposal for an Extension Project has been approved";
-            } else if (element.notif_type_id == 3) {
-              element.notif_type_id = "You're proposal for an Extension Project has been denied"
-            } else if (element.notif_type_id == 4) {
-              element.notif_type_id = "sent an Accomplishment Report"
+            if (element.notif_type_id === 1) {
+              element.notif_type_id = 'sent an Extension Project Proposal';
+            } else if (element.notif_type_id === 2) {
+              element.notif_type_id = 'Your proposal for an Extension Project has been approved';
+            } else if (element.notif_type_id === 3) {
+              element.notif_type_id = 'Your proposal for an Extension Project has been denied';
+            } else if (element.notif_type_id === 4) {
+              element.notif_type_id = 'sent an Accomplishment Report';
             }
           });
           this.user.notifs = response[1];
           this.user.notifs.forEach(element => {
-            if(element.notification_status == 1){
-              this.read.push(element)
-            }else{
-              this.unread.push(element)
+            if (element.notification_status === 1) {
+              this.read.push(element);
+            } else {
+              this.unread.push(element);
             }
 
           });
@@ -95,32 +110,32 @@ export class SideNavComponent implements OnInit {
           this.notif_count = this.unread.length;
         }
       }
-    )
+    );
   }
 
-  unblink(){
-    $(".notif-icon").removeClass("unread");
+  unblink() {
+    $('.notif-icon').removeClass('unread');
   }
 
-  check_notifs(){
-    this.read = []
-    this.unread = []
+  check_notifs() {
+    this.read = [];
+    this.unread = [];
 
     this.user.getNotifs(this.cookies.get('id')).subscribe(
       (response) => {
-        if (response[0]){
+        if (response[0]) {
           this.user.notifs = response[1];
           this.user.notifs.forEach(element => {
-            if(element.notification_status == 1){
-              this.read.push(element)
-            }else{
-              this.unread.push(element)              
-            }  
+            if (element.notification_status === 1) {
+              this.read.push(element);
+            } else {
+              this.unread.push(element);
+            }
           });
           this.notif_count = this.unread.length;
         }
       }
-    )
+    );
   }
 
   logout() {
