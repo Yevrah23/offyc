@@ -1,13 +1,14 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { CookieService } from 'ngx-cookie-service';
 
 import * as $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-bs4';
-import { HttpClient, HttpHeaders, HttpEventType, HttpResponse} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpEventType, HttpResponse } from '@angular/common/http';
 import { UserServices } from 'src/app/services/user_services';
 import { UploadService } from 'src/app/services/upload.service';
+import { SuccessComponent } from '../success/success.component';
 
 
 @Component({
@@ -34,8 +35,31 @@ export class SubmitProposalComponent implements OnInit {
 
   fileName: string;
   files: FileList;
-  constructor(public dialogRef: MatDialogRef<SubmitProposalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, private cookies: CookieService, private user: UserServices, private http: HttpClient, private upload: UploadService) { }
+
+  constructor(
+    public dialog: MatDialog,
+    public dialogRef: MatDialogRef<SubmitProposalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private cookies: CookieService,
+    private user: UserServices,
+    private http: HttpClient,
+    private upload: UploadService
+  ) { }
+
+  showSuccess(page: string): void {
+    const dialogRef = this.dialog.open(SuccessComponent, {
+      width: '435px',
+      panelClass: 'custom-dialog-success',
+      data: {
+        page: page
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+    });
+  }
 
   ngOnInit() {
 
@@ -64,13 +88,13 @@ export class SubmitProposalComponent implements OnInit {
       (response) => {
         if (response) {
           console.log(response);
-          let file = this.files[0];
+          const file = this.files[0];
           console.log(file);
 
-          this.upload.uploadFile(file, 'proposal',this.title)
+          this.upload.uploadFile(file, 'proposal', this.title)
             .subscribe(
               event => {
-                if (event.type == HttpEventType.UploadProgress) {
+                if (event.type === HttpEventType.UploadProgress) {
                   const percentDone = Math.round(100 * event.loaded / event.total);
                   console.log(`File is ${percentDone}% loaded.`);
                 } else if (event instanceof HttpResponse) {
@@ -78,17 +102,19 @@ export class SubmitProposalComponent implements OnInit {
                 }
               },
               (err) => {
-                console.log("Upload Error:", err);
+                console.log('Upload Error:', err);
                 this.dialogRef.close('Proposal Successfully Submitted');
 
               }, () => {
-                console.log("Upload done");
+                console.log('Upload done');
                 this.dialogRef.close('Proposal Successfully Submitted');
               }
-            )
+            );
         }
       }
     );
+    const page = 'fromProposal';
+    this.showSuccess(page);
   }
 
   // upload(){
@@ -100,7 +126,7 @@ export class SubmitProposalComponent implements OnInit {
   // }
 
   getFiles(event) {
-    
+
     // this.file = files.item(0);
     this.files = event.target.files;
     console.log(this.files);
