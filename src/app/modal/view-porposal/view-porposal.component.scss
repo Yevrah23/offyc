@@ -37,6 +37,11 @@ mat-dialog-content.mat-dialog-content {
   padding: 5px;
 }
 
+::ng-deep .checklist .mat-checkbox {
+  width: 100%;
+  display: inline-block !important;
+}
+
 //button start-end
 button.start-end {
   width: 124px !important;

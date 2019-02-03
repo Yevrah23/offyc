@@ -39,7 +39,7 @@ export class ProfileSettingsComponent implements OnInit {
   ) { }
 
   // Alert Save Settings success
-  showSuccess(page): void {
+  showSuccess(page: string): void {
     const dialogRef = this.dialog.open(SuccessComponent, {
       width: '435px',
       panelClass: 'custom-dialog-success',
@@ -112,7 +112,13 @@ export class ProfileSettingsComponent implements OnInit {
   // dri butang ang code sa pag save sa settings
   saveSettings() {
     // tslint:disable-next-line:max-line-length
-    const page = 'fromProfileSettings'; // para makita asa na page ang gkan g click ang  success na dialog, para dynamic ang success na modal.
+    const page = 'fromProfileSettingsSave'; // para makita asa na page ang gkan g click ang  success na dialog, para dynamic ang success na modal.
+    this.showSuccess(page);
+  }
+
+  deleteAccount() {
+    // tslint:disable-next-line:max-line-length
+    const page = 'fromProfileSettingsDelete'; // para makita asa na page ang gkan g click ang  success na dialog, para dynamic ang success na modal.
     this.showSuccess(page);
   }
 }

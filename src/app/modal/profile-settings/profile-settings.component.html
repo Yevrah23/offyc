@@ -18,7 +18,7 @@
         </div>
       </div>
       <!-- Name -->
-      <div class="row">
+      <div class="row py-1">
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">Name :</span>
         </div>
@@ -33,19 +33,19 @@
         <div class="col-md color-secondary">
           <button *ngIf="editNameButton;else saveName" mat-button (click)="edit('name')"> Edit </button>
           <ng-template #saveName>
-            <button mat-button (click)="edit('saveName')"> Save </button>
+            <button mat-button (click)="edit('saveName')"> Done </button>
           </ng-template>
         </div>
       </div>
       <!-- Username -->
-      <div class="row">
+      <div class="row py-1">
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">Username :</span>
         </div>
         <div class="col-md"> 2015103280</div>
       </div>
       <!-- passwword -->
-      <div class="row">
+      <div class="row py-1">
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">Password :</span>
         </div>
@@ -60,12 +60,12 @@
         <div class="col-md color-secondary">
           <button *ngIf="editPassButton;else savePass" mat-button (click)="edit('pass')"> Edit </button>
           <ng-template #savePass>
-            <button mat-button (click)="edit('savePass')"> Save </button>
+            <button mat-button (click)="edit('savePass')"> Done </button>
           </ng-template>
         </div>
       </div>
       <!-- Email -->
-      <div class="row">
+      <div class="row py-1">
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">Email :</span>
         </div>
@@ -80,40 +80,40 @@
         <div class="col-md color-secondary">
           <button *ngIf="editEmailButton;else saveEmail" mat-button (click)="edit('email')"> Edit </button>
           <ng-template #saveEmail>
-            <button mat-button (click)="edit('saveEmail')"> Save </button>
+            <button mat-button (click)="edit('saveEmail')"> Done </button>
           </ng-template>
         </div>
       </div>
       <!-- Postion -->
-      <div class="row">
+      <div class="row py-1">
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">Postion :</span>
         </div>
         <div class="col-md">Project Leader</div>
       </div>
       <!-- Department / College -->
-      <div class="row">
+      <div class="row py-1">
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">College / Department :</span>
         </div>
         <div class="col-md">CITC:Information Technology</div>
       </div>
       <!-- Birthday -->
-      <div class="row">
+      <div class="row py-1">
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">Birthday :</span>
         </div>
         <div class="col-md">June 10, 1995</div>
       </div>
       <!-- Gender -->
-      <div class="row">
+      <div class="row py-1">
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">Gender :</span>
         </div>
         <div class="col-md">Male</div>
       </div>
       <!-- Contact Number -->
-      <div class="row">
+      <div class="row py-1">
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">Contact Number :</span>
         </div>
@@ -128,8 +128,13 @@
         <div class="col-md color-secondary">
           <button *ngIf="editNumberButton;else saveNumber" mat-button (click)="edit('number')"> Edit </button>
           <ng-template #saveNumber>
-            <button mat-button (click)="edit('saveNumber')"> Save </button>
+            <button mat-button (click)="edit('saveNumber')"> Done </button>
           </ng-template>
+        </div>
+      </div>
+      <div class="row py-2">
+        <div class="col-md-5">
+          <button mat-button color="primary" (click)="deleteAccount()"> <u>Delete Account</u> </button>
         </div>
       </div>
     </div>

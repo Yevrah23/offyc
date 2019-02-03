@@ -9,7 +9,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class SuccessComponent implements OnInit {
 
   fromReg: boolean;
-  fromProfileSettings: boolean;
+  fromProfileSettingsSave: boolean;
+  fromProfileSettingsDelete: boolean;
   test: boolean;
 
   constructor(
@@ -19,8 +20,10 @@ export class SuccessComponent implements OnInit {
     // check which template to display.
     if (this.data.page === 'fromReg' ) {
       this.fromReg = true;
-    } else if (this.data.page === 'fromProfileSettings') {
-      this.fromProfileSettings = true;
+    } else if (this.data.page === 'fromProfileSettingsSave') {
+      this.fromProfileSettingsSave = true;
+    } else if (this.data.page === 'fromProfileSettingsDelete') {
+      this.fromProfileSettingsDelete = true;
     } else {
       this.test = true;
     }
