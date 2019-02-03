@@ -8,8 +8,8 @@ export class UserServices {
     private serverUrl = 'http://localhost/';
     // private serverUrl = 'http://192.168.43.31/';
     isLoggedIn: boolean = false;
-    admin: boolean;
-    user: boolean;
+    admin: boolean = false;
+    user: boolean = false;
     fileToGo: File = null;
     tempo: any;
     pending: boolean;

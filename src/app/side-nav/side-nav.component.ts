@@ -63,9 +63,11 @@ export class SideNavComponent implements OnInit {
           console.log(response[0]);
           if (response[0]) {
             this.user.isLoggedIn = true;
-            if (response[1] == 1) {
+            if (response[1][0] == 1) {
+              this.user.admin = true
               this.isAdmin = true;
             } else {
+              this.user.user = true
               this.isUser = true;
             }
           } else {
@@ -88,8 +90,11 @@ export class SideNavComponent implements OnInit {
             } else if (element.notif_type_id === 2) {
               element.notif_type_id = 'Your proposal for an Extension Project has been approved';
             } else if (element.notif_type_id === 3) {
-              element.notif_type_id = 'Your proposal for an Extension Project has been denied';
-            } else if (element.notif_type_id === 4) {
+              element.notif_type_id = 'Your proposal for an Extension Project is requested to be revised';
+            } 
+            else if (element.notif_type_id === 4) {
+              element.notif_type_id = 'sent a revision for an earlier Extension Project Proposal';
+            }else if (element.notif_type_id === 5) {
               element.notif_type_id = 'sent an Accomplishment Report';
             }
           });
@@ -117,26 +122,26 @@ export class SideNavComponent implements OnInit {
     $('.notif-icon').removeClass('unread');
   }
 
-  check_notifs() {
-    this.read = [];
-    this.unread = [];
+  // check_notifs() {
+  //   this.read = [];
+  //   this.unread = [];
 
-    this.user.getNotifs(this.cookies.get('id')).subscribe(
-      (response) => {
-        if (response[0]) {
-          this.user.notifs = response[1];
-          this.user.notifs.forEach(element => {
-            if (element.notification_status === 1) {
-              this.read.push(element);
-            } else {
-              this.unread.push(element);
-            }
-          });
-          this.notif_count = this.unread.length;
-        }
-      }
-    );
-  }
+  //   this.user.getNotifs(this.cookies.get('id')).subscribe(
+  //     (response) => {
+  //       if (response[0]) {
+  //         this.user.notifs = response[1];
+  //         this.user.notifs.forEach(element => {
+  //           if (element.notification_status === 1) {
+  //             this.read.push(element);
+  //           } else {
+  //             this.unread.push(element);
+  //           }
+  //         });
+  //         this.notif_count = this.unread.length;
+  //       }
+  //     }
+  //   );
+  // }
 
   logout() {
     this.cookies.deleteAll('/', 'localhost');

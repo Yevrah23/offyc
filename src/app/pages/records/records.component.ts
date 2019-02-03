@@ -17,8 +17,8 @@ import * as $ from 'jquery';
 })
 export class RecordsComponent implements OnInit {
 
-  isAdmin = true;
-  isUser = true;
+  isAdmin : boolean = false ;
+  isUser : boolean = false ;
   token: any;
 
   // tempo: any;
@@ -110,11 +110,12 @@ export class RecordsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.token = this.cookies.get('set');
-    if (this.token === '1') {
-      this.isUser = false;
+    console.log(this.user.admin);
+    console.log(this.user.user);
+    if (this.user.admin) {
+      this.isAdmin = true;
     } else {
-      this.isAdmin = false;
+      this.isUser = true;
     }
 
     if (this.isAdmin) {

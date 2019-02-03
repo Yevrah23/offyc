@@ -202,7 +202,10 @@
       <div *ngIf = "isUser && !moa">
         Waiting for Extension Staff Action: Download of Filed Proposal Cover
       </div>
-      <div *ngIf = "isAdmin" id="contentToConvert">
+      <div *ngIf="isUser && moa">
+        Proceed to next step: MOA Notarization and Signing of Proposal Cover
+      </div>
+      <div *ngIf = "isAdmin && !moa" id="contentToConvert">
         <table style="height: 187px; width: 864px; margin-left: auto; margin-right: auto;" border="0">
           <tbody>
             <tr>
@@ -447,7 +450,7 @@
   <mat-step>
     <ng-template matStepLabel>Implementaion</ng-template>
     <h4 mat-diaglog-title class="text-center">Ready for Implementaion</h4>
-    <mat-dialog-content>
+    <mat-dialog-content *ngIf = "isUser">
       <div class="container dialog-wrapper py-4" style="width: 370px;">
         <div class="row form-wrapper">
           <div class="col-md text-center">
@@ -455,6 +458,35 @@
           </div>
           <div class="col-md text-center">
             <button *ngIf = "implementing == 1" (click)="implementation_status(2)" mat-raised-button color="primary" class="text-heading-24 start-end">END</button>
+          </div>
+          <div class="col-md text-center">
+            <span *ngIf="implementing == 2" mat-raised-button color="primary" class="text-heading-24 start-end">You are now ready to submit your Accomplisment Report</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md">
+            <h6>Stated Dates of Implementation :</h6>
+            <div class="mx-auto" style="width: fit-content;">
+              <span class="color-primary">Extension Project Started :</span>
+              <p><span class="date text-regular-14 color-accent">{{data.data.proposal_date_start}}</span></p>
+              <span class="color-primary ">Extension Project Ended :</span>
+              <p><span class="date color-accent text-regular-14">{{data.data.proposal_date_end}}</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-content *ngIf = "isAdmin">
+      <div class="container dialog-wrapper py-4" style="width: 370px;">
+        <div class="row form-wrapper">
+          <div class="col-md text-center">
+            <span *ngIf="implementing == 0" mat-raised-button color="primary" class="text-heading-24 start-end">The Proponents has not started implementation</span>
+          </div>
+          <div class="col-md text-center">
+            <span *ngIf="implementing == 1" mat-raised-button color="primary" class="text-heading-24 start-end">The Proponents have started implementation</span>
+          </div>
+          <div class="col-md text-center">
+            <span *ngIf="implementing == 2" mat-raised-button color="primary" class="text-heading-24 start-end">The Proponents have ended implementation</span>
           </div>
         </div>
         <div class="row">
@@ -488,7 +520,43 @@
     <form>
       <ng-template matStepLabel>Accomplishment Report</ng-template>
       <h4 mat-diaglog-title class="text-center">Accomplishment Data</h4>
-      <mat-dialog-content>
+      <mat-dialog-content *ngIf = "isUser">
+        <div class="container dialog-wrapper py-5">
+          <div class="row form-wrapper">
+            <div class="col-md-6">
+              <mat-form-field floatLabel="auto">
+                <mat-label>No. of Persons Trained</mat-label>
+                <input type="number" matInput>
+              </mat-form-field>
+              <mat-form-field floatLabel="auto">
+                <mat-label>No. of Days</mat-label>
+                <input type="number" matInput>
+              </mat-form-field>
+              <div class="upload">
+                <label>Attach File : </label><br>
+                <button mat-raised-button color="primary" (click)="fileInput.click()">Upload</button>
+                <input hidden type="file" #fileInput (change)="getFiles($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf">
+                <input class="mt-2" id="fileName" type="text" placeholder="No file chosen" readonly="true" matInput>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field floatLabel="auto">
+                <mat-label>Satisfactory</mat-label>
+                <input type="number" matInput>
+              </mat-form-field>
+              <mat-form-field floatLabel="auto">
+                <mat-label>Very Satisfactory</mat-label>
+                <input type="number" matInput>
+              </mat-form-field>
+              <mat-form-field floatLabel="auto">
+                <mat-label>Excellent</mat-label>
+                <input type="number" matInput>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </mat-dialog-content>
+      <mat-dialog-content *ngIf = "isAdmin">
         <div class="container dialog-wrapper py-5">
           <div class="row form-wrapper">
             <div class="col-md-6">
