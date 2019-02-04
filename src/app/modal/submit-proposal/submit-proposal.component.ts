@@ -9,6 +9,7 @@ import { HttpClient, HttpHeaders, HttpEventType, HttpResponse } from '@angular/c
 import { UserServices } from 'src/app/services/user_services';
 import { UploadService } from 'src/app/services/upload.service';
 import { SuccessComponent } from '../success/success.component';
+import { FormControl, FormGroup, Validators, FormControlName, FormBuilder } from '@angular/forms';
 
 
 @Component({
@@ -17,6 +18,10 @@ import { SuccessComponent } from '../success/success.component';
   styleUrls: ['./submit-proposal.component.scss']
 })
 export class SubmitProposalComponent implements OnInit {
+
+// form validation
+  submitProposal: FormGroup;
+
   proposal = [];
   title: string;
   sdate: string;
@@ -43,7 +48,8 @@ export class SubmitProposalComponent implements OnInit {
     private cookies: CookieService,
     private user: UserServices,
     private http: HttpClient,
-    private upload: UploadService
+    private upload: UploadService,
+    private _formBuilder: FormBuilder
   ) { }
 
   showSuccess(page: string): void {
@@ -62,7 +68,20 @@ export class SubmitProposalComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.submitProposal = this._formBuilder.group({
+      titleVal: ['', Validators.required],
+      typeVal: ['', Validators.required],
+      proponentsVal: ['', Validators.required],
+      programVal: ['', Validators.required],
+      accreditationLevel: ['', Validators.required],
+      sDate: ['', Validators.required],
+      eDate: ['', Validators.required],
+      tHours: ['', Validators.required],
+      tBenificiary: ['', Validators.required],
+      gBenificiary: ['', Validators.required],
+      projectLocation: ['', Validators.required],
+      partnerAgency: ['', Validators.required]
+    });
   }
 
   save() {

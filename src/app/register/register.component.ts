@@ -89,14 +89,23 @@ showSuccess(page): void {
 }
 
   ngOnInit() {
+    // Angular form validation
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      firstUserName: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(10)]],
+      firstPass: ['', [Validators.required, Validators.minLength(6)]],
+      firstPassConfirm: ['', [Validators.required, Validators.minLength(6)]],
+      firstEmail: ['', [Validators.required, Validators.email]]
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      secondPosition: ['', Validators.required]
     });
     this.thirdFormGroup = this._formBuilder.group({
-      thirdCtrl: ['', Validators.required]
+      thirdFname: ['', Validators.required],
+      thirdMname: ['', Validators.required],
+      thirdLname: ['', Validators.required],
+      thirdBday: ['', Validators.required],
+      thirdGender: ['', Validators.required],
+      thirdCnumber: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(10), Validators.maxLength(10)]],
     });
   }
 
