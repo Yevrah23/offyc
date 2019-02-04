@@ -2,8 +2,7 @@
   <h4 mat-diaglog-title class="text-center color-accent">Account Settings</h4>
 
   <mat-dialog-content>
-
-    <div class="container py-5 color-primary">
+    <div *ngIf = "!edit" class="container py-5 color-primary">
       <div class="row Profile-Picture">
         <div class="col-md text-center">
           <div class="avatar text-center">
@@ -22,68 +21,82 @@
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">Name :</span>
         </div>
-        <div class="col-md"> Jazer Kemuel Zayas</div>
-        <div class="col-md color-secondary"> <a mat-button> Edit </a> </div>
-      </div>
-      <!-- Username -->
-      <div class="row">
-        <div class="col-md-5">
-          <span class="color-secondaryVariant" for="">Username :</span>
-        </div>
-        <div class="col-md"> 2015103280</div>
-      </div>
-      <!-- passwword -->
-      <div class="row">
-        <div class="col-md-5">
-          <span class="color-secondaryVariant" for="">Password :</span>
-        </div>
-        <div class="col-md">******</div>
-        <div class="col-md color-secondary"> <a mat-button> Edit </a> </div>
+        <div class="col-md">{{data.ui_Fname}} {{data.ui_Mname}} {{data.ui_Lname}}</div>
       </div>
       <!-- Email -->
       <div class="row">
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">Email :</span>
         </div>
-        <div class="col-md">jaz@rocketstack.net</div>
-        <div class="col-md color-secondary"> <a mat-button> Edit </a> </div>
+        <div class="col-md">{{data.ui_email}}</div>
       </div>
       <!-- Postion -->
       <div class="row">
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">Postion :</span>
         </div>
-        <div class="col-md">Project Leader</div>
+        <div class="col-md">{{data.ui_position}}</div>
       </div>
       <!-- Department / College -->
       <div class="row">
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">College / Department :</span>
         </div>
-        <div class="col-md">CITC:Information Technology</div>
+        <div class="col-md">{{data.ui_college}} - {{data.ui_dept}}</div>
       </div>
       <!-- Birthday -->
       <div class="row">
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">Birthday :</span>
         </div>
-        <div class="col-md">June 10, 1995</div>
+        <div class="col-md">{{data.ui_birthday}}</div>
       </div>
       <!-- Gender -->
       <div class="row">
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">Gender :</span>
         </div>
-        <div class="col-md">Male</div>
+        <div class="col-md">{{data.ui_gender}}</div>
       </div>
       <!-- Contact Number -->
       <div class="row">
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">Contact Number :</span>
         </div>
-        <div class="col-md">(+63)9959556723</div>
-        <div class="col-md color-secondary"> <a mat-button> Edit </a> </div>
+        <div class="col-md">{{data.ui_contact_number}}</div>
       </div>
+      <button (click)="edit_profile()">Edit Info</button>
+    </div>
+
+
+
+
+
+    <div *ngIf="edit" class="container py-5 color-primary">
+      <!-- Email -->
+      <div class="row">
+        <div class="col-md-5">
+          <span class="color-secondaryVariant" for="">Email :</span>
+        </div>
+        <input type="text" [(ngModel)] = "email">
+      </div>
+      <!-- Birthday -->
+      <div class="row">
+        <div class="col-md-5">
+          <span class="color-secondaryVariant" for="">Birthday :</span>
+        </div>
+        <input type="text" [(ngModel)] = "birthday">
+      </div>
+      <!-- Contact Number -->
+      <div class="row">
+        <div class="col-md-5">
+          <span class="color-secondaryVariant" for="">Contact Number :</span>
+        </div>
+        <input type="text" [(ngModel)] = "contact_number">
+      </div>
+      <button (click)="edit_profile()">Finish Edit</button>
+      <button mat-dialog-close>Close</button>
+
     </div>
   </mat-dialog-content>
 </div>

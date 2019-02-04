@@ -20,6 +20,7 @@ export class SideNavComponent implements OnInit {
   unread = [];
   notif_count: any;
 
+  profile: any;
 
   isAdmin : boolean = false;
   isUser : boolean = false;
@@ -43,7 +44,8 @@ export class SideNavComponent implements OnInit {
   showSettings(): void {
     const dialogRef = this.dialog.open(ProfileSettingsComponent, {
       width: '800px',
-      panelClass: 'custom-dialog-porfileSettings'
+      panelClass: 'custom-dialog-porfileSettings',
+      data:this.profile
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -55,7 +57,7 @@ export class SideNavComponent implements OnInit {
   ngOnInit() {
     this.read = [];
     this.unread = [];
-
+    this.get_profile();
     this.token = this.cookies.get(this.cookies.get('id'));
     if (this.user.isLoggedIn) {
       this.user.check_login(this.token).subscribe(
@@ -122,26 +124,13 @@ export class SideNavComponent implements OnInit {
     $('.notif-icon').removeClass('unread');
   }
 
-  // check_notifs() {
-  //   this.read = [];
-  //   this.unread = [];
-
-  //   this.user.getNotifs(this.cookies.get('id')).subscribe(
-  //     (response) => {
-  //       if (response[0]) {
-  //         this.user.notifs = response[1];
-  //         this.user.notifs.forEach(element => {
-  //           if (element.notification_status === 1) {
-  //             this.read.push(element);
-  //           } else {
-  //             this.unread.push(element);
-  //           }
-  //         });
-  //         this.notif_count = this.unread.length;
-  //       }
-  //     }
-  //   );
-  // }
+  get_profile(){
+    this.user.get_profile(this.cookies.get('id')).subscribe(
+      (response) => {
+        this.profile = response;
+      }
+    )
+  }
 
   logout() {
     this.cookies.deleteAll('/', 'localhost');

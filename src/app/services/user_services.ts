@@ -161,4 +161,8 @@ export class UserServices {
         return this.http.post(this.serverUrl + 'codeigniter/api/Users/approve_registration', { 'id': id, 'status': status });
 
     }
+    
+    get_profile(params) {
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/get_user',{'id':params});
+    }
 }
