@@ -14,22 +14,22 @@
                 <ng-template matStepLabel>Step 1</ng-template>
                 <mat-form-field floatLabel="auto">
                   <mat-label>School ID</mat-label>
-                  <input [(ngModel)]="username" type="text" matInput formControlName="firstCtrl">
+                  <input [(ngModel)]="username" type="text" matInput formControlName="firstUserName">
                 </mat-form-field>
 
                 <mat-form-field floatLabel="auto">
                   <mat-label>Password</mat-label>
-                  <input (keyup)="passCheck()" [(ngModel)]="password" type="password" matInput formControlName="firstCtrl">
+                  <input (keyup)="passCheck()" [(ngModel)]="password" type="password" matInput formControlName="firstPass">
                 </mat-form-field>
 
                 <mat-form-field floatLabel="auto">
                   <mat-label>Confirm Password</mat-label>
-                  <input (keyup)="passCheck()" [(ngModel)]="confirmP" type="password" matInput formControlName="firstCtrl">
+                  <input (keyup)="passCheck()" [(ngModel)]="confirmP" type="password" matInput formControlName="firstPassConfirm">
                 </mat-form-field>
 
                 <mat-form-field floatLabel="auto">
                   <mat-label>Email</mat-label>
-                  <input [(ngModel)]="email" type="email" matInput formControlName="firstCtrl">
+                  <input [(ngModel)]="email" type="email" matInput formControlName="firstEmail">
                 </mat-form-field>
 
                 <div class="btn-wrapper">
@@ -44,7 +44,7 @@
                 <ng-template matStepLabel>Step 2</ng-template>
                 <mat-form-field floatLabel="auto">
                   <mat-label>Position</mat-label>
-                  <input [(ngModel)]="position" type="text" matInput formControlName="secondCtrl">
+                  <input [(ngModel)]="position" type="text" matInput formControlName="secondPosition">
                 </mat-form-field>
 
                 <mat-form-field floatLabel="auto">
@@ -82,27 +82,27 @@
                 <ng-template matStepLabel>Step 2</ng-template>
                 <mat-form-field floatLabel="auto">
                   <mat-label>First Name</mat-label>
-                  <input [(ngModel)]="fName" type="text" matInput formControlName="thirdCtrl">
+                  <input [(ngModel)]="fName" type="text" matInput formControlName="thirdFname">
                 </mat-form-field>
 
                 <mat-form-field floatLabel="auto">
                   <mat-label>Middle Name</mat-label>
-                  <input [(ngModel)]="mName" type="text" matInput formControlName="thirdCtrl">
+                  <input [(ngModel)]="mName" type="text" matInput formControlName="thirdMname">
                 </mat-form-field>
                 <mat-form-field floatLabel="auto">
                   <mat-label>Last Name</mat-label>
-                  <input [(ngModel)]="lName" type="text" matInput formControlName="thirdCtrl">
+                  <input [(ngModel)]="lName" type="text" matInput formControlName="thirdLname">
                 </mat-form-field>
                 <mat-form-field>
-                  <input [(ngModel)]="bDay" matInput [matDatepicker]="start" placeholder="Birthday" formControlName="thirdCtrl">
+                  <input [(ngModel)]="bDay" matInput [matDatepicker]="start" placeholder="Birthday" formControlName="thirdBday">
                   <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
                   <mat-datepicker #start></mat-datepicker>
                 </mat-form-field>
 
                 <mat-form-field class="gender">
-                  <mat-radio-group [(ngModel)]="gender" formControlName="thirdCtrl">
+                  <mat-radio-group [(ngModel)]="gender" formControlName="thirdGender">
                     <mat-label>Gender</mat-label>
-                    <input type="text" matInput formControlName="thirdCtrl" readonly="readonly">
+                    <input type="text" matInput readonly="readonly">
                     <mat-radio-button value="M">Male</mat-radio-button>
                     <mat-radio-button value="F">Female</mat-radio-button>
                   </mat-radio-group>
@@ -110,7 +110,8 @@
 
                 <mat-form-field floatLabel="auto">
                   <mat-label>Contact Number</mat-label>
-                  <input [(ngModel)]="cNumber" type="text" matInput formControlName="thirdCtrl">
+                  <span matPrefix>+63 &nbsp;</span>
+                  <input [(ngModel)]="cNumber" type="text" matInput formControlName="thirdCnumber">
                 </mat-form-field>
 
                 <div>
