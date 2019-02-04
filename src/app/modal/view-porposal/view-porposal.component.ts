@@ -228,6 +228,8 @@ export class ViewPorposalComponent implements OnInit {
               console.log(result);
               if (data === 1) {
                 console.log('Proposal Successfully Approved');
+                this.dialogRef.close()
+                ;
               } else {
                 this.showComment();
                 this.dialogRef.close(result);

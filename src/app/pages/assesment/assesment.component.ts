@@ -77,7 +77,7 @@ export class AssesmentComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(result => {
           console.log('The dialog was closed');
-          this.proposals = result[1];
+          this.get_proposals();
 
         });
       });
@@ -96,33 +96,13 @@ export class AssesmentComponent implements OnInit {
     });
   }
 
-  // viewProposal(): void {
-  //   const dialogRef = this.dialog.open(ViewPorposalComponent, {
-  //     width: '535px',
-  //     panelClass: 'custom-dialog-view'
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //     console.log(result);
-  //   });
-  // }
-
 
   ngOnInit() {
     this.get_unregistered();
     this.get_proposals();
-    }
+  }
     
 
-  // fixed for matSort not working if using ngIf on table
-  // @ViewChild(MatSort) set matSort(ms: MatSort) {
-  //   this.sort = ms;
-  //   this.setDataSourceAttributes();
-  // }
-  // setDataSourceAttributes() {
-  //   this.dataSource.sort = this.sort;
-  // }
 
   get_unregistered(){
     this.user.get_unregistered().subscribe(
@@ -139,13 +119,6 @@ export class AssesmentComponent implements OnInit {
           this.unregistered = null; // for mat-table
         }
 
-        // mat table
-
-
-        // this.chRef.detectChanges();
-        // Display data tables
-        // const table: any = $('table');
-        // this.dataTable = table.dataTable();
       });
   }
 

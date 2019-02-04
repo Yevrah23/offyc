@@ -1,6 +1,5 @@
-<!-- <app-data-spinner *ngIf="true"></app-data-spinner> -->
-
-<section *ngIf="isAdmin" class="container-fluid records admin">
+<section *ngIf="showSpinner" app-data-spinner></section>
+<section *ngIf="isAdmin && !showSpinner" class="container-fluid records admin">
   <div class="row">
     <div class="col-md-12">
       <mat-tab-group dynamicHeight class="progressReport">
@@ -259,7 +258,7 @@
 </section>
 
 
-<section *ngIf="isUser" class="container-fluid records user">
+<section *ngIf="isUser && !showSpinner" class="container-fluid records user">
   <div class="row">
     <!-- button modal trigger -->
     <button class="modal-trigger" color="primary" mat-raised-button (click)="submitProposal()">Submit Proposal</button>

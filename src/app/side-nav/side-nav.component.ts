@@ -87,16 +87,16 @@ export class SideNavComponent implements OnInit {
       (response) => {
         if (response[0]) {
           response[1].forEach(element => {
-            if (element.notif_type_id === 1) {
+            if (element.notif_type_id === "1") {
               element.notif_type_id = 'sent an Extension Project Proposal';
-            } else if (element.notif_type_id === 2) {
+            } else if (element.notif_type_id === "2") {
               element.notif_type_id = 'Your proposal for an Extension Project has been approved';
-            } else if (element.notif_type_id === 3) {
+            } else if (element.notif_type_id === "3") {
               element.notif_type_id = 'Your proposal for an Extension Project is requested to be revised';
             } 
-            else if (element.notif_type_id === 4) {
+            else if (element.notif_type_id === "4") {
               element.notif_type_id = 'sent a revision for an earlier Extension Project Proposal';
-            }else if (element.notif_type_id === 5) {
+            }else if (element.notif_type_id === "5") {
               element.notif_type_id = 'sent an Accomplishment Report';
             }
           });
