@@ -17,42 +17,95 @@
         </div>
       </div>
       <!-- Name -->
-      <div class="row">
+      <div class="row py-1">
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">Name :</span>
         </div>
-        <div class="col-md">{{data.ui_Fname}} {{data.ui_Mname}} {{data.ui_Lname}}</div>
+        <div class="col-md">
+          <span *ngIf="nameEdit;else nameInput"> Jazer Kemuel Zayas </span>
+          <ng-template #nameInput>
+            <mat-form-field>
+              <input type="text" name="nameVal" matInput [readOnly]="NameReadOnly">
+            </mat-form-field>
+          </ng-template>
+        </div>
+        <div class="col-md color-secondary">
+          <button *ngIf="editNameButton;else saveName" mat-button (click)="edit('name')"> Edit </button>
+          <ng-template #saveName>
+            <button mat-button (click)="edit('saveName')"> Done </button>
+          </ng-template>
+        </div>
+      </div>
+      <!-- Username -->
+      <div class="row py-1">
+        <div class="col-md-5">
+          <span class="color-secondaryVariant" for="">Username :</span>
+        </div>
+        <div class="col-md"> 2015103280</div>
+      </div>
+      <!-- passwword -->
+      <div class="row py-1">
+        <div class="col-md-5">
+          <span class="color-secondaryVariant" for="">Password :</span>
+        </div>
+        <div class="col-md">
+          <span *ngIf="passEdit;else passInput">******</span>
+          <ng-template #passInput>
+            <mat-form-field>
+              <input type="password" name="passVal" matInput [readOnly]="passReadOnly">
+            </mat-form-field>
+          </ng-template>
+        </div>
+        <div class="col-md color-secondary">
+          <button *ngIf="editPassButton;else savePass" mat-button (click)="edit('pass')"> Edit </button>
+          <ng-template #savePass>
+            <button mat-button (click)="edit('savePass')"> Done </button>
+          </ng-template>
+        </div>
       </div>
       <!-- Email -->
-      <div class="row">
+      <div class="row py-1">
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">Email :</span>
         </div>
-        <div class="col-md">{{data.ui_email}}</div>
+        <div class="col-md">
+          <span *ngIf="emailEdit;else emailInput">jaz@rocketstack.net</span>
+          <ng-template #emailInput>
+            <mat-form-field>
+              <input type="email" name="emailVal" matInput [readOnly]="EmailReadOnly">
+            </mat-form-field>
+          </ng-template>
+        </div>
+        <div class="col-md color-secondary">
+          <button *ngIf="editEmailButton;else saveEmail" mat-button (click)="edit('email')"> Edit </button>
+          <ng-template #saveEmail>
+            <button mat-button (click)="edit('saveEmail')"> Done </button>
+          </ng-template>
+        </div>
       </div>
       <!-- Postion -->
-      <div class="row">
+      <div class="row py-1">
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">Postion :</span>
         </div>
         <div class="col-md">{{data.ui_position}}</div>
       </div>
       <!-- Department / College -->
-      <div class="row">
+      <div class="row py-1">
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">College / Department :</span>
         </div>
         <div class="col-md">{{data.ui_college}} - {{data.ui_dept}}</div>
       </div>
       <!-- Birthday -->
-      <div class="row">
+      <div class="row py-1">
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">Birthday :</span>
         </div>
         <div class="col-md">{{data.ui_birthday}}</div>
       </div>
       <!-- Gender -->
-      <div class="row">
+      <div class="row py-1">
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">Gender :</span>
         </div>
@@ -88,15 +141,43 @@
         <input type="text" [(ngModel)] = "birthday">
       </div>
       <!-- Contact Number -->
-      <div class="row">
+      <div class="row py-1">
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">Contact Number :</span>
         </div>
-        <input type="text" [(ngModel)] = "contact_number">
+        <div class="col-md">
+          <span *ngIf="numberEdit;else numberInput">(+63) 9959556723</span>
+          <ng-template #numberInput>
+            <mat-form-field>
+              <input type="number" name="numberVal" matInput [readOnly]="NumberReadOnly">
+            </mat-form-field>
+          </ng-template>
+        </div>
+        <div class="col-md color-secondary">
+          <button *ngIf="editNumberButton;else saveNumber" mat-button (click)="edit('number')"> Edit </button>
+          <ng-template #saveNumber>
+            <button mat-button (click)="edit('saveNumber')"> Done </button>
+          </ng-template>
+        </div>
+      </div>
+      <div class="row py-2">
+        <div class="col-md-5">
+          <button mat-button color="primary" (click)="deleteAccount()"> <u>Delete Account</u> </button>
+        </div>
       </div>
       <button (click)="edit_profile()">Finish Edit</button>
       <button mat-dialog-close>Close</button>
 
     </div>
   </mat-dialog-content>
+  <mat-dialog-actions>
+    <div class="container Form-action-wrapper">
+      <div class="row">
+        <div class="col-md text-center">
+          <button mat-button mat-dialog-close color="primary">Back</button>
+          <button mat-raised-button mat-dialog-close color="primary" (click)="saveSettings()">save</button>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-actions>
 </div>

@@ -1,6 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { WarningDownloadComponent } from '../warning-download/warning-download.component';
+import { Component, OnInit, Input } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { SuccessComponent } from '../success/success.component';
+
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-profile-settings',
@@ -9,58 +11,119 @@ import { WarningDownloadComponent } from '../warning-download/warning-download.c
 })
 export class ProfileSettingsComponent implements OnInit {
 
-  edit: boolean = false;
+  // if false input will show
+  nameEdit = true;
+  nameVal: string;
+  passEdit = true;
+  emailEdit = true;
+  numberEdit = true;
+  // if false switch edit button to save
+  editNameButton = true;
+  saveName = false;
+  NameReadOnly: boolean;
 
-  Fname: string;
-  Lname: string;
-  Mname: string;
-  age: string;
-  birthday: string;
-  college: string;
-  contact_number: string;
-  dept: string;
-  email: string;
-  gender: string;
-  id: string;
-  position: string;
-  school_id: string;
-  pass: string;
+  editPassButton = true;
+  savePass = false;
+  passReadOnly: boolean;
 
+  editEmailButton = true;
+  saveEmail = false;
+  EmailReadOnly: boolean;
 
-
+  editNumberButton = true;
+  saveNumber = false;
+  NumberReadOnly: boolean;
 
   constructor(
-    public dialogRef: MatDialogRef<ProfileSettingsComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    public dialog: MatDialog
   ) { }
 
-  ngOnInit() {
-   this.Fname= this.data.ui_Fname;
-   this.Lname= this.data.ui_Lname;
-   this.Mname= this.data.ui_Mnam;
-   this.age= this.data.ui_age;
-   this.birthday= this.data.ui_birthday;
-   this.college= this.data.ui_college;
-   this.contact_number=this.data.ui_contact_number;
-   this.dept= this.data.ui_dept;
-   this.email= this.data.ui_email;
-   this.gender= this.data.ui_gender;
-   this.id= this.data.ui_id;
-   this.position= this.data.ui_position;
-   this.school_id= this.data.ui_school_id;
-   this.pass= this.data.user_pass;
+  // Alert Save Settings success
+  showSuccess(page: string): void {
+    const dialogRef = this.dialog.open(SuccessComponent, {
+      width: '435px',
+      panelClass: 'custom-dialog-success',
+      data: {
+        page: page
+      }
+    });
 
-    console.log(this.birthday);
-    console.log(this.email);
-    console.log(this.contact_number);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+    });
+  }
+  ngOnInit() {
+
   }
 
   edit_profile(){
-    if(!this.edit){
-      this.edit = !this.edit;
-    }else{
-      console.log('done');
+
+  }
+
+  // ngIf condition lng ni. if apra display sa input field if e click ang edit.
+  edit(detail) {
+    if (detail === 'name') {
+      this.nameEdit = false;
+      this.editNameButton = false;
+      this.NameReadOnly = false;
+    } else if (detail === 'pass') {
+      this.passEdit = false;
+      this.editPassButton = false;
+      this.passReadOnly = false;
+    } else if (detail === 'email') {
+      this.emailEdit = false;
+      this.editEmailButton = false;
+      this.EmailReadOnly = false;
+    } else if (detail === 'number') {
+      this.numberEdit = false;
+      this.editNumberButton = false;
+      this.NumberReadOnly = false;
+    } else if (detail === 'saveName') { // for button edit, save Condition.
+      this.editNameButton = true;
+      const name = $('input[name="nameVal"]').val();
+      if (name === '') {
+        this.nameEdit = true;
+      } else {
+        this.NameReadOnly = true;
+      }
+    } else if (detail === 'savePass') { // for button edit, save Condition.
+      this.editPassButton = true;
+      const name = $('input[name="passVal"]').val();
+      if (name === '') {
+        this.passEdit = true;
+      } else {
+        this.passReadOnly = true;
+      }
+    } else if (detail === 'saveEmail') { // dor button edit, save Condition.
+      this.editEmailButton = true;
+      const name = $('input[name="emailVal"]').val();
+      if (name === '') {
+        this.emailEdit = true;
+      } else {
+        this.EmailReadOnly = true;
+      }
+    } else if (detail === 'saveNumber') { // dor button edit, save Condition.
+      this.editNumberButton = true;
+      const name = $('input[name="numberVal"]').val();
+      if (name === '') {
+        this.numberEdit = true;
+      } else {
+        this.NumberReadOnly = true;
+      }
     }
   }
 
+  // dri butang ang code sa pag save sa settings
+  saveSettings() {
+    // tslint:disable-next-line:max-line-length
+    const page = 'fromProfileSettingsSave'; // para makita asa na page ang gkan g click ang  success na dialog, para dynamic ang success na modal.
+    this.showSuccess(page);
+  }
+
+  deleteAccount() {
+    // tslint:disable-next-line:max-line-length
+    const page = 'fromProfileSettingsDelete'; // para makita asa na page ang gkan g click ang  success na dialog, para dynamic ang success na modal.
+    this.showSuccess(page);
+  }
 }

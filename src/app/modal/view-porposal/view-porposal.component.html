@@ -61,7 +61,7 @@
             <div class="col-md-5"><small class="color-secondaryVariant" for="">Attached File :</small></div>
             <div class="col-md"> <a href="{{data.data.proposal_directory}}" target="_blank"><u>{{data.data.proposal_directory}}</u></a></div>
           </div>
-          <div *ngIf = "revision || revision_edit || isAdmin" class="row comment">
+          <div *ngIf="revision || revision_edit || isAdmin" class="row comment">
             <div class="col-md-5">
               <small class="color-warn" for="">Comment :</small>
             </div>
@@ -199,7 +199,7 @@
     <ng-template matStepLabel>Accept</ng-template>
     <h4 mat-diaglog-title class="text-center">Download Proposal Cover Page</h4>
     <mat-dialog-content>
-      <div *ngIf = "isUser && !moa">
+      <div *ngIf="isUser && !moa">
         Waiting for Extension Staff Action: Download of Filed Proposal Cover
       </div>
       <div *ngIf="isUser && moa">
@@ -248,14 +248,16 @@
               <td style="height: 8px; width: 848px; text-align: left;" colspan="3">PROGRAM:</td>
             </tr>
             <tr style="height: 8px; text-align: center;">
-              <td style="height: 40px; width: 868px; text-align: left;" colspan="3" rowspan="5">&nbsp; {{data.data.proponents}}</td>
+              <td style="height: 40px; width: 868px; text-align: left;" colspan="3" rowspan="5">&nbsp;
+                {{data.data.proponents}}</td>
               <td style="height: 8px; width: 848px; text-align: left;" colspan="3">&nbsp; {{data.data.ui_dept}}</td>
             </tr>
             <tr style="height: 8px; text-align: center;">
               <td style="height: 8px; width: 848px; text-align: left;" colspan="3">ACCREDITATION LEVEL:</td>
             </tr>
             <tr style="height: 8px; text-align: center;">
-              <td style="height: 8px; width: 848px; text-align: left;" colspan="3">&nbsp; {{data.data.accreditation_level}}</td>
+              <td style="height: 8px; width: 848px; text-align: left;" colspan="3">&nbsp;
+                {{data.data.accreditation_level}}</td>
             </tr>
             <tr style="height: 8px; text-align: center;">
               <td style="height: 8px; width: 848px; text-align: left;" colspan="3">COLLEGE: {{data.data.ui_college}}</td>
@@ -264,13 +266,16 @@
               <td style="height: 8px; width: 848px; text-align: left;" colspan="3">&nbsp;</td>
             </tr>
             <tr style="height: 8px; text-align: center;">
-              <td style="height: 8px; width: 848px; text-align: left;" colspan="6">&nbsp;TARGET GROUPS/BENIFICIARY: {{data.data.proposal_beneficiaries}}</td>
+              <td style="height: 8px; width: 848px; text-align: left;" colspan="6">&nbsp;TARGET GROUPS/BENIFICIARY:
+                {{data.data.proposal_beneficiaries}}</td>
             </tr>
             <tr style="height: 8px; text-align: center;">
-              <td style="height: 8px; width: 848px; text-align: left;" colspan="6">PROJECT LOCATION: {{data.data.proposal_venue}}</td>
+              <td style="height: 8px; width: 848px; text-align: left;" colspan="6">PROJECT LOCATION:
+                {{data.data.proposal_venue}}</td>
             </tr>
             <tr style="height: 8px; text-align: center;">
-              <td style="height: 8px; width: 848px; text-align: left;" colspan="6">PARTNER AGENCY: {{data.data.proposal_partner}}</td>
+              <td style="height: 8px; width: 848px; text-align: left;" colspan="6">PARTNER AGENCY:
+                {{data.data.proposal_partner}}</td>
             </tr>
             <tr style="height: 8px; text-align: center;">
               <td style="height: 8px; width: 848px; text-align: left;" colspan="6">BUDGET REQUIREMENT:</td>
@@ -290,7 +295,8 @@
               <td style="height: 8px; width: 848px; text-align: left;" colspan="2">&nbsp;TOTAL NUMBER OF HOURS:</td>
             </tr>
             <tr style="height: 8px; text-align: center;">
-              <td style="height: 8px; width: 848px; text-align: left;" colspan="4"> {{data.data.proposal_date_start}} - {{data.data.proposal_date_end}}</td>
+              <td style="height: 8px; width: 848px; text-align: left;" colspan="4"> {{data.data.proposal_date_start}} -
+                {{data.data.proposal_date_end}}</td>
               <td style="height: 8px; width: 848px;" colspan="2">{{data.data.total_hours}}</td>
             </tr>
             <tr style="height: 8px; text-align: center;">
@@ -299,7 +305,8 @@
             <tr style="height: 40px; text-align: center;">
               <td style="height: 40px; text-align: left; border: 0 !important;" colspan="1">&nbsp;</td>
               <td style="height: 40px; width: 848px; border: 0px !important;" colspan="4">
-              <p style="text-align: left;">Submitted by: {{data.data.ui_Lname}}, {{data.data.ui_Fname}} {{data.data.ui_Mname}}</p>
+                <p style="text-align: left;">Submitted by: {{data.data.ui_Lname}}, {{data.data.ui_Fname}}
+                  {{data.data.ui_Mname}}</p>
                 <div class="container">
                   <div class="row py-4">
                     <div class="col-md text-center">
@@ -396,15 +403,17 @@
           <div class="col-md">
             <div class="upload">
               <label>Memorandum of Agreement : </label><br>
-              <a *ngIf = "report" href="{{data.data.moa_directory}}" download target="_blank">Download Scanned Notarized MOA</a>
-              <p *ngIf = "!report">The Extension Staff hasn't uploaded this file yet</p>
+              <a *ngIf="report" href="{{data.data.moa_directory}}" download target="_blank">Download Scanned Notarized
+                MOA</a>
+              <p *ngIf="!report">The Extension Staff hasn't uploaded this file yet</p>
             </div>
           </div>
           <div class="col-md">
             <div class="upload">
               <label>Signed Proposal - Extension Form 02 : </label><br>
-              <a *ngIf = "report" href="{{data.data.cover_directory}}" download target="_blank">Download Scanned Signed Proposal Cover</a>
-              <p *ngIf = "!report">The Extension Staff hasn't uploaded this file yet</p>
+              <a *ngIf="report" href="{{data.data.cover_directory}}" download target="_blank">Download Scanned Signed
+                Proposal Cover</a>
+              <p *ngIf="!report">The Extension Staff hasn't uploaded this file yet</p>
             </div>
           </div>
         </div>
@@ -436,7 +445,8 @@
         <div class="row">
           <div class="col-md text-center">
             <div *ngIf="!report">
-              <button (click)="upload_files(data.data.proposal_title,data.data.proposal_id,data.data.user_id)" mat-raised-button color="primary">Submit</button>
+              <button (click)="upload_files(data.data.proposal_title,data.data.proposal_id,data.data.user_id)"
+                mat-raised-button color="primary">Submit</button>
             </div>
             <div *ngIf="report">
               <button mat-button matStepperPrevious>Back</button>
@@ -454,10 +464,12 @@
       <div class="container dialog-wrapper py-4" style="width: 370px;">
         <div class="row form-wrapper">
           <div class="col-md text-center">
-            <button *ngIf = "implementing == 0" (click)="implementation_status(1)" mat-raised-button color="primary" class="text-heading-24 start-end">START</button>
+            <button *ngIf="implementing == 0" (click)="implementation_status(1)" mat-raised-button color="primary"
+              class="text-heading-24 start-end">START</button>
           </div>
           <div class="col-md text-center">
-            <button *ngIf = "implementing == 1" (click)="implementation_status(2)" mat-raised-button color="primary" class="text-heading-24 start-end">END</button>
+            <button *ngIf="implementing == 1" (click)="implementation_status(2)" mat-raised-button color="primary"
+              class="text-heading-24 start-end">END</button>
           </div>
           <div class="col-md text-center">
             <span *ngIf="implementing == 2" mat-raised-button color="primary" class="text-heading-24 start-end">You are now ready to submit your Accomplisment Report</span>
@@ -609,12 +621,31 @@
       </mat-dialog-actions>
     </form>
   </mat-step>
-  <mat-step>
+  <mat-step >
     <ng-template matStepLabel>Done</ng-template>
 
-    <mat-dialog-content>You are now done.</mat-dialog-content>
-
-
+    <h4 mat-diaglog-title class="text-center text-uppercase">Checklist of Documentary Requirement</h4>
+    <mat-dialog-content>
+      <div class="container checklist dialog-wrapper py-4" style="width: 524px;">
+        <div class="row">
+          <div class="col-md">
+            <mat-checkbox>Letter Request from Requesting party</mat-checkbox>
+            <mat-checkbox>Letter Response to Requesting party (within 2 days)</mat-checkbox>
+            <mat-checkbox>Approved Project Proposal or Letter to Conduct Activity</mat-checkbox>
+            <mat-checkbox>Loading of Trainers</mat-checkbox>
+            <mat-checkbox>MOA/MOU</mat-checkbox>
+            <mat-checkbox>Progress/Accomplishment/Terminal Report (include pictures with captions)</mat-checkbox>
+            <mat-checkbox>List of Participants</mat-checkbox>
+              <mat-checkbox>Daily Attendance Sheet</mat-checkbox>
+              <mat-checkbox>Evaluation Sheet</mat-checkbox>
+              <mat-checkbox>Summary of Evaluation</mat-checkbox>
+              <mat-checkbox>Trainers DTR *</mat-checkbox>
+              <mat-checkbox>Modules/Lecture Notes</mat-checkbox>
+              <mat-checkbox>Others</mat-checkbox>
+          </div>
+        </div>
+      </div>
+    </mat-dialog-content>
     <mat-dialog-actions>
       <div class="container Form-action-wrapper">
         <div class="row">
