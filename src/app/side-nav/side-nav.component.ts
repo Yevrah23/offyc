@@ -127,6 +127,7 @@ export class SideNavComponent implements OnInit {
     this.user.get_profile(this.cookies.get('id')).subscribe(
       (response) => {
         this.profile = response;
+        console.log(this.profile);
       }
     );
   }

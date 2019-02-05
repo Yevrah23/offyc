@@ -11,6 +11,10 @@ import * as $ from 'jquery';
 })
 export class ProfileSettingsComponent implements OnInit {
 
+  edit : boolean = false;
+
+
+
   // if false input will show
   nameEdit = true;
   nameVal: string;
