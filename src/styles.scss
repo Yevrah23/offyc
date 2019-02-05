@@ -62,6 +62,15 @@ section.container-fluid {
 
 //custom global css
 
+// button
+mat-card.calendar button {
+  border-radius: 2px !important;
+}
+
+button {
+  border-radius: 18px !important;
+}
+
 //custom scroll {
   /* width */
 ::-webkit-scrollbar {

@@ -65,7 +65,7 @@ export class SideNavComponent implements OnInit {
           console.log(response[0]);
           if (response[0]) {
             this.user.isLoggedIn = true;
-            if (response[1][0] === 1) {
+            if (response[1][0] === '1') {
               this.user.admin = true;
               this.isAdmin = true;
             } else {

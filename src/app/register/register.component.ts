@@ -21,13 +21,17 @@ export interface Citc { // interface holds data with in array. data types
   detail: string;
 }
 
-// copied stack overflow
+// copied stack overflow https://stackoverflow.com/questions/51605737/confirm-password-validation-in-angular-6
 export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const invalidCtrl = !!(control && control.invalid && control.parent.dirty);
-    const invalidParent = !!(control && control.parent && control.parent.invalid && control.parent.dirty);
+  // isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+  //   const invalidCtrl = !!(control && control.invalid && control.parent.dirty);
+  //   const invalidParent = !!(control && control.parent && control.parent.invalid && control.parent.dirty);
 
-    return (invalidCtrl || invalidParent);
+  //   return (invalidCtrl || invalidParent);
+  // }
+
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    return (control && control.parent.get('firstPass').value !== control.parent.get('firstPassConfirm').value && control.dirty);
   }
 }
 @Component({
@@ -107,18 +111,19 @@ export class RegisterComponent implements OnInit {
     this.firstFormGroup = this._formBuilder.group({
       firstUserName: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       firstPass: ['', [Validators.required, Validators.minLength(6)]],
-      firstPassConfirm: ['', [Validators.required]],
+      firstPassConfirm: ['', Validators.required],
       firstEmail: ['', [Validators.required, Validators.email]]
     }, { validator: this.checkPasswords });
     this.secondFormGroup = this._formBuilder.group({
       secondPosition: ['', Validators.required]
     });
     this.thirdFormGroup = this._formBuilder.group({
-      thirdFname: ['', Validators.required],
-      thirdMname: ['', Validators.required],
-      thirdLname: ['', Validators.required],
-      thirdBday: ['', Validators.required],
-      thirdGender: ['', Validators.required],
+      // tslint:disable-next-line:max-line-length
+      thirdFname: ['', [Validators.required, Validators.pattern('^[a-zA-Z \-\']+')]], // !#$%&
+      thirdMname: ['', [Validators.required, Validators.pattern('^[a-zA-Z \-\']+')]],
+      thirdLname: ['', [Validators.required, Validators.pattern('^[a-zA-Z \-\']+')]],
+      thirdBday: ['', [Validators.required]],
+      thirdGender: ['', [Validators.required]],
       thirdCnumber: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(10), Validators.maxLength(10)]],
     });
   }

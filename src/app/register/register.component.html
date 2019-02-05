@@ -16,10 +16,10 @@
                   <mat-label>School ID</mat-label>
                   <input [(ngModel)]="username" type="text" matInput formControlName="firstUserName">
                   <mat-error *ngIf="firstFormGroup.get('firstUserName').hasError('required')">
-                    school id is <strong>required</strong> !
+                    School ID is <strong>required</strong>
                   </mat-error>
                   <mat-error *ngIf="firstFormGroup.get('firstUserName').hasError('pattern')">
-                    shool id must be a number !
+                    Invalid school ID
                   </mat-error>
                 </mat-form-field>
 
@@ -27,10 +27,10 @@
                   <mat-label>Email</mat-label>
                   <input [(ngModel)]="email" type="email" matInput formControlName="firstEmail">
                   <mat-error *ngIf="firstFormGroup.get('firstEmail').hasError('required')">
-                    email is <strong>required</strong>
+                    Email is <strong>required</strong>
                   </mat-error>
                   <mat-error *ngIf="firstFormGroup.get('firstEmail').hasError('email')">
-                    ivalid email !
+                    Invalid Email
                   </mat-error>
                 </mat-form-field>
 
@@ -38,10 +38,10 @@
                   <mat-label>Password</mat-label>
                   <input (keyup)="passCheck()" [(ngModel)]="password" type="password" matInput formControlName="firstPass">
                   <mat-error *ngIf="firstFormGroup.get('firstPass').hasError('required')">
-                    password is <strong>required</strong>
+                    Password is <strong>required</strong>
                   </mat-error>
                   <mat-error *ngIf="firstFormGroup.get('firstPass').hasError('minLength')">
-                    password minimum 6 characters !
+                    Password minimum of 6 characters
                   </mat-error>
                 </mat-form-field>
 
@@ -50,15 +50,15 @@
                   <input (keyup)="passCheck()" [(ngModel)]="confirmP" type="password" matInput formControlName="firstPassConfirm"
                     [errorStateMatcher]="matcher">
                   <mat-error *ngIf="firstFormGroup.get('firstPassConfirm').hasError('required')">
-                    confirm password is <strong>required</strong>
+                    Confirm password is <strong>required</strong>
                   </mat-error>
                   <mat-error *ngIf="firstFormGroup.hasError('notSame')">
-                    password did not match !
+                    Password did not match
                   </mat-error>
                 </mat-form-field>
 
                 <div class="btn-wrapper">
-                  <button mat-raised-button matStepperNext [disabled]="!firstFormGroup.valid">Next</button>
+                  <button mat-raised-button color="primary" matStepperNext [disabled]="!firstFormGroup.valid">Next</button>
                   <!-- <button *ngIf="reg" (click)="register()" mat-stroked-button class="btn-submit">Submit</button> -->
                   <a mat-button routerLink="/login" class="btn-back">Back</a>
                 </div>
@@ -69,7 +69,13 @@
                 <ng-template matStepLabel>Step 2</ng-template>
                 <mat-form-field floatLabel="auto">
                   <mat-label>Position</mat-label>
-                  <input [(ngModel)]="position" type="text" matInput formControlName="secondPosition">
+                  <mat-select [(ngModel)]="position" formControlName="secondPosition" required>
+                    <mat-option value="Project Leader">Project Leader</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="secondFormGroup.get('secondPosition').hasError('required')">
+                    Position is <strong>required</strong>
+                  </mat-error>
+                  <!-- <input [(ngModel)]="position" type="text" matInput formControlName="secondPosition"> -->
                 </mat-form-field>
 
                 <mat-form-field floatLabel="auto">
@@ -95,9 +101,9 @@
                   <mat-error *ngIf="departmentControl.hasError('required')">Please choose an college</mat-error>
                   <mat-hint>{{departmentControl.value?.detail}}</mat-hint>
                 </mat-form-field>
-                <div>
+                <div class="action-button">
                   <button mat-button matStepperPrevious>Back</button>
-                  <button mat-raised-button matStepperNext [disabled]="!secondFormGroup.valid">Next</button>
+                  <button mat-raised-button matStepperNext [disabled]="!secondFormGroup.valid" color="primary">Next</button>
                 </div>
               </form>
             </mat-step>
@@ -108,20 +114,42 @@
                 <mat-form-field floatLabel="auto">
                   <mat-label>First Name</mat-label>
                   <input [(ngModel)]="fName" type="text" matInput formControlName="thirdFname">
+                  <mat-error *ngIf="thirdFormGroup.get('thirdFname').hasError('required')">
+                    First name is <strong>required</strong>
+                  </mat-error>
+                  <mat-error *ngIf="thirdFormGroup.get('thirdFname').hasError('pattern')">
+                    Numbers and symbols not allowed
+                  </mat-error>
                 </mat-form-field>
 
                 <mat-form-field floatLabel="auto">
                   <mat-label>Middle Name</mat-label>
                   <input [(ngModel)]="mName" type="text" matInput formControlName="thirdMname">
+                  <mat-error *ngIf="thirdFormGroup.get('thirdMname').hasError('required')">
+                    middle name is <strong>required</strong>
+                  </mat-error>
+                  <mat-error *ngIf="thirdFormGroup.get('thirdMname').hasError('pattern')">
+                    Numbers and symbols not allowed
+                  </mat-error>
                 </mat-form-field>
                 <mat-form-field floatLabel="auto">
                   <mat-label>Last Name</mat-label>
                   <input [(ngModel)]="lName" type="text" matInput formControlName="thirdLname">
+                  <mat-error *ngIf="thirdFormGroup.get('thirdLname').hasError('required')">
+                    last name is <strong>required</strong>
+                  </mat-error>
+                  <mat-error *ngIf="thirdFormGroup.get('thirdLname').hasError('pattern')">
+                    Numbers and symbols not allowed
+                  </mat-error>
                 </mat-form-field>
                 <mat-form-field>
-                  <input [(ngModel)]="bDay" matInput [matDatepicker]="start" placeholder="Birthday" formControlName="thirdBday">
+                  <input [(ngModel)]="bDay" matInput [matDatepicker]="start" placeholder="Birthday" formControlName="thirdBday"
+                    required>
                   <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
                   <mat-datepicker #start></mat-datepicker>
+                  <mat-error *ngIf="thirdFormGroup.get('thirdBday').hasError('required')">
+                    Birthday is <strong>required</strong>
+                  </mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="gender">
@@ -131,17 +159,26 @@
                     <mat-radio-button value="M">Male</mat-radio-button>
                     <mat-radio-button value="F">Female</mat-radio-button>
                   </mat-radio-group>
+                  <mat-error *ngIf="thirdFormGroup.get('thirdGender').hasError('required')">
+                    Gender is <strong>required</strong>
+                  </mat-error>
                 </mat-form-field>
 
                 <mat-form-field floatLabel="auto">
                   <mat-label>Contact Number</mat-label>
                   <span matPrefix>+63 &nbsp;</span>
                   <input [(ngModel)]="cNumber" type="text" matInput formControlName="thirdCnumber">
+                  <mat-error *ngIf="thirdFormGroup.get('thirdCnumber').hasError('required')">
+                    Phone number is <strong>required</strong>
+                  </mat-error>
+                  <mat-error *ngIf="thirdFormGroup.get('thirdCnumber').hasError('pattern')">
+                    Invalid phone number
+                  </mat-error>
                 </mat-form-field>
 
-                <div>
+                <div class="action-button">
                   <button mat-button matStepperPrevious>Back</button>
-                  <button mat-raised-button (click)="register()" [disabled]="!thirdFormGroup.valid">Submit</button>
+                  <button mat-raised-button color="primary" (click)="register()" [disabled]="!thirdFormGroup.valid">Submit</button>
                 </div>
               </form>
             </mat-step>

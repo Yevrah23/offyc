@@ -20,6 +20,7 @@ export class AssesmentComponent implements OnInit {
   proposals: any[];
 
 
+
   // records: any[];
   // spinner
   showSpinner = true;
@@ -27,21 +28,31 @@ export class AssesmentComponent implements OnInit {
   // mat-table
   proposalColumns: string[] = ['Title', 'Target', 'Venue', 'Settings'];
   Report: string[] = ['Title', 'Target', 'Venue', 'Settings'];
-  userRequest: string[] = ['userID', 'name', 'College', 'Settings'];
+  userRequest: string[] = ['ui_school_id', 'fullName', 'colDept', 'Settings'];
 
-  dataSource: MatTableDataSource<any>;
+  proposal: MatTableDataSource<any>;
+  report: MatTableDataSource<any>;
   unregistered: MatTableDataSource<any>;
   record: any;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  // @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('proposalSort') proposalSort: MatSort;
+  @ViewChild('proposalPaginator') proposalPaginator: MatPaginator;
+
+  // report
+  @ViewChild('reportSort') reportSort: MatSort;
+  @ViewChild('reportPaginator') reportPaginator: MatPaginator;
+
+  // user request
+  @ViewChild('userSort') sortUser: MatSort;
+  @ViewChild('userPaginator') userPaginator: MatPaginator;
 
   constructor(
     public dialog: MatDialog,
     private http: HttpClient,
     private chRef: ChangeDetectorRef,
     private user: UserServices
-  ) {}
+  ) { }
 
 
   // Modal triggers
@@ -83,8 +94,8 @@ export class AssesmentComponent implements OnInit {
       });
   }
 
-    // Registration Request View  modal if e click ang name ug user id.
-    regRequest(record): void {
+  // Registration Request View  modal if e click ang name ug user id.
+  regRequest(record): void {
     const dialogRef = this.dialog.open(RegViewComponent, {
       width: '535px',
       panelClass: 'custom-dialog-regRequest',
@@ -101,10 +112,8 @@ export class AssesmentComponent implements OnInit {
     this.get_unregistered();
     this.get_proposals();
   }
-    
 
-
-  get_unregistered(){
+  get_unregistered() {
     this.user.get_unregistered().subscribe(
       (response) => {
         this.showSpinner = false;
@@ -112,17 +121,22 @@ export class AssesmentComponent implements OnInit {
         console.log(response);
 
         if (response[0]) {
+          this.records = response[1];
+          response[1].forEach(element => {
+            element.fullName = `${element.ui_Lname}, ${element.ui_Fname}  ${element.ui_Mname}`;
+            element.colDept = `${element.ui_college} - ${element.ui_dept}`;
+          });
           this.unregistered = new MatTableDataSource(response[1]); // for mat-table
-          this.unregistered.paginator = this.paginator;
-          this.unregistered.sort = this.sort;
-        }else{
+          this.unregistered.paginator = this.userPaginator;
+          this.unregistered.sort = this.sortUser;
+        } else {
           this.unregistered = null; // for mat-table
         }
 
       });
   }
 
-  get_proposals(){
+  get_proposals() {
     this.user.get_proposals().subscribe(
       (response) => {
         this.showSpinner = false;
@@ -130,23 +144,50 @@ export class AssesmentComponent implements OnInit {
         console.log(response);
 
         if (response[0]) {
-          this.dataSource = new MatTableDataSource(response[1]); // for mat-table
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
+          this.proposal = new MatTableDataSource(response[1]); // for mat-table
+          this.proposal.paginator = this.proposalPaginator;
+          this.proposal.sort = this.proposalSort;
+        } else {
+          this.proposal = null; // for mat-table
         }
-        else {
-          this.dataSource = null; // for mat-table
-        }
-        console.log(this.dataSource);
+        console.log(this.proposal);
 
       });
   }
-  // search table
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+  // fixed for matSort not working if using ngIf on table
+  // @ViewChild(MatSort) set matSort(ms: MatSort) { // unregistered
+  //   this.sortUnregistered = ms;
+  //   this.setDataSourceAttributes();
+  // }
+  // setDataSourceAttributes() {
+  //   this.unregistered.sort = this.sortUnregistered;
+  // }
+
+  // search table proposal
+  applyFilterProp(filterValue: string) {
+    this.proposal.filter = filterValue.trim().toLowerCase();
+
+    if (this.proposal.paginator) {
+      this.proposal.paginator.firstPage();
+    }
+  }
+
+  // search table report
+  applyFilterRep(filterValue: string) {
+    this.report.filter = filterValue.trim().toLowerCase();
+
+    if (this.report.paginator) {
+      this.report.paginator.firstPage();
+    }
+  }
+
+  // search table user request
+  applyFilterUserReq(filterValue: string) {
+    this.unregistered.filter = filterValue.trim().toLowerCase();
+
+    if (this.unregistered.paginator) {
+      this.unregistered.paginator.firstPage();
     }
   }
 
