@@ -538,31 +538,31 @@
             <div class="col-md-6">
               <mat-form-field floatLabel="auto">
                 <mat-label>No. of Persons Trained</mat-label>
-                <input type="number" matInput>
+                <input name="bleh" [(ngModel)]="trained" type="number" matInput>
               </mat-form-field>
               <mat-form-field floatLabel="auto">
                 <mat-label>No. of Days</mat-label>
-                <input type="number" matInput>
+                <input name="bleh" [(ngModel)]="days_implemented" type="number" matInput>
               </mat-form-field>
               <div class="upload">
                 <label>Attach File : </label><br>
-                <button mat-raised-button color="primary" (click)="fileInput.click()">Upload</button>
-                <input hidden type="file" #fileInput (change)="getFiles($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf">
+                <button mat-raised-button color="primary" (click)="accReport.click()">Upload</button>
+                <input hidden type="file" #accReport (change)="getFiles($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf">
                 <input class="mt-2" id="fileName" type="text" placeholder="No file chosen" readonly="true" matInput>
               </div>
             </div>
             <div class="col-md-6">
               <mat-form-field floatLabel="auto">
                 <mat-label>Satisfactory</mat-label>
-                <input type="number" matInput>
+                <input name="bleh" [(ngModel)]="rate_satisfactory" type="number" matInput>
               </mat-form-field>
               <mat-form-field floatLabel="auto">
                 <mat-label>Very Satisfactory</mat-label>
-                <input type="number" matInput>
+                <input name="bleh" [(ngModel)]="rate_v_satisfactory" type="number" matInput>
               </mat-form-field>
               <mat-form-field floatLabel="auto">
                 <mat-label>Excellent</mat-label>
-                <input type="number" matInput>
+                <input name="bleh" [(ngModel)]="rate_excellent" type="number" matInput>
               </mat-form-field>
             </div>
           </div>
@@ -572,34 +572,18 @@
         <div class="container dialog-wrapper py-5">
           <div class="row form-wrapper">
             <div class="col-md-6">
-              <mat-form-field floatLabel="auto">
                 <mat-label>No. of Persons Trained</mat-label>
-                <input type="number" matInput>
-              </mat-form-field>
-              <mat-form-field floatLabel="auto">
+                <span>{{data.data.persons_trained}}</span>
                 <mat-label>No. of Days</mat-label>
-                <input type="number" matInput>
-              </mat-form-field>
-              <div class="upload">
-                <label>Attach File : </label><br>
-                <button mat-raised-button color="primary" (click)="fileInput.click()">Upload</button>
-                <input hidden type="file" #fileInput (change)="getFiles($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf">
-                <input class="mt-2" id="fileName" type="text" placeholder="No file chosen" readonly="true" matInput>
-              </div>
+                <span>{{data.data.days_conducted}}</span>
             </div>
             <div class="col-md-6">
-              <mat-form-field floatLabel="auto">
                 <mat-label>Satisfactory</mat-label>
-                <input type="number" matInput>
-              </mat-form-field>
-              <mat-form-field floatLabel="auto">
+                <span>{{data.data.rate_satisfactory}}</span>
                 <mat-label>Very Satisfactory</mat-label>
-                <input type="number" matInput>
-              </mat-form-field>
-              <mat-form-field floatLabel="auto">
+                <span>{{data.data.rate_v_satisfactory}}</span>
                 <mat-label>Excellent</mat-label>
-                <input type="number" matInput>
-              </mat-form-field>
+                <span>{{data.data.rate_excellent}}</span>
             </div>
           </div>
         </div>
@@ -608,12 +592,12 @@
         <div class="container Form-action-wrapper">
           <div class="row">
             <div class="col-md text-center">
-              <div *ngIf="false">
+              <div *ngIf="!approved">
                 <button mat-raised-button mat-dialog-close color="warn" class="form-control">Close</button>
               </div>
-              <div *ngIf="true">
+              <div *ngIf="approved">
                 <button mat-button matStepperPrevious>Back</button>
-                <button mat-raised-button matStepperNext color="primary">Submit</button>
+                <button mat-raised-button (click)="update_report()" color="primary">Submit</button>
               </div>
             </div>
           </div>
@@ -629,19 +613,9 @@
       <div class="container checklist dialog-wrapper py-4" style="width: 524px;">
         <div class="row">
           <div class="col-md">
-            <mat-checkbox>Letter Request from Requesting party</mat-checkbox>
-            <mat-checkbox>Letter Response to Requesting party (within 2 days)</mat-checkbox>
-            <mat-checkbox>Approved Project Proposal or Letter to Conduct Activity</mat-checkbox>
-            <mat-checkbox>Loading of Trainers</mat-checkbox>
-            <mat-checkbox>MOA/MOU</mat-checkbox>
-            <mat-checkbox>Progress/Accomplishment/Terminal Report (include pictures with captions)</mat-checkbox>
             <mat-checkbox>List of Participants</mat-checkbox>
               <mat-checkbox>Daily Attendance Sheet</mat-checkbox>
-              <mat-checkbox>Evaluation Sheet</mat-checkbox>
               <mat-checkbox>Summary of Evaluation</mat-checkbox>
-              <mat-checkbox>Trainers DTR *</mat-checkbox>
-              <mat-checkbox>Modules/Lecture Notes</mat-checkbox>
-              <mat-checkbox>Others</mat-checkbox>
           </div>
         </div>
       </div>

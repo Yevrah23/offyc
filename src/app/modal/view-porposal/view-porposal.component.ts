@@ -60,6 +60,15 @@ export class ViewPorposalComponent implements OnInit {
   started = false;
   ended = false;
 
+
+
+  report_update = [];
+  trained: number;
+  days_implemented: number;
+  rate_satisfactory: number;
+  rate_v_satisfactory: number;
+  rate_excellent: number;
+
   constructor(
     public cookies: CookieService,
     public dialog: MatDialog,
@@ -163,6 +172,8 @@ export class ViewPorposalComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.data.data);
+    console.log(this.data.user);
+    console.log(this.data.admin);
     this.isUser = this.data.user;
     this.isAdmin = this.data.admin;
 
@@ -330,6 +341,52 @@ export class ViewPorposalComponent implements OnInit {
         }
       }
     );
+
+  }
+
+  update_report(){
+    if (this.trained >= this.rate_excellent + this.rate_satisfactory + this.rate_v_satisfactory){
+      this.report_update.push({
+        'persons_trained': this.trained,
+        'days_implemented': this.days_implemented,
+        'rate_s': this.rate_satisfactory,
+        'rate_vs': this.rate_v_satisfactory,
+        'rate_e': this.rate_excellent,
+        'prop_id': this.prop_id
+      });
+      console.log(this.report_update);
+      this.user.update_report(this.report_update).subscribe(
+        (response) => {
+          const file = this.files[0];
+          console.log(file);
+
+              if(response){
+                this.upload.uploadFile(file, 'accomplishment-report', this.title)
+                  .subscribe(
+                    event => {
+                      if (event.type === HttpEventType.UploadProgress) {
+                        const percentDone = Math.round(100 * event.loaded / event.total);
+                        console.log(`File is ${percentDone}% loaded.`);
+                      } else if (event instanceof HttpResponse) {
+                        console.log('File is completely loaded!');
+                      }
+                    },
+                    (err) => {
+                      console.log('Upload Error:', err);
+                      this.dialogRef.close('Accomplishment Report Unsuccessfully Submitted');
+
+                    }, () => {
+                      console.log('Upload done');
+                      this.dialogRef.close('Accomplishment Report Successfully Submitted');
+                    }
+                  );
+              }
+            }
+          );
+          }
+      else{
+        console.log('lapas brad');
+    }
 
   }
 

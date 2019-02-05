@@ -124,7 +124,7 @@ export class RecordsComponent implements OnInit {
 
     setTimeout(() => {
       this.check_proposal();      
-    }, 1000);
+    }, 2000);
   }
 
 

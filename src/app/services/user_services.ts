@@ -165,4 +165,20 @@ export class UserServices {
     get_profile(params) {
         return this.http.post(this.serverUrl + 'codeigniter/api/Users/get_user',{'id':params});
     }
+
+    update_report(params){
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/update_report', { 
+            'id': params[0].prop_id, 
+            'p_trained': params[0].persons_trained, 
+            'day_comp': params[0].days_implemented, 
+            'rate_s': params[0].rate_s, 
+            'rate_vs': params[0].rate_vs, 
+            'rate_e': params[0].rate_e 
+        });
+    }
+
+    get_transactions(id){
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/get_transactions', { 'id': id });
+
+    }
 }

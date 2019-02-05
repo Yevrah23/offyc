@@ -44,18 +44,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user.getEvents().subscribe(data => {
-      this.calendarOptions = {
-        editable: false,
-        eventLimit: false,
-        header: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'month,agendaWeek,agendaDay,listMonth'
-        },
-        events: data
-      };
-    });
+    this.get_events();
+    this.get_transactions();
 
     // retrieve data  via HTTP
     // this.http.get('https://jsonplaceholder.typicode.com/users')
@@ -93,5 +83,26 @@ export class HomeComponent implements OnInit {
     this.eventService.getEvents().subscribe(data => {
       this.events = data;
     });
+  }
+
+  get_events(){
+    this.user.getEvents().subscribe(data => {
+      this.calendarOptions = {
+        editable: false,
+        eventLimit: false,
+        header: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'month,agendaWeek,agendaDay,listMonth'
+        },
+        events: data
+      };
+    });
+  }
+
+  get_transactions() {
+    this.user.get_transactions(this.cookies.get('id')).subscribe(data => {
+      console.log(data);
+    })
   }
 }
