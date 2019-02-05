@@ -5,7 +5,7 @@
   <div class="row">
     <!-- we use mat-card and div -->
     <div class="col-md-12">
-      <mat-card class="calendar">Calendar
+      <mat-card class="calendar"> <span class="color-primary"> Calendar </span>
         <div *ngIf="calendarOptions">
           <ng-fullcalendar #ucCalendar [options]="calendarOptions" (eventClick)="eventClick($event.detail)" (eventDrop)="updateEvent($event.detail)"
             (eventResize)="updateEvent($event.detail)" (clickButton)="clickButton($event.detail)"></ng-fullcalendar>
@@ -18,7 +18,7 @@
   <div class="row">
     <div class="col-md-8">
       <mat-card class="transaction">
-        <h2>Transactions</h2>
+          <span class="color-primary"> Transactions </span>
 
         <!-- <table id="transaction" class="table table-striped table-bordered" style="width:100%">
           <thead>

@@ -22,10 +22,10 @@ export class SideNavComponent implements OnInit {
 
   profile: any;
 
-  isAdmin : boolean = false;
-  isUser : boolean = false;
+  isAdmin = false;
+  isUser = false;
   token: any;
-  hasNotif : boolean = false;
+  hasNotif = false;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -45,7 +45,7 @@ export class SideNavComponent implements OnInit {
     const dialogRef = this.dialog.open(ProfileSettingsComponent, {
       width: '800px',
       panelClass: 'custom-dialog-porfileSettings',
-      data:this.profile
+      data: this.profile
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -65,11 +65,11 @@ export class SideNavComponent implements OnInit {
           console.log(response[0]);
           if (response[0]) {
             this.user.isLoggedIn = true;
-            if (response[1][0] == 1) {
-              this.user.admin = true
+            if (response[1][0] === 1) {
+              this.user.admin = true;
               this.isAdmin = true;
             } else {
-              this.user.user = true
+              this.user.user = true;
               this.isUser = true;
             }
           } else {
@@ -87,16 +87,15 @@ export class SideNavComponent implements OnInit {
       (response) => {
         if (response[0]) {
           response[1].forEach(element => {
-            if (element.notif_type_id === "1") {
+            if (element.notif_type_id === '1') {
               element.notif_type_id = 'sent an Extension Project Proposal';
-            } else if (element.notif_type_id === "2") {
+            } else if (element.notif_type_id === '2') {
               element.notif_type_id = 'Your proposal for an Extension Project has been approved';
-            } else if (element.notif_type_id === "3") {
+            } else if (element.notif_type_id === '3') {
               element.notif_type_id = 'Your proposal for an Extension Project is requested to be revised';
-            } 
-            else if (element.notif_type_id === "4") {
+            } else if (element.notif_type_id === '4') {
               element.notif_type_id = 'sent a revision for an earlier Extension Project Proposal';
-            }else if (element.notif_type_id === "5") {
+            } else if (element.notif_type_id === '5') {
               element.notif_type_id = 'sent an Accomplishment Report';
             }
           });
@@ -111,9 +110,9 @@ export class SideNavComponent implements OnInit {
           });
         }
 
-        if (this.unread.length > 0){
+        if (this.unread.length > 0) {
           this.hasNotif = true;
-          $(".notif-icon").addClass("unread");
+          $('.notif-icon').addClass('unread');
           this.notif_count = this.unread.length;
         }
       }
@@ -124,13 +123,13 @@ export class SideNavComponent implements OnInit {
     $('.notif-icon').removeClass('unread');
   }
 
-  get_profile(){
+  get_profile() {
     this.user.get_profile(this.cookies.get('id')).subscribe(
       (response) => {
         this.profile = response;
         console.log(this.profile);
       }
-    )
+    );
   }
 
   logout() {

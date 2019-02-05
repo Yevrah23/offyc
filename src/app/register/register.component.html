@@ -33,7 +33,7 @@
                 </mat-form-field>
 
                 <div class="btn-wrapper">
-                  <button mat-raised-button matStepperNext>Next</button>
+                  <button mat-raised-button matStepperNext [disabled]="!firstFormGroup.valid">Next</button>
                   <!-- <button *ngIf="reg" (click)="register()" mat-stroked-button class="btn-submit">Submit</button> -->
                   <a mat-button routerLink="/login" class="btn-back">Back</a>
                 </div>
@@ -72,7 +72,7 @@
                 </mat-form-field>
                 <div>
                   <button mat-button matStepperPrevious>Back</button>
-                  <button mat-raised-button matStepperNext>Next</button>
+                  <button mat-raised-button matStepperNext [disabled]="!secondFormGroup.valid">Next</button>
                 </div>
               </form>
             </mat-step>
@@ -116,7 +116,7 @@
 
                 <div>
                   <button mat-button matStepperPrevious>Back</button>
-                  <button mat-raised-button (click)="register()">Submit</button>
+                  <button mat-raised-button (click)="register()" [disabled]="!thirdFormGroup.valid">Submit</button>
                 </div>
               </form>
             </mat-step>

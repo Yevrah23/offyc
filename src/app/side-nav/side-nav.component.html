@@ -2,14 +2,14 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'side' : 'side'" [opened]="!(isHandset$ | async)">
     <mat-toolbar>
-      <div class="brand">OffycApp</div>
+      <div class="brand"><img src="../../assets/img/logo.png" alt=""></div>
     </mat-toolbar>
     <mat-nav-list>
-      <a (click) = "check_notifs" mat-list-item routerLink='dashboard'><span>Dashboard</span></a>
-      <a (click) = "check_notifs" mat-list-item routerLink='notification'><span>Notification <span *ngIf = "hasNotif">({{notif_count}})</span></span></a>
-      <a (click) = "check_notifs" mat-list-item routerLink='records'><span>Records</span></a>
-      <a (click) = "check_notifs" mat-list-item routerLink='activites'><span>Activities</span></a>
-      <a (click) = "check_notifs" mat-list-item routerLink='assesment'  *ngIf="isAdmin"><span>Assesment</span></a>
+      <a (click)="check_notifs" mat-list-item routerLink='dashboard'><i class="fas fa-home"></i><span>Dashboard</span></a>
+      <a (click)="check_notifs" mat-list-item routerLink='notification'><i class="far fa-bell"></i><span>Notification<span *ngIf = "hasNotif">({{notif_count}})</span></span></a>
+      <a (click)="check_notifs" mat-list-item routerLink='records'><i class="fas fa-list-ul"></i><span>Records</span></a>
+      <a (click)="check_notifs" mat-list-item routerLink='activites'><i class="fas fa-history"></i><span>Activities</span></a>
+      <a (click)="check_notifs" mat-list-item routerLink='assesment' *ngIf="isAdmin"><i class="fas fa-clipboard-list"></i><span>Assesment</span></a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -22,7 +22,7 @@
         <span class="flex-block"></span>
 
         <div class="user-type">
-        <button (click)="unblink()" mat-icon-button [matMenuTriggerFor]="notif" class="notif-icon">
+          <button (click)="unblink()" mat-icon-button [matMenuTriggerFor]="notif" class="notif-icon">
             <i class="far fa-bell myfont"></i>
             <span *ngIf="hasNotif" class="notif-badge">{{notif_count}}</span>
           </button>
@@ -42,11 +42,11 @@
 
           <mat-menu class="notif" #notif="matMenu">
             <mat-list role="list">
-            <button mat-menu-item *ngFor="let read of unread">
-              <mat-list-item role="listitem"><small>{{read.ui_Fname}} | {{read.notif_type_id}}</small></mat-list-item>
+              <button mat-menu-item *ngFor="let read of unread">
+                <mat-list-item role="listitem"><small>{{read.ui_Fname}} | {{read.notif_type_id}}</small></mat-list-item>
               </button>
-            <button mat-menu-item *ngFor="let read of read">
-              <mat-list-item role="listitem"><small>{{read.ui_Fname}} | {{read.notif_type_id}}</small></mat-list-item>
+              <button mat-menu-item *ngFor="let read of read">
+                <mat-list-item role="listitem"><small>{{read.ui_Fname}} | {{read.notif_type_id}}</small></mat-list-item>
               </button>
             </mat-list>
             <div class="container more">

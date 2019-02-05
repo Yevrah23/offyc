@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserServices } from '../services/user_services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { SuccessComponent } from '../modal/success/success.component';
 
@@ -13,6 +14,9 @@ import { SuccessComponent } from '../modal/success/success.component';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  // Form Validation
+  loginVal: FormGroup;
+
   // spiiner condition
   showPage = true;
   showSpinner: boolean;
@@ -26,16 +30,16 @@ export class LoginComponent implements OnInit {
                public acRoute: ActivatedRoute, public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.cookies.deleteAll('/','localhost');
+    this.cookies.deleteAll('/', 'localhost');
     console.log(this.user.isLoggedIn);
-    if (this.user.isLoggedIn){
+    if (this.user.isLoggedIn) {
       this.router.navigate(['/', this.cookies.get('id')]);
-    }else{
+    } else {
       this.router.navigate(['/']);
     }
   }
-  
-  showSuccess(page,message,status): void {
+
+  showSuccess(page, message, status): void {
     const dialogRef = this.dialog.open(SuccessComponent, {
       width: '435px',
       panelClass: 'custom-dialog-success',
@@ -50,7 +54,7 @@ export class LoginComponent implements OnInit {
   login_user() {
     this.credentials.push({ 'username': this.username, 'password': this.password });
     this.user.login(this.credentials).subscribe(
-      (response) => { 
+      (response) => {
         console.log(response);
         this.credentials = [];
         if (response[0]) {
@@ -63,8 +67,8 @@ export class LoginComponent implements OnInit {
           // this.router.navigate(['/', 'admin']);
           this.router.navigate(['/', response[1].user_school_id]);
           //   // this.router.navigate(['/', 'admin']);
-          }else{
-            this.showSuccess('frmLogin', response['message'],false);
+          } else {
+            this.showSuccess('frmLogin', response['message'], false);
         }
       }
     );

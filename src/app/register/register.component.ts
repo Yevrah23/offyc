@@ -91,7 +91,7 @@ showSuccess(page): void {
   ngOnInit() {
     // Angular form validation
     this.firstFormGroup = this._formBuilder.group({
-      firstUserName: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(10)]],
+      firstUserName: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       firstPass: ['', [Validators.required, Validators.minLength(6)]],
       firstPassConfirm: ['', [Validators.required, Validators.minLength(6)]],
       firstEmail: ['', [Validators.required, Validators.email]]
@@ -197,7 +197,7 @@ showSuccess(page): void {
     }
   }
 
-
+// check if confirm password match with password
   passCheck() {
     if (this.password === this.confirmP) {
       this.reg = true;

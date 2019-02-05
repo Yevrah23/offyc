@@ -131,6 +131,11 @@ $my-darkGray: (
 );
 // below creates a primary palette with three shades of blue
 
+// Custom font
+$custom-typography: mat-typography-config(
+    $font-family: 'Poppins'
+);
+
 
 $my-secondary: mat-palette($my-darkGray);
 $my-secondaryVariant: mat-palette($my-gray);
@@ -142,3 +147,4 @@ $my-warn: mat-palette($mat-red);
 $my-theme: mat-light-theme($my-secondary, $my-secondaryVariant, $my-primaryVariant,$my-primary, $my-accent, $my-warn);
 
 @include angular-material-theme($my-theme);
+@include mat-core($custom-typography);
