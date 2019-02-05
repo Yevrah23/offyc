@@ -22,6 +22,57 @@
     </div>
   </mat-dialog-actions>
 </section>
+<section *ngIf="fromLogin">
+    <h4 *ngIf="!loginStatus" mat-diaglog-title class="text-center color-accent">OOOPS!!</h4>
+    <h4 *ngIf="loginStatus" mat-diaglog-title class="text-center color-accent">GREAT</h4>
+
+  <mat-dialog-content>
+    <div class="container dialog-wrapper">
+      <div class="row">
+        <div class="col-md">
+          <p *ngIf = "!loginStatus"  class="text-center color-secondary">Something Went Wrong! <br> {{data.message}}
+          <p  *ngIf = "loginStatus" class="text-center color-secondary">Success! <br> {{data.message}}
+          </p>
+        </div>
+      </div><!-- end row -->
+    </div><!-- end wrapper -->
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <div class="container Form-action-wrapper">
+      <div class="row">
+        <div class="col-md text-center">
+          <button mat-raised-button mat-dialog-close color="accent">Back</button>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-actions>
+</section>
+<section *ngIf="fromRegApproval">
+  <h4 mat-diaglog-title class="text-center color-accent">SUCCESS</h4>
+
+  <mat-dialog-content>
+    <div class="container dialog-wrapper">
+      <div class="row">
+        <div class="col-md">
+          <p *ngIf="!RegApproval" class="text-center color-secondary"> Account Registration Successfully Approved <br> User will be notified of account status
+            <p *ngIf="RegApproval" class="text-center color-secondary"> Account Registration Successfully Approved <br> User will be notified of account status
+            </p>
+        </div>
+      </div><!-- end row -->
+    </div><!-- end wrapper -->
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <div class="container Form-action-wrapper">
+      <div class="row">
+        <div class="col-md text-center">
+          <button mat-raised-button mat-dialog-close color="accent">Back</button>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-actions>
+</section>
 
 <!-- Proposal Submission -->
 <section *ngIf="fromProposal">

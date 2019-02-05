@@ -17,8 +17,8 @@ import * as $ from 'jquery';
 })
 export class RecordsComponent implements OnInit {
 
-  isAdmin = true;
-  isUser = true;
+  isAdmin : boolean = false ;
+  isUser : boolean = false ;
   token: any;
 
   // tempo: any;
@@ -109,14 +109,26 @@ export class RecordsComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.token = this.cookies.get('set');
-    if (this.token === '1') {
-      this.isUser = false;
-    } else {
-      this.isAdmin = false;
+  ngDoCheck(){
+    if(this.user.user || this.user.admin){
+      if (this.user.admin) {
+        this.isAdmin = true;
+      } else {
+        this.isUser = true;
+      }
+      this.showSpinner = false;
     }
+  }
 
+  ngOnInit() {
+
+    setTimeout(() => {
+      this.check_proposal();      
+    }, 2000);
+  }
+
+
+  check_proposal(){
     if (this.isAdmin) {
       this.user.get_des_proposals().subscribe(
         (response) => {
@@ -169,20 +181,6 @@ export class RecordsComponent implements OnInit {
     }
   }
 
-  // fixed for matSort not working if using ngIf on table
-  // @ViewChild(MatSort) set matSort(ms: MatSort) {
-  //   this.sort = ms;
-  //   this.setDataSourceAttributes();
-  // }
-  // setDataSourceAttributes() {
-  //   this.CITC.sort = this.sort;
-  //   this.COT.sort = this.sort;
-  //   this.CEA.sort = this.sort;
-  //   this.CSM.sort = this.sort;
-  //   this.CSTE.sort = this.sort;
-  // }
-
-  // search table
   applyFilter(filterValue: string) {
     this.CITC.filter = filterValue.trim().toLowerCase();
     this.COT.filter = filterValue.trim().toLowerCase();

@@ -54,6 +54,11 @@ export class ProfileSettingsComponent implements OnInit {
     });
   }
   ngOnInit() {
+
+  }
+
+  edit_profile(){
+
   }
 
   // ngIf condition lng ni. if apra display sa input field if e click ang edit.

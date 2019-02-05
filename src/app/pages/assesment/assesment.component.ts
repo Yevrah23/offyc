@@ -19,37 +19,6 @@ export class AssesmentComponent implements OnInit {
   records: any[];
   proposals: any[];
 
-  // constructor(private http: HttpClient, private chRef: ChangeDetectorRef, private user: UserServices, public dialog: MatDialog) { }
-
-  // viewProposal(data): void {
-  //   this.user.get_proposal(data).subscribe(
-  //     (response) => {
-  //       this.user.tempo = response;
-  //       if (this.user.tempo.proposal_status == 0) {
-  //         this.user.approved = false;
-  //         this.user.pending = true;
-  //         console.log(this.user.approved);
-  //       }
-
-
-  //       const dialogRef = this.dialog.open(ViewPorposalComponent, {
-  //         width: '768px'
-  //       });
-
-  //       dialogRef.afterClosed().subscribe(result => {
-  //         console.log('The dialog was closed');
-  //         this.proposals = result[1];
-  //         console.log(this.proposals);
-  //         this.chRef.detectChanges();
-  //         // User
-  //         // Display data tables
-  //         // user
-  //         const table: any = $('table');
-  //         this.dataTable = table.dataTable();
-
-  //       });
-  //     }
-  //   )
 
   // records: any[];
   // spinner
@@ -61,6 +30,7 @@ export class AssesmentComponent implements OnInit {
   userRequest: string[] = ['userID', 'name', 'College', 'Settings'];
 
   dataSource: MatTableDataSource<any>;
+  unregistered: MatTableDataSource<any>;
   record: any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -107,45 +77,52 @@ export class AssesmentComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(result => {
           console.log('The dialog was closed');
-          this.proposals = result[1];
+          this.get_proposals();
 
         });
       });
   }
 
     // Registration Request View  modal if e click ang name ug user id.
-    regRequest(): void {
+    regRequest(record): void {
     const dialogRef = this.dialog.open(RegViewComponent, {
       width: '535px',
-      panelClass: 'custom-dialog-regRequest'
+      panelClass: 'custom-dialog-regRequest',
+      data: record
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result);
+      this.get_unregistered();
     });
   }
 
-  // viewProposal(): void {
-  //   const dialogRef = this.dialog.open(ViewPorposalComponent, {
-  //     width: '535px',
-  //     panelClass: 'custom-dialog-view'
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //     console.log(result);
-  //   });
-  // }
-
 
   ngOnInit() {
-    // this.token = this.cookies.get('set');
-    // if (this.token === '1') {
-    //   this.isUser = false;
-    // } else {
-    //   this.isAdmin = false;
-    // }
+    this.get_unregistered();
+    this.get_proposals();
+  }
+    
+
+
+  get_unregistered(){
+    this.user.get_unregistered().subscribe(
+      (response) => {
+        this.showSpinner = false;
+        this.showData = true;
+        console.log(response);
+
+        if (response[0]) {
+          this.unregistered = new MatTableDataSource(response[1]); // for mat-table
+          this.unregistered.paginator = this.paginator;
+          this.unregistered.sort = this.sort;
+        }else{
+          this.unregistered = null; // for mat-table
+        }
+
+      });
+  }
+
+  get_proposals(){
     this.user.get_proposals().subscribe(
       (response) => {
         this.showSpinner = false;
@@ -154,30 +131,16 @@ export class AssesmentComponent implements OnInit {
 
         if (response[0]) {
           this.dataSource = new MatTableDataSource(response[1]); // for mat-table
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        }
+        else {
+          this.dataSource = null; // for mat-table
         }
         console.log(this.dataSource);
 
-        // mat table
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-
-        // this.chRef.detectChanges();
-        // Display data tables
-        // const table: any = $('table');
-        // this.dataTable = table.dataTable();
       });
   }
-
-  // fixed for matSort not working if using ngIf on table
-  // @ViewChild(MatSort) set matSort(ms: MatSort) {
-  //   this.sort = ms;
-  //   this.setDataSourceAttributes();
-  // }
-  // setDataSourceAttributes() {
-  //   this.dataSource.sort = this.sort;
-  // }
-
-
   // search table
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();

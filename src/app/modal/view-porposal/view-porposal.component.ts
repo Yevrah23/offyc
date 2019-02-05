@@ -25,8 +25,8 @@ export class ViewPorposalComponent implements OnInit {
   report = false;
   done = false;
   budget = false;
-  isUser = false;
-  isAdmin = false;
+  isUser : boolean = false;
+  isAdmin : boolean = false;
 
   params = [];
   state: number;
@@ -59,6 +59,15 @@ export class ViewPorposalComponent implements OnInit {
 
   started = false;
   ended = false;
+
+
+
+  report_update = [];
+  trained: number;
+  days_implemented: number;
+  rate_satisfactory: number;
+  rate_v_satisfactory: number;
+  rate_excellent: number;
 
   constructor(
     public cookies: CookieService,
@@ -163,37 +172,39 @@ export class ViewPorposalComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.data.data);
+    console.log(this.data.user);
+    console.log(this.data.admin);
     this.isUser = this.data.user;
     this.isAdmin = this.data.admin;
 
 
     // tslint:disable-next-line:radix
-    if (parseInt(this.data.data.proposal_status) === 0) {
+    if (parseInt(this.data.data.proposal_status) < 0) {
       this.pending = true;
     }
     // tslint:disable-next-line:radix
-    if (parseInt(this.data.data.proposal_status) === 1) {
+    if (parseInt(this.data.data.proposal_status) > 0) {
       this.approved = true;
       this.stateLabel = 'Accepted';
     }
     // tslint:disable-next-line:radix
-    if (parseInt(this.data.data.proposal_status) === 2) {
+    if (parseInt(this.data.data.proposal_status) > 1) {
       this.moa = true;
     }
     // tslint:disable-next-line:radix
-    if (parseInt(this.data.data.proposal_status) === 3) {
+    if (parseInt(this.data.data.proposal_status) > 2) {
       this.report = true;
     }
     // tslint:disable-next-line:radix
-    if (parseInt(this.data.data.proposal_status) === 4) {
+    if (parseInt(this.data.data.proposal_status) > 3) {
       this.approved = true;
     }
     // tslint:disable-next-line:radix
-    if (parseInt(this.data.data.proposal_status) === 5) {
+    if (parseInt(this.data.data.proposal_status) > 4) {
       this.done = true;
     }
     // tslint:disable-next-line:radix
-    if (parseInt(this.data.data.proposal_status) === 6) {
+    if (parseInt(this.data.data.proposal_status) > 5) {
       console.log('hello');
       this.revision = true;
       this.stateLabel = 'For Revision';
@@ -228,6 +239,8 @@ export class ViewPorposalComponent implements OnInit {
               console.log(result);
               if (data === 1) {
                 console.log('Proposal Successfully Approved');
+                this.dialogRef.close()
+                ;
               } else {
                 this.showComment();
                 this.dialogRef.close(result);
@@ -269,47 +282,6 @@ export class ViewPorposalComponent implements OnInit {
 
       // document.body.appendChild(canvas);
       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, pageHeight);
-
-      // for (let i = 0; i <= data.clientHeight / 980; i++) {
-      //   // ! This is all just html2canvas stuff
-      //   const srcImg = canvas;
-      //   const sX = 0;
-      //   const sY = 980 * i; // start 980 pixels down for every new page
-      //   const sWidth = 948;
-      //   const sHeight = data.clientHeight;
-      //   const dX = 0;
-      //   const dY = 0;
-      //   const dWidth = 948;
-      //   const dHeight = data.clientHeight;
-
-      //   // tslint:disable-next-line:prefer-const
-      //   let onePageCanvas = document.createElement('canvas');
-      //   onePageCanvas.setAttribute('width', '948');
-      //   onePageCanvas.setAttribute('height', '980');
-      //   const ctx = onePageCanvas.getContext('2d');
-      //   // details on this usage of this function:
-      //   // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images#Slicing
-      //   ctx.drawImage(srcImg, sX, sY, sWidth, sHeight, dX, dY, dWidth, dHeight);
-
-      //   // document.body.appendChild(onePageCanvas);
-      //   const canvasDataURL = onePageCanvas.toDataURL('image/png');
-
-      //   const width = onePageCanvas.width;
-      //   const height = onePageCanvas.clientHeight;
-
-      //   // ! If we're on anything other than the first page,
-      //   // add another page
-      //   if (i > 0) {
-      //     pdf.addPage('A4', 'l'); // 791, 612 8.5" x 11" in pts (in*72)
-      //     // 842, 595, 8.27 × 11.69 inches A4 in pts (in*72)
-      //   }
-      //   // ! now we declare that we're working on that page
-      //   pdf.setPage(i + 1);
-      //   // !now we add content to that page! 20, 40
-      //   pdf.addImage(canvasDataURL, 'PNG', 60, 10, (width * .62), (height * .62));
-      //   console.log(data.clientHeight, data.clientWidth);
-      // }
-      // // ! after the for loop is finished running, we save the pdf.
       pdf.save('Proposal-Cover.pdf');
       this.dialog.closeAll();
       // $('#contentToConvert').css('overflow', 'auto');
@@ -369,6 +341,52 @@ export class ViewPorposalComponent implements OnInit {
         }
       }
     );
+
+  }
+
+  update_report(){
+    if (this.trained >= this.rate_excellent + this.rate_satisfactory + this.rate_v_satisfactory){
+      this.report_update.push({
+        'persons_trained': this.trained,
+        'days_implemented': this.days_implemented,
+        'rate_s': this.rate_satisfactory,
+        'rate_vs': this.rate_v_satisfactory,
+        'rate_e': this.rate_excellent,
+        'prop_id': this.prop_id
+      });
+      console.log(this.report_update);
+      this.user.update_report(this.report_update).subscribe(
+        (response) => {
+          const file = this.files[0];
+          console.log(file);
+
+              if(response){
+                this.upload.uploadFile(file, 'accomplishment-report', this.title)
+                  .subscribe(
+                    event => {
+                      if (event.type === HttpEventType.UploadProgress) {
+                        const percentDone = Math.round(100 * event.loaded / event.total);
+                        console.log(`File is ${percentDone}% loaded.`);
+                      } else if (event instanceof HttpResponse) {
+                        console.log('File is completely loaded!');
+                      }
+                    },
+                    (err) => {
+                      console.log('Upload Error:', err);
+                      this.dialogRef.close('Accomplishment Report Unsuccessfully Submitted');
+
+                    }, () => {
+                      console.log('Upload done');
+                      this.dialogRef.close('Accomplishment Report Successfully Submitted');
+                    }
+                  );
+              }
+            }
+          );
+          }
+      else{
+        console.log('lapas brad');
+    }
 
   }
 

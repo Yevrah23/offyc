@@ -6,8 +6,7 @@
     </mat-toolbar>
     <mat-nav-list>
       <a (click)="check_notifs" mat-list-item routerLink='dashboard'><i class="fas fa-home"></i><span>Dashboard</span></a>
-      <a (click)="check_notifs" mat-list-item routerLink='notification'><i class="far fa-bell"></i><span>Notification
-          ({{notif_count}})</span></a>
+      <a (click)="check_notifs" mat-list-item routerLink='notification'><i class="far fa-bell"></i><span>Notification<span *ngIf = "hasNotif">({{notif_count}})</span></span></a>
       <a (click)="check_notifs" mat-list-item routerLink='records'><i class="fas fa-list-ul"></i><span>Records</span></a>
       <a (click)="check_notifs" mat-list-item routerLink='activites'><i class="fas fa-history"></i><span>Activities</span></a>
       <a (click)="check_notifs" mat-list-item routerLink='assesment' *ngIf="isAdmin"><i class="fas fa-clipboard-list"></i><span>Assesment</span></a>
@@ -27,7 +26,8 @@
             <i class="far fa-bell myfont"></i>
             <span *ngIf="hasNotif" class="notif-badge">{{notif_count}}</span>
           </button>
-          <span>Admin</span>
+          <span *ngIf="isAdmin">Admin</span>
+          <span *ngIf = "isUser">User</span>
           <button mat-icon-button [matMenuTriggerFor]="appMenu">
             <div class="avatar">
               <i class="fas fa-camera" style="color:#fff;"></i>

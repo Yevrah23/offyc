@@ -4,33 +4,38 @@
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-3"><small class="color-secondaryVariant" for="">Name :</small></div>
-      <div class="col-md-7"> Jazer Kemuel Zayas</div>
+      <div class="col-md-7"> {{data.ui_Lname}}, {{data.ui_Fname}} {{data.ui_Mname}} </div>
     </div>
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-3"><small class="color-secondaryVariant" for="">Position :</small></div>
       <div class="col-md-7">
-        <h4 class="color-accent">Project Leader</h4>
+        <h4 class="color-accent">{{data.ui_position}}</h4>
       </div>
     </div>
     <div class="row">
       <div class="col-md-5 align-middle"><small class="color-secondaryVariant" for="">College / Department :</small></div>
       <div class="col-md">
         <small class="color-secondaryVariant">College</small> <br>
-        <p>College of Information Technology and Communication</p>
+        <p>{{data.ui_college}}</p>
         <small class="color-secondaryVariant">Department</small> <br>
-        <p>Information Technology</p>
+        <p>{{data_ui_dept}}</p>
       </div>
     </div>
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-3"><small class="color-secondaryVariant" for="">User ID :</small></div>
-      <div class="col-md-7"> 2015103280 </div>
+      <div class="col-md-7"> {{data.ui_school_id}} </div>
     </div>
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-3"><small class="color-secondaryVariant" for="">Email :</small></div>
-      <div class="col-md-7"> jaz@rocketstack.net </div>
+      <div class="col-md-7"> {{data.ui_email}} </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-3"><small class="color-secondaryVariant" for="">Contact Number :</small></div>
+      <div class="col-md-7"> {{data.ui_contact_number}} </div>
     </div>
   </div>
   <!--End wrapper -->
@@ -42,8 +47,8 @@
       <div class="col-md text-center">
         <div>
           <!-- admin call to action -->
-          <button mat-button mat-dialog-close>Delete</button>
-          <button mat-raised-button color="primary">Accept</button>
+          <button (click) = "approve_registration(data.ui_school_id,2)" mat-button mat-dialog-close>Delete</button>
+          <button (click) = "approve_registration(data.ui_school_id,1)" mat-raised-button color="primary">Accept</button>
         </div>
       </div>
     </div>

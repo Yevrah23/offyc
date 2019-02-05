@@ -20,10 +20,12 @@ export class SideNavComponent implements OnInit {
   unread = [];
   notif_count: any;
 
+  profile: any;
 
-  isAdmin = true;
+  isAdmin = false;
+  isUser = false;
   token: any;
-  hasNotif = true;
+  hasNotif = false;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -42,7 +44,8 @@ export class SideNavComponent implements OnInit {
   showSettings(): void {
     const dialogRef = this.dialog.open(ProfileSettingsComponent, {
       width: '800px',
-      panelClass: 'custom-dialog-porfileSettings'
+      panelClass: 'custom-dialog-porfileSettings',
+      data: this.profile
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -54,23 +57,45 @@ export class SideNavComponent implements OnInit {
   ngOnInit() {
     this.read = [];
     this.unread = [];
-    this.token = this.cookies.get('set');
-    if (this.token === '2') {
-      this.isAdmin = false;
+    this.get_profile();
+    this.token = this.cookies.get(this.cookies.get('id'));
+    if (this.user.isLoggedIn) {
+      this.user.check_login(this.token).subscribe(
+        (response) => {
+          console.log(response[0]);
+          if (response[0]) {
+            this.user.isLoggedIn = true;
+            if (response[1][0] === 1) {
+              this.user.admin = true;
+              this.isAdmin = true;
+            } else {
+              this.user.user = true;
+              this.isUser = true;
+            }
+          } else {
+            this.router.navigate(['/']);
+            console.log('You Sneaky Bastard');
+          }
+        }
+      );
     } else {
+      this.router.navigate(['/']);
+      console.log('You Sneaky Bastard');
     }
 
     this.user.getNotifs(this.cookies.get('id')).subscribe(
       (response) => {
         if (response[0]) {
           response[1].forEach(element => {
-            if (element.notif_type_id === 1) {
+            if (element.notif_type_id === '1') {
               element.notif_type_id = 'sent an Extension Project Proposal';
-            } else if (element.notif_type_id === 2) {
-              element.notif_type_id = 'You\'re proposal for an Extension Project has been approved';
-            } else if (element.notif_type_id === 3) {
-              element.notif_type_id = 'You\'re proposal for an Extension Project has been denied';
-            } else if (element.notif_type_id === 4) {
+            } else if (element.notif_type_id === '2') {
+              element.notif_type_id = 'Your proposal for an Extension Project has been approved';
+            } else if (element.notif_type_id === '3') {
+              element.notif_type_id = 'Your proposal for an Extension Project is requested to be revised';
+            } else if (element.notif_type_id === '4') {
+              element.notif_type_id = 'sent a revision for an earlier Extension Project Proposal';
+            } else if (element.notif_type_id === '5') {
               element.notif_type_id = 'sent an Accomplishment Report';
             }
           });
@@ -83,12 +108,12 @@ export class SideNavComponent implements OnInit {
             }
 
           });
-          this.notif_count = this.unread.length;
         }
 
-
         if (this.unread.length > 0) {
+          this.hasNotif = true;
           $('.notif-icon').addClass('unread');
+          this.notif_count = this.unread.length;
         }
       }
     );
@@ -98,30 +123,17 @@ export class SideNavComponent implements OnInit {
     $('.notif-icon').removeClass('unread');
   }
 
-  check_notifs() {
-    this.read = [];
-    this.unread = [];
-
-    this.user.getNotifs(this.cookies.get('id')).subscribe(
+  get_profile() {
+    this.user.get_profile(this.cookies.get('id')).subscribe(
       (response) => {
-        if (response[0]) {
-          this.user.notifs = response[1];
-          this.user.notifs.forEach(element => {
-            if (element.notification_status === 1) {
-              this.read.push(element);
-            } else {
-              this.unread.push(element);
-            }
-          });
-          this.notif_count = this.unread.length;
-        }
+        this.profile = response;
       }
     );
   }
 
   logout() {
-    console.log('logout');
-    this.cookies.deleteAll();
+    this.cookies.deleteAll('/', 'localhost');
+    this.user.isLoggedIn = false;
     this.router.navigate(['/']);
   }
 

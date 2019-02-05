@@ -7,9 +7,9 @@ import { Observable } from 'rxjs';
 export class UserServices {
     private serverUrl = 'http://localhost/';
     // private serverUrl = 'http://192.168.43.31/';
-    // isLoggedIn: boolean;
-    admin: boolean;
-    user: boolean;
+    isLoggedIn: boolean = false;
+    admin: boolean = false;
+    user: boolean = false;
     fileToGo: File = null;
     tempo: any;
     pending: boolean;
@@ -29,7 +29,11 @@ export class UserServices {
     login(params) {
         // console.log(params);
         // tslint:disable-next-line:max-line-length
-        return this.http.post(this.serverUrl + 'codeigniter/api/Users/login', {'username': params[0].username, 'password' : params[0].password});
+        return this.http.post(
+            this.serverUrl + 'codeigniter/api/Users/login', 
+            {'username': params[0].username, 'password' : params[0].password},
+            {reportProgress : true}
+        );
     }
     register(params) {
         // console.log(params[0]);
@@ -147,5 +151,34 @@ export class UserServices {
     }
     implementation_status(status, prop_id) {
         return this.http.post(this.serverUrl + 'codeigniter/api/Users/implementation_status', { 'prop_id': prop_id, 'status': status });
+    }
+
+    get_unregistered(){
+        return this.http.get(this.serverUrl + 'codeigniter/api/Users/get_unregistered');
+    }
+
+    approve_registration(id,status){
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/approve_registration', { 'id': id, 'status': status });
+
+    }
+    
+    get_profile(params) {
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/get_user',{'id':params});
+    }
+
+    update_report(params){
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/update_report', { 
+            'id': params[0].prop_id, 
+            'p_trained': params[0].persons_trained, 
+            'day_comp': params[0].days_implemented, 
+            'rate_s': params[0].rate_s, 
+            'rate_vs': params[0].rate_vs, 
+            'rate_e': params[0].rate_e 
+        });
+    }
+
+    get_transactions(id){
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/get_transactions', { 'id': id });
+
     }
 }

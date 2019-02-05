@@ -202,7 +202,10 @@
       <div *ngIf="isUser && !moa">
         Waiting for Extension Staff Action: Download of Filed Proposal Cover
       </div>
-      <div *ngIf="isAdmin" id="contentToConvert">
+      <div *ngIf="isUser && moa">
+        Proceed to next step: MOA Notarization and Signing of Proposal Cover
+      </div>
+      <div *ngIf = "isAdmin && !moa" id="contentToConvert">
         <table style="height: 187px; width: 864px; margin-left: auto; margin-right: auto;" border="0">
           <tbody>
             <tr>
@@ -457,7 +460,7 @@
   <mat-step>
     <ng-template matStepLabel>Implementaion</ng-template>
     <h4 mat-diaglog-title class="text-center">Ready for Implementaion</h4>
-    <mat-dialog-content>
+    <mat-dialog-content *ngIf = "isUser">
       <div class="container dialog-wrapper py-4" style="width: 370px;">
         <div class="row form-wrapper">
           <div class="col-md text-center">
@@ -467,6 +470,35 @@
           <div class="col-md text-center">
             <button *ngIf="implementing == 1" (click)="implementation_status(2)" mat-raised-button color="primary"
               class="text-heading-24 start-end">END</button>
+          </div>
+          <div class="col-md text-center">
+            <span *ngIf="implementing == 2" mat-raised-button color="primary" class="text-heading-24 start-end">You are now ready to submit your Accomplisment Report</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md">
+            <h6>Stated Dates of Implementation :</h6>
+            <div class="mx-auto" style="width: fit-content;">
+              <span class="color-primary">Extension Project Started :</span>
+              <p><span class="date text-regular-14 color-accent">{{data.data.proposal_date_start}}</span></p>
+              <span class="color-primary ">Extension Project Ended :</span>
+              <p><span class="date color-accent text-regular-14">{{data.data.proposal_date_end}}</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-content *ngIf = "isAdmin">
+      <div class="container dialog-wrapper py-4" style="width: 370px;">
+        <div class="row form-wrapper">
+          <div class="col-md text-center">
+            <span *ngIf="implementing == 0" mat-raised-button color="primary" class="text-heading-24 start-end">The Proponents has not started implementation</span>
+          </div>
+          <div class="col-md text-center">
+            <span *ngIf="implementing == 1" mat-raised-button color="primary" class="text-heading-24 start-end">The Proponents have started implementation</span>
+          </div>
+          <div class="col-md text-center">
+            <span *ngIf="implementing == 2" mat-raised-button color="primary" class="text-heading-24 start-end">The Proponents have ended implementation</span>
           </div>
         </div>
         <div class="row">
@@ -500,38 +532,58 @@
     <form>
       <ng-template matStepLabel>Accomplishment Report</ng-template>
       <h4 mat-diaglog-title class="text-center">Accomplishment Data</h4>
-      <mat-dialog-content>
+      <mat-dialog-content *ngIf = "isUser">
         <div class="container dialog-wrapper py-5">
           <div class="row form-wrapper">
             <div class="col-md-6">
               <mat-form-field floatLabel="auto">
                 <mat-label>No. of Persons Trained</mat-label>
-                <input type="number" matInput>
+                <input name="bleh" [(ngModel)]="trained" type="number" matInput>
               </mat-form-field>
               <mat-form-field floatLabel="auto">
                 <mat-label>No. of Days</mat-label>
-                <input type="number" matInput>
+                <input name="bleh" [(ngModel)]="days_implemented" type="number" matInput>
               </mat-form-field>
               <div class="upload">
                 <label>Attach File : </label><br>
-                <button mat-raised-button color="primary" (click)="fileInput.click()">Upload</button>
-                <input hidden type="file" #fileInput (change)="getFiles($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf">
+                <button mat-raised-button color="primary" (click)="accReport.click()">Upload</button>
+                <input hidden type="file" #accReport (change)="getFiles($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf">
                 <input class="mt-2" id="fileName" type="text" placeholder="No file chosen" readonly="true" matInput>
               </div>
             </div>
             <div class="col-md-6">
               <mat-form-field floatLabel="auto">
                 <mat-label>Satisfactory</mat-label>
-                <input type="number" matInput>
+                <input name="bleh" [(ngModel)]="rate_satisfactory" type="number" matInput>
               </mat-form-field>
               <mat-form-field floatLabel="auto">
                 <mat-label>Very Satisfactory</mat-label>
-                <input type="number" matInput>
+                <input name="bleh" [(ngModel)]="rate_v_satisfactory" type="number" matInput>
               </mat-form-field>
               <mat-form-field floatLabel="auto">
                 <mat-label>Excellent</mat-label>
-                <input type="number" matInput>
+                <input name="bleh" [(ngModel)]="rate_excellent" type="number" matInput>
               </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </mat-dialog-content>
+      <mat-dialog-content *ngIf = "isAdmin">
+        <div class="container dialog-wrapper py-5">
+          <div class="row form-wrapper">
+            <div class="col-md-6">
+                <mat-label>No. of Persons Trained</mat-label>
+                <span>{{data.data.persons_trained}}</span>
+                <mat-label>No. of Days</mat-label>
+                <span>{{data.data.days_conducted}}</span>
+            </div>
+            <div class="col-md-6">
+                <mat-label>Satisfactory</mat-label>
+                <span>{{data.data.rate_satisfactory}}</span>
+                <mat-label>Very Satisfactory</mat-label>
+                <span>{{data.data.rate_v_satisfactory}}</span>
+                <mat-label>Excellent</mat-label>
+                <span>{{data.data.rate_excellent}}</span>
             </div>
           </div>
         </div>
@@ -540,12 +592,12 @@
         <div class="container Form-action-wrapper">
           <div class="row">
             <div class="col-md text-center">
-              <div *ngIf="false">
+              <div *ngIf="!approved">
                 <button mat-raised-button mat-dialog-close color="warn" class="form-control">Close</button>
               </div>
-              <div *ngIf="true">
+              <div *ngIf="approved">
                 <button mat-button matStepperPrevious>Back</button>
-                <button mat-raised-button matStepperNext color="primary">Submit</button>
+                <button mat-raised-button (click)="update_report()" color="primary">Submit</button>
               </div>
             </div>
           </div>
@@ -561,19 +613,9 @@
       <div class="container checklist dialog-wrapper py-4" style="width: 524px;">
         <div class="row">
           <div class="col-md">
-            <mat-checkbox>Letter Request from Requesting party</mat-checkbox>
-            <mat-checkbox>Letter Response to Requesting party (within 2 days)</mat-checkbox>
-            <mat-checkbox>Approved Project Proposal or Letter to Conduct Activity</mat-checkbox>
-            <mat-checkbox>Loading of Trainers</mat-checkbox>
-            <mat-checkbox>MOA/MOU</mat-checkbox>
-            <mat-checkbox>Progress/Accomplishment/Terminal Report (include pictures with captions)</mat-checkbox>
             <mat-checkbox>List of Participants</mat-checkbox>
               <mat-checkbox>Daily Attendance Sheet</mat-checkbox>
-              <mat-checkbox>Evaluation Sheet</mat-checkbox>
               <mat-checkbox>Summary of Evaluation</mat-checkbox>
-              <mat-checkbox>Trainers DTR *</mat-checkbox>
-              <mat-checkbox>Modules/Lecture Notes</mat-checkbox>
-              <mat-checkbox>Others</mat-checkbox>
           </div>
         </div>
       </div>
