@@ -26,10 +26,22 @@ export class LoginComponent implements OnInit {
   credentials = [];
   token: any;
 
-  constructor(public http: HttpClient, private user: UserServices, private router: Router, private cookies: CookieService,
-               public acRoute: ActivatedRoute, public dialog: MatDialog) { }
+  constructor(public http: HttpClient,
+    private user: UserServices,
+    private router: Router,
+    private cookies: CookieService,
+    public acRoute: ActivatedRoute,
+    public dialog: MatDialog,
+    private _formBuilder: FormBuilder
+    ) { }
 
   ngOnInit() {
+     // Form Validation angular
+     this.loginVal = this._formBuilder.group({
+      loginUser: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      loginPass: ['', [Validators.required]],
+    });
+
     this.cookies.deleteAll('/', 'localhost');
     console.log(this.user.isLoggedIn);
     if (this.user.isLoggedIn) {

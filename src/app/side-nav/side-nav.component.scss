@@ -49,18 +49,24 @@ mat-toolbar.mat-toolbar.mat-toolbar-multiple-rows {
     height: 52px;
   }
 }
+
 a.mat-list-item {
   margin-top: 16px;
 }
 
 mat-nav-list a {
   color: #95A5A6;
+
   span {
     width: 100%;
     text-align: left !important;
     padding-left: 10px;
-    
+
   }
+}
+
+a.mat-list-item.active {
+  color: #022163 !important;
 }
 
 ::ng-deep .mat-list-item-content {

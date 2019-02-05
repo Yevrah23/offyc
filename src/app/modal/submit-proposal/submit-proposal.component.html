@@ -14,8 +14,8 @@
         <mat-radio-button class="gender-box" value="new">New</mat-radio-button>
         <mat-radio-button class="gender-box" value="continuing">Continuing</mat-radio-button>
         <!-- <mat-error *ngIf="typeVal.hasError('required')">
-          <small>Project type is <strong>required</strong></small>
-        </mat-error> -->
+              <small>Project type is <strong>required</strong></small>
+            </mat-error> -->
       </mat-radio-group>
 
       <mat-form-field floatLabel="auto">
@@ -87,7 +87,8 @@
         <label>Attach File<span class="color-warn">*</span> : </label><br>
         <button mat-raised-button color="primary" (click)="fileInput.click()">Upload</button>
         <input hidden type="file" #fileInput (change)="getFiles($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf">
-        <input class="mt-2" id="fileName" type="text" placeholder="No file chosen" readonly="true" formControlName="upload" matInput>
+        <input class="mt-2" id="fileName" type="text" placeholder="No file chosen" readonly="true" formControlName="upload"
+          matInput>
       </div>
     </form>
   </div>

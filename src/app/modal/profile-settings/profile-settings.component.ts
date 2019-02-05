@@ -57,7 +57,7 @@ export class ProfileSettingsComponent implements OnInit {
 
   }
 
-  edit_profile(){
+  edit_profile() {
 
   }
 

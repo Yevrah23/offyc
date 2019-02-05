@@ -32,7 +32,7 @@ mat-card.progressReport.mat-card {
 
 // TABS style
 // Progress Report
-.progressReport mat-ink-bar.mat-ink-bar {
+::ng-deep .progressReport mat-ink-bar.mat-ink-bar {
   width: 5% !important;
   margin-left: 16px !important;
   bottom: 8px !important;

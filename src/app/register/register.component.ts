@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { FormControl, Validators, FormGroup, FormBuilder, FormGroupDirective, NgForm } from '@angular/forms';
 import { UserServices } from '../services/user_services';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material';
+import { MatDialog, ErrorStateMatcher } from '@angular/material';
 import { SuccessComponent } from '../modal/success/success.component';
 
 
@@ -20,6 +20,16 @@ export interface Citc { // interface holds data with in array. data types
   name: string;
   detail: string;
 }
+
+// copied stack overflow
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const invalidCtrl = !!(control && control.invalid && control.parent.dirty);
+    const invalidParent = !!(control && control.parent && control.parent.invalid && control.parent.dirty);
+
+    return (invalidCtrl || invalidParent);
+  }
+}
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -27,7 +37,9 @@ export interface Citc { // interface holds data with in array. data types
 })
 export class RegisterComponent implements OnInit {
   // stepper
-  isLinear = false;
+  isLinear = true;
+  // validations
+  matcher = new MyErrorStateMatcher();
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
@@ -70,32 +82,34 @@ export class RegisterComponent implements OnInit {
     private user: UserServices,
     private router: Router,
     private _formBuilder: FormBuilder
-  ) {}
+  ) {
 
-// Alert register success
-showSuccess(page): void {
-  const dialogRef = this.dialog.open(SuccessComponent, {
-    width: '435px',
-    panelClass: 'custom-dialog-success',
-    data: {
-      page: page
-    }
-  });
+  }
 
-  dialogRef.afterClosed().subscribe(result => {
-    console.log('The dialog was closed');
-    console.log(result);
-  });
-}
+  // Alert register success
+  showSuccess(page): void {
+    const dialogRef = this.dialog.open(SuccessComponent, {
+      width: '435px',
+      panelClass: 'custom-dialog-success',
+      data: {
+        page: page
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+    });
+  }
 
   ngOnInit() {
     // Angular form validation
     this.firstFormGroup = this._formBuilder.group({
       firstUserName: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       firstPass: ['', [Validators.required, Validators.minLength(6)]],
-      firstPassConfirm: ['', [Validators.required, Validators.minLength(6)]],
+      firstPassConfirm: ['', [Validators.required]],
       firstEmail: ['', [Validators.required, Validators.email]]
-    });
+    }, { validator: this.checkPasswords });
     this.secondFormGroup = this._formBuilder.group({
       secondPosition: ['', Validators.required]
     });
@@ -118,12 +132,12 @@ showSuccess(page): void {
         'position': this.position,
         'college': this.coll.name,
         'dept': this.dept.name,
-        'fName' : this.fName,
-        'mName' : this.mName,
-        'lName' : this.lName,
-        'bDay' : this.bDay,
-        'gender' : this.gender,
-        'cNumber' : this.cNumber
+        'fName': this.fName,
+        'mName': this.mName,
+        'lName': this.lName,
+        'bDay': this.bDay,
+        'gender': this.gender,
+        'cNumber': this.cNumber
       }
     );
     this.user.register(this.data).subscribe(
@@ -197,7 +211,7 @@ showSuccess(page): void {
     }
   }
 
-// check if confirm password match with password
+  // check if confirm password match with password
   passCheck() {
     if (this.password === this.confirmP) {
       this.reg = true;
@@ -206,4 +220,12 @@ showSuccess(page): void {
 
     }
   }
+
+  checkPasswords(group: FormGroup) { // here we have the 'passwords' group
+    const pass = group.controls.firstPass.value;
+    const confirmPass = group.controls.firstPassConfirm.value;
+
+    return pass === confirmPass ? null : { notSame: true };
+  }
 }
+

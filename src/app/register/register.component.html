@@ -4,7 +4,7 @@
     <!-- we use mat-card and div -->
     <div class="col-md-4 login-card">
       <mat-card>
-      <h2 contenteditable class="text-center">SIGN UP</h2>
+        <h2 contenteditable class="text-center">SIGN UP</h2>
 
         <mat-horizontal-stepper [linear]="isLinear" #stepper>
           <div class="form-wrapper">
@@ -15,21 +15,46 @@
                 <mat-form-field floatLabel="auto">
                   <mat-label>School ID</mat-label>
                   <input [(ngModel)]="username" type="text" matInput formControlName="firstUserName">
-                </mat-form-field>
-
-                <mat-form-field floatLabel="auto">
-                  <mat-label>Password</mat-label>
-                  <input (keyup)="passCheck()" [(ngModel)]="password" type="password" matInput formControlName="firstPass">
-                </mat-form-field>
-
-                <mat-form-field floatLabel="auto">
-                  <mat-label>Confirm Password</mat-label>
-                  <input (keyup)="passCheck()" [(ngModel)]="confirmP" type="password" matInput formControlName="firstPassConfirm">
+                  <mat-error *ngIf="firstFormGroup.get('firstUserName').hasError('required')">
+                    school id is <strong>required</strong> !
+                  </mat-error>
+                  <mat-error *ngIf="firstFormGroup.get('firstUserName').hasError('pattern')">
+                    shool id must be a number !
+                  </mat-error>
                 </mat-form-field>
 
                 <mat-form-field floatLabel="auto">
                   <mat-label>Email</mat-label>
                   <input [(ngModel)]="email" type="email" matInput formControlName="firstEmail">
+                  <mat-error *ngIf="firstFormGroup.get('firstEmail').hasError('required')">
+                    email is <strong>required</strong>
+                  </mat-error>
+                  <mat-error *ngIf="firstFormGroup.get('firstEmail').hasError('email')">
+                    ivalid email !
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field floatLabel="auto">
+                  <mat-label>Password</mat-label>
+                  <input (keyup)="passCheck()" [(ngModel)]="password" type="password" matInput formControlName="firstPass">
+                  <mat-error *ngIf="firstFormGroup.get('firstPass').hasError('required')">
+                    password is <strong>required</strong>
+                  </mat-error>
+                  <mat-error *ngIf="firstFormGroup.get('firstPass').hasError('minLength')">
+                    password minimum 6 characters !
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field floatLabel="auto">
+                  <mat-label>Confirm Password</mat-label>
+                  <input (keyup)="passCheck()" [(ngModel)]="confirmP" type="password" matInput formControlName="firstPassConfirm"
+                    [errorStateMatcher]="matcher">
+                  <mat-error *ngIf="firstFormGroup.get('firstPassConfirm').hasError('required')">
+                    confirm password is <strong>required</strong>
+                  </mat-error>
+                  <mat-error *ngIf="firstFormGroup.hasError('notSame')">
+                    password did not match !
+                  </mat-error>
                 </mat-form-field>
 
                 <div class="btn-wrapper">

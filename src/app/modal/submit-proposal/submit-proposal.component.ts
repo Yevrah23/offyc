@@ -19,7 +19,7 @@ import { FormControl, FormGroup, Validators, FormControlName, FormBuilder } from
 })
 export class SubmitProposalComponent implements OnInit {
 
-// form validation
+  // form validation
   submitProposal: FormGroup;
 
   proposal = [];
