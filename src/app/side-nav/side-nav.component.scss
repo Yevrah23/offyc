@@ -44,13 +44,27 @@ mat-toolbar.mat-toolbar.mat-toolbar-multiple-rows {
 .brand {
   display: block;
   margin: 0 auto;
+
+  img {
+    height: 52px;
+  }
+}
+a.mat-list-item {
+  margin-top: 16px;
 }
 
 mat-nav-list a {
+  color: #95A5A6;
   span {
     width: 100%;
-    text-align: center !important;
+    text-align: left !important;
+    padding-left: 10px;
+    
   }
+}
+
+::ng-deep .mat-list-item-content {
+  padding-left: 24px !important;
 }
 
 // notification
@@ -85,9 +99,12 @@ button.notif-icon {
 }
 
 @keyframes annoy {
-  from,to {
+
+  from,
+  to {
     color: red;
   }
+
   50% {
     color: unset;
   }
@@ -95,12 +112,13 @@ button.notif-icon {
 
 
 
-.unread{
+.unread {
   animation-name: annoy;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
   animation-duration: 1s;
 }
+
 // Avatar
 
 .avatar {

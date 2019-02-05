@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserServices } from '../services/user_services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -11,6 +12,9 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  // Form Validation
+  loginVal: FormGroup;
+
   // spiiner condition
   showPage = true;
   showSpinner: boolean;
@@ -19,10 +23,22 @@ export class LoginComponent implements OnInit {
   password: string;
   credentials = [];
 
-  constructor(public http: HttpClient, private user: UserServices, private router: Router, private cookies: CookieService,
-    public acRoute: ActivatedRoute) { }
+  constructor(public http: HttpClient,
+    private user: UserServices,
+    private router: Router,
+    private cookies: CookieService,
+    public acRoute: ActivatedRoute,
+    private _formBuilder: FormBuilder
+    ) { }
 
   ngOnInit() {
+    // Form Validation angular
+    this.loginVal = this._formBuilder.group({
+      loginUser: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      loginPass: ['', [Validators.required]],
+    });
+
+
     if (this.cookies.get('id').length > 0) {
       this.cookies.set('random', '0x23c4eeqceac23cqcqwc4c3');
       this.router.navigate(['/', this.cookies.get('id')]);

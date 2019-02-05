@@ -120,7 +120,7 @@ export class SideNavComponent implements OnInit {
   }
 
   logout() {
-    console.log('hello');
+    console.log('logout');
     this.cookies.deleteAll();
     this.router.navigate(['/']);
   }
