@@ -11,7 +11,7 @@ import * as $ from 'jquery';
 })
 export class ProfileSettingsComponent implements OnInit {
 
-  edit : boolean = false;
+  editProfile = false;
 
 
 
