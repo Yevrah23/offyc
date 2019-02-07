@@ -28,6 +28,7 @@ export class SubmitProposalComponent implements OnInit {
   edate: string;
   beneficiary: string;
   bene_gender: string;
+  program:string;
   partner: string;
   venue: string;
   proponents: string;
@@ -98,6 +99,7 @@ export class SubmitProposalComponent implements OnInit {
       'venue': this.venue,
       'token': this.cookies.get(this.cookies.get('id')),
       'filename': this.fileName,
+      'program': this.program,
       'partner': this.partner,
       'proponents': this.proponents,
       'accre_level': this.accre_level,

@@ -98,7 +98,7 @@
 
               <mat-form-field floatLabel="auto">
                 <mat-label>Program (If you have other partner deparments. Separate with comma)</mat-label>
-                <textarea [(ngModel)]="dept" cols="20" rows="10" type="text" matInput></textarea>
+                <textarea [(ngModel)]="program" cols="20" rows="10" type="text" matInput></textarea>
               </mat-form-field>
 
               <mat-form-field floatLabel="auto">
@@ -297,7 +297,7 @@
             <tr style="height: 8px; text-align: center;">
               <td style="height: 8px; width: 848px; text-align: left;" colspan="4"> {{data.data.proposal_date_start}} -
                 {{data.data.proposal_date_end}}</td>
-              <td style="height: 8px; width: 848px;" colspan="2">{{data.data.total_hours}}</td>
+              <td style="height: 8px; width: 848px;" colspan="2">{{estimateHours}} Hours</td>
             </tr>
             <tr style="height: 8px; text-align: center;">
               <td style="height: 8px; width: 848px; text-align: left;" colspan="6">&nbsp;</td>
@@ -542,7 +542,7 @@
               </mat-form-field>
               <mat-form-field floatLabel="auto">
                 <mat-label>No. of Days</mat-label>
-                <input name="bleh" [(ngModel)]="days_implemented" type="number" matInput>
+                <input [disabled] name="bleh" [(ngModel)]="days_implemented" type="number" matInput>
               </mat-form-field>
               <div class="upload">
                 <label>Attach File : </label><br>

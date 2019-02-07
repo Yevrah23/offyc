@@ -10,9 +10,9 @@
       </mat-form-field>
 
       <mat-radio-group [(ngModel)]="ProjType" formControlName="typeVal">
-        <mat-label>Type of Project<span class="color-warn">*</span></mat-label> <br>
+        <!-- <mat-label>Type of Project<span class="color-warn">*</span></mat-label> <br>
         <mat-radio-button class="gender-box" value="new">New</mat-radio-button>
-        <mat-radio-button class="gender-box" value="continuing">Continuing</mat-radio-button>
+        <mat-radio-button class="gender-box" value="continuing">Continuing</mat-radio-button> -->
         <!-- <mat-error *ngIf="typeVal.hasError('required')">
               <small>Project type is <strong>required</strong></small>
             </mat-error> -->
@@ -26,12 +26,17 @@
 
       <mat-form-field floatLabel="auto">
         <mat-label>Program<span class="color-warn">*</span></mat-label>
-        <input type="text" formControlName="programVal" matInput>
+        <input [(ngModel)]="program" type="text" formControlName="programVal" matInput>
       </mat-form-field>
 
       <mat-form-field floatLabel="auto">
         <mat-label>Accreditation Level<span class="color-warn">*</span></mat-label>
-        <input [(ngModel)]="accre_level" type="text" formControlName="accreditationLevel" matInput>
+        <!-- <input [(ngModel)]="accre_level" type="text" formControlName="accreditationLevel" matInput> -->
+        <mat-select [(ngModel)]="accre_level" formControlName="secondPosition" required>
+          <mat-option value="Level I">Level I</mat-option>
+          <mat-option value="Level II">Level II</mat-option>
+          <mat-option value="Level III">Level III</mat-option>
+        </mat-select>
       </mat-form-field>
 
       <mat-form-field>
@@ -47,8 +52,17 @@
       </mat-form-field>
 
       <mat-form-field floatLabel="auto">
-        <mat-label>Total Number of Hours<span class="color-warn">*</span></mat-label>
+        <mat-label> Estimated Total Number of Hours<span class="color-warn">*</span></mat-label>
         <input [(ngModel)]="total_hours" type="text" formControlName="tHours" matInput>
+        <mat-select [(ngModel)]="accre_level" formControlName="secondPosition" required>
+          <mat-option value="0.5">Less than 8 Hours</mat-option>
+          <mat-option value="1"> 8 Hours</mat-option>
+          <mat-option value="2">16 Hours</mat-option>
+          <mat-option value="3">24 Hours</mat-option>
+          <mat-option value="4">32  Hours</mat-option>
+          <mat-option value="5">40 Hours</mat-option>
+          <mat-option value="6">More than 40 Hours</mat-option>
+        </mat-select>
       </mat-form-field>
 
       <mat-form-field floatLabel="auto">
