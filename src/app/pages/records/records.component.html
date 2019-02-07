@@ -39,7 +39,7 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
                 <td mat-cell *matCellDef="let record">
                   <div class="actions">
-                    <button mat-raised-button (click)="fileDetails()">Download</button>
+                    <button mat-raised-button (click)="fileDetails(record)">Download</button>
                     <button mat-raised-button (click)="viewProposal(record.proposal_id)">View</button>
                   </div>
                 </td>
@@ -89,7 +89,7 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
                 <td mat-cell *matCellDef="let record">
                   <div class="actions">
-                    <button mat-raised-button (click)="fileDetails()">Download</button>
+                    <button mat-raised-button (click)="fileDetails(record)">Download</button>
                     <button mat-raised-button (click)="viewProposal(record.proposal_id)">View</button>
                   </div>
                 </td>
@@ -139,7 +139,7 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
                 <td mat-cell *matCellDef="let record">
                   <div class="actions">
-                    <button mat-raised-button (click)="fileDetails()">Download</button>
+                    <button mat-raised-button (click)="fileDetails(record)">Download</button>
                     <button mat-raised-button (click)="viewProposal(record.proposal_id)">View</button>
                   </div>
                 </td>
@@ -189,7 +189,7 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
                 <td mat-cell *matCellDef="let record">
                   <div class="actions">
-                    <button mat-raised-button (click)="fileDetails()">Download</button>
+                    <button mat-raised-button (click)="fileDetails(record)">Download</button>
                     <button mat-raised-button (click)="viewProposal(record.proposal_id)">View</button>
                   </div>
                 </td>
@@ -238,7 +238,7 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
                 <td mat-cell *matCellDef="let record">
                   <div class="actions">
-                    <button mat-raised-button (click)="fileDetails()">Download</button>
+                    <button mat-raised-button (click)="fileDetails(record)">Download</button>
                     <button mat-raised-button (click)="viewProposal(record.proposal_id)">View</button>
                   </div>
                 </td>
@@ -304,7 +304,7 @@
                 <td mat-cell *matCellDef="let record">
                   <div class="actions">
                     <!-- pag click sa download kai mo gawas modal mga lista sa files daun mo gawas. -->
-                    <button mat-raised-button (click)="fileDetails()">Download</button>
+                    <button mat-raised-button (click)="fileDetails(record)">Download</button>
                     <button mat-raised-button (click)="viewProposal(record.proposal_id)">View</button>
                   </div>
                 </td>

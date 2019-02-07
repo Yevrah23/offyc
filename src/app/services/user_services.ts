@@ -181,4 +181,21 @@ export class UserServices {
         return this.http.post(this.serverUrl + 'codeigniter/api/Users/get_transactions', { 'id': id });
 
     }
+
+    update_profile(params){
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/update_user', { 
+            'id': params[0].id,
+            'email': params[0].email,
+            'cNumber':params[0].c_number,
+            'pass': params[0].pass
+        });
+    }
+
+    update_notifs(id){
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/update_notification', { 'id': id });
+    }
+
+    lockout(id){
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/lockout', { 'id': id });
+    }
 }

@@ -6,6 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { SuccessComponent } from '../modal/success/success.component';
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 
 
 @Component({
@@ -16,6 +17,9 @@ import { SuccessComponent } from '../modal/success/success.component';
 export class LoginComponent implements OnInit {
   // Form Validation
   loginVal: FormGroup;
+
+  attempt : number = 0;
+  lockout: boolean = false;
 
   // spiiner condition
   showPage = true;
@@ -41,12 +45,12 @@ export class LoginComponent implements OnInit {
       loginUser: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       loginPass: ['', [Validators.required]],
     });
-
-    this.cookies.deleteAll('/', 'localhost');
+    
     console.log(this.user.isLoggedIn);
     if (this.user.isLoggedIn) {
       this.router.navigate(['/', this.cookies.get('id')]);
     } else {
+      this.cookies.deleteAll('/', 'localhost');
       this.router.navigate(['/']);
     }
   }
@@ -80,10 +84,26 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/', response[1].user_school_id]);
           //   // this.router.navigate(['/', 'admin']);
           } else {
-            this.showSuccess('frmLogin', response['message'], false);
+            this.attempt += 1;
+            if (this.attempt == 4){
+              this.user.lockout(this.username).subscribe(
+                (response) => {
+                  if (response){
+                    this.lockout = true;
+                    this.showSuccess('frmLogin', 'You have been locked-out of your account due multipled failed attempts. Please contact admin @ 09676657853 to reset', false);
+                  }
+                }
+              )
+            }else{
+              this.showSuccess('frmLogin', response['message'], false);
+            }
         }
       }
     );
+  }
+
+  forgot_password(){
+
   }
 
 

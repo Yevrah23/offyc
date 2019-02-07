@@ -101,8 +101,12 @@ export class HomeComponent implements OnInit {
   }
 
   get_transactions() {
-    this.user.get_transactions(this.cookies.get('id')).subscribe(data => {
+    this.user.get_transactions(this.cookies.get('id')).subscribe((data:any[]) => {
       console.log(data);
+        this.showSpinner = false;
+        this.showData = true;
+        // this.records = data;
+        this.dataSource = new MatTableDataSource(data); // for mat-table
     })
   }
 }

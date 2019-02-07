@@ -97,10 +97,12 @@ export class RecordsComponent implements OnInit {
 
   }
 
-  fileDetails(): void {
+  fileDetails(record): void {
+    console.log(record);
     const dialogRef = this.dialog.open(FileDetailsComponent, {
       width: '439px',
-      panelClass: 'custom-dialog-file'
+      panelClass: 'custom-dialog-file',
+      data:record
     });
 
     dialogRef.afterClosed().subscribe(result => {

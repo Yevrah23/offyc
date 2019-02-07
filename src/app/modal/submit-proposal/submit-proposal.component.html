@@ -35,15 +35,15 @@
       </mat-form-field>
 
       <mat-form-field>
-        <input [(ngModel)]="sdate" formControlName="sDate" matInput [matDatepicker]="start" placeholder="Start Date">
+        <input [(ngModel)]="sdate" formControlName="sDate" matInput [matDatepicker]="start" placeholder="Start Month">
         <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
-        <mat-datepicker #start></mat-datepicker>
+        <mat-datepicker #start startView="year"></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field>
-        <input [(ngModel)]="edate" formControlName="eDate" matInput [matDatepicker]="end" placeholder="End Date">
+        <input [(ngModel)]="edate" formControlName="eDate" matInput [matDatepicker]="end" placeholder="End Month">
         <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
-        <mat-datepicker #end></mat-datepicker>
+        <mat-datepicker #end startView="year"></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field floatLabel="auto">
@@ -76,11 +76,11 @@
       <label> Budget Requirements </label>
       <mat-form-field floatLabel="auto">
         <mat-label>USTP</mat-label>
-        <input [(ngModel)]="budget_ustp" type="number" matInput>
+        <input [(ngModel)]="budget_ustp" type="number" matInput formControlName="budget_u_val">
       </mat-form-field>
       <mat-form-field floatLabel="auto">
         <mat-label>Partner Agency</mat-label>
-        <input [(ngModel)]="budget_partner" type="number" matInput>
+        <input [(ngModel)]="budget_partner" type="number" matInput formControlName="budget_p_val">
       </mat-form-field>
 
       <div class="upload">

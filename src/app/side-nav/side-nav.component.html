@@ -42,16 +42,16 @@
 
           <mat-menu class="notif" #notif="matMenu">
             <mat-list role="list">
-              <button mat-menu-item *ngFor="let read of unread">
-                <mat-list-item role="listitem"><small>{{read.ui_Fname}} | {{read.notif_type_id}}</small></mat-list-item>
+              <button  routerLink='notification' mat-menu-item *ngFor="let read of unread">
+                <mat-list-item role="listitem"><small>{{read.ui_Fname}} {{read.notif_type_id}}</small></mat-list-item>
               </button>
-              <button mat-menu-item *ngFor="let read of read">
-                <mat-list-item role="listitem"><small>{{read.ui_Fname}} | {{read.notif_type_id}}</small></mat-list-item>
+              <button  routerLink='notification' mat-menu-item *ngFor="let read of read">
+                <mat-list-item role="listitem"><small>{{read.ui_Fname}} {{read.notif_type_id}}</small></mat-list-item>
               </button>
             </mat-list>
             <div class="container more">
               <div class="row">
-                <button routerLink='notification' mat-menu-item>
+                <button mat-menu-item>
                   <div class="col-md text-center"><small>more</small></div>
                 </button>
               </div>

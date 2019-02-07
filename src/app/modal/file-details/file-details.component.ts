@@ -7,6 +7,10 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
   styleUrls: ['./file-details.component.scss']
 })
 export class FileDetailsComponent implements OnInit {
+  moa: boolean = false;
+  report: boolean = false;
+  cover: boolean = false;
+  proposal:boolean = false;
 
   constructor(
     public dialog: MatDialog,
@@ -15,6 +19,22 @@ export class FileDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    if (this.data.moa_directory.length > 0){
+      this.moa = true;
+    }
+
+    if (this.data.cover_directory.length > 0) {
+      this.cover = true;
+    }
+
+    if (this.data.proposal_directory.length > 0) {
+      this.proposal = true;
+    }
+
+    if (this.data.report_directory.length > 0) {
+      this.report = true;
+    }
+
   }
 
 }

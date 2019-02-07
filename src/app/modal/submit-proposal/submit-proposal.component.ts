@@ -39,7 +39,7 @@ export class SubmitProposalComponent implements OnInit {
   file: File = null;
 
   fileName: string;
-  files: FileList;
+  files: FileList = null;
 
   constructor(
     public dialog: MatDialog,
@@ -80,7 +80,10 @@ export class SubmitProposalComponent implements OnInit {
       tBenificiary: ['', Validators.required],
       gBenificiary: ['', Validators.required],
       projectLocation: ['', Validators.required],
-      partnerAgency: ['', Validators.required]
+      partnerAgency: ['', Validators.required],
+      upload: ['', Validators.required],
+      budget_u_val: ['', Validators.required],
+      budget_p_val: ['', Validators.required],
     });
   }
 
@@ -149,8 +152,14 @@ export class SubmitProposalComponent implements OnInit {
     // this.file = files.item(0);
     this.files = event.target.files;
     console.log(this.files);
-    this.fileName = this.files[0]['name'];
-    $('#fileName').val(this.files[0]['name']);
+    if(this.files[0].size > 2000000){
+      $('#fileName').val('File is greater than 2 MB, Choose another file');
+      this.files = null;
+    }else{
+      this.fileName = this.files[0]['name'];
+      $('#fileName').val(this.files[0]['name']);
+    }
+
   }
 
 

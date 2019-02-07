@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { Component, OnInit, Input, Inject } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { SuccessComponent } from '../success/success.component';
 
 import * as $ from 'jquery';
+import { UserServices } from 'src/app/services/user_services';
 
 @Component({
   selector: 'app-profile-settings',
@@ -13,6 +14,11 @@ export class ProfileSettingsComponent implements OnInit {
 
   editProfile = false;
 
+  id:any;
+  email:any;
+  c_number:any;
+  pass: any;
+  update = [];
 
 
   // if false input will show
@@ -39,8 +45,16 @@ export class ProfileSettingsComponent implements OnInit {
   NumberReadOnly: boolean;
 
   constructor(
-    public dialog: MatDialog
-  ) { }
+    public dialog: MatDialog,
+    public dialogRef: MatDialogRef<ProfileSettingsComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private user: UserServices
+  ) { 
+    this.email = this.data.ui_email;
+    this.c_number = this.data.ui_contact_number;
+    this.pass = this.data.user_pass;
+    this.id = this.data.ui_school_id;
+  }
 
   // Alert Save Settings success
   showSuccess(page: string): void {
@@ -58,10 +72,6 @@ export class ProfileSettingsComponent implements OnInit {
     });
   }
   ngOnInit() {
-
-  }
-
-  edit_profile() {
 
   }
 
@@ -98,6 +108,7 @@ export class ProfileSettingsComponent implements OnInit {
         this.passEdit = true;
       } else {
         this.passReadOnly = true;
+        this.pass = name;
       }
     } else if (detail === 'saveEmail') { // dor button edit, save Condition.
       this.editEmailButton = true;
@@ -106,6 +117,7 @@ export class ProfileSettingsComponent implements OnInit {
         this.emailEdit = true;
       } else {
         this.EmailReadOnly = true;
+        this.email = name;
       }
     } else if (detail === 'saveNumber') { // dor button edit, save Condition.
       this.editNumberButton = true;
@@ -114,15 +126,35 @@ export class ProfileSettingsComponent implements OnInit {
         this.numberEdit = true;
       } else {
         this.NumberReadOnly = true;
+        this.c_number = name
       }
     }
   }
 
   // dri butang ang code sa pag save sa settings
   saveSettings() {
+    this.update.push(
+      {
+        'id': this.id,
+        'email': this.email,
+        'c_number': this.c_number,
+        'pass': this.pass
+      }
+    );
+    console.log(this.update);
+    this.user.update_profile(this.update).subscribe(
+      (response) => {
+        console.log(response);
+        if (response){
+          this.dialogRef.close(true);
+          const page = 'fromProfileSettingsSave'; // para makita asa na page ang gkan g click ang  success na dialog, para dynamic ang success na modal.
+          this.showSuccess(page);
+        }
+      }
+    );
+    
     // tslint:disable-next-line:max-line-length
-    const page = 'fromProfileSettingsSave'; // para makita asa na page ang gkan g click ang  success na dialog, para dynamic ang success na modal.
-    this.showSuccess(page);
+
   }
 
   deleteAccount() {
