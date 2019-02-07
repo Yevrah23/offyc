@@ -1,5 +1,5 @@
-<section *ngIf="showSpinner" app-data-spinner></section>
-<section *ngIf="isAdmin && !showSpinner" class="container-fluid records admin">
+<section *ngIf="adminSpinner" app-data-spinner></section>
+<section *ngIf="isAdmin && !adminSpinner" class="container-fluid records admin">
   <div class="row">
     <div class="col-md-12">
       <mat-tab-group dynamicHeight class="progressReport">
@@ -39,8 +39,8 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
                 <td mat-cell *matCellDef="let record">
                   <div class="actions">
-                    <button mat-raised-button (click)="fileDetails()">Download</button>
-                    <button mat-raised-button (click)="viewProposal(record.proposal_id)">View</button>
+                    <button mat-button (click)="fileDetails()" class="color-accent">Download</button>
+                    <button mat-raised-button (click)="viewProposal(record.proposal_id)" color="primary">View</button>
                   </div>
                 </td>
               </ng-container>
@@ -89,8 +89,8 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
                 <td mat-cell *matCellDef="let record">
                   <div class="actions">
-                    <button mat-raised-button (click)="fileDetails()">Download</button>
-                    <button mat-raised-button (click)="viewProposal(record.proposal_id)">View</button>
+                    <button mat-button (click)="fileDetails()" class="color-accent">Download</button>
+                    <button mat-raised-button (click)="viewProposal(record.proposal_id)" color="primary">View</button>
                   </div>
                 </td>
               </ng-container>
@@ -139,8 +139,8 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
                 <td mat-cell *matCellDef="let record">
                   <div class="actions">
-                    <button mat-raised-button (click)="fileDetails()">Download</button>
-                    <button mat-raised-button (click)="viewProposal(record.proposal_id)">View</button>
+                    <button mat-button (click)="fileDetails()" class="color-accent">Download</button>
+                    <button mat-raised-button (click)="viewProposal(record.proposal_id)" color="primary">View</button>
                   </div>
                 </td>
               </ng-container>
@@ -189,8 +189,8 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
                 <td mat-cell *matCellDef="let record">
                   <div class="actions">
-                    <button mat-raised-button (click)="fileDetails()">Download</button>
-                    <button mat-raised-button (click)="viewProposal(record.proposal_id)">View</button>
+                    <button mat-button (click)="fileDetails()" class="color-accent">Download</button>
+                    <button mat-raised-button (click)="viewProposal(record.proposal_id)" color="primary">View</button>
                   </div>
                 </td>
               </ng-container>
@@ -238,8 +238,8 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
                 <td mat-cell *matCellDef="let record">
                   <div class="actions">
-                    <button mat-raised-button (click)="fileDetails()">Download</button>
-                    <button mat-raised-button (click)="viewProposal(record.proposal_id)">View</button>
+                    <button mat-button (click)="fileDetails()" class="color-accent">Download</button>
+                    <button mat-raised-button (click)="viewProposal(record.proposal_id)" color="primary">View</button>
                   </div>
                 </td>
               </ng-container>
@@ -258,10 +258,11 @@
 </section>
 
 
-<section *ngIf="isUser && !showSpinner" class="container-fluid records user">
+<section *ngIf="isUser && !adminSpinner" class="container-fluid records user">
   <div class="row">
     <!-- button modal trigger -->
-    <button class="modal-trigger" color="primary" mat-raised-button (click)="submitProposal()">Submit Proposal</button>
+    <button class="modal-trigger" color="primary" mat-raised-button (click)="submitProposal()"><i class="fas fa-plus-circle"></i><span
+        class="px-2">Submit Proposal</span></button>
 
 
     <div class="col-md-12">
@@ -304,8 +305,8 @@
                 <td mat-cell *matCellDef="let record">
                   <div class="actions">
                     <!-- pag click sa download kai mo gawas modal mga lista sa files daun mo gawas. -->
-                    <button mat-raised-button (click)="fileDetails()">Download</button>
-                    <button mat-raised-button (click)="viewProposal(record.proposal_id)">View</button>
+                    <button mat-button (click)="fileDetails()" class="color-accent">Download</button>
+                    <button mat-raised-button (click)="viewProposal(record.proposal_id)" color="primary">View</button>
                   </div>
                 </td>
               </ng-container>

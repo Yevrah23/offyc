@@ -16,23 +16,20 @@
     <div class="container Form-action-wrapper">
       <div class="row">
         <div class="col-md text-center">
-          <button mat-raised-button mat-dialog-close color="accent">Okay</button>
+          <button mat-raised-button mat-dialog-close color="accent">back</button>
         </div>
       </div>
     </div>
   </mat-dialog-actions>
 </section>
 <section *ngIf="fromLogin">
-    <h4 *ngIf="!loginStatus" mat-diaglog-title class="text-center color-accent">OOOPS!!</h4>
-    <h4 *ngIf="loginStatus" mat-diaglog-title class="text-center color-accent">GREAT</h4>
+    <h4 *ngIf="!loginStatus" mat-diaglog-title class="text-center color-accent">OOPS!</h4>
 
   <mat-dialog-content>
     <div class="container dialog-wrapper">
       <div class="row">
         <div class="col-md">
           <p *ngIf = "!loginStatus"  class="text-center color-secondary">Something Went Wrong! <br> {{data.message}}
-          <p  *ngIf = "loginStatus" class="text-center color-secondary">Success! <br> {{data.message}}
-          </p>
         </div>
       </div><!-- end row -->
     </div><!-- end wrapper -->
@@ -93,7 +90,7 @@
       <div class="container Form-action-wrapper">
         <div class="row">
           <div class="col-md text-center">
-            <button mat-raised-button mat-dialog-close color="accent">Okay</button>
+            <button mat-button mat-dialog-close color="accent">Back</button>
           </div>
         </div>
       </div>

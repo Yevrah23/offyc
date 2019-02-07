@@ -18,7 +18,7 @@ import { FormControl, FormGroup, Validators, FormControlName, FormBuilder } from
   styleUrls: ['./submit-proposal.component.scss']
 })
 export class SubmitProposalComponent implements OnInit {
-
+  startDate = new Date(2018, 1, 0);
   // form validation
   submitProposal: FormGroup;
 
@@ -69,18 +69,21 @@ export class SubmitProposalComponent implements OnInit {
 
   ngOnInit() {
     this.submitProposal = this._formBuilder.group({
-      titleVal: ['', Validators.required],
+      titleVal: ['', [Validators.required, Validators.pattern('^[a-zA-Z \-\']+')]],
       typeVal: ['', Validators.required],
       proponentsVal: ['', Validators.required],
-      programVal: ['', Validators.required],
+      programVal: ['', [Validators.required, Validators.pattern('^[a-zA-Z \-\']+')]],
       accreditationLevel: ['', Validators.required],
       sDate: ['', Validators.required],
       eDate: ['', Validators.required],
-      tHours: ['', Validators.required],
-      tBenificiary: ['', Validators.required],
+      tHours: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      tBenificiary: ['', [Validators.required, Validators.pattern('^[a-zA-Z \-\']+')]],
       gBenificiary: ['', Validators.required],
       projectLocation: ['', Validators.required],
-      partnerAgency: ['', Validators.required]
+      partnerAgency: ['', [Validators.required, Validators.pattern('^[a-zA-Z \-\']+')]],
+      upload: ['', Validators.required],
+      budgetUSTP: ['', Validators.pattern('^[0-9]*$')],
+      budgetPartner: ['', Validators.pattern('^[0-9]*$')],
     });
   }
 
