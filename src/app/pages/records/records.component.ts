@@ -33,11 +33,13 @@ export class RecordsComponent implements OnInit {
   showData = false;
   // mat-table
   displayedColumns: string[] = ['Title', 'Target', 'Venue', 'Settings'];
+  archiveColumns: string[] = ['Title', 'Target', 'Venue', 'Settings'];
   CITC: MatTableDataSource<any>;
   COT: MatTableDataSource<any>;
   CEA: MatTableDataSource<any>;
   CSM: MatTableDataSource<any>;
   CSTE: MatTableDataSource<any>;
+  ARCHIVE: MatTableDataSource<any>;
 
   User: MatTableDataSource<any>;
 
@@ -61,9 +63,12 @@ export class RecordsComponent implements OnInit {
 
 
   // Modal triggers
-  submitProposal(): void {
+  submitProposal(userAdmin): void {
     const dialogRef = this.dialog.open(SubmitProposalComponent, {
-      width: '500px'
+      width: '500px',
+      data : {
+        userType: userAdmin // string ni
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -146,6 +151,7 @@ export class RecordsComponent implements OnInit {
             this.CEA = new MatTableDataSource(response[1].CEA);
             this.CSM = new MatTableDataSource(response[1].CSM);
             this.CSTE = new MatTableDataSource(response[1].CSTE);
+            this.ARCHIVE = new MatTableDataSource(response[1].ARCHIVE);
 
             // mat table
             this.CITC.paginator = this.paginator;
@@ -153,12 +159,14 @@ export class RecordsComponent implements OnInit {
             this.CEA.paginator = this.paginator;
             this.CSM.paginator = this.paginator;
             this.CSTE.paginator = this.paginator;
+            this.ARCHIVE.paginator = this.paginator;
 
             this.CITC.sort = this.sort;
             this.COT.sort = this.sort;
             this.CEA.sort = this.sort;
             this.CSM.sort = this.sort;
             this.CSTE.sort = this.sort;
+            this.ARCHIVE.sort = this.sort;
           }
         }
       );
@@ -189,6 +197,7 @@ export class RecordsComponent implements OnInit {
     this.CSM.filter = filterValue.trim().toLowerCase();
     this.CSTE.filter = filterValue.trim().toLowerCase();
     this.CEA.filter = filterValue.trim().toLowerCase();
+    this.ARCHIVE.filter = filterValue.trim().toLowerCase();
     this.User.filter = filterValue.trim().toLowerCase(); // user only
 
     if (this.CITC.paginator) {
@@ -204,6 +213,9 @@ export class RecordsComponent implements OnInit {
       this.CSTE.paginator.firstPage();
     }
     if (this.CEA.paginator) {
+      this.CEA.paginator.firstPage();
+    }
+    if (this.ARCHIVE.paginator) {
       this.CEA.paginator.firstPage();
     }
 

@@ -20,6 +20,9 @@ import { FormControl, FormGroup, Validators, FormControlName, FormBuilder } from
 export class SubmitProposalComponent implements OnInit {
   startDate = new Date(2018, 1, 0);
   // form validation
+  userType: string;
+  isArchive: boolean;
+  isUserSubmit: boolean;
   submitProposal: FormGroup;
 
   proposal = [];
@@ -37,6 +40,9 @@ export class SubmitProposalComponent implements OnInit {
   budget_partner: string;
 
   file: File = null;
+  moa_file: File = null;
+  signed: File = null;
+  accomp: File = null;
 
   fileName: string;
   files: FileList;
@@ -50,7 +56,17 @@ export class SubmitProposalComponent implements OnInit {
     private http: HttpClient,
     private upload: UploadService,
     private _formBuilder: FormBuilder
-  ) { }
+  ) {
+    // check if gkan ba sa user or archive ba g click na button.
+    this.userType = this.data.userType;
+    if (this.userType === '1') {
+      this.isArchive = true;
+      this.isUserSubmit = false;
+    } else {
+      this.isArchive = false;
+      this.isUserSubmit = true;
+    }
+  }
 
   showSuccess(page: string): void {
     const dialogRef = this.dialog.open(SuccessComponent, {
@@ -84,6 +100,9 @@ export class SubmitProposalComponent implements OnInit {
       upload: ['', Validators.required],
       budgetUSTP: ['', Validators.pattern('^[0-9]*$')],
       budgetPartner: ['', Validators.pattern('^[0-9]*$')],
+      uploadMoa: ['', Validators.required],
+      uploadPC: ['', Validators.required],
+      uploadAC: ['', Validators.required]
     });
   }
 
@@ -148,12 +167,36 @@ export class SubmitProposalComponent implements OnInit {
   // }
 
   getFiles(event) {
-
     // this.file = files.item(0);
     this.files = event.target.files;
     console.log(this.files);
     this.fileName = this.files[0]['name'];
     $('#fileName').val(this.files[0]['name']);
+  }
+  upload_moa(event) {
+
+    // this.file = files.item(0);
+    this.files = event.target.files;
+    this.moa_file = this.files[0];
+    this.fileName = this.files[0]['name'];
+    $('#moaName').val(this.files[0]['name']);
+  }
+  upload_signed(event) {
+
+    // this.file = files.item(0);
+    this.files = event.target.files;
+    this.signed = this.files[0];
+    this.fileName = this.files[0]['name'];
+    $('#signedName').val(this.files[0]['name']);
+  }
+
+  upload_accomp(event) {
+
+    // this.file = files.item(0);
+    this.files = event.target.files;
+    this.accomp = this.files[0];
+    this.fileName = this.files[0]['name'];
+    $('#accompName').val(this.files[0]['name']);
   }
 
 
