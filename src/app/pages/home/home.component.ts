@@ -51,9 +51,9 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.get_transactions();
     setTimeout(() => {
-      if(this.user.admin){
+      if (this.user.admin) {
         this.get_events();
-      }else{
+      } else {
         this.get_events_user();
 
       }
@@ -137,7 +137,7 @@ export class HomeComponent implements OnInit {
   }
 
   get_transactions() {
-    this.user.get_transactions(this.cookies.get('id')).subscribe((data:any[]) => {
+    this.user.get_transactions(this.cookies.get('id')).subscribe((data: any[]) => {
       console.log(data);
     });
   }
