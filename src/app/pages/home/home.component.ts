@@ -6,6 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { Chart } from 'chart.js';
 
 import * as $ from 'jquery';
 import * as jspdf from 'jspdf';
@@ -18,7 +19,11 @@ import html2canvas from 'html2canvas';
 })
 export class HomeComponent implements OnInit {
   token: any;
-  session:any;
+  session: any;
+
+  // charts
+  chartAdmin: any;
+  chartUser: any;
 
   // Calendar api
   calendarOptions: Options;
@@ -46,25 +51,34 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.get_transactions();
     setTimeout(() => {
-      if(this.user.admin){
+      if (this.user.admin) {
         this.get_events();
-      }else{
+      } else {
         this.get_events_user();
 
       }
     }, 1500);
 
+    // chartJs
+    this.chRef.detectChanges();
+    this.get_adminChart(); // if admin
+
+    this.chRef.detectChanges();
+    this.get_userChart(); // if user
+
+
     // retrieve data  via HTTP
     // this.http.get('https://jsonplaceholder.typicode.com/users')
     //   .subscribe((data: any[]) => {
-    //     this.showSpinner = false;
-    //     this.showData = true;
-    //     // this.records = data;
-    //     this.dataSource = new MatTableDataSource(data); // for mat-table
+    //     console.log(data);
+    //     // this.showSpinner = false;
+    //     // this.showData = true;
+    //     // // this.records = data;
+    //     // this.dataSource = new MatTableDataSource(data); // for mat-table
 
-    //     // mat table
-    //     this.dataSource.paginator = this.paginator;
-    //     this.dataSource.sort = this.sort;
+    //     // // mat table
+    //     // this.dataSource.paginator = this.paginator;
+    //     // this.dataSource.sort = this.sort;
     //     // this.chRef.detectChanges();
     //     // User
     //     // Display data tables
@@ -92,7 +106,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  get_events(){
+  get_events() {
     this.user.getEvents().subscribe(data => {
       this.calendarOptions = {
         editable: false,
@@ -123,12 +137,119 @@ export class HomeComponent implements OnInit {
   }
 
   get_transactions() {
-    this.user.get_transactions(this.cookies.get('id')).subscribe((data:any[]) => {
+    this.user.get_transactions(this.cookies.get('id')).subscribe((data: any[]) => {
       console.log(data);
-        this.showSpinner = false;
-        this.showData = true;
-        // this.records = data;
-        this.dataSource = new MatTableDataSource(data); // for mat-table
-    })
+    });
+  }
+  // when seleted tab index
+  // selectedPageIndex() {
+  // }
+
+  get_adminChart() {
+    this.chartAdmin = new Chart('chartAdmin', {
+      type: 'line',
+      data: {
+        labels: ['1st Qtr', '2nd Qtr', '3rd Qtr', '4th Qtr'],
+        datasets: [{
+          label: 'CITC',
+          data: [12, 19, 3, 18],
+          borderColor: '#2E3131',
+          backgroundColor: '#2E3131',
+          fill: false,
+        }, {
+          label: 'CSTE',
+          data: [5, 7, 8, 12],
+          borderColor: '#1E8BC3',
+          backgroundColor: '#1E8BC3',
+          fill: false,
+        }, {
+          label: 'COT',
+          data: [3, 15, 6, 8],
+          borderColor: '#D91E18',
+          backgroundColor: '#D91E18',
+          fill: false,
+        }, {
+          label: 'CSM',
+          data: [11, 16, 7, 14],
+          borderColor: '#26A65B',
+          backgroundColor: '#26A65B',
+          fill: false,
+        }, {
+          label: 'CEA',
+          data: [25, 13, 3, 18],
+          borderColor: '#96281B',
+          backgroundColor: '#96281B',
+          fill: false,
+        }]
+      },
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: 'Progress Report'
+        },
+        legend: {
+          display: true
+        },
+        tooltips: {
+          mode: 'index',
+          intersect: false,
+        },
+        hover: {
+          mode: 'nearest',
+          intersect: true
+        },
+        sacles: {
+          xAxes: [{
+            display: true,
+          }],
+          yAxes: [{
+            display: true
+          }]
+        }
+      }
+    });
+  }
+
+  get_userChart() {
+    this.chartUser = new Chart('chartUser', {
+      type: 'line',
+      data: {
+        labels: ['1st Qtr', '2nd Qtr', '3rd Qtr', '4th Qtr'],
+        datasets: [{
+          label: 'College name',
+          data: [12, 19, 3, 5],
+          borderColor: '#3cba9f',
+          backgroundColor: '#3cba9f',
+          fill: false,
+        }]
+      },
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: 'Progress Report'
+        },
+        legend: {
+          display: true
+        },
+        tooltips: {
+          mode: 'index',
+          intersect: false,
+        },
+        hover: {
+          mode: 'nearest',
+          intersect: true
+        },
+        sacles: {
+          xAxes: [{
+            display: true
+          }],
+          yAxes: [{
+            display: true
+          }]
+        }
+      }
+    });
   }
 }

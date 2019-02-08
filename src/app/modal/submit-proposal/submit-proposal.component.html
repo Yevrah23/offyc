@@ -3,7 +3,7 @@
 <div>
   <form name="form" [formGroup]="submitProposal">
     <mat-dialog-content>
-      <div class="form-wrapper">
+      <div class="form-wrapper tex-left">
 
         <mat-form-field floatLabel="auto">
           <mat-label>Project Title<span class="color-warn">*</span></mat-label>
@@ -47,7 +47,6 @@
 
         <mat-form-field floatLabel="auto">
           <mat-label>Accreditation Level<span class="color-warn">*</span></mat-label>
-          <!-- <input [(ngModel)]="accre_level" type="text" formControlName="accreditationLevel" matInput> -->
           <mat-select [(ngModel)]="accre_level" formControlName="accreditationLevel" required>
             <mat-option value="Level I">Level I</mat-option>
             <mat-option value="Level II">Level II</mat-option>
@@ -78,7 +77,7 @@
 
         <mat-form-field floatLabel="auto">
           <mat-label>Total Number of Hours<span class="color-warn">*</span></mat-label>
-          <!-- <input [(ngModel)]="total_hours" type="number" formControlName="tHours" matInput> -->
+          <mat-label> Estimated Total Number of Hours<span class="color-warn">*</span></mat-label>
           <mat-select [(ngModel)]="total_hours" formControlName="tHours" required>
             <mat-option value="0.5">Less than 8 Hours</mat-option>
             <mat-option value="1"> 8 Hours</mat-option>
@@ -194,11 +193,8 @@
             </mat-error>
           </div>
         </div>
-
       </div>
-
     </mat-dialog-content>
-
     <mat-dialog-actions>
       <div class="Form-action-wrapper">
         <button mat-button mat-dialog-close>Cancel</button>

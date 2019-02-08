@@ -31,7 +31,7 @@ export class SubmitProposalComponent implements OnInit {
   edate: string;
   beneficiary: string;
   bene_gender: string;
-  program:string;
+  program: string;
   partner: string;
   venue: string;
   proponents: string;
@@ -176,10 +176,10 @@ export class SubmitProposalComponent implements OnInit {
     // this.file = files.item(0);
     this.files = event.target.files;
     console.log(this.files);
-    if(this.files[0].size > 2000000){
+    if (this.files[0].size > 2000000) {
       $('#fileName').val('File is greater than 2 MB, Choose another file');
       this.files = null;
-    }else{
+    } else {
       this.fileName = this.files[0]['name'];
       $('#fileName').val(this.files[0]['name']);
     }
