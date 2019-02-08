@@ -100,7 +100,7 @@ export class HomeComponent implements OnInit {
         header: {
           left: 'prev,next today',
           center: 'title',
-          right: 'month,agendaWeek,agendaDay,listMonth'
+          right: 'listMonth,agendaWeek,agendaDay'
         },
         events: data
       };

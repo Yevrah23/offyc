@@ -9,7 +9,7 @@
           <mat-label>Project Title<span class="color-warn">*</span></mat-label>
           <input [(ngModel)]="title" type="text" formControlName="titleVal" matInput>
           <mat-error *ngIf="submitProposal.get('titleVal').hasError('required')">
-            <small>Title is <strong>required</strong></small>
+            <small>Title is required <strong>required</strong></small>
           </mat-error>
           <mat-error *ngIf="submitProposal.get('titleVal').hasError('pattern')">
             <small>Numbers and symbols not allowed></small>
@@ -21,7 +21,7 @@
           <mat-radio-button class="gender-box" value="new">New</mat-radio-button>
           <mat-radio-button class="gender-box" value="continuing">Continuing</mat-radio-button>
           <mat-error *ngIf="submitProposal.get('typeVal').hasError('required')">
-            <small>Project type is <strong>required</strong></small>
+            <small>Project type is required <strong>required</strong></small>
           </mat-error>
         </mat-radio-group>
 
@@ -29,16 +29,16 @@
           <mat-label>Proponents<span class="color-warn">*</span> (Separate Multiple Proponents w/ commas)</mat-label>
           <textarea [(ngModel)]="proponents" cols="30" rows="10" formControlName="proponentsVal" matInput></textarea>
           <mat-error *ngIf="submitProposal.get('proponentsVal').hasError('required')">
-            <small>Proponents is <strong>required</strong></small>
+            <small>Proponents is required <strong>required</strong></small>
           </mat-error>
           <!-- <input type="text" matInput> -->
         </mat-form-field>
 
         <mat-form-field floatLabel="auto">
-          <mat-label>Program<span class="color-warn">*</span></mat-label>
-          <input type="text" formControlName="programVal" matInput>
+          <mat-label>Program<span class="color-warn">*  (Separate Multiple Programs w/ commas)</span></mat-label>
+          <input [(ngModel)] = "program" type="text" formControlName="programVal" matInput>
           <mat-error *ngIf="submitProposal.get('programVal').hasError('required')">
-            <small>Program is <strong>required</strong></small>
+            <small>Program is required <strong>required</strong></small>
           </mat-error>
           <mat-error *ngIf="submitProposal.get('programVal').hasError('pattern')">
             <small>Numbers and symbols not allowed</small>
@@ -47,16 +47,21 @@
 
         <mat-form-field floatLabel="auto">
           <mat-label>Accreditation Level<span class="color-warn">*</span></mat-label>
-          <input [(ngModel)]="accre_level" type="text" formControlName="accreditationLevel" matInput>
+          <!-- <input [(ngModel)]="accre_level" type="text" formControlName="accreditationLevel" matInput> -->
+          <mat-select [(ngModel)]="accre_level" formControlName="accreditationLevel" required>
+            <mat-option value="Level I">Level I</mat-option>
+            <mat-option value="Level II">Level II</mat-option>
+            <mat-option value="Level III">Level III</mat-option>
+          </mat-select>
           <mat-error *ngIf="submitProposal.get('accreditationLevel').hasError('required')">
-            <small>Accreditation is <strong>required</strong></small>
+            <small>Accreditation is required <strong>required</strong></small>
           </mat-error>
         </mat-form-field>
 
         <mat-form-field>
           <input type="month" [(ngModel)]="sdate" formControlName="sDate" matInput placeholder="Start Month">
           <mat-error *ngIf="submitProposal.get('sDate').hasError('required')">
-            <small>Month is <strong>required</strong></small>
+            <small>Month is required <strong>required</strong></small>
           </mat-error>
           <!-- <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
         <mat-datepicker #start startView="year" [startAt]="startDate"></mat-datepicker> -->
@@ -65,7 +70,7 @@
         <mat-form-field>
           <input type="month" [(ngModel)]="edate" formControlName="eDate" matInput placeholder="End Month">
           <mat-error *ngIf="submitProposal.get('eDate').hasError('required')">
-            <small>Month is <strong>required</strong></small>
+            <small>Month is required <strong>required</strong></small>
           </mat-error>
           <!-- <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
         <mat-datepicker #end startView="year" [startAt]="startDate"></mat-datepicker> -->
@@ -73,20 +78,29 @@
 
         <mat-form-field floatLabel="auto">
           <mat-label>Total Number of Hours<span class="color-warn">*</span></mat-label>
-          <input [(ngModel)]="total_hours" type="number" formControlName="tHours" matInput>
+          <!-- <input [(ngModel)]="total_hours" type="number" formControlName="tHours" matInput> -->
+          <mat-select [(ngModel)]="total_hours" formControlName="tHours" required>
+            <mat-option value="0.5">Less than 8 Hours</mat-option>
+            <mat-option value="1"> 8 Hours</mat-option>
+            <mat-option value="2">16 Hours</mat-option>
+            <mat-option value="3">24 Hours</mat-option>
+            <mat-option value="4">32 Hours</mat-option>
+            <mat-option value="5">40 Hours</mat-option>
+            <mat-option value="6">More than 40 Hours</mat-option>
+          </mat-select>
           <mat-error *ngIf="submitProposal.get('tHours').hasError('required')">
-            <small>Number of Hours is <strong>required</strong></small>
+            <small>Number of Hours is required <strong>required</strong></small>
           </mat-error>
-          <mat-error *ngIf="submitProposal.get('tHours').hasError('pattern')">
+          <!-- <mat-error *ngIf="submitProposal.get('tHours').hasError('pattern')">
             <small>Numbers only</small>
-          </mat-error>
+          </mat-error> -->
         </mat-form-field>
 
         <mat-form-field floatLabel="auto">
           <mat-label>Target Benificiary<span class="color-warn">*</span></mat-label>
           <input [(ngModel)]="beneficiary" type="text" formControlName="tBenificiary" matInput>
           <mat-error *ngIf="submitProposal.get('tBenificiary').hasError('required')">
-            <small>Benificiary is <strong>required</strong></small>
+            <small>Benificiary is required <strong>required</strong></small>
           </mat-error>
           <mat-error *ngIf="submitProposal.get('tBenificiary').hasError('pattern')">
             <small>Numbers and symbols not allowed</small>
@@ -100,7 +114,7 @@
           <mat-radio-button class="gender-box" value="Female">Female</mat-radio-button>
           <mat-radio-button class="gender-box" value="Both">Both</mat-radio-button>
           <mat-error *ngIf="submitProposal.get('gBenificiary').hasError('required')">
-            <small>Gender benificiary is <strong>required</strong></small>
+            <small>Gender benificiary is required <strong>required</strong></small>
           </mat-error>
         </mat-radio-group>
 
@@ -108,7 +122,7 @@
           <mat-label>Project Location<span class="color-warn">*</span></mat-label>
           <input [(ngModel)]="venue" type="text" formControlName="projectLocation" matInput>
           <mat-error *ngIf="submitProposal.get('projectLocation').hasError('required')">
-            <small>Project Location is <strong>required</strong></small>
+            <small>Project Location is required <strong>required</strong></small>
           </mat-error>
         </mat-form-field>
 
@@ -116,7 +130,7 @@
           <mat-label>Partner Agency<span class="color-warn">*</span></mat-label>
           <input [(ngModel)]="partner" type="text" formControlName="partnerAgency" matInput>
           <mat-error *ngIf="submitProposal.get('partnerAgency').hasError('required')">
-            <small>Partner Agency is <strong>required</strong></small>
+            <small>Partner Agency is required <strong>required</strong></small>
           </mat-error>
           <mat-error *ngIf="submitProposal.get('projectLocation').hasError('pattern')">
             <small>Numbers and symbols not allowed</small>
@@ -146,7 +160,7 @@
             formControlName="upload">
           <input class="mt-2" id="fileName" type="text" placeholder="No file chosen" readonly="true" matInput>
           <mat-error *ngIf="submitProposal.get('upload').hasError('required')">
-            <small>Proposal files is <strong></strong> </small>
+            <small>Proposal files is required <strong></strong> </small>
           </mat-error>
 
           <!-- kani if Admin sya tapos ug add Arvhive mga old projects to digitize -->
@@ -157,7 +171,7 @@
               formControlName="uploadMoa">
             <input class="mt-2" id="moaName" type="text" placeholder="No file chosen" readonly="true" matInput>
             <mat-error *ngIf="submitProposal.get('uploadMoa').hasError('required')">
-              <small>MOA files is <strong></strong> </small>
+              <small>MOA files is required <strong></strong> </small>
             </mat-error>
 
             <label>Proposal Cover (Signed)<span class="color-warn">*</span> : </label><br>
@@ -167,7 +181,7 @@
             <input class="mt-2" id="signedName" type="text" placeholder="No file chosen" readonly="true" matInput
               required>
             <mat-error *ngIf="submitProposal.get('uploadPC').hasError('required')">
-              <small>Signed proposal cover is <strong></strong> </small>
+              <small>Signed proposal cover is required <strong></strong> </small>
             </mat-error>
 
             <label>Accomplishments<span class="color-warn">*</span> : </label><br>
@@ -176,113 +190,11 @@
               formControlName="uploadAC">
             <input class="mt-2" id="accompName" type="text" placeholder="No file chosen" readonly="true" matInput>
             <mat-error *ngIf="submitProposal.get('uploadAC').hasError('required')">
-              <small>Accomplishment files is <strong></strong> </small>
+              <small>Accomplishment files is required <strong></strong> </small>
             </mat-error>
           </div>
         </div>
 
-<mat-dialog-content>
-  <div class="form-wrapper">
-    <form name="form" [formGroup]="submitProposal">
-      <mat-form-field floatLabel="auto">
-        <mat-label>Project Title<span class="color-warn">*</span></mat-label>
-        <input [(ngModel)]="title" type="text" formControlName="titleVal" matInput>
-      </mat-form-field>
-
-      <mat-radio-group [(ngModel)]="ProjType" formControlName="typeVal">
-        <!-- <mat-label>Type of Project<span class="color-warn">*</span></mat-label> <br>
-        <mat-radio-button class="gender-box" value="new">New</mat-radio-button>
-        <mat-radio-button class="gender-box" value="continuing">Continuing</mat-radio-button> -->
-        <!-- <mat-error *ngIf="typeVal.hasError('required')">
-              <small>Project type is <strong>required</strong></small>
-            </mat-error> -->
-      </mat-radio-group>
-
-      <mat-form-field floatLabel="auto">
-        <mat-label>Proponents<span class="color-warn">*</span> (Separate Multiple Proponents w/ commas)</mat-label>
-        <textarea [(ngModel)]="proponents" cols="30" rows="10" formControlName="proponentsVal" matInput></textarea>
-        <!-- <input type="text" matInput> -->
-      </mat-form-field>
-
-      <mat-form-field floatLabel="auto">
-        <mat-label>Program<span class="color-warn">*</span></mat-label>
-        <input [(ngModel)]="program" type="text" formControlName="programVal" matInput>
-      </mat-form-field>
-
-      <mat-form-field floatLabel="auto">
-        <mat-label>Accreditation Level<span class="color-warn">*</span></mat-label>
-        <!-- <input [(ngModel)]="accre_level" type="text" formControlName="accreditationLevel" matInput> -->
-        <mat-select [(ngModel)]="accre_level" formControlName="secondPosition" required>
-          <mat-option value="Level I">Level I</mat-option>
-          <mat-option value="Level II">Level II</mat-option>
-          <mat-option value="Level III">Level III</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field>
-        <input [(ngModel)]="sdate" formControlName="sDate" matInput [matDatepicker]="start" placeholder="Start Month">
-        <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
-        <mat-datepicker #start startView="year"></mat-datepicker>
-      </mat-form-field>
-
-      <mat-form-field>
-        <input [(ngModel)]="edate" formControlName="eDate" matInput [matDatepicker]="end" placeholder="End Month">
-        <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
-        <mat-datepicker #end startView="year"></mat-datepicker>
-      </mat-form-field>
-
-      <mat-form-field floatLabel="auto">
-        <mat-label> Estimated Total Number of Hours<span class="color-warn">*</span></mat-label>
-        <input [(ngModel)]="total_hours" type="text" formControlName="tHours" matInput>
-        <mat-select [(ngModel)]="accre_level" formControlName="secondPosition" required>
-          <mat-option value="0.5">Less than 8 Hours</mat-option>
-          <mat-option value="1"> 8 Hours</mat-option>
-          <mat-option value="2">16 Hours</mat-option>
-          <mat-option value="3">24 Hours</mat-option>
-          <mat-option value="4">32  Hours</mat-option>
-          <mat-option value="5">40 Hours</mat-option>
-          <mat-option value="6">More than 40 Hours</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field floatLabel="auto">
-        <mat-label>Target Benificiary<span class="color-warn">*</span></mat-label>
-        <input [(ngModel)]="beneficiary" type="text" formControlName="tBenificiary" matInput>
-      </mat-form-field>
-
-      <label> Gender Benificiary<span class="color-warn">*</span> </label> <br>
-      <mat-radio-group [(ngModel)]="bene_gender" formControlName="gBenificiary">
-        <mat-radio-button class="gender-box" value="Male">Male</mat-radio-button>
-        <mat-radio-button class="gender-box" value="Female">Female</mat-radio-button>
-        <mat-radio-button class="gender-box" value="Both">Both</mat-radio-button>
-      </mat-radio-group>
-
-      <mat-form-field floatLabel="auto">
-        <mat-label>Project Location<span class="color-warn">*</span></mat-label>
-        <input [(ngModel)]="venue" type="text" formControlName="projectLocation" matInput>
-      </mat-form-field>
-
-      <mat-form-field floatLabel="auto">
-        <mat-label>Partner Agency<span class="color-warn">*</span></mat-label>
-        <input [(ngModel)]="partner" type="text" formControlName="partnerAgency" matInput>
-      </mat-form-field>
-
-      <label> Budget Requirements </label>
-      <mat-form-field floatLabel="auto">
-        <mat-label>USTP</mat-label>
-        <input [(ngModel)]="budget_ustp" type="number" matInput formControlName="budget_u_val">
-      </mat-form-field>
-      <mat-form-field floatLabel="auto">
-        <mat-label>Partner Agency</mat-label>
-        <input [(ngModel)]="budget_partner" type="number" matInput formControlName="budget_p_val">
-      </mat-form-field>
-
-      <div class="upload">
-        <label>Attach File<span class="color-warn">*</span> : </label><br>
-        <button mat-raised-button color="primary" (click)="fileInput.click()">Upload</button>
-        <input hidden type="file" #fileInput (change)="getFiles($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf">
-        <input class="mt-2" id="fileName" type="text" placeholder="No file chosen" readonly="true" formControlName="upload"
-          matInput>
       </div>
 
     </mat-dialog-content>
