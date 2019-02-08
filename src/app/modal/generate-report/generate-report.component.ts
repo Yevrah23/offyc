@@ -25,6 +25,7 @@ export class GenerateReportComponent implements OnInit {
     showTemplate(): void {
       if (this.selectedReport !== '') {
         const dialogRef = this.dialog.open(ReportTemplateComponent, {
+          disableClose: true,
           width: '1600px',
           panelClass: 'custom-dialog-template',
           data: {

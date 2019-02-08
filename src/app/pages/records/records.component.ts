@@ -65,6 +65,7 @@ export class RecordsComponent implements OnInit {
   // Modal triggers
   submitProposal(userAdmin): void {
     const dialogRef = this.dialog.open(SubmitProposalComponent, {
+      disableClose: true,
       width: '500px',
       data : {
         userType: userAdmin // string ni
