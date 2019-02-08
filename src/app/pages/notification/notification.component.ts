@@ -9,7 +9,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class NotificationComponent implements OnInit {
   notifs = [];
-  constructor(private user: UserServices, private cookies:CookieService) { }
+  constructor(private user: UserServices, private cookies: CookieService) { }
 
   ngOnInit() {
     this.user.getNotifs(this.cookies.get('id')).subscribe(

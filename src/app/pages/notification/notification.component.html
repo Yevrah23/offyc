@@ -4,17 +4,16 @@
       <h3>Your Notification</h3>
       <mat-card class="notification">
         <mat-list role="list">
-        <mat-list-item *ngFor="let notifs of notifs" role="listitem">{{notifs.ui_Lname}}, {{notifs.ui_Fname}} 
-
+          <mat-list-item *ngFor="let notifs of notifs" role="listitem">{{notifs.ui_Lname}}, {{notifs.ui_Fname}} &nbsp;
             <span class="flex-block"> {{notifs.notif_type_id}}</span>
             <button mat-icon-button [matMenuTriggerFor]="appMenu">
               <mat-icon>more_vert</mat-icon>
             </button>
 
-              <mat-menu #appMenu="matMenu">
-                <button mat-menu-item><small>Read</small></button>
-                <button mat-menu-item><small>Remove</small></button>
-              </mat-menu>
+            <mat-menu #appMenu="matMenu">
+              <button mat-menu-item><small>Read</small></button>
+              <button mat-menu-item><small>Remove</small></button>
+            </mat-menu>
           </mat-list-item>
         </mat-list>
       </mat-card>
