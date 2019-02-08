@@ -20,35 +20,6 @@
       <mat-card class="transaction">
         <span class="color-primary"> Transactions </span>
 
-        <!-- <table id="transaction" class="table table-striped table-bordered" style="width:100%">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Description</th>
-              <th>Options</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let record of records">
-              <td>{{record.name}}</td>
-              <td>{{record.address['street']}}</td>
-              <td>
-                <div class="actions">
-                  <button mat-raised-button>Download</button>
-                  <button mat-raised-button>View</button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <th>Title</th>
-              <th>Description</th>
-              <th>Options</th>
-            </tr>
-          </tfoot>
-        </table> -->
-
         <mat-form-field>
           <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Find">
         </mat-form-field>

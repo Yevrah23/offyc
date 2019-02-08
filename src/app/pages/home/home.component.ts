@@ -67,25 +67,6 @@ export class HomeComponent implements OnInit {
     this.get_userChart(); // if user
 
 
-    // retrieve data  via HTTP
-    // this.http.get('https://jsonplaceholder.typicode.com/users')
-    //   .subscribe((data: any[]) => {
-    //     console.log(data);
-    //     // this.showSpinner = false;
-    //     // this.showData = true;
-    //     // // this.records = data;
-    //     // this.dataSource = new MatTableDataSource(data); // for mat-table
-
-    //     // // mat table
-    //     // this.dataSource.paginator = this.paginator;
-    //     // this.dataSource.sort = this.sort;
-    //     // this.chRef.detectChanges();
-    //     // User
-    //     // Display data tables
-    //     // // user
-    //     // const table: any = $('#transaction');
-    //     // this.dataTable = table.dataTable();
-    //   });
   }
 
   // search table
@@ -138,7 +119,7 @@ export class HomeComponent implements OnInit {
 
   get_transactions() {
     this.user.get_transactions(this.cookies.get('id')).subscribe((data: any[]) => {
-      console.log(data);
+      this.dataSource = new MatTableDataSource(data);
     });
   }
   // when seleted tab index
