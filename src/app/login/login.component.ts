@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
   // Form Validation
   loginVal: FormGroup;
 
-  attempt : number = 0;
-  lockout: boolean = false;
+  attempt = 0;
+  lockout = false;
 
   // spiiner condition
   showPage = true;
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
       loginUser: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       loginPass: ['', [Validators.required]],
     });
-    
+
     console.log(this.user.isLoggedIn);
     if (this.user.isLoggedIn) {
       this.router.navigate(['/', this.cookies.get('id')]);
@@ -85,16 +85,17 @@ export class LoginComponent implements OnInit {
           //   // this.router.navigate(['/', 'admin']);
           } else {
             this.attempt += 1;
-            if (this.attempt == 4){
+            if (this.attempt === 4) {
               this.user.lockout(this.username).subscribe(
                 (response) => {
-                  if (response){
+                  if (response) {
                     this.lockout = true;
+                    // tslint:disable-next-line:max-line-length
                     this.showSuccess('frmLogin', 'You have been locked-out of your account due multipled failed attempts. Please contact admin @ 09676657853 to reset', false);
                   }
                 }
-              )
-            }else{
+              );
+            } else {
               this.showSuccess('frmLogin', response['message'], false);
             }
             const message = `Username and Password does not match. Please try again.`;
@@ -104,7 +105,7 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  forgot_password(){
+  forgot_password() {
 
   }
 

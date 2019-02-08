@@ -4,50 +4,67 @@
 <h2 mat-diaglog-title class="text-center">Report</h2>
 
 <div class="content-wrapper">
-  <mat-dialog-content>
-    <div class="dialog-wrapper">
-      <!-- radio group -->
-      <mat-radio-group [(ngModel)]="selectedReport">
-        <mat-radio-button value="bar">
-          <div class="optionBox">
-            <span class="checked"><i class="fas fa-check"></i></span>
-            <span class="boxVal">b.a.r</span>
-          </div>
-        </mat-radio-button>
-        <mat-radio-button value="prexc">
-          <div class="optionBox">
-            <span class="checked"><i class="fas fa-check"></i></span>
-            <span class="boxVal">p.r.e.x.c</span>
-          </div>
-        </mat-radio-button>
-        <mat-radio-button value="hemis">
-          <div class="optionBox">
-            <span class="checked"><i class="fas fa-check"></i></span>
-            <span class="boxVal">h.e.m.i.s</span>
-          </div>
-        </mat-radio-button>
-      </mat-radio-group>
+  <form [formGroup]="reportForm">
+    <mat-dialog-content>
+      <div class="dialog-wrapper">
+        <!-- radio group -->
+        <mat-radio-group [(ngModel)]="selectedReport" formControlName="type">
+          <mat-radio-button value="bar">
+            <div class="optionBox">
+              <span class="checked"><i class="fas fa-check"></i></span>
+              <span class="boxVal">b.a.r</span>
+            </div>
+          </mat-radio-button>
+          <mat-radio-button value="prexc">
+            <div class="optionBox">
+              <span class="checked"><i class="fas fa-check"></i></span>
+              <span class="boxVal">p.r.e.x.c</span>
+            </div>
+          </mat-radio-button>
+          <mat-radio-button value="hemis">
+            <div class="optionBox">
+              <span class="checked"><i class="fas fa-check"></i></span>
+              <span class="boxVal">h.e.m.i.s</span>
+            </div>
+          </mat-radio-button>
+          <mat-error *ngIf="reportForm.get('type').hasError('required')">
+            <small>Report Type is <strong>required</strong></small>
+          </mat-error>
+        </mat-radio-group>
 
-      <mat-form-field>
-        <mat-select placeholder="Quarter">
-          <mat-option value="1Q">1st Quarter</mat-option>
-          <mat-option value="2Q">2nd Quarter</mat-option>
-          <mat-option value="3Q">3rd Quarter</mat-option>
-          <mat-option value="4Q">4th Quarter</mat-option>
-        </mat-select>
-      </mat-form-field>
+        <mat-form-field>
+          <mat-select [(ngModel)]="selectQuarter" placeholder="Quarter" required formControlName="quarter">
+            <mat-option value="1Q">1st Quarter</mat-option>
+            <mat-option value="2Q">2nd Quarter</mat-option>
+            <mat-option value="3Q">3rd Quarter</mat-option>
+            <mat-option value="4Q">4th Quarter</mat-option>
+          </mat-select>
+          <mat-error *ngIf="reportForm.get('quarter').hasError('required')">
+            <small>Quarter is <strong>required</strong></small>
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field floatLabel="auto">
-        <mat-label>No. of Assignatories</mat-label>
-        <input type="number" matInput>
-      </mat-form-field>
-    </div>
-  </mat-dialog-content>
+        <mat-form-field floatLabel="auto">
+          <mat-label>No. of signatories</mat-label>
+          <input type="number" [(ngModel)]="signQty" matInput formControlName="signatories" required>
+          <mat-error *ngIf="reportForm.get('signatories').hasError('required')">
+            <small>signatories is <strong>required</strong></small>
+          </mat-error>
+          <mat-error *ngIf="reportForm.get('signatories').hasError('pattern')">
+            <small>Numbers only</small>
+          </mat-error>
+          <mat-error *ngIf="reportForm.get('signatories').hasError('max')">
+            <small>maximum of 4</small>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </mat-dialog-content>
 
-  <mat-dialog-actions>
-    <div class="Form-action-wrapper">
-      <button mat-button mat-dialog-close><u>Cancel</u></button>
-      <button mat-raised-button mat-dialog-close color="primary" (click)="showTemplate()">Submit</button>
-    </div>
-  </mat-dialog-actions>
+    <mat-dialog-actions>
+      <div class="Form-action-wrapper">
+        <button mat-button mat-dialog-close><u>Cancel</u></button>
+        <button mat-raised-button mat-dialog-close color="primary" (click)="showTemplate()" [disabled]="!reportForm.valid">Submit</button>
+      </div>
+    </mat-dialog-actions>
+  </form>
 </div>

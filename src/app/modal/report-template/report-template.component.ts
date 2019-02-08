@@ -14,7 +14,7 @@ import { UserServices } from 'src/app/services/user_services';
 export class ReportTemplateComponent implements OnInit {
 
   // for signatories
-  sign = 3;
+  sign: any;
 
   filename: string;
   titleReport: string;
@@ -31,7 +31,9 @@ export class ReportTemplateComponent implements OnInit {
     public dialogRef: MatDialogRef<SubmitProposalComponent>,
     private user: UserServices,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
+  ) {
+    this.sign = this.data.signQty;
+   }
 
   ngOnInit() {
    if (this.data.radio === 'hemis') {

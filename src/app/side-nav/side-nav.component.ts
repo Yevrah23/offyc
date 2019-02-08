@@ -20,14 +20,14 @@ export class SideNavComponent implements OnInit {
   unread = [];
   notif_count: any;
 
-  profile: any = {'ui_Fname':''};
+  profile: any = {'ui_Fname': ''};
 
   isAdmin = false;
   isUser = false;
   token: any;
   hasNotif = false;
 
-  expandMenu: boolean = false;
+  expandMenu = false;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -51,11 +51,11 @@ export class SideNavComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
+      if (result) {
         this.get_profile();
       }
       console.log('The dialog was closed');
-      
+
     });
   }
 
@@ -91,7 +91,7 @@ export class SideNavComponent implements OnInit {
 
   }
 
-  expand(){
+  expand() {
     this.expandMenu = !this.expandMenu;
   }
 
@@ -99,11 +99,11 @@ export class SideNavComponent implements OnInit {
     $('.notif-icon').removeClass('unread');
     this.user.update_notifs(this.profile.ui_school_id).subscribe(
       (response) => {
-        if(response){
+        if (response) {
           this.get_notifs();
         }
       }
-    )
+    );
   }
 
   get_profile() {
@@ -115,7 +115,7 @@ export class SideNavComponent implements OnInit {
       }
     );
   }
-  get_notifs(){
+  get_notifs() {
     this.read = [];
     this.unread = [];
       this.user.getNotifs(this.cookies.get('id')).subscribe(
@@ -137,7 +137,7 @@ export class SideNavComponent implements OnInit {
           });
           this.user.notifs = response[1];
           this.user.notifs.forEach(element => {
-            if (element.notification_status === "1") {
+            if (element.notification_status === '1') {
               this.read.push(element);
             } else {
               this.unread.push(element);
@@ -150,7 +150,7 @@ export class SideNavComponent implements OnInit {
           this.hasNotif = true;
           $('.notif-icon').addClass('unread');
           this.notif_count = this.unread.length;
-        }else{
+        } else {
           this.hasNotif = false;
           this.notif_count = this.unread.length;
         }
