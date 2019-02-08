@@ -17,8 +17,9 @@
               <input [(ngModel)]="password" type="password" formControlName="loginPass" matInput placeholder="Password">
             </mat-form-field>
 
-            <button mat-stroked-button class="btn-login" (click)="login_user()" [disabled]="!loginVal.valid">Log in</button>
-            <a mat-button routerLink="/register" class="btn-reg">Register</a>
+            <button *ngIf = "!lockout" mat-stroked-button class="btn-login" (click)="login_user()" [disabled]="!loginVal.valid">Log in</button>
+            <a *ngIf = "attempt == 3" mat-button class="btn-reg">Forgot Password?</a>
+            <a *ngIf = "!lockout" mat-button routerLink="/register" class="btn-reg">Register</a>
           </form>
         </div>
       </mat-card>

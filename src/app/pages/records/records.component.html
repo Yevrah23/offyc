@@ -39,8 +39,8 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
                 <td mat-cell *matCellDef="let record">
                   <div class="actions">
-                    <button mat-button (click)="fileDetails()" class="color-accent">Download</button>
-                    <button mat-raised-button (click)="viewProposal(record.proposal_id)" color="primary">View</button>
+                    <button mat-raised-button (click)="fileDetails(record)">Download</button>
+                    <button mat-raised-button (click)="viewProposal(record.proposal_id)">View</button>
                   </div>
                 </td>
               </ng-container>
@@ -89,8 +89,8 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
                 <td mat-cell *matCellDef="let record">
                   <div class="actions">
-                    <button mat-button (click)="fileDetails()" class="color-accent">Download</button>
-                    <button mat-raised-button (click)="viewProposal(record.proposal_id)" color="primary">View</button>
+                    <button mat-raised-button (click)="fileDetails(record)">Download</button>
+                    <button mat-raised-button (click)="viewProposal(record.proposal_id)">View</button>
                   </div>
                 </td>
               </ng-container>
@@ -139,8 +139,8 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
                 <td mat-cell *matCellDef="let record">
                   <div class="actions">
-                    <button mat-button (click)="fileDetails()" class="color-accent">Download</button>
-                    <button mat-raised-button (click)="viewProposal(record.proposal_id)" color="primary">View</button>
+                    <button mat-raised-button (click)="fileDetails(record)">Download</button>
+                    <button mat-raised-button (click)="viewProposal(record.proposal_id)">View</button>
                   </div>
                 </td>
               </ng-container>
@@ -189,8 +189,8 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
                 <td mat-cell *matCellDef="let record">
                   <div class="actions">
-                    <button mat-button (click)="fileDetails()" class="color-accent">Download</button>
-                    <button mat-raised-button (click)="viewProposal(record.proposal_id)" color="primary">View</button>
+                    <button mat-raised-button (click)="fileDetails(record)">Download</button>
+                    <button mat-raised-button (click)="viewProposal(record.proposal_id)">View</button>
                   </div>
                 </td>
               </ng-container>
@@ -238,8 +238,8 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
                 <td mat-cell *matCellDef="let record">
                   <div class="actions">
-                    <button mat-button (click)="fileDetails()" class="color-accent">Download</button>
-                    <button mat-raised-button (click)="viewProposal(record.proposal_id)" color="primary">View</button>
+                    <button mat-raised-button (click)="fileDetails(record)">Download</button>
+                    <button mat-raised-button (click)="viewProposal(record.proposal_id)">View</button>
                   </div>
                 </td>
               </ng-container>
@@ -361,8 +361,8 @@
                 <td mat-cell *matCellDef="let record">
                   <div class="actions">
                     <!-- pag click sa download kai mo gawas modal mga lista sa files daun mo gawas. -->
-                    <button mat-button (click)="fileDetails()" class="color-accent">Download</button>
-                    <button mat-raised-button (click)="viewProposal(record.proposal_id)" color="primary">View</button>
+                    <button mat-raised-button (click)="fileDetails(record)">Download</button>
+                    <button mat-raised-button (click)="viewProposal(record.proposal_id)">View</button>
                   </div>
                 </td>
               </ng-container>

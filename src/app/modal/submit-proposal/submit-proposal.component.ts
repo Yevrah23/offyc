@@ -31,6 +31,7 @@ export class SubmitProposalComponent implements OnInit {
   edate: string;
   beneficiary: string;
   bene_gender: string;
+  program:string;
   partner: string;
   venue: string;
   proponents: string;
@@ -45,7 +46,7 @@ export class SubmitProposalComponent implements OnInit {
   accomp: File = null;
 
   fileName: string;
-  files: FileList;
+  files: FileList = null;
 
   constructor(
     public dialog: MatDialog,
@@ -96,6 +97,8 @@ export class SubmitProposalComponent implements OnInit {
       tBenificiary: ['', [Validators.required, Validators.pattern('^[a-zA-Z \-\']+')]],
       gBenificiary: ['', Validators.required],
       projectLocation: ['', Validators.required],
+      budget_u_val: ['', Validators.required],
+      budget_p_val: ['', Validators.required],
       partnerAgency: ['', [Validators.required, Validators.pattern('^[a-zA-Z \-\']+')]],
       upload: ['', Validators.required],
       budgetUSTP: ['', Validators.pattern('^[0-9]*$')],
@@ -117,6 +120,7 @@ export class SubmitProposalComponent implements OnInit {
       'venue': this.venue,
       'token': this.cookies.get(this.cookies.get('id')),
       'filename': this.fileName,
+      'program': this.program,
       'partner': this.partner,
       'proponents': this.proponents,
       'accre_level': this.accre_level,
@@ -170,8 +174,14 @@ export class SubmitProposalComponent implements OnInit {
     // this.file = files.item(0);
     this.files = event.target.files;
     console.log(this.files);
-    this.fileName = this.files[0]['name'];
-    $('#fileName').val(this.files[0]['name']);
+    if(this.files[0].size > 2000000){
+      $('#fileName').val('File is greater than 2 MB, Choose another file');
+      this.files = null;
+    }else{
+      this.fileName = this.files[0]['name'];
+      $('#fileName').val(this.files[0]['name']);
+    }
+
   }
   upload_moa(event) {
 

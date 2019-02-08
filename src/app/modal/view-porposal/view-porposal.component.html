@@ -281,7 +281,7 @@
         <table style="width: 864px; margin-left: auto; margin-right: auto;" border="0">
           <tbody>
             <tr style="height: 23px;">
-              <td style="width: 587px; height: 23px; text-align: right;">&nbsp;Extension Form 02</td>
+              <td contenteditable style="width: 587px; height: 23px; text-align: right;">&nbsp;Extension Form 02</td>
             </tr>
             <tr style="height: 23px;">
               <td style="width: 587px; height: 23px;">
@@ -356,7 +356,7 @@
             <tr style="height: 8px; text-align: center;">
               <td style="height: 8px; width: 848px; text-align: left;" colspan="4"> {{data.data.proposal_date_start}} -
                 {{data.data.proposal_date_end}}</td>
-              <td style="height: 8px; width: 848px;" colspan="2">{{data.data.total_hours}}</td>
+              <td style="height: 8px; width: 848px;" colspan="2">{{estimateHours}} Hours</td>
             </tr>
             <tr style="height: 8px; text-align: center;">
               <td style="height: 8px; width: 848px; text-align: left;" colspan="6">&nbsp;</td>
@@ -605,7 +605,7 @@
               </mat-form-field>
               <mat-form-field floatLabel="auto">
                 <mat-label>No. of Days</mat-label>
-                <input name="bleh" [(ngModel)]="days_implemented" type="number" matInput>
+                <input [disabled] name="bleh" [(ngModel)]="days_implemented" type="number" matInput>
               </mat-form-field>
               <div class="upload">
                 <label>Attach File : </label><br>

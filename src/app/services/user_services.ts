@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 export class UserServices {
     private serverUrl = 'http://localhost/';
     // private serverUrl = 'http://192.168.43.31/';
+    college: any;
     isLoggedIn = false;
     admin = false;
     user = false;
@@ -70,6 +71,7 @@ export class UserServices {
             'b_target': params[0].b_target,
             'b_gender': params[0].b_gender,
             'venue': params[0].venue,
+            'program':params[0].program,
             'trans_type': 1,
             'token': params[0].token,
             'fileName': params[0].filename,
@@ -91,6 +93,7 @@ export class UserServices {
             'b_target': params[0].b_target,
             'b_gender': params[0].b_gender,
             'venue': params[0].venue,
+            'program': params[0].program,
             'trans_type': 1,
             'token': params[0].token,
             'fileName': params[0].filename,
@@ -128,6 +131,9 @@ export class UserServices {
 
     getEvents() {
         return this.http.get(this.serverUrl + 'codeigniter/api/Users/get_events');
+    }
+    getEvents_user(college) {
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/get_events',{'college':college});
     }
 
     getNotifs(params) {
@@ -180,5 +186,22 @@ export class UserServices {
     get_transactions(id) {
         return this.http.post(this.serverUrl + 'codeigniter/api/Users/get_transactions', { 'id': id });
 
+    }
+
+    update_profile(params){
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/update_user', { 
+            'id': params[0].id,
+            'email': params[0].email,
+            'cNumber':params[0].c_number,
+            'pass': params[0].pass
+        });
+    }
+
+    update_notifs(id){
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/update_notification', { 'id': id });
+    }
+
+    lockout(id){
+        return this.http.post(this.serverUrl + 'codeigniter/api/Users/lockout', { 'id': id });
     }
 }

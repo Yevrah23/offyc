@@ -52,6 +52,7 @@ export class ViewPorposalComponent implements OnInit {
   bene_gender: string;
   partner: string;
   venue: string;
+  program: string;
   proponents: string;
   accre_level: string;
   total_hours: string;
@@ -63,7 +64,7 @@ export class ViewPorposalComponent implements OnInit {
   started = false;
   ended = false;
 
-
+  estimateHours: any;
 
   report_update = [];
   trained: number;
@@ -88,12 +89,15 @@ export class ViewPorposalComponent implements OnInit {
     this.beneficiary = this.data.data.proposal_beneficiaries;
     this.partner = this.data.data.proposal_partner;
     this.venue = this.data.data.proposal_venue;
+    this.program = this.data.data.proposal_program;
     this.proponents = this.data.data.proponents;
     this.accre_level = this.data.data.accreditation_level;
     this.total_hours = this.data.data.total_hours;
     this.budget_ustp = this.data.data.budget_ustp;
     this.budget_partner = this.data.data.budget_partner;
     this.implementing = this.data.data.implementing;
+    this.days_implemented = this.data.data.total_hours;
+    this.estimateHours = parseInt(this.data.data.total_hours) * 8;
   }
 
   showComment(): void {
@@ -125,6 +129,7 @@ export class ViewPorposalComponent implements OnInit {
       'b_target': this.beneficiary,
       'b_gender': this.bene_gender,
       'venue': this.venue,
+      'program': this.program,
       'filename': this.fileName,
       'partner': this.partner,
       'proponents': this.proponents,

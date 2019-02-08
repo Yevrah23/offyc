@@ -22,7 +22,7 @@
           <span class="color-secondaryVariant" for="">Name :</span>
         </div>
         <div class="col-md">
-          <span> Jazer Kemuel Zayas </span>
+          <span> {{data.ui_Fname}} {{data.ui_Mname}} {{data.ui_Lname}} </span>
         </div>
       </div>
       <!-- Username -->
@@ -30,7 +30,7 @@
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">Username :</span>
         </div>
-        <div class="col-md"> 2015103280</div>
+        <div class="col-md"> {{data.ui_school_id}}</div>
       </div>
       <!-- passwword -->
       <div class="row py-2">
@@ -38,10 +38,10 @@
           <span class="color-secondaryVariant " for="">Password :</span>
         </div>
         <div class="col-md my-auto">
-          <span *ngIf="passEdit;else passInput" >******</span>
+          <span *ngIf="passEdit;else passInput" >---</span>
           <ng-template #passInput>
             <mat-form-field>
-              <input type="password" name="passVal" matInput [readOnly]="passReadOnly">
+              <input value = {{data.user_pass}} type="password" name="passVal" matInput [readOnly]="passReadOnly">
             </mat-form-field>
           </ng-template>
         </div>
@@ -58,10 +58,10 @@
           <span class="color-secondaryVariant " for="">Email :</span>
         </div>
         <div class="col-md my-auto">
-          <span *ngIf="emailEdit;else emailInput" >jaz@rocketstack.net</span>
+          <span *ngIf="emailEdit;else emailInput" >{{data.ui_email}}</span>
           <ng-template #emailInput>
             <mat-form-field>
-              <input type="email" name="emailVal" matInput [readOnly]="EmailReadOnly">
+              <input value={{data.ui_email}} type="email" name="emailVal" matInput [readOnly]="EmailReadOnly">
             </mat-form-field>
           </ng-template>
         </div>
@@ -77,28 +77,28 @@
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">Postion :</span>
         </div>
-        <div class="col-md">Project Leader</div>
+        <div class="col-md">{{data.ui_position}}</div>
       </div>
       <!-- Department / College -->
       <div class="row">
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">College / Department :</span>
         </div>
-        <div class="col-md">CITC:Information Technology</div>
+        <div class="col-md">{{data.ui_college}}: {{data.ui_dept}}</div>
       </div>
       <!-- Birthday -->
       <div class="row py-2">
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">Birthday :</span>
         </div>
-        <div class="col-md">June 10, 1995</div>
+        <div class="col-md">{{data.ui_birthday}}</div>
       </div>
       <!-- Gender -->
       <div class="row py-2">
         <div class="col-md-5">
           <span class="color-secondaryVariant" for="">Gender :</span>
         </div>
-        <div class="col-md">Male</div>
+        <div class="col-md">{{data.ui_gender}}</div>
       </div>
       <!-- Contact Number -->
       <div class="row py-2">
@@ -106,10 +106,10 @@
           <span class="color-secondaryVariant " for="">Contact Number :</span>
         </div>
         <div class="col-md my-auto">
-          <span *ngIf="numberEdit;else numberInput" >(+63) 9959556723</span>
+          <span *ngIf="numberEdit;else numberInput" >{{data.ui_contact_number}}</span>
           <ng-template #numberInput>
             <mat-form-field>
-              <input type="number" name="numberVal" matInput [readOnly]="NumberReadOnly">
+              <input value={{data.ui_contact_number}} type="number" name="numberVal" matInput [readOnly]="NumberReadOnly">
             </mat-form-field>
           </ng-template>
         </div>
@@ -131,8 +131,8 @@
     <div class="container Form-action-wrapper">
       <div class="row">
         <div class="col-md text-center">
-          <button mat-button mat-dialog-close color="primary">Back</button>
-          <button mat-raised-button mat-dialog-close color="primary" (click)="saveSettings()">save</button>
+          <button mat-button mat-dialog-close color="primary">Close</button>
+          <button mat-raised-button color="primary" (click)="saveSettings()">save</button>
         </div>
       </div>
     </div>

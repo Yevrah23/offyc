@@ -14,6 +14,7 @@ section.container-fluid {
 
 // CARD STYLES
 
+
 mat-card.calendar.mat-card {
   min-height: 707px;
 }
@@ -40,6 +41,10 @@ mat-card.progressReport.mat-card {
 
 ::ng-deep .mat-tab-header {
   border: unset !important;
+}
+
+::ng-deep .fc-content {
+  color : white !important;
 }
 
 .box {
