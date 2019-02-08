@@ -13,6 +13,9 @@ import { UserServices } from 'src/app/services/user_services';
 })
 export class ReportTemplateComponent implements OnInit {
 
+  // for signatories
+  sign = 3;
+
   filename: string;
   titleReport: string;
   hemis: boolean;
@@ -70,7 +73,7 @@ export class ReportTemplateComponent implements OnInit {
       const newHeight = imgWidth * ratio;
       let heightLeft = imgHeight;
       const pdf = new jspdf('l', 'pt', 'a4');
-      let position = 30;
+      let position = 15;
 
       // document.body.appendChild(canvas);
       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);

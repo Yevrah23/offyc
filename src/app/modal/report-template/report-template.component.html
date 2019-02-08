@@ -184,6 +184,66 @@
             </table>
           </div>
         </div>
+        <!-- if signatories true, depende if pila  -->
+        <div *ngIf="sign === 1" class="row">
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <div *ngIf="sign === 2" class="row">
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <div *ngIf="sign === 3" class="row">
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <div *ngIf="sign === 4" class="row">
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <!-- end of signatories -->
       </div>
     </div> <!-- end of pdf container -->
 
@@ -192,7 +252,7 @@
       <div class="container-fluid py-3">
         <div class="row">
           <div class="col-sm">
-          <table class="table table-bordered table-striped table-sm text-center color-secondary">
+            <table class="table table-bordered table-striped table-sm text-center color-secondary">
               <thead>
                 <tr>
                   <th scope="col" rowspan="2" class="color-accent">College</th>
@@ -204,8 +264,10 @@
                   <th scope="col" rowspan="2" class="color-accent">Beneficiaries/<br>Participant</th>
                   <th scope="col" rowspan="2" class="color-accent">No. of<br>persons<br>trained</th>
                   <th scope="col" rowspan="2" class="color-accent">Weight</th>
-                  <th scope="col" rowspan="2" class="color-accent">No. of<br>persons<br>trained<br>weighted by<br>length of<br>training</th>
-                  <th scope="col" colspan="4" class="color-accent">No. of clients who rated the QUALITY<br>AND RELEVANCE of project as</th>
+                  <th scope="col" rowspan="2" class="color-accent">No. of<br>persons<br>trained<br>weighted by<br>length
+                    of<br>training</th>
+                  <th scope="col" colspan="4" class="color-accent">No. of clients who rated the QUALITY<br>AND
+                    RELEVANCE of project as</th>
                 </tr>
                 <tr>
                   <th>SATISFACTORY</th>
@@ -213,11 +275,11 @@
                   <th>EXCELLENT</th>
                   <th>TOTAL</th>
                 </tr>
-                
+
               </thead>
               <tbody>
 
-                <tr *ngFor = "let data of dataPrexc">
+                <tr *ngFor="let data of dataPrexc">
                   <td class="bold" scope="row">{{data.ui_college}}</td>
                   <td>{{data.ui_dept}}</td>
                   <td>{{data.proposal_title}}</td>
@@ -233,24 +295,85 @@
                   <td>{{data.rate_excellent}}</td>
                   <td>{{data.raters}}</td>
                 </tr>
-                
+
               </tbody>
             </table>
           </div>
         </div>
+        <!-- if signatories true, depende if pila  -->
+        <div *ngIf="sign === 1" class="row">
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <div *ngIf="sign === 2" class="row">
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <div *ngIf="sign === 3" class="row">
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <div *ngIf="sign === 4" class="row">
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <!-- end of signatories -->
       </div>
     </div> <!-- end of pdf container -->
 
     <div *ngIf="bar">
-      
-      <div class="container-fluid py-3">
+      <div id="contentToConvert" class="container-fluid py-3">
         <div class="row">
           <div class="col-sm table-responsive-xl">
             <!-- table table-striped table-sm text-center color-secondary -->
-            <table id="contentToConvert" class="table table-bordered table-striped table-sm text-center color-secondary">
+            <table class="table table-bordered table-striped table-sm text-center color-secondary">
               <thead>
                 <tr>
-                  <th colspan="13"><h2 mat-diaglog-title class="text-center">{{titleReport}} Report</h2></th>
+                  <th colspan="13">
+                    <h2 mat-diaglog-title class="text-center">{{titleReport}} Report</h2>
+                  </th>
                 </tr>
                 <tr>
                   <th rowspan="2" class="color-accent">Particulars</th>
@@ -414,7 +537,68 @@
             </table>
           </div>
         </div>
-      </div>
+        <!-- if signatories true, depende if pila  -->
+        <div *ngIf="sign === 1" class="row">
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <div *ngIf="sign === 2" class="row">
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <div *ngIf="sign === 3" class="row">
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <div *ngIf="sign === 4" class="row">
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+          <div class="col-md line">
+            <mat-form-field floatLabel="auto">
+              <input type="number" matInput readonly>
+            </mat-form-field>
+          </div>
+        </div>
+        <!-- end of signatories -->
+      </div> <!-- end of capture-->
+
     </div> <!-- end of pdf container -->
   </mat-dialog-content>
 </section>
