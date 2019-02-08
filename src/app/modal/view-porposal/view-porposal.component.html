@@ -2,197 +2,256 @@
   <mat-step>
     <ng-template matStepLabel>Submit</ng-template>
     <div class="dialog-section">
-      <h4 mat-diaglog-title class="text-center">Proposal Details</h4>
-      <p *ngIf="isUser" class="text-center"><small>( {{stateLabel}} )</small></p>
-      <mat-dialog-content>
-        <div *ngIf="!revision_edit" class="container dialog-wrapper py-5">
-          <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-3"><small class="color-secondaryVariant" for="">Request form from :</small></div>
-            <div class="col-md-7"> {{data.data.ui_Fname}} {{data.data.ui_Mname}} {{data.data.ui_Lname}}</div>
-          </div>
-          <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-3"><small class="color-secondaryVariant" for="">Project Title :</small></div>
-            <div class="col-md-7">
-              <h4 class="color-accent">{{data.data.proposal_title}}</h4>
+      <form [formGroup]="editProposal">
+        <h4 mat-diaglog-title class="text-center">Proposal Details</h4>
+        <p *ngIf="isUser" class="text-center"><small>( {{stateLabel}} )</small></p>
+        <mat-dialog-content>
+          <div *ngIf="!revision_edit" class="container dialog-wrapper py-5">
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-3"><small class="color-secondaryVariant" for="">Request form from :</small></div>
+              <div class="col-md-7"> {{data.data.ui_Fname}} {{data.data.ui_Mname}} {{data.data.ui_Lname}}</div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-3"><small class="color-secondaryVariant" for="">College :</small></div>
-            <div class="col-md-7"> {{data.data.ui_college}} </div>
-          </div>
-          <div class="row">
-            <div class="col-md-5 align-middle"><small class="color-secondaryVariant" for="">Partner Agency :</small></div>
-            <div class="col-md">
-              <small class="color-secondaryVariant">College</small> <br>
-              <p>Proposal Submission</p>
-              <small class="color-secondaryVariant">External Partner</small> <br>
-              <p>Proposal Submission</p>
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-3"><small class="color-secondaryVariant" for="">Project Title :</small></div>
+              <div class="col-md-7">
+                <h4 class="color-accent">{{data.data.proposal_title}}</h4>
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-3"><small class="color-secondaryVariant" for="">Target Benificiary:</small></div>
-            <div class="col-md-7"> {{data.data.proposal_beneficiaries}} </div>
-          </div>
-          <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-3"><small class="color-secondaryVariant" for="">Gender of Benificiary :</small></div>
-            <div class="col-md-7"> {{data.data.proposal_bene_gender}} </div>
-          </div>
-          <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-3"><small class="color-secondaryVariant" for="">Event Venue :</small></div>
-            <div class="col-md-7"> {{data.data.proposal_venue}} </div>
-          </div>
-          <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-3 align-middle"><small class="color-secondaryVariant" for="">Date :</small></div>
-            <div class="col-md-7">
-              <small class="color-secondaryVariant">Start</small> <br>
-              <p>{{data.data.proposal_date_start}}</p>
-              <small class="color-secondaryVariant">End</small> <br>
-              <p>{{data.data.proposal_date_end}}</p>
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-3"><small class="color-secondaryVariant" for="">College :</small></div>
+              <div class="col-md-7"> {{data.data.ui_college}} </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-5"><small class="color-secondaryVariant" for="">Attached File :</small></div>
-            <div class="col-md"> <a href="{{data.data.proposal_directory}}" target="_blank"><u>{{data.data.proposal_directory}}</u></a></div>
-          </div>
-          <div *ngIf="revision || revision_edit || isAdmin" class="row comment">
-            <div class="col-md-5">
-              <small class="color-warn" for="">Comment :</small>
+            <div class="row">
+              <div class="col-md-5 align-middle"><small class="color-secondaryVariant" for="">Partner Agency :</small></div>
+              <div class="col-md">
+                <small class="color-secondaryVariant">College</small> <br>
+                <p>Proposal Submission</p>
+                <small class="color-secondaryVariant">External Partner</small> <br>
+                <p>Proposal Submission</p>
+              </div>
             </div>
-            <div class="col-md">{{data.data.comment}}</div>
-          </div>
-        </div>
-        <!--End wrapper -->
-
-        <!-- User edit mode only -->
-        <div *ngIf="revision_edit" class="container dialog-wrapper py-5">
-          <div class="row">
-            <div class="row comment">
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-3"><small class="color-secondaryVariant" for="">Target Benificiary:</small></div>
+              <div class="col-md-7"> {{data.data.proposal_beneficiaries}} </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-3"><small class="color-secondaryVariant" for="">Gender of Benificiary :</small></div>
+              <div class="col-md-7"> {{data.data.proposal_bene_gender}} </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-3"><small class="color-secondaryVariant" for="">Event Venue :</small></div>
+              <div class="col-md-7"> {{data.data.proposal_venue}} </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-3 align-middle"><small class="color-secondaryVariant" for="">Date :</small></div>
+              <div class="col-md-7">
+                <small class="color-secondaryVariant">Start</small> <br>
+                <p>{{data.data.proposal_date_start}}</p>
+                <small class="color-secondaryVariant">End</small> <br>
+                <p>{{data.data.proposal_date_end}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-5"><small class="color-secondaryVariant" for="">Attached File :</small></div>
+              <div class="col-md"> <a href="{{data.data.proposal_directory}}" target="_blank"><u>{{data.data.proposal_directory}}</u></a></div>
+            </div>
+            <div *ngIf="revision || revision_edit || isAdmin" class="row comment">
               <div class="col-md-5">
-                <small class="color-warn" for="">Comment</small>
+                <small class="color-warn" for="">Comment :</small>
               </div>
               <div class="col-md">{{data.data.comment}}</div>
             </div>
-            <div class="col-md">
-              <mat-form-field floatLabel="auto">
-                <mat-label>Project Title</mat-label>
-                <input [(ngModel)]="title" type="text" matInput>
-              </mat-form-field>
+          </div>
+          <!--End wrapper -->
 
-              <label>Type of Project</label> <br>
-              <mat-radio-group [(ngModel)]="ProjType">
-                <mat-radio-button class="gender-box" value="new">New</mat-radio-button>
-                <mat-radio-button class="gender-box" value="continuing">Continuing</mat-radio-button>
-              </mat-radio-group>
+          <!-- User edit mode only -->
+          <div *ngIf="revision_edit" class="container dialog-wrapper py-5">
+            <div class="row">
+              <div class="row comment">
+                <div class="col-md-5">
+                  <small class="color-warn" for="">Comment</small>
+                </div>
+                <div class="col-md">{{data.data.comment}}</div>
+              </div>
+              <div class="col-md">
+                <mat-form-field floatLabel="auto">
+                  <mat-label>Project Title</mat-label>
+                  <input [(ngModel)]="title" type="text" formControlName="titleVal" matInput>
+                  <mat-error *ngIf="editProposal.get('titleVal').hasError('required')">
+                    <small>Title is <strong>required</strong></small>
+                  </mat-error>
+                  <mat-error *ngIf="editProposal.get('titleVal').hasError('pattern')">
+                    <small>Numbers and symbols not allowed></small>
+                  </mat-error>
+                </mat-form-field>
 
-              <mat-form-field floatLabel="auto">
-                <mat-label>Proponents</mat-label>
-                <textarea [(ngModel)]="proponents" cols="20" rows="10" type="text" matInput></textarea>
-              </mat-form-field>
+                <label>Type of Project</label> <br>
+                <mat-radio-group [(ngModel)]="ProjType" formControlName="typeVal">
+                  <mat-radio-button class="gender-box" value="new">New</mat-radio-button>
+                  <mat-radio-button class="gender-box" value="continuing">Continuing</mat-radio-button>
+                  <mat-error *ngIf="editProposal.get('typeVal').hasError('required')">
+                    <small>Project type is <strong>required</strong></small>
+                  </mat-error>
+                </mat-radio-group>
 
-              <mat-form-field floatLabel="auto">
-                <mat-label>Program (If you have other partner deparments. Separate with comma)</mat-label>
-                <textarea [(ngModel)]="program" cols="20" rows="10" type="text" matInput></textarea>
-              </mat-form-field>
+                <mat-form-field floatLabel="auto">
+                  <mat-label>Proponents (If you have other partner deparments. Separate with comma)</mat-label>
+                  <textarea [(ngModel)]="proponents" cols="20" rows="10" type="text" matInput formControlName="proponentsVal"></textarea>
+                  <mat-error *ngIf="editProposal.get('proponentsVal').hasError('required')">
+                    <small>Proponents is <strong>required</strong></small>
+                  </mat-error>
+                </mat-form-field>
 
-              <mat-form-field floatLabel="auto">
-                <mat-label>Accreditation Level</mat-label>
-                <input [(ngModel)]="accre_level" type="text" matInput>
-              </mat-form-field>
+                <mat-form-field floatLabel="auto">
+                  <mat-label>Program </mat-label>
+                  <input type="text" formControlName="programVal" matInput>
+                  <mat-error *ngIf="editProposal.get('programVal').hasError('required')">
+                    <small>Program is <strong>required</strong></small>
+                  </mat-error>
+                  <mat-error *ngIf="editProposal.get('programVal').hasError('pattern')">
+                    <small>Numbers and symbols not allowed</small>
+                  </mat-error>
+                </mat-form-field>
 
-              <mat-form-field>
-                <input [(ngModel)]="sdate" matInput [matDatepicker]="start" placeholder="Start Date">
-                <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
-                <mat-datepicker #start></mat-datepicker>
-              </mat-form-field>
+                <mat-form-field floatLabel="auto">
+                  <mat-label>Accreditation Level</mat-label>
+                  <input [(ngModel)]="accre_level" type="text" matInput formControlName="accreditationLevel">
+                  <mat-error *ngIf="editProposal.get('accreditationLevel').hasError('required')">
+                    <small>Accreditation is <strong>required</strong></small>
+                  </mat-error>
+                </mat-form-field>
 
-              <mat-form-field>
-                <input [(ngModel)]="edate" matInput [matDatepicker]="end" placeholder="End Date">
-                <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
-                <mat-datepicker #end></mat-datepicker>
-              </mat-form-field>
+                <mat-form-field>
+                  <input type="month" [(ngModel)]="sdate" formControlName="sDate" matInput placeholder="Start Month">
+                  <mat-error *ngIf="editProposal.get('sDate').hasError('required')">
+                    <small>Month is <strong>required</strong></small>
+                  </mat-error>
+                </mat-form-field>
 
-              <mat-form-field floatLabel="auto">
-                <mat-label>Total Number of Hours</mat-label>
-                <input [(ngModel)]="total_hours" type="text" matInput>
-              </mat-form-field>
+                <mat-form-field>
+                  <input type="month" [(ngModel)]="edate" formControlName="eDate" matInput placeholder="End Month">
+                  <mat-error *ngIf="editProposal.get('eDate').hasError('required')">
+                    <small>Month is <strong>required</strong></small>
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field floatLabel="auto">
+                  <mat-label>Total Number of Hours</mat-label>
+                  <input [(ngModel)]="total_hours" type="text" matInput formControlName="tHours">
+                  <mat-error *ngIf="editProposal.get('tHours').hasError('required')">
+                    <small>Number of Hours is <strong>required</strong></small>
+                  </mat-error>
+                  <mat-error *ngIf="editProposal.get('tHours').hasError('pattern')">
+                    <small>Numbers only</small>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md">
+                <mat-form-field floatLabel="auto">
+                  <mat-label>Target Benificiary</mat-label>
+                  <input [(ngModel)]="beneficiary" type="text" matInput formControlName="tBenificiary">
+                  <mat-error *ngIf="editProposal.get('tBenificiary').hasError('required')">
+                    <small>Benificiary is <strong>required</strong></small>
+                  </mat-error>
+                  <mat-error *ngIf="editProposal.get('tBenificiary').hasError('pattern')">
+                    <small>Numbers and symbols not allowed</small>
+                  </mat-error>
+                </mat-form-field>
+
+                <label> Gender Benificiary </label> <br>
+                <mat-radio-group [(ngModel)]="bene_gender" formControlName="gBenificiary">
+                  <mat-radio-button class="gender-box" value="Male">Male</mat-radio-button>
+                  <mat-radio-button class="gender-box" value="Female">Female</mat-radio-button>
+                  <mat-radio-button class="gender-box" value="Both">Both</mat-radio-button>
+                  <mat-error *ngIf="editProposal.get('gBenificiary').hasError('required')">
+                    <small>Gender benificiary is <strong>required</strong></small>
+                  </mat-error>
+                </mat-radio-group>
+
+                <mat-form-field floatLabel="auto">
+                  <mat-label>Project Location</mat-label>
+                  <input [(ngModel)]="venue" type="text" matInput formControlName="projectLocation">
+                  <mat-error *ngIf="editProposal.get('projectLocation').hasError('required')">
+                    <small>Project Location is <strong>required</strong></small>
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field floatLabel="auto">
+                  <mat-label>Partner Agency</mat-label>
+                  <input [(ngModel)]="partner" type="text" matInput formControlName="partnerAgency">
+                  <mat-error *ngIf="editProposal.get('partnerAgency').hasError('required')">
+                    <small>Partner Agency is <strong>required</strong></small>
+                  </mat-error>
+                  <mat-error *ngIf="editProposal.get('projectLocation').hasError('pattern')">
+                    <small>Numbers and symbols not allowed</small>
+                  </mat-error>
+                </mat-form-field>
+
+                <label> Budget Requirements </label>
+                <mat-form-field floatLabel="auto">
+                  <mat-label>USTP</mat-label>
+                  <input [(ngModel)]="budget_ustp" type="number" matInput formControlName="budgetUSTP">
+                  <mat-error *ngIf="editProposal.get('budgetUSTP').hasError('pattern')">
+                    <small>Numbers only</small>
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field floatLabel="auto">
+                  <mat-label>Partner Agency</mat-label>
+                  <input [(ngModel)]="budget_partner" type="number" matInput formControlName="budgetPartner">
+                  <mat-error *ngIf="editProposal.get('budgetPartner').hasError('pattern')">
+                    <small>Numbers only</small>
+                  </mat-error>
+                </mat-form-field>
+              </div>
             </div>
-            <div class="col-md">
-              <mat-form-field floatLabel="auto">
-                <mat-label>Target Benificiary</mat-label>
-                <input [(ngModel)]="beneficiary" type="text" matInput>
-              </mat-form-field>
-
-              <label> Gender Benificiary </label> <br>
-              <mat-radio-group [(ngModel)]="bene_gender">
-                <mat-radio-button class="gender-box" value="Male">Male</mat-radio-button>
-                <mat-radio-button class="gender-box" value="Female">Female</mat-radio-button>
-                <mat-radio-button class="gender-box" value="Both">Both</mat-radio-button>
-              </mat-radio-group>
-
-              <mat-form-field floatLabel="auto">
-                <mat-label>Project Location</mat-label>
-                <input [(ngModel)]="venue" type="text" matInput>
-              </mat-form-field>
-
-              <mat-form-field floatLabel="auto">
-                <mat-label>Partner Agency</mat-label>
-                <input [(ngModel)]="partner" type="text" matInput>
-              </mat-form-field>
-
-              <label> Budget Requirements </label>
-              <mat-form-field floatLabel="auto">
-                <mat-label>USTP</mat-label>
-                <input [(ngModel)]="budget_ustp" type="number" matInput>
-              </mat-form-field>
-              <mat-form-field floatLabel="auto">
-                <mat-label>Partner Agency</mat-label>
-                <input [(ngModel)]="budget_partner" type="number" matInput>
-              </mat-form-field>
+            <div class="row">
+              <div class="col-md">
+                <div class="upload">
+                  <label>Attach Updated File : </label><br>
+                  <button mat-raised-button color="primary" (click)="fileInput.click()">Upload</button>
+                  <input hidden type="file" #fileInput (change)="getFiles($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf"
+                    formControlName="upload">
+                  <input class="mt-2" id="fileName" type="text" placeholder="No file chosen" readonly="true" matInput>
+                  <mat-error *ngIf="editProposal.get('upload').hasError('pattern')">
+                    <small>Proposal files is <strong></strong> </small>
+                  </mat-error>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md">
-              <div class="upload">
-                <label>Attach Updated File : </label><br>
-                <button mat-raised-button color="primary" (click)="fileInput.click()">Upload</button>
-                <input hidden type="file" #fileInput (change)="getFiles($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf">
-                <input class="mt-2" id="fileName" type="text" placeholder="No file chosen" readonly="true" matInput>
-              </div>
-            </div>
-          </div>
-        </div>
-      </mat-dialog-content>
+        </mat-dialog-content>
 
-      <mat-dialog-actions>
-        <div class="container Form-action-wrapper">
-          <div class="row">
-            <div class="col-md text-center">
-              <div *ngIf="revision && isUser">
-                <!-- user call to action -->
-                <button mat-button mat-dialog-close>Close</button>
-                <button (click)="revise()" mat-raised-button color="primary">Edit</button>
-              </div>
-              <div *ngIf="revision_edit && isUser">
-                <!-- user forms call to action -->
-                <button mat-button mat-dialog-close>Close</button>
-                <button (click)="final_revision()" mat-raised-button color="primary">Update</button>
-              </div>
-              <div *ngIf="!approved && isAdmin">
-                <!-- admin call to action -->
-                <button (click)="verdict()" mat-button mat-dialog-close>Revise</button>
-                <button (click)="verdict(1)" mat-raised-button color="primary">Accept</button>
+        <mat-dialog-actions>
+          <div class="container Form-action-wrapper">
+            <div class="row">
+              <div class="col-md text-center">
+                <div *ngIf="revision && isUser">
+                  <!-- user call to action -->
+                  <button mat-button mat-dialog-close>Close</button>
+                  <button (click)="revise()" mat-raised-button color="primary">Edit</button>
+                </div>
+                <div *ngIf="revision_edit && isUser">
+                  <!-- user forms call to action -->
+                  <button mat-button mat-dialog-close>Close</button>
+                  <button (click)="final_revision()" mat-raised-button color="primary" [disabled]="!submitProposal.valid">Update</button>
+                </div>
+                <div *ngIf="!approved && isAdmin">
+                  <!-- admin call to action -->
+                  <button (click)="verdict()" mat-button mat-dialog-close>Revise</button>
+                  <button (click)="verdict(1)" mat-raised-button color="primary">Accept</button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </mat-dialog-actions>
+        </mat-dialog-actions>
+      </form>
     </div>
   </mat-step>
   <mat-step>
@@ -205,7 +264,7 @@
       <div *ngIf="isUser && moa">
         Proceed to next step: MOA Notarization and Signing of Proposal Cover
       </div>
-      <div *ngIf = "isAdmin && !moa" id="contentToConvert">
+      <div *ngIf="isAdmin && !moa" id="contentToConvert">
         <table style="height: 187px; width: 864px; margin-left: auto; margin-right: auto;" border="0">
           <tbody>
             <tr>
@@ -460,7 +519,7 @@
   <mat-step>
     <ng-template matStepLabel>Implementaion</ng-template>
     <h4 mat-diaglog-title class="text-center">Ready for Implementaion</h4>
-    <mat-dialog-content *ngIf = "isUser">
+    <mat-dialog-content *ngIf="isUser">
       <div class="container dialog-wrapper py-4" style="width: 370px;">
         <div class="row form-wrapper">
           <div class="col-md text-center">
@@ -472,7 +531,8 @@
               class="text-heading-24 start-end">END</button>
           </div>
           <div class="col-md text-center">
-            <span *ngIf="implementing == 2" mat-raised-button color="primary" class="text-heading-24 start-end">You are now ready to submit your Accomplisment Report</span>
+            <span *ngIf="implementing == 2" mat-raised-button color="primary" class="text-heading-24 start-end">You are
+              now ready to submit your Accomplisment Report</span>
           </div>
         </div>
         <div class="row">
@@ -488,17 +548,20 @@
         </div>
       </div>
     </mat-dialog-content>
-    <mat-dialog-content *ngIf = "isAdmin">
+    <mat-dialog-content *ngIf="isAdmin">
       <div class="container dialog-wrapper py-4" style="width: 370px;">
         <div class="row form-wrapper">
           <div class="col-md text-center">
-            <span *ngIf="implementing == 0" mat-raised-button color="primary" class="text-heading-24 start-end">The Proponents has not started implementation</span>
+            <span *ngIf="implementing == 0" mat-raised-button color="primary" class="text-heading-24 start-end">The
+              Proponents has not started implementation</span>
           </div>
           <div class="col-md text-center">
-            <span *ngIf="implementing == 1" mat-raised-button color="primary" class="text-heading-24 start-end">The Proponents have started implementation</span>
+            <span *ngIf="implementing == 1" mat-raised-button color="primary" class="text-heading-24 start-end">The
+              Proponents have started implementation</span>
           </div>
           <div class="col-md text-center">
-            <span *ngIf="implementing == 2" mat-raised-button color="primary" class="text-heading-24 start-end">The Proponents have ended implementation</span>
+            <span *ngIf="implementing == 2" mat-raised-button color="primary" class="text-heading-24 start-end">The
+              Proponents have ended implementation</span>
           </div>
         </div>
         <div class="row">
@@ -532,7 +595,7 @@
     <form>
       <ng-template matStepLabel>Accomplishment Report</ng-template>
       <h4 mat-diaglog-title class="text-center">Accomplishment Data</h4>
-      <mat-dialog-content *ngIf = "isUser">
+      <mat-dialog-content *ngIf="isUser">
         <div class="container dialog-wrapper py-5">
           <div class="row form-wrapper">
             <div class="col-md-6">
@@ -547,7 +610,7 @@
               <div class="upload">
                 <label>Attach File : </label><br>
                 <button mat-raised-button color="primary" (click)="accReport.click()">Upload</button>
-                <input hidden type="file" #accReport (change)="getFiles($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf">
+                <input hidden type="file" #accReport (change)="getFiles($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf" required>
                 <input class="mt-2" id="fileName" type="text" placeholder="No file chosen" readonly="true" matInput>
               </div>
             </div>
@@ -568,22 +631,22 @@
           </div>
         </div>
       </mat-dialog-content>
-      <mat-dialog-content *ngIf = "isAdmin">
+      <mat-dialog-content *ngIf="isAdmin">
         <div class="container dialog-wrapper py-5">
           <div class="row form-wrapper">
             <div class="col-md-6">
-                <mat-label>No. of Persons Trained</mat-label>
-                <span>{{data.data.persons_trained}}</span>
-                <mat-label>No. of Days</mat-label>
-                <span>{{data.data.days_conducted}}</span>
+              <mat-label>No. of Persons Trained</mat-label>
+              <span>{{data.data.persons_trained}}</span>
+              <mat-label>No. of Days</mat-label>
+              <span>{{data.data.days_conducted}}</span>
             </div>
             <div class="col-md-6">
-                <mat-label>Satisfactory</mat-label>
-                <span>{{data.data.rate_satisfactory}}</span>
-                <mat-label>Very Satisfactory</mat-label>
-                <span>{{data.data.rate_v_satisfactory}}</span>
-                <mat-label>Excellent</mat-label>
-                <span>{{data.data.rate_excellent}}</span>
+              <mat-label>Satisfactory</mat-label>
+              <span>{{data.data.rate_satisfactory}}</span>
+              <mat-label>Very Satisfactory</mat-label>
+              <span>{{data.data.rate_v_satisfactory}}</span>
+              <mat-label>Excellent</mat-label>
+              <span>{{data.data.rate_excellent}}</span>
             </div>
           </div>
         </div>
@@ -605,7 +668,7 @@
       </mat-dialog-actions>
     </form>
   </mat-step>
-  <mat-step >
+  <mat-step>
     <ng-template matStepLabel>Done</ng-template>
 
     <h4 mat-diaglog-title class="text-center text-uppercase">Checklist of Documentary Requirement</h4>
@@ -614,8 +677,8 @@
         <div class="row">
           <div class="col-md">
             <mat-checkbox>List of Participants</mat-checkbox>
-              <mat-checkbox>Daily Attendance Sheet</mat-checkbox>
-              <mat-checkbox>Summary of Evaluation</mat-checkbox>
+            <mat-checkbox>Daily Attendance Sheet</mat-checkbox>
+            <mat-checkbox>Summary of Evaluation</mat-checkbox>
           </div>
         </div>
       </div>

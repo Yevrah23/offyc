@@ -17,8 +17,9 @@ import * as $ from 'jquery';
 })
 export class RecordsComponent implements OnInit {
 
-  isAdmin : boolean = false ;
-  isUser : boolean = false ;
+
+  isAdmin = false;
+  isUser = false;
   token: any;
 
   // tempo: any;
@@ -27,15 +28,18 @@ export class RecordsComponent implements OnInit {
   // records: any[];
 
   // spinner
-  showSpinner = true;
+  adminSpinner = true;
+  showSpinner: boolean;
   showData = false;
   // mat-table
   displayedColumns: string[] = ['Title', 'Target', 'Venue', 'Settings'];
+  archiveColumns: string[] = ['Title', 'Target', 'Venue', 'Settings'];
   CITC: MatTableDataSource<any>;
   COT: MatTableDataSource<any>;
   CEA: MatTableDataSource<any>;
   CSM: MatTableDataSource<any>;
   CSTE: MatTableDataSource<any>;
+  ARCHIVE: MatTableDataSource<any>;
 
   User: MatTableDataSource<any>;
 
@@ -59,9 +63,12 @@ export class RecordsComponent implements OnInit {
 
 
   // Modal triggers
-  submitProposal(): void {
+  submitProposal(userAdmin): void {
     const dialogRef = this.dialog.open(SubmitProposalComponent, {
-      width: '500px'
+      width: '500px',
+      data : {
+        userType: userAdmin // string ni
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -82,9 +89,9 @@ export class RecordsComponent implements OnInit {
           width: '1000px',
           panelClass: 'custom-dialog-view',
           data: {
-            data : this.record,
+            data: this.record,
             admin: this.isAdmin,
-            user : this.isUser
+            user: this.isUser
           }
         });
 
@@ -111,32 +118,34 @@ export class RecordsComponent implements OnInit {
     });
   }
 
-  ngDoCheck(){
-    if(this.user.user || this.user.admin){
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngDoCheck() {
+    if (this.user.user || this.user.admin) {
       if (this.user.admin) {
         this.isAdmin = true;
       } else {
         this.isUser = true;
       }
-      this.showSpinner = false;
+      this.adminSpinner = false;
     }
   }
 
   ngOnInit() {
 
     setTimeout(() => {
-      this.check_proposal();      
-    }, 2000);
+      this.showSpinner = true;
+      this.check_proposal();
+    }, 1000);
   }
 
 
-  check_proposal(){
+  check_proposal() {
+    // this.showSpinner = true;
     if (this.isAdmin) {
       this.user.get_des_proposals().subscribe(
         (response) => {
           this.showSpinner = false;
           this.showData = true;
-
           if (response[0]) {
             console.log(response[1]);
             this.CITC = new MatTableDataSource(response[1].CITC);
@@ -144,6 +153,7 @@ export class RecordsComponent implements OnInit {
             this.CEA = new MatTableDataSource(response[1].CEA);
             this.CSM = new MatTableDataSource(response[1].CSM);
             this.CSTE = new MatTableDataSource(response[1].CSTE);
+            this.ARCHIVE = new MatTableDataSource(response[1].ARCHIVE);
 
             // mat table
             this.CITC.paginator = this.paginator;
@@ -151,22 +161,23 @@ export class RecordsComponent implements OnInit {
             this.CEA.paginator = this.paginator;
             this.CSM.paginator = this.paginator;
             this.CSTE.paginator = this.paginator;
+            this.ARCHIVE.paginator = this.paginator;
 
             this.CITC.sort = this.sort;
             this.COT.sort = this.sort;
             this.CEA.sort = this.sort;
             this.CSM.sort = this.sort;
             this.CSTE.sort = this.sort;
+            this.ARCHIVE.sort = this.sort;
           }
         }
       );
     } else {
       this.user.get_proposals_user(this.cookies.get('id')).subscribe(
         (response) => {
-          this.showSpinner = false;
-          this.showData = true;
-
           if (response[0]) {
+            this.showSpinner = false;
+            this.showData = true;
             console.log(response);
             this.User = new MatTableDataSource(response[1]);
 
@@ -176,7 +187,6 @@ export class RecordsComponent implements OnInit {
 
 
             this.User.sort = this.sort;
-
           }
         }
       );
@@ -189,7 +199,8 @@ export class RecordsComponent implements OnInit {
     this.CSM.filter = filterValue.trim().toLowerCase();
     this.CSTE.filter = filterValue.trim().toLowerCase();
     this.CEA.filter = filterValue.trim().toLowerCase();
-    this.User.filter = filterValue.trim().toLowerCase();
+    this.ARCHIVE.filter = filterValue.trim().toLowerCase();
+    this.User.filter = filterValue.trim().toLowerCase(); // user only
 
     if (this.CITC.paginator) {
       this.CITC.paginator.firstPage();
@@ -204,6 +215,9 @@ export class RecordsComponent implements OnInit {
       this.CSTE.paginator.firstPage();
     }
     if (this.CEA.paginator) {
+      this.CEA.paginator.firstPage();
+    }
+    if (this.ARCHIVE.paginator) {
       this.CEA.paginator.firstPage();
     }
 

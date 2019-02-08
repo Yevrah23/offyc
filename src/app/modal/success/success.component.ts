@@ -13,9 +13,9 @@ export class SuccessComponent implements OnInit {
   fromProfileSettingsSave: boolean;
   fromProfileSettingsDelete: boolean;
   test: boolean;
-  fromLogin: boolean = false;
-  fromRegApproval: boolean = false;
-  RegApproval: boolean = false;
+  fromLogin = false;
+  fromRegApproval = false;
+  RegApproval = false;
   loginStatus: any;
 
   constructor(
@@ -29,10 +29,10 @@ export class SuccessComponent implements OnInit {
   ngOnInit() {
       if (this.data.page === 'fromReg') {
         this.fromReg = true;
-      } else if(this.data.page === 'frmLogin'){
+      } else if (this.data.page === 'frmLogin') {
         this.fromLogin = true;
         this.loginStatus = this.data.status;
-      } else if (this.data.page === 'frmRegApproval'){
+      } else if (this.data.page === 'frmRegApproval') {
         this.RegApproval = this.data.status;
         this.fromRegApproval = true;
       } else if (this.data.page === 'fromProposal') {

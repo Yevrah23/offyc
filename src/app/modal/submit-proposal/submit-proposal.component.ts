@@ -18,8 +18,11 @@ import { FormControl, FormGroup, Validators, FormControlName, FormBuilder } from
   styleUrls: ['./submit-proposal.component.scss']
 })
 export class SubmitProposalComponent implements OnInit {
-
+  startDate = new Date(2018, 1, 0);
   // form validation
+  userType: string;
+  isArchive: boolean;
+  isUserSubmit: boolean;
   submitProposal: FormGroup;
 
   proposal = [];
@@ -38,6 +41,9 @@ export class SubmitProposalComponent implements OnInit {
   budget_partner: string;
 
   file: File = null;
+  moa_file: File = null;
+  signed: File = null;
+  accomp: File = null;
 
   fileName: string;
   files: FileList = null;
@@ -51,7 +57,17 @@ export class SubmitProposalComponent implements OnInit {
     private http: HttpClient,
     private upload: UploadService,
     private _formBuilder: FormBuilder
-  ) { }
+  ) {
+    // check if gkan ba sa user or archive ba g click na button.
+    this.userType = this.data.userType;
+    if (this.userType === '1') {
+      this.isArchive = true;
+      this.isUserSubmit = false;
+    } else {
+      this.isArchive = false;
+      this.isUserSubmit = true;
+    }
+  }
 
   showSuccess(page: string): void {
     const dialogRef = this.dialog.open(SuccessComponent, {
@@ -70,21 +86,26 @@ export class SubmitProposalComponent implements OnInit {
 
   ngOnInit() {
     this.submitProposal = this._formBuilder.group({
-      titleVal: ['', Validators.required],
+      titleVal: ['', [Validators.required, Validators.pattern('^[a-zA-Z \-\']+')]],
       typeVal: ['', Validators.required],
       proponentsVal: ['', Validators.required],
-      programVal: ['', Validators.required],
+      programVal: ['', [Validators.required, Validators.pattern('^[a-zA-Z \-\']+')]],
       accreditationLevel: ['', Validators.required],
       sDate: ['', Validators.required],
       eDate: ['', Validators.required],
-      tHours: ['', Validators.required],
-      tBenificiary: ['', Validators.required],
+      tHours: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      tBenificiary: ['', [Validators.required, Validators.pattern('^[a-zA-Z \-\']+')]],
       gBenificiary: ['', Validators.required],
       projectLocation: ['', Validators.required],
-      partnerAgency: ['', Validators.required],
-      upload: ['', Validators.required],
       budget_u_val: ['', Validators.required],
       budget_p_val: ['', Validators.required],
+      partnerAgency: ['', [Validators.required, Validators.pattern('^[a-zA-Z \-\']+')]],
+      upload: ['', Validators.required],
+      budgetUSTP: ['', Validators.pattern('^[0-9]*$')],
+      budgetPartner: ['', Validators.pattern('^[0-9]*$')],
+      uploadMoa: ['', Validators.required],
+      uploadPC: ['', Validators.required],
+      uploadAC: ['', Validators.required]
     });
   }
 
@@ -150,7 +171,6 @@ export class SubmitProposalComponent implements OnInit {
   // }
 
   getFiles(event) {
-
     // this.file = files.item(0);
     this.files = event.target.files;
     console.log(this.files);
@@ -162,6 +182,31 @@ export class SubmitProposalComponent implements OnInit {
       $('#fileName').val(this.files[0]['name']);
     }
 
+  }
+  upload_moa(event) {
+
+    // this.file = files.item(0);
+    this.files = event.target.files;
+    this.moa_file = this.files[0];
+    this.fileName = this.files[0]['name'];
+    $('#moaName').val(this.files[0]['name']);
+  }
+  upload_signed(event) {
+
+    // this.file = files.item(0);
+    this.files = event.target.files;
+    this.signed = this.files[0];
+    this.fileName = this.files[0]['name'];
+    $('#signedName').val(this.files[0]['name']);
+  }
+
+  upload_accomp(event) {
+
+    // this.file = files.item(0);
+    this.files = event.target.files;
+    this.accomp = this.files[0];
+    this.fileName = this.files[0]['name'];
+    $('#accompName').val(this.files[0]['name']);
   }
 
 

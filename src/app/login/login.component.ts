@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
         console.log(response);
         this.credentials = [];
         if (response[0]) {
-          this.showSuccess('frmLogin', response['message'], true);
+          // this.showSuccess('frmLogin', response['message'], true);
           this.user.isLoggedIn = true;
           this.cookies.set('id', response[1].user_school_id);
           this.cookies.set(response[1].user_school_id, response[3]);
@@ -97,6 +97,8 @@ export class LoginComponent implements OnInit {
             }else{
               this.showSuccess('frmLogin', response['message'], false);
             }
+            const message = `Username and Password does not match. Please try again.`;
+            this.showSuccess('frmLogin', message, false);
         }
       }
     );

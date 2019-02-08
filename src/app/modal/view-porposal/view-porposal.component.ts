@@ -8,6 +8,7 @@ import { UploadService } from 'src/app/services/upload.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { CommentComponent } from '../comment/comment.component';
 import { CookieService } from 'ngx-cookie-service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-view-porposal',
@@ -16,6 +17,8 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class ViewPorposalComponent implements OnInit {
   @ViewChild('stepper') stepper: MatStepper;
+
+  editProposal: FormGroup;
 
   approved = false;
   pending = false;
@@ -75,7 +78,10 @@ export class ViewPorposalComponent implements OnInit {
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<ViewPorposalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-    , private user: UserServices, private upload: UploadService) {
+    , private user: UserServices,
+    private upload: UploadService,
+    private _formBuilder: FormBuilder
+    ) {
     this.prop_id = this.data.data.proposal_id;
     this.title = this.data.data.proposal_title;
     this.sdate = this.data.data.proposal_date_start;
@@ -182,6 +188,24 @@ export class ViewPorposalComponent implements OnInit {
     this.isUser = this.data.user;
     this.isAdmin = this.data.admin;
 
+    // angular form validation EDIT PROPOSAL
+    this.editProposal = this._formBuilder.group({
+      titleVal: ['', [Validators.required, Validators.pattern('^[a-zA-Z \-\']+')]],
+      typeVal: ['', Validators.required],
+      proponentsVal: ['', Validators.required],
+      programVal: ['', [Validators.required, Validators.pattern('^[a-zA-Z \-\']+')]],
+      accreditationLevel: ['', Validators.required],
+      sDate: ['', Validators.required],
+      eDate: ['', Validators.required],
+      tHours: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      tBenificiary: ['', [Validators.required, Validators.pattern('^[a-zA-Z \-\']+')]],
+      gBenificiary: ['', Validators.required],
+      projectLocation: ['', Validators.required],
+      partnerAgency: ['', [Validators.required, Validators.pattern('^[a-zA-Z \-\']+')]],
+      upload: ['', Validators.required],
+      budgetUSTP: ['', Validators.pattern('^[0-9]*$')],
+      budgetPartner: ['', Validators.pattern('^[0-9]*$')],
+    });
 
     // tslint:disable-next-line:radix
     if (parseInt(this.data.data.proposal_status) < 0) {
