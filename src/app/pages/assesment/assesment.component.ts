@@ -58,6 +58,7 @@ export class AssesmentComponent implements OnInit {
   // Modal triggers
   generateReport(): void {
     const dialogRef = this.dialog.open(GenerateReportComponent, {
+      disableClose: true,
       width: '535px',
       panelClass: 'custom-dialog-report'
     });

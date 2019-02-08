@@ -133,31 +133,31 @@ export class HomeComponent implements OnInit {
         labels: ['1st Qtr', '2nd Qtr', '3rd Qtr', '4th Qtr'],
         datasets: [{
           label: 'CITC',
-          data: [12, 19, 3, 18],
+          data: [12, 19, 3, 18], // mao ning mga data sa chart
           borderColor: '#2E3131',
           backgroundColor: '#2E3131',
           fill: false,
         }, {
           label: 'CSTE',
-          data: [5, 7, 8, 12],
+          data: [5, 7, 8, 12], // mao ning mga data sa chart
           borderColor: '#1E8BC3',
           backgroundColor: '#1E8BC3',
           fill: false,
         }, {
           label: 'COT',
-          data: [3, 15, 6, 8],
+          data: [3, 15, 6, 8], // mao ning mga data sa chart
           borderColor: '#D91E18',
           backgroundColor: '#D91E18',
           fill: false,
         }, {
           label: 'CSM',
-          data: [11, 16, 7, 14],
+          data: [11, 16, 7, 14], // mao ning mga data sa chart
           borderColor: '#26A65B',
           backgroundColor: '#26A65B',
           fill: false,
         }, {
           label: 'CEA',
-          data: [25, 13, 3, 18],
+          data: [25, 13, 3, 18], // mao ning mga data sa chart
           borderColor: '#96281B',
           backgroundColor: '#96281B',
           fill: false,
@@ -199,7 +199,7 @@ export class HomeComponent implements OnInit {
         labels: ['1st Qtr', '2nd Qtr', '3rd Qtr', '4th Qtr'],
         datasets: [{
           label: 'College name',
-          data: [12, 19, 3, 5],
+          data: [12, 19, 3, 5], // mao ning mga data sa chart
           borderColor: '#3cba9f',
           backgroundColor: '#3cba9f',
           fill: false,

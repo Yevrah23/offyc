@@ -38,7 +38,7 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
                 <td mat-cell *matCellDef="let record">
                   <div class="actions">
-                    <button mat-raised-button (click)="viewProposal(record.proposal_id)">View</button>
+                    <button mat-raised-button color="primary" (click)="viewProposal(record.proposal_id)">View</button>
                   </div>
                 </td>
               </ng-container>
@@ -92,8 +92,7 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
                 <td mat-cell *matCellDef="let record">
                   <div class="actions">
-                    <button mat-raised-button (click)="fileDetails()">Download</button>
-                    <button mat-raised-button (click)="viewProposal()">View</button>
+                    <button mat-raised-button color="primary" (click)="viewProposal()">View</button>
                   </div>
                 </td>
               </ng-container>
@@ -146,7 +145,7 @@
                   <div class="actions">
                     <!-- accpet or delete nlng drtso sa mga request. 
                       then if e click ang row sa table ayha mo popup ang detailed na details sa na register -->
-                    <button mat-raised-button  (click)="regRequest(record)">View</button>
+                    <button mat-raised-button color="primary" (click)="regRequest(record)">View</button>
                   </div>
                 </td>
               </ng-container>
