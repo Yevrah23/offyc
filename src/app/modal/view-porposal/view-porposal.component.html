@@ -1,3 +1,6 @@
+<button class="close" mat-dialog-close>
+  <i class="fas fa-times"></i>
+</button>
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
   <mat-step>
     <ng-template matStepLabel>Submit</ng-template>
@@ -610,7 +613,8 @@
               <div class="upload">
                 <label>Attach File : </label><br>
                 <button mat-raised-button color="primary" (click)="accReport.click()">Upload</button>
-                <input hidden type="file" #accReport (change)="getFiles($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf" required>
+                <input hidden type="file" #accReport (change)="getFiles($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf"
+                  required>
                 <input class="mt-2" id="fileName" type="text" placeholder="No file chosen" readonly="true" matInput>
               </div>
             </div>
@@ -671,18 +675,30 @@
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
 
-    <h4 mat-diaglog-title class="text-center text-uppercase">Checklist of Documentary Requirement</h4>
-    <mat-dialog-content>
-      <div class="container checklist dialog-wrapper py-4" style="width: 524px;">
-        <div class="row">
-          <div class="col-md">
-            <mat-checkbox>List of Participants</mat-checkbox>
-            <mat-checkbox>Daily Attendance Sheet</mat-checkbox>
-            <mat-checkbox>Summary of Evaluation</mat-checkbox>
+    <div *ngIf="false" class="checklist">
+      <h4 mat-diaglog-title class="text-center text-uppercase">Checklist of Documentary Requirement</h4>
+      <mat-dialog-content>
+        <div class="container checklist dialog-wrapper py-4" style="width: 524px;">
+          <div class="row">
+            <div class="col-md">
+              <mat-checkbox>List of Participants</mat-checkbox>
+              <mat-checkbox>Daily Attendance Sheet</mat-checkbox>
+              <mat-checkbox>Summary of Evaluation</mat-checkbox>
+            </div>
           </div>
+        </div>
+      </mat-dialog-content>
+    </div>
+
+    <mat-dialog-content>
+      <div class="projDone">
+        <div class="projDone-child">
+          <h1 class="text-center"><i class="fas fa-check-double color-success"></i></h1>
+          <h4 class="color-accent">PROJECT COMPLETED!</h4>
         </div>
       </div>
     </mat-dialog-content>
+
     <mat-dialog-actions>
       <div class="container Form-action-wrapper">
         <div class="row">

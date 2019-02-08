@@ -53,3 +53,11 @@ button.start-end {
     width: 815px !important;
   }
 }
+
+.projDone {
+  min-height: 414px;
+  display: grid;
+  .projDone-child {
+    margin: auto;
+  }
+}

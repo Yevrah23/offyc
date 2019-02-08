@@ -1,21 +1,32 @@
+
 <h4 mat-diaglog-title class="text-center">File Details</h4>
 
 <mat-dialog-content>
   <div class="container dialog-wrapper">
     <div class="row">
       <div class="col-md-4"><small class="color-secondaryVariant" for="">Project Title :</small></div>
-      <div class="col-md"> <p class="color-accent">CITC: Proposal Submission</p> </div>
+      <div class="col-md">
+        <p class="color-accent">CITC: Proposal Submission</p>
+      </div>
     </div><!-- end row -->
 
     <!-- diri makita ang mga files na naka attached sa kani nga project -->
-    <div class="row"> 
+    <div class="row">
       <div class="col-md-4"><small class="color-secondaryVariant" for="">Attached files:</small></div>
-      <div class="col-md"> 
-       <a *ngIf = "proposal" href="{{data.proposal_directory}}" download><p class="color-secondary text-regular-14">Extension Project Proposal</p></a> 
-       <a *ngIf = "moa" href="{{data.moa_directory}}" download><p class="color-secondary text-regular-14">Notarized Memorandum of Agreement</p></a> 
-       <a *ngIf = "cover" href="{{data.cover_directory}}" download><p class="color-secondary text-regular-14">Signed Project Proposal Cover</p></a>
-       <a *ngIf = "report" href="{{data.report_directory}}" download><p class="color-secondary text-regular-14">Accomplishment Report</p></a>
-       <!-- dili rani tulo. apil tong mga attendance ug ang kato na e upload nila sa accomplishment report makita dri 
+      <div class="col-md">
+        <a *ngIf="proposal" href="{{data.proposal_directory}}" download>
+          <p class="color-secondary text-regular-14"><i class="fas fa-download"></i> &nbsp;Extension Project Proposal </p>
+        </a>
+        <a *ngIf="moa" href="{{data.moa_directory}}" download>
+          <p class="color-secondary text-regular-14"><i class="fas fa-download"></i> &nbsp;Notarized Memorandum of Agreement</p>
+        </a>
+        <a *ngIf="cover" href="{{data.cover_directory}}" download>
+          <p class="color-secondary text-regular-14"><i class="fas fa-download"></i> &nbsp;Signed Project Proposal Cover</p>
+        </a>
+        <a *ngIf="report" href="{{data.report_directory}}" download>
+          <p class="color-secondary text-regular-14"><i class="fas fa-download"></i> &nbsp;Accomplishment Report</p>
+        </a>
+        <!-- dili rani tulo. apil tong mga attendance ug ang kato na e upload nila sa accomplishment report makita dri 
       pag e click a ng filename nlng guro ma dl nila ang file. kai wala nmn restriction ana si maam.-->
       </div>
     </div><!-- end row -->
