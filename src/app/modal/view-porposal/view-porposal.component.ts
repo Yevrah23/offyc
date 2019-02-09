@@ -28,8 +28,8 @@ export class ViewPorposalComponent implements OnInit {
   report = false;
   done = false;
   budget = false;
-  isUser : boolean = false;
-  isAdmin : boolean = false;
+  isUser = false;
+  isAdmin = false;
 
   params = [];
   state: number;
@@ -373,8 +373,8 @@ export class ViewPorposalComponent implements OnInit {
 
   }
 
-  update_report(){
-    if (this.trained >= this.rate_excellent + this.rate_satisfactory + this.rate_v_satisfactory){
+  update_report() {
+    if (this.trained >= this.rate_excellent + this.rate_satisfactory + this.rate_v_satisfactory) {
       this.report_update.push({
         'persons_trained': this.trained,
         'days_implemented': this.days_implemented,
@@ -389,7 +389,7 @@ export class ViewPorposalComponent implements OnInit {
           const file = this.files[0];
           console.log(file);
 
-              if(response){
+              if (response) {
                 this.upload.uploadFile(file, 'accomplishment-report', this.title)
                   .subscribe(
                     event => {
@@ -412,8 +412,7 @@ export class ViewPorposalComponent implements OnInit {
               }
             }
           );
-          }
-      else{
+          } else {
         console.log('lapas brad');
     }
 

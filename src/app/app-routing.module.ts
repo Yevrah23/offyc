@@ -13,7 +13,6 @@ import { RecordsComponent } from './pages/records/records.component';
 import { AdminComponent } from './admin/admin.component';
 import { AssesmentComponent } from './pages/assesment/assesment.component';
 import { NotificationComponent } from './pages/notification/notification.component';
-import { ActivitiesComponent } from './pages/activities/activities.component';
 import { CookieService } from 'ngx-cookie-service';
 
 // let cookies : LoginComponent ;
@@ -55,10 +54,6 @@ const routes: Routes = [
         path: 'notification',
         component: NotificationComponent
       },
-      {
-        path: 'activites',
-        component: ActivitiesComponent
-      },
     ]
   },
   { path: '**', component: PageNotFoundComponent }
@@ -71,4 +66,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 // tslint:disable-next-line:max-line-length
-export const routingComponents = [LoginComponent, RegisterComponent, AdminComponent, HomeComponent, RecordsComponent, AssesmentComponent, NotificationComponent, ActivitiesComponent, PageNotFoundComponent];
+export const routingComponents = [LoginComponent, RegisterComponent, AdminComponent, HomeComponent, RecordsComponent, AssesmentComponent, NotificationComponent, PageNotFoundComponent];

@@ -14,7 +14,7 @@ export class RegViewComponent implements OnInit {
     public dialogRef: MatDialogRef<RegViewComponent>,
     private user: UserServices,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) { 
+  ) {
 
   }
 
@@ -22,8 +22,8 @@ export class RegViewComponent implements OnInit {
     console.log(this.data);
   }
 
-  approve_registration(id,status){
-    this.user.approve_registration(id,status).subscribe(
+  approve_registration(id, status) {
+    this.user.approve_registration(id, status).subscribe(
       (response) => {
         this.dialogRef.close();
         const dialogRef = this.dialog.open(SuccessComponent, {
@@ -40,7 +40,7 @@ export class RegViewComponent implements OnInit {
           console.log(result);
         });
       }
-    )
+    );
   }
 
 }

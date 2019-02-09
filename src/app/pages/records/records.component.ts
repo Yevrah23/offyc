@@ -87,6 +87,7 @@ export class RecordsComponent implements OnInit {
         this.record.proposal_date_end = this.record.proposal_date_end.substring(0, 10);
 
         const dialogRef = this.dialog.open(ViewPorposalComponent, {
+          disableClose: true,
           width: '1000px',
           panelClass: 'custom-dialog-view',
           data: {
@@ -108,9 +109,10 @@ export class RecordsComponent implements OnInit {
   fileDetails(record): void {
     console.log(record);
     const dialogRef = this.dialog.open(FileDetailsComponent, {
+      disableClose: true,
       width: '439px',
       panelClass: 'custom-dialog-file',
-      data:record
+      data: record
     });
 
     dialogRef.afterClosed().subscribe(result => {

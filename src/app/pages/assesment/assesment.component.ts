@@ -79,6 +79,7 @@ export class AssesmentComponent implements OnInit {
 
 
         const dialogRef = this.dialog.open(ViewPorposalComponent, {
+          disableClose: true,
           width: '1000px',
           panelClass: 'custom-dialog-view',
           data: {
@@ -98,6 +99,7 @@ export class AssesmentComponent implements OnInit {
   // Registration Request View  modal if e click ang name ug user id.
   regRequest(record): void {
     const dialogRef = this.dialog.open(RegViewComponent, {
+      disableClose: true,
       width: '535px',
       panelClass: 'custom-dialog-regRequest',
       data: record

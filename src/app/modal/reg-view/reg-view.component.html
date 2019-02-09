@@ -1,14 +1,15 @@
+<button class="close" mat-dialog-close>
+  <i class="fas fa-times"></i>
+</button>
 <h4 mat-diaglog-title class="text-center">User Request</h4>
 <mat-dialog-content>
   <div class="container dialog-wrapper py-5">
     <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-3"><small class="color-secondaryVariant" for="">Name :</small></div>
+      <div class="col-md"><small class="color-secondaryVariant" for="">Name :</small></div>
       <div class="col-md-7"> {{data.ui_Lname}}, {{data.ui_Fname}} {{data.ui_Mname}} </div>
     </div>
     <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-3"><small class="color-secondaryVariant" for="">Position :</small></div>
+      <div class="col-md"><small class="color-secondaryVariant" for="">Position :</small></div>
       <div class="col-md-7">
         <h4 class="color-accent">{{data.ui_position}}</h4>
       </div>
@@ -23,18 +24,15 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-3"><small class="color-secondaryVariant" for="">User ID :</small></div>
+      <div class="col-md"><small class="color-secondaryVariant" for="">User ID :</small></div>
       <div class="col-md-7"> {{data.ui_school_id}} </div>
     </div>
     <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-3"><small class="color-secondaryVariant" for="">Email :</small></div>
+      <div class="col-md"><small class="color-secondaryVariant" for="">Email :</small></div>
       <div class="col-md-7"> {{data.ui_email}} </div>
     </div>
     <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-3"><small class="color-secondaryVariant" for="">Contact Number :</small></div>
+      <div class="col-md"><small class="color-secondaryVariant" for="">Number:</small></div>
       <div class="col-md-7"> {{data.ui_contact_number}} </div>
     </div>
   </div>
@@ -47,8 +45,8 @@
       <div class="col-md text-center">
         <div>
           <!-- admin call to action -->
-          <button (click) = "approve_registration(data.ui_school_id,2)" mat-button mat-dialog-close>Delete</button>
-          <button (click) = "approve_registration(data.ui_school_id,1)" mat-raised-button  mat-dialog-close color="primary">Accept</button>
+          <button (click)="approve_registration(data.ui_school_id,2)" mat-button mat-dialog-close>Delete</button>
+          <button (click)="approve_registration(data.ui_school_id,1)" mat-raised-button mat-dialog-close color="primary">Accept</button>
         </div>
       </div>
     </div>
