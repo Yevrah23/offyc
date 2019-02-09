@@ -18,6 +18,16 @@ import html2canvas from 'html2canvas';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  CITC = [];
+  COT = [];
+  CSTE = [];
+  CEA = [];
+  CSM = [];
+
+
+
+
+
   token: any;
   session: any;
 
@@ -50,6 +60,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.get_transactions();
+    this.get_chart();
     setTimeout(() => {
       if (this.user.admin) {
         this.get_events();
@@ -119,12 +130,64 @@ export class HomeComponent implements OnInit {
 
   get_transactions() {
     this.user.get_transactions(this.cookies.get('id')).subscribe((data: any[]) => {
+      this.showSpinner = false;
+      this.showData = true;
       this.dataSource = new MatTableDataSource(data);
     });
   }
   // when seleted tab index
   // selectedPageIndex() {
   // }
+
+  get_chart(){
+    this.user.get_chart().subscribe(
+      (response:any []) => {
+        for (let index = 0; index < response.length; index++) {
+          console.log(response[index]);
+          if (response[index].length == 0){
+              this.CITC.push(0);
+              this.CEA.push(0);
+              this.CSTE.push(0);
+              this.CSM.push(0);
+              this.COT.push(0);
+          }else{
+            for (let i = 0; i < response[index].length; i++) {
+              // response[index][i];
+              if (response[index][i].College === "CITC") {
+                this.CITC.push(parseInt(response[index][i].Count));
+              } else if (response[index][i].College === "CEA") {
+                this.CEA.push(parseInt(response[index][i].Count));
+              } else if (response[index][i].College === "CSTE") {
+                this.CSTE.push(parseInt(response[index][i].Count));
+              } else if (response[index][i].College === "CSM") {
+                this.CSM.push(parseInt(response[index][i].Count));
+              } else if (response[index][i].College === "COT") {
+                this.COT.push(parseInt(response[index][i].Count));
+              }
+
+              if (this.CITC[index] == null) {
+                this.CITC.push(0);
+              } else if (this.CEA[index] == null) {
+                this.CEA.push(0);
+              } else if (this.CSTE[index] == null) {
+                this.CSTE.push(0);
+              } else if (this.CSM[index] == null) {
+                this.CSM.push(0);
+              } else if (this.COT[index] == null) {
+                this.COT.push(0);
+              }
+              
+            }
+          }
+        }
+        console.log(this.CITC);
+        console.log(this.COT);
+        console.log(this.CSM);
+        console.log(this.CSTE);
+        console.log(this.CEA);
+      }
+    )
+  }
 
   get_adminChart() {
     this.chartAdmin = new Chart('chartAdmin', {

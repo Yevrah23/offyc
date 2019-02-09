@@ -204,4 +204,8 @@ export class UserServices {
     lockout(id){
         return this.http.post(this.serverUrl + 'codeigniter/api/Users/lockout', { 'id': id });
     }
+
+    get_chart(){
+        return this.http.get(this.serverUrl + 'codeigniter/api/Users/get_project_count');
+    }
 }
