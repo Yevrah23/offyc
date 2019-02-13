@@ -98,8 +98,6 @@ export class LoginComponent implements OnInit {
             } else {
               this.showSuccess('frmLogin', response['message'], false);
             }
-            const message = `Username and Password does not match. Please try again.`;
-            this.showSuccess('frmLogin', message, false);
         }
       }
     );

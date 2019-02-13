@@ -16,7 +16,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md">
       <mat-card class="transaction">
         <span class="color-primary"> Transactions </span>
 
@@ -53,7 +53,7 @@
       </mat-card>
     </div>
 
-    <div class="col-md-6">
+    <div [hidden] = "!isAdmin" class="col-md">
       <mat-tab-group dynamicHeight class="progressReport">
         <mat-tab label="Completed Projects">
           <div class="box mat-elevation-z4">

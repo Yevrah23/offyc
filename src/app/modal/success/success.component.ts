@@ -15,7 +15,7 @@ export class SuccessComponent implements OnInit {
   test: boolean;
   fromLogin = false;
   fromRegApproval = false;
-  RegApproval = false;
+  RegApproval : any;
   loginStatus: any;
 
   constructor(

@@ -34,10 +34,10 @@
 
         <mat-form-field>
           <mat-select [(ngModel)]="selectQuarter" placeholder="Quarter" required formControlName="quarter">
-            <mat-option value="1Q">1st Quarter</mat-option>
-            <mat-option value="2Q">2nd Quarter</mat-option>
-            <mat-option value="3Q">3rd Quarter</mat-option>
-            <mat-option value="4Q">4th Quarter</mat-option>
+            <mat-option value="1">1st Quarter</mat-option>
+            <mat-option value="2">2nd Quarter</mat-option>
+            <mat-option value="3">3rd Quarter</mat-option>
+            <mat-option value="4">4th Quarter</mat-option>
           </mat-select>
           <mat-error *ngIf="reportForm.get('quarter').hasError('required')">
             <small>Quarter is <strong>required</strong></small>

@@ -26,8 +26,8 @@ export class AssesmentComponent implements OnInit {
   showSpinner = true;
   showData = false;
   // mat-table
-  proposalColumns: string[] = ['Title', 'Target', 'Venue', 'Settings'];
-  Report: string[] = ['Title', 'Target', 'Venue', 'Settings'];
+  proposalColumns: string[] = ['proposal_title', 'proposal_beneficiaries', 'proposal_venue', 'Settings'];
+  Report: string[] = ['proposal_title', 'proposal_beneficiaries', 'proposal_venue', 'Settings'];
   userRequest: string[] = ['ui_school_id', 'fullName', 'colDept', 'Settings'];
 
   proposal: MatTableDataSource<any>;
