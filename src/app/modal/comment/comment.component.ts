@@ -22,7 +22,7 @@ export class CommentComponent implements OnInit {
     this.proposal_id = this.data.data;
   }
 
-  send_comment(){
+  send_comment() {
     console.log(this.proposal_id);
     console.log(this.comment);
 
@@ -30,7 +30,7 @@ export class CommentComponent implements OnInit {
       (response) => {
         console.log(response);
       }
-    )
+    );
   }
 
 }

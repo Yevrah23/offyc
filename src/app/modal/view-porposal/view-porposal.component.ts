@@ -96,8 +96,7 @@ export class ViewPorposalComponent implements OnInit {
     this.budget_ustp = this.data.data.budget_ustp;
     this.budget_partner = this.data.data.budget_partner;
     this.implementing = this.data.data.implementing;
-    this.days_implemented = this.data.data.total_hours;
-    // tslint:disable-next-line:radix
+    this.days_implemented = parseInt(this.data.data.total_hours);
     this.estimateHours = parseInt(this.data.data.total_hours) * 8;
   }
 

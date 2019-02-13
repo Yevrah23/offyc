@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class UserServices {
     private serverUrl = 'http://localhost/';
-    // private serverUrl = 'http://192.168.43.31/';
+    // private serverUrl = 'http://192.168.0.19/';
     college: any;
     isLoggedIn = false;
     admin = false;
@@ -203,5 +203,9 @@ export class UserServices {
 
     lockout(id){
         return this.http.post(this.serverUrl + 'codeigniter/api/Users/lockout', { 'id': id });
+    }
+
+    get_chart(){
+        return this.http.get(this.serverUrl + 'codeigniter/api/Users/get_project_count');
     }
 }

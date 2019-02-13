@@ -18,6 +18,17 @@ import html2canvas from 'html2canvas';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  CITC = [];
+  COT = [];
+  CSTE = [];
+  CEA = [];
+  CSM = [];
+
+
+
+  isAdmin: boolean = false;
+
+
   token: any;
   session: any;
 
@@ -50,12 +61,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.get_transactions();
+    this.get_chart();
     setTimeout(() => {
       if (this.user.admin) {
+        this.isAdmin = true;
         this.get_events();
-      } else {
+      }else{
         this.get_events_user();
-
       }
     }, 1500);
 
@@ -63,29 +75,7 @@ export class HomeComponent implements OnInit {
     this.chRef.detectChanges();
     this.get_adminChart(); // if admin
 
-    this.chRef.detectChanges();
-    this.get_userChart(); // if user
 
-
-    // retrieve data  via HTTP
-    // this.http.get('https://jsonplaceholder.typicode.com/users')
-    //   .subscribe((data: any[]) => {
-    //     console.log(data);
-    //     // this.showSpinner = false;
-    //     // this.showData = true;
-    //     // // this.records = data;
-    //     // this.dataSource = new MatTableDataSource(data); // for mat-table
-
-    //     // // mat table
-    //     // this.dataSource.paginator = this.paginator;
-    //     // this.dataSource.sort = this.sort;
-    //     // this.chRef.detectChanges();
-    //     // User
-    //     // Display data tables
-    //     // // user
-    //     // const table: any = $('#transaction');
-    //     // this.dataTable = table.dataTable();
-    //   });
   }
 
   // search table
@@ -138,12 +128,64 @@ export class HomeComponent implements OnInit {
 
   get_transactions() {
     this.user.get_transactions(this.cookies.get('id')).subscribe((data: any[]) => {
-      console.log(data);
+      this.showSpinner = false;
+      this.showData = true;
+      this.dataSource = new MatTableDataSource(data);
     });
   }
   // when seleted tab index
   // selectedPageIndex() {
   // }
+
+  get_chart(){
+    this.user.get_chart().subscribe(
+      (response:any []) => {
+        for (let index = 0; index < response.length; index++) {
+          console.log(response[index]);
+          if (response[index].length == 0){
+              this.CITC.push(0);
+              this.CEA.push(0);
+              this.CSTE.push(0);
+              this.CSM.push(0);
+              this.COT.push(0);
+          }else{
+            for (let i = 0; i < response[index].length; i++) {
+              // response[index][i];
+
+              if (response[index][i].College === "CITC") {
+                this.CITC.push(parseInt(response[index][i].Count));
+              } else if (response[index][i].College === "CEA") {
+                this.CEA.push(parseInt(response[index][i].Count));
+              } else if (response[index][i].College === "CSTE") {
+                this.CSTE.push(parseInt(response[index][i].Count));
+              } else if (response[index][i].College === "CSM") {
+                this.CSM.push(parseInt(response[index][i].Count));
+              } else if (response[index][i].College === "COT") {
+                this.COT.push(parseInt(response[index][i].Count));
+              }
+              
+            }
+            if (this.CITC[index] == null) {
+              this.CITC.push(0);
+            } if (this.CEA[index] == null) {
+              this.CEA.push(0);
+            } if (this.CSTE[index] == null) {
+              this.CSTE.push(0);
+            } if (this.CSM[index] == null) {
+              this.CSM.push(0);
+            } if (this.COT[index] == null) {
+              this.COT.push(0);
+            }
+          }
+        }
+        console.log(this.CITC[0]);
+        console.log(this.COT[0]);
+        console.log(this.CSM[0]);
+        console.log(this.CSTE[0]);
+        console.log(this.CEA[0]);
+      }
+    )
+  }
 
   get_adminChart() {
     this.chartAdmin = new Chart('chartAdmin', {
@@ -152,31 +194,36 @@ export class HomeComponent implements OnInit {
         labels: ['1st Qtr', '2nd Qtr', '3rd Qtr', '4th Qtr'],
         datasets: [{
           label: 'CITC',
-          data: [12, 19, 3, 18], // mao ning mga data sa chart
+          // data: [this.CITC[0], this.CITC[1],this.CITC[2] , this.CITC[3]], // mao ning mga data sa chart
+          data: this.CITC,
           borderColor: '#2E3131',
           backgroundColor: '#2E3131',
           fill: false,
         }, {
           label: 'CSTE',
-          data: [5, 7, 8, 12], // mao ning mga data sa chart
+          // data: [this.CSTE[0], this.CSTE[1], this.CSTE[2], this.CSTE[3]], // mao ning mga data sa chart
+          data: this.CSTE,
           borderColor: '#1E8BC3',
           backgroundColor: '#1E8BC3',
           fill: false,
         }, {
           label: 'COT',
-          data: [3, 15, 6, 8], // mao ning mga data sa chart
+          // data: [this.COT[0], this.COT[1], this.COT[2], this.COT[3]], // mao ning mga data sa chart
+          data: this.COT,
           borderColor: '#D91E18',
           backgroundColor: '#D91E18',
           fill: false,
         }, {
           label: 'CSM',
-          data: [11, 16, 7, 14], // mao ning mga data sa chart
+          // data: [this.CSM[0], this.CSM[1], this.CSM[2], this.CSM[3]], // mao ning mga data sa chart
+          data: this.CSM,
           borderColor: '#26A65B',
           backgroundColor: '#26A65B',
           fill: false,
         }, {
           label: 'CEA',
-          data: [25, 13, 3, 18], // mao ning mga data sa chart
+          // data: [this.CEA[0], this.CEA[1], this.CEA[2], this.CEA[3]], // mao ning mga data sa chart
+          data: this.CEA,
           borderColor: '#96281B',
           backgroundColor: '#96281B',
           fill: false,

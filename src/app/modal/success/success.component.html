@@ -46,15 +46,14 @@
   </mat-dialog-actions>
 </section>
 <section *ngIf="fromRegApproval">
-  <h4 mat-diaglog-title *ngIf="!RegApproval" class="text-center color-warn">DENIED</h4>
-  <h4 mat-diaglog-title *ngIf="RegApproval" class="text-center color-success">SUCCESS</h4>
-
+  <h4 mat-diaglog-title *ngIf="RegApproval == 2" class="text-center color-warn">DENIED</h4>
+  <h4 mat-diaglog-title *ngIf="RegApproval == 1" class="text-center color-success">SUCCESS</h4>
   <mat-dialog-content>
     <div class="container dialog-wrapper">
       <div class="row">
         <div class="col-md">
-          <p *ngIf="!RegApproval" class="text-center color-secondary"> Account Registration is denied.</p>
-          <p *ngIf="RegApproval" class="text-center color-secondary"> Account Registration Successfully Approved </p>
+          <p *ngIf="RegApproval == 2" class="text-center color-secondary"> Account Registration is denied.</p>
+          <p *ngIf="RegApproval == 1" class="text-center color-secondary"> Account Registration Successfully Approved </p>
         </div>
       </div><!-- end row -->
     </div><!-- end wrapper -->

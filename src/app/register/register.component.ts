@@ -49,8 +49,8 @@ export class RegisterComponent implements OnInit {
   thirdFormGroup: FormGroup;
 
   username: string;
-  password: string;
-  confirmP: string;
+  password = '123';
+  confirmP = '123';
   email: string;
   position: string;
   dept: any;
@@ -110,10 +110,12 @@ export class RegisterComponent implements OnInit {
     // Angular form validation
     this.firstFormGroup = this._formBuilder.group({
       firstUserName: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
-      firstPass: ['', [Validators.required, Validators.minLength(6)]],
-      firstPassConfirm: ['', Validators.required],
+      // firstPass: ['', [Validators.required, Validators.minLength(6)]],
+      // firstPassConfirm: ['', Validators.required],
       firstEmail: ['', [Validators.required, Validators.email]]
-    }, { validator: this.checkPasswords });
+    },
+    // { validator: this.checkPasswords }
+    );
     this.secondFormGroup = this._formBuilder.group({
       secondPosition: ['', Validators.required]
     });
@@ -189,7 +191,7 @@ export class RegisterComponent implements OnInit {
       this.department = [
         { name: 'Applied Mathematics', detail: 'Applied Mathematics' },
         { name: 'Applied Physics', detail: ' Applied Physics' },
-        { name: 'Chemistry ', detail: 'Chemistry ' },
+        { name: 'Chemistry', detail: 'Chemistry ' },
         { name: 'Environmental Science', detail: 'Environmental Science' },
         { name: 'Food Technology', detail: 'Food Technology' }
       ];
@@ -198,7 +200,7 @@ export class RegisterComponent implements OnInit {
       this.department = [
         { name: 'AMT', detail: 'Automotive Mechanical Technology' },
         { name: 'ETM', detail: 'Electrical and Technology Management' },
-        { name: 'EMT ', detail: 'Electro-Mechanical Technology' },
+        { name: 'EMT', detail: 'Electro-Mechanical Technology' },
         { name: 'ECT', detail: 'Electronics and Communication Technology' }
       ];
     } else if (this.coll.name === 'CSTE') {
@@ -206,7 +208,7 @@ export class RegisterComponent implements OnInit {
       this.department = [
         { name: 'BEEd-SpEd', detail: 'Education, Major in Special Education' },
         { name: 'PA', detail: 'Public Administration' },
-        { name: 'MathEd ', detail: 'Mathematics Education' },
+        { name: 'MathEd', detail: 'Mathematics Education' },
         { name: 'SciED', detail: 'Sciences Education' },
         { name: 'TLED', detail: 'Technolgy and Livelyhood Education' },
         { name: 'TTE', detail: 'Technical Teacher Education' },
@@ -217,20 +219,20 @@ export class RegisterComponent implements OnInit {
   }
 
   // check if confirm password match with password
-  passCheck() {
-    if (this.password === this.confirmP) {
-      this.reg = true;
-    } else {
-      this.reg = false;
+  // passCheck() {
+  //   if (this.password === this.confirmP) {
+  //     this.reg = true;
+  //   } else {
+  //     this.reg = false;
 
-    }
-  }
+  //   }
+  // }
 
-  checkPasswords(group: FormGroup) { // here we have the 'passwords' group
-    const pass = group.controls.firstPass.value;
-    const confirmPass = group.controls.firstPassConfirm.value;
+  // checkPasswords(group: FormGroup) { // here we have the 'passwords' group
+  //   const pass = group.controls.firstPass.value;
+  //   const confirmPass = group.controls.firstPassConfirm.value;
 
-    return pass === confirmPass ? null : { notSame: true };
-  }
+  //   return pass === confirmPass ? null : { notSame: true };
+  // }
 }
 

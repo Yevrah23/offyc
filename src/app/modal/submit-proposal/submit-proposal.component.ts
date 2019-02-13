@@ -10,7 +10,18 @@ import { UserServices } from 'src/app/services/user_services';
 import { UploadService } from 'src/app/services/upload.service';
 import { SuccessComponent } from '../success/success.component';
 import { FormControl, FormGroup, Validators, FormControlName, FormBuilder } from '@angular/forms';
+import { htmlAstToRender3Ast } from '@angular/compiler/src/render3/r3_template_transform';
 
+export interface Program {
+  value: string;
+  viewValue: string;
+}
+
+export interface ProgramGroup {
+  disabled?: boolean;
+  name: string;
+  program: Program[];
+}
 
 @Component({
   selector: 'app-submit-proposal',
@@ -19,6 +30,7 @@ import { FormControl, FormGroup, Validators, FormControlName, FormBuilder } from
 })
 export class SubmitProposalComponent implements OnInit {
   startDate = new Date(2018, 1, 0);
+
   // form validation
   userType: string;
   isArchive: boolean;
@@ -47,6 +59,62 @@ export class SubmitProposalComponent implements OnInit {
 
   fileName: string;
   files: FileList = null;
+
+  // select Program
+  newProgram: number;
+  hideAdd = true;
+  programControl = new FormControl();
+  programGroups: ProgramGroup[] = [
+    {
+      name: 'CITC',
+      program: [
+        { value: 'IT', viewValue: 'Information Technonology' },
+        { value: 'TCM', viewValue: 'Techonology of Communication Management' },
+        { value: 'CpE', viewValue: 'Computer Engineering' },
+        { value: 'DS', viewValue: 'Data Science' },
+      ]
+    },
+    {
+      name: 'CEA',
+      program: [
+        { value: 'ARCH', viewValue: 'Architecture' },
+        { value: 'CE', viewValue: ' Civil Engineering' },
+        { value: 'EE', viewValue: 'Electrical Engineering' },
+        { value: 'ECE', viewValue: 'Electronics Engineering' },
+        { value: 'ME', viewValue: 'Mechanical Engineering' }
+      ]
+    },
+    {
+      name: 'CSM',
+      program: [
+        { value: 'Applied Mathematics', viewValue: 'Applied Mathematics' },
+        { value: 'Applied Physics', viewValue: ' Applied Physics' },
+        { value: 'Chemistry', viewValue: 'Chemistry ' },
+        { value: 'Environmental Science', viewValue: 'Environmental Science' },
+        { value: 'Food Technology', viewValue: 'Food Technology' }
+      ]
+    },
+    {
+      name: 'COT',
+      program: [
+        { value: 'AMT', viewValue: 'Automotive Mechanical Technology' },
+        { value: 'ETM', viewValue: 'Electrical and Technology Management' },
+        { value: 'EMT', viewValue: 'Electro-Mechanical Technology' },
+        { value: 'ECT', viewValue: 'Electronics and Communication Technology' }
+      ]
+    },
+    {
+      name: 'CSTE',
+      program: [
+        { value: 'BEEd-SpEd', viewValue: 'Education, Major in Special Education' },
+        { value: 'PA', viewValue: 'Public Administration' },
+        { value: 'MathEd', viewValue: 'Mathematics Education' },
+        { value: 'SciED', viewValue: 'Sciences Education' },
+        { value: 'TLED', viewValue: 'Technolgy and Livelyhood Education' },
+        { value: 'TTE', viewValue: 'Technical Teacher Education' },
+      ]
+    }
+  ];
 
   constructor(
     public dialog: MatDialog,
@@ -89,11 +157,13 @@ export class SubmitProposalComponent implements OnInit {
       titleVal: ['', [Validators.required, Validators.pattern('^[a-zA-Z \-\']+')]],
       typeVal: ['', Validators.required],
       proponentsVal: ['', Validators.required],
-      programVal: ['', [Validators.required, Validators.pattern('^[a-zA-Z \-\']+')]],
+      // programVal: ['', [Validators.required, Validators.pattern('^[a-zA-Z \-\']+')]],
+      programVal: ['', Validators.required],
       accreditationLevel: ['', Validators.required],
       sDate: ['', Validators.required],
       eDate: ['', Validators.required],
-      tHours: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      tHours: ['', Validators.required],
+      // tHours: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       tBenificiary: ['', [Validators.required, Validators.pattern('^[a-zA-Z \-\']+')]],
       gBenificiary: ['', Validators.required],
       projectLocation: ['', Validators.required],
@@ -207,6 +277,16 @@ export class SubmitProposalComponent implements OnInit {
     this.accomp = this.files[0];
     this.fileName = this.files[0]['name'];
     $('#accompName').val(this.files[0]['name']);
+  }
+
+  addProgram(item) {
+
+    if ( item === 1 ) {
+      this.newProgram = item;
+      this.hideAdd = false;
+    } else {
+      this.hideAdd = true;
+    }
   }
 
 

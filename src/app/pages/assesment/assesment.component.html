@@ -3,32 +3,32 @@
     <!-- we use mat-card and div -->
     <div class="col-md-12">
       <mat-tab-group dynamicHeight class="assessment">
-        <mat-tab  (click) ="get_proposals()" label="Proposals">
+        <mat-tab (click)="get_proposals()" label="Proposals">
           <div class="box mat-elevation-z4">
             <mat-form-field>
               <input matInput (keyup)="applyFilterProp($event.target.value)" placeholder="Search">
             </mat-form-field>
 
             <table app-data-spinner *ngIf="showSpinner"></table>
-            <table *ngIf="showData" mat-table [dataSource]="proposal"  #proposalSort="matSort" matSort>
+            <table *ngIf="showData" mat-table [dataSource]="proposal" #proposalSort="matSort" matSort>
 
               <!--- Note that these columns can be defined in any order.
                             The actual rendered columns are set as a property on the row definition" -->
 
               <!-- Position Column -->
-              <ng-container matColumnDef="Title">
+              <ng-container matColumnDef="proposal_title">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
                 <td mat-cell *matCellDef="let record"> {{record.proposal_title}} </td>
               </ng-container>
 
               <!-- Name Column -->
-              <ng-container matColumnDef="Target">
+              <ng-container matColumnDef="proposal_beneficiaries">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Target </th>
                 <td mat-cell *matCellDef="let record"> {{record.proposal_beneficiaries}} </td>
               </ng-container>
 
               <!-- Weight Column -->
-              <ng-container matColumnDef="Venue">
+              <ng-container matColumnDef="proposal_venue">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Venue </th>
                 <td mat-cell *matCellDef="let record"> {{record.proposal_venue}} </td>
               </ng-container>
@@ -56,7 +56,8 @@
 
             <!-- button modal trigger -->
             <div class="text-right">
-              <button color="primary" (click)="generateReport()" mat-raised-button><i class="fas fa-poll"></i><span class="px-2">Generate Report</span></button>
+              <button color="primary" (click)="generateReport()" mat-raised-button><i class="fas fa-poll"></i><span
+                  class="px-2">Generate Report</span></button>
             </div>
 
             <mat-form-field>
@@ -70,19 +71,19 @@
                                 The actual rendered columns are set as a property on the row definition" -->
 
               <!-- Position Column -->
-              <ng-container matColumnDef="Title">
+              <ng-container matColumnDef="proposal_title">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
                 <td mat-cell *matCellDef="let record"> {{record.proposal_title}} </td>
               </ng-container>
 
               <!-- Name Column -->
-              <ng-container matColumnDef="Target">
+              <ng-container matColumnDef="proposal_beneficiaries">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Target </th>
                 <td mat-cell *matCellDef="let record"> {{record.proposal_beneficiaries}} </td>
               </ng-container>
 
               <!-- Weight Column -->
-              <ng-container matColumnDef="Venue">
+              <ng-container matColumnDef="proposal_venue">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Venue </th>
                 <td mat-cell *matCellDef="let record"> {{record.proposal_venue}} </td>
               </ng-container>
@@ -105,7 +106,7 @@
             </mat-paginator>
           </div>
         </mat-tab>
-        <mat-tab (click) ="get_unregistered()" label="User Request">
+        <mat-tab (click)="get_unregistered()" label="User Request">
           <div class="box mat-elevation-z4">
 
             <mat-form-field>
@@ -126,14 +127,16 @@
 
               <!-- Name Column -->
               <ng-container matColumnDef="fullName">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Full Name </th> <!-- Concat first name and last name -->
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Full Name </th>
+                <!-- Concat first name and last name -->
                 <td mat-cell *matCellDef="let record"> {{record.fullName}} </td>
                 <!-- , {{record.ui_Fname}} {{record.ui_Mname}} -->
               </ng-container>
 
               <!-- Weight Column -->
               <ng-container matColumnDef="colDept">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> College - Department </th> <!-- Concat college and department -->
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> College - Department </th>
+                <!-- Concat college and department -->
                 <td mat-cell *matCellDef="let record"> {{record.colDept}} </td>
                 <!--  - {{record.ui_dept}} -->
               </ng-container>

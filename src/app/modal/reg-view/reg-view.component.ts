@@ -25,13 +25,14 @@ export class RegViewComponent implements OnInit {
   approve_registration(id, status) {
     this.user.approve_registration(id, status).subscribe(
       (response) => {
+        console.log(response);
         this.dialogRef.close();
         const dialogRef = this.dialog.open(SuccessComponent, {
           width: '435px',
           panelClass: 'custom-dialog-success',
           data: {
             page: 'frmRegApproval',
-            status: response
+            status: status
           }
         });
 

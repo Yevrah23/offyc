@@ -32,8 +32,14 @@ export class RecordsComponent implements OnInit {
   showSpinner: boolean;
   showData = false;
   // mat-table
-  displayedColumns: string[] = ['Title', 'Target', 'Venue', 'Settings'];
-  archiveColumns: string[] = ['Title', 'Target', 'Venue', 'Settings'];
+  userColumns: string[] = ['proposal_title', 'proposal_beneficiaries', 'proposal_venue', 'Settings'];
+  citcColumns: string[] = ['proposal_title', 'proposal_beneficiaries', 'proposal_venue', 'Settings'];
+  cotColumns: string[] = ['proposal_title', 'proposal_beneficiaries', 'proposal_venue', 'Settings'];
+  ceaColumns: string[] = ['proposal_title', 'proposal_beneficiaries', 'proposal_venue', 'Settings'];
+  csmColumns: string[] = ['proposal_title', 'proposal_beneficiaries', 'proposal_venue', 'Settings'];
+  csteColumns: string[] = ['proposal_title', 'proposal_beneficiaries', 'proposal_venue', 'Settings'];
+  archiveColumns: string[] = ['proposal_title', 'proposal_beneficiaries', 'proposal_venue', 'Settings'];
+
   CITC: MatTableDataSource<any>;
   COT: MatTableDataSource<any>;
   CEA: MatTableDataSource<any>;
@@ -53,8 +59,27 @@ export class RecordsComponent implements OnInit {
   // CEA:any[];
   // CSM:any[];
   // CSTE:any[];
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+
+  @ViewChild('userSort') userSort: MatSort;
+  @ViewChild('userPaginator') userPaginator: MatPaginator;
+
+  @ViewChild('citcSort') citcSort: MatSort;
+  @ViewChild('citcPaginator') citcPaginator: MatPaginator;
+
+  @ViewChild('cotSort') cotSort: MatSort;
+  @ViewChild('cotPaginator') cotPaginator: MatPaginator;
+
+  @ViewChild('ceaSort') ceaSort: MatSort;
+  @ViewChild('ceaPaginator') ceaPaginator: MatPaginator;
+
+  @ViewChild('csmSort') csmSort: MatSort;
+  @ViewChild('csmPaginator') csmPaginator: MatPaginator;
+
+  @ViewChild('csteSort') csteSort: MatSort;
+  @ViewChild('cstePaginator') cstePaginator: MatPaginator;
+
+  @ViewChild('archiveSort') archiveSort: MatSort;
+  @ViewChild('archivePaginator') archivePaginator: MatPaginator;
 
   // tslint:disable-next-line:max-line-length
   constructor(public dialog: MatDialog, private http: HttpClient, private chRef: ChangeDetectorRef, private user: UserServices, private cookies: CookieService) {
@@ -67,7 +92,7 @@ export class RecordsComponent implements OnInit {
     const dialogRef = this.dialog.open(SubmitProposalComponent, {
       disableClose: true,
       width: '500px',
-      data : {
+      data: {
         userType: userAdmin // string ni
       }
     });
@@ -159,19 +184,19 @@ export class RecordsComponent implements OnInit {
             this.ARCHIVE = new MatTableDataSource(response[1].ARCHIVE);
 
             // mat table
-            this.CITC.paginator = this.paginator;
-            this.COT.paginator = this.paginator;
-            this.CEA.paginator = this.paginator;
-            this.CSM.paginator = this.paginator;
-            this.CSTE.paginator = this.paginator;
-            this.ARCHIVE.paginator = this.paginator;
+            this.CITC.paginator = this.citcPaginator;
+            this.COT.paginator = this.cotPaginator;
+            this.CEA.paginator = this.ceaPaginator;
+            this.CSM.paginator = this.csmPaginator;
+            this.CSTE.paginator = this.cstePaginator;
+            this.ARCHIVE.paginator = this.archivePaginator;
 
-            this.CITC.sort = this.sort;
-            this.COT.sort = this.sort;
-            this.CEA.sort = this.sort;
-            this.CSM.sort = this.sort;
-            this.CSTE.sort = this.sort;
-            this.ARCHIVE.sort = this.sort;
+            this.CITC.sort = this.citcSort;
+            this.COT.sort = this.cotSort;
+            this.CEA.sort = this.ceaSort;
+            this.CSM.sort = this.csmSort;
+            this.CSTE.sort = this.csteSort;
+            this.ARCHIVE.sort = this.archiveSort;
           }
         }
       );
@@ -186,10 +211,10 @@ export class RecordsComponent implements OnInit {
 
 
             // mat table
-            this.User.paginator = this.paginator;
+            this.User.paginator = this.userPaginator;
 
 
-            this.User.sort = this.sort;
+            this.User.sort = this.userSort;
           }
         }
       );
@@ -203,30 +228,83 @@ export class RecordsComponent implements OnInit {
     this.CSTE.filter = filterValue.trim().toLowerCase();
     this.CEA.filter = filterValue.trim().toLowerCase();
     this.ARCHIVE.filter = filterValue.trim().toLowerCase();
-    this.User.filter = filterValue.trim().toLowerCase(); // user only
 
     if (this.CITC.paginator) {
       this.CITC.paginator.firstPage();
     }
-    if (this.COT.paginator) {
+    else if (this.COT.paginator) {
       this.COT.paginator.firstPage();
     }
-    if (this.CSM.paginator) {
+    else if (this.CSM.paginator) {
       this.CSM.paginator.firstPage();
     }
-    if (this.CSTE.paginator) {
+    else if (this.CSTE.paginator) {
       this.CSTE.paginator.firstPage();
     }
-    if (this.CEA.paginator) {
+    else if (this.CEA.paginator) {
       this.CEA.paginator.firstPage();
     }
-    if (this.ARCHIVE.paginator) {
+    else if (this.ARCHIVE.paginator) {
       this.CEA.paginator.firstPage();
     }
+  }
+
+  // search table user request
+  applyFilterUser(filterValue: string) {
+    this.User.filter = filterValue.trim().toLowerCase(); // user only
+    // // this.unregistered.filter = filterValue.trim().toLowerCase();
 
     if (this.User.paginator) {
       this.User.paginator.firstPage();
     }
   }
+  // applyFilterCITC(filterValue: string) {
+  //   this.User.filter = filterValue.trim().toLowerCase(); // user only
+  //   // // this.unregistered.filter = filterValue.trim().toLowerCase();
+
+  //   if (this.User.paginator) {
+  //     this.User.paginator.firstPage();
+  //   }
+  // }
+  // applyFilterCOT(filterValue: string) {
+  //   this.User.filter = filterValue.trim().toLowerCase(); // user only
+  //   // // this.unregistered.filter = filterValue.trim().toLowerCase();
+
+  //   if (this.User.paginator) {
+  //     this.User.paginator.firstPage();
+  //   }
+  // }
+  // applyFilterCSTE(filterValue: string) {
+  //   this.User.filter = filterValue.trim().toLowerCase(); // user only
+  //   // // this.unregistered.filter = filterValue.trim().toLowerCase();
+
+  //   if (this.User.paginator) {
+  //     this.User.paginator.firstPage();
+  //   }
+  // }
+  // applyFilterCSM(filterValue: string) {
+  //   this.User.filter = filterValue.trim().toLowerCase(); // user only
+  //   // // this.unregistered.filter = filterValue.trim().toLowerCase();
+
+  //   if (this.User.paginator) {
+  //     this.User.paginator.firstPage();
+  //   }
+  // }
+  // applyFilterCEA(filterValue: string) {
+  //   this.User.filter = filterValue.trim().toLowerCase(); // user only
+  //   // // this.unregistered.filter = filterValue.trim().toLowerCase();
+
+  //   if (this.User.paginator) {
+  //     this.User.paginator.firstPage();
+  //   }
+  // }
+  // applyFilterArchive(filterValue: string) {
+  //   this.User.filter = filterValue.trim().toLowerCase(); // user only
+  //   // // this.unregistered.filter = filterValue.trim().toLowerCase();
+
+  //   if (this.User.paginator) {
+  //     this.User.paginator.firstPage();
+  //   }
+  // }
 
 }

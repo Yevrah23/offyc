@@ -34,7 +34,7 @@
                   </mat-error>
                 </mat-form-field>
 
-                <mat-form-field floatLabel="auto">
+                <!-- <mat-form-field floatLabel="auto">
                   <mat-label>Password</mat-label>
                   <input (keyup)="passCheck()" [(ngModel)]="password" type="password" matInput formControlName="firstPass">
                   <mat-error *ngIf="firstFormGroup.get('firstPass').hasError('required')">
@@ -55,7 +55,7 @@
                   <mat-error *ngIf="firstFormGroup.hasError('notSame')">
                     Password did not match
                   </mat-error>
-                </mat-form-field>
+                </mat-form-field> -->
 
                 <div class="btn-wrapper">
                   <button mat-raised-button color="primary" matStepperNext [disabled]="!firstFormGroup.valid">Next</button>

@@ -15,6 +15,7 @@ export class ReportTemplateComponent implements OnInit {
 
   // for signatories
   sign: any;
+  quarter: any;
 
   filename: string;
   titleReport: string;
@@ -33,6 +34,7 @@ export class ReportTemplateComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.sign = this.data.signQty;
+    this.quarter = this.data.selectQuarter
    }
 
   ngOnInit() {
@@ -48,12 +50,8 @@ export class ReportTemplateComponent implements OnInit {
     this.prexc = true;
     this.titleReport = 'P.R.E.X.C';
     this.filename = 'Prexc';
-     this.user.get_prexc('1').subscribe(
+    this.user.get_prexc(this.quarter).subscribe(
        (response) => {
-        // this.dataPrexc.forEach(element => {
-
-        // });
-
          this.dataPrexc = response;
          console.log(this.dataPrexc);
        }

@@ -8,25 +8,34 @@ import { UserServices } from '../services/user_services';
 import * as $ from 'jquery';
 import { MatDialog } from '@angular/material';
 import { ProfileSettingsComponent } from '../modal/profile-settings/profile-settings.component';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition
+} from '@angular/animations';
 
 
 @Component({
   selector: 'app-side-nav',
   templateUrl: './side-nav.component.html',
-  styleUrls: ['./side-nav.component.scss'],
+  styleUrls: ['./side-nav.component.scss']
 })
 export class SideNavComponent implements OnInit {
   read = [];
   unread = [];
   notif_count: any;
 
-  profile: any = {'ui_Fname': ''};
+  profile: any = { 'ui_Fname': '' };
 
   isAdmin = false;
   isUser = false;
   token: any;
   hasNotif = false;
 
+  // for animation dropdown
+  dropdown = false;
   expandMenu = false;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -118,7 +127,7 @@ export class SideNavComponent implements OnInit {
   get_notifs() {
     this.read = [];
     this.unread = [];
-      this.user.getNotifs(this.cookies.get('id')).subscribe(
+    this.user.getNotifs(this.cookies.get('id')).subscribe(
       (response) => {
         console.log(response);
         if (response[0]) {
@@ -162,6 +171,11 @@ export class SideNavComponent implements OnInit {
     this.cookies.deleteAll('/', 'localhost');
     this.user.isLoggedIn = false;
     this.router.navigate(['/']);
+  }
+
+  dropdownTrigger() {
+    // tslint:disable-next-line:no-unused-expression
+    this.dropdown = !this.dropdown;
   }
 
 }

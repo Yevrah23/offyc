@@ -62,6 +62,10 @@ section.container-fluid {
 
 //custom global css
 
+// sidebar content 
+mat-sidenav-content.mat-drawer-content.mat-sidenav-content {
+  background: #ececec;
+}
 // button
 mat-card.calendar button {
   border-radius: 2px !important;
