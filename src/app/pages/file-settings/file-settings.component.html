@@ -1,0 +1,57 @@
+<section class="container-fluid">
+  <!-- <input type="button" value="CPTURE" (click)="captureScreen()" /> -->
+  <div class="row">
+    <!-- we use mat-card and div -->
+    <div class="col-md-12">
+      <h4>File Settings</h4>
+      <mat-card class="fileSettings">
+        <form>
+          <div class="container py-3">
+            <div class="row">
+              <div class="col-md">
+                <span class="color-primary settingTitle">Upload</span>
+              </div>
+            </div>
+            <div class="row mx-2">
+              <div class="col-md my-auto">
+                Maximum File Size(Mb) :
+              </div>
+              <div class="col-md-9 my-auto">
+                <mat-form-field floatLabel="auto">
+                  <mat-label>Size<span class="color-warn">*</span></mat-label>
+                  <input type="number" matInput>
+                  <mat-error *ngIf="">
+                    <small>Size is required <strong>required</strong></small>
+                  </mat-error>
+                  <mat-error *ngIf="">
+                    <small>Max is 25 Mb</small>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row mx-2">
+              <div class="col-md my-auto">
+                Allowed File Type :
+              </div>
+              <div class="col-md-9 my-auto">
+                <section class="checkboxes">
+                  <mat-checkbox class="checkboxes-margin">PDF</mat-checkbox>
+                  <mat-checkbox class="checkboxes-margin">WORD</mat-checkbox>
+                  <mat-checkbox class="checkboxes-margin">EXCEL</mat-checkbox>
+                  <mat-checkbox class="checkboxes-margin">ZIP</mat-checkbox>
+                  <mat-checkbox class="checkboxes-margin">RAR</mat-checkbox>
+                </section>
+              </div>
+            </div>
+            <div class="row py-3">
+              <div class="col-md">
+                <button mat-raised-button color="primary"> Save </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </mat-card>
+    </div>
+
+  </div>
+</section>

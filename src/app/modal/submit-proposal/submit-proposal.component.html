@@ -1,5 +1,5 @@
 <button class="close" mat-dialog-close>
-   <i class="fas fa-times"></i>
+  <i class="fas fa-times"></i>
 </button>
 <h2 mat-diaglog-title class="text-center">Proposal</h2>
 
@@ -37,19 +37,42 @@
           <!-- <input type="text" matInput> -->
         </mat-form-field>
 
-        <mat-form-field floatLabel="auto">
-          <mat-label>Program<span class="color-warn">*  (Separate Multiple Programs w/ commas)</span></mat-label>
-          <input [(ngModel)] = "program" type="text" formControlName="programVal" matInput>
-          <mat-error *ngIf="submitProposal.get('programVal').hasError('required')">
-            <small>Program is required <strong>required</strong></small>
-          </mat-error>
-          <mat-error *ngIf="submitProposal.get('programVal').hasError('pattern')">
-            <small>Numbers and symbols not allowed</small>
-          </mat-error>
-        </mat-form-field>
+        <div id="program" class="programSelect">
+          <mat-form-field floatLabel="auto">
+            <mat-label>Program<span class="color-warn">*</span></mat-label>
+            <mat-select placeholder="Program" [formControl]="programControl" formControlName="programVal">
+              <mat-option>-- None --</mat-option>
+              <mat-optgroup label="CITC" *ngFor="let group of programGroups" [label]="group.name" [disabled]="group.disabled">
+                <mat-option *ngFor="let program of group.program" [value]="program.value">
+                  {{program.viewValue}}
+                </mat-option>
+              </mat-optgroup>
+            </mat-select>
+            <mat-error *ngIf="submitProposal.get('programVal').hasError('required')">
+              <small>Program is required <strong>required</strong></small>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field *ngIf="newProgram === 1" floatLabel="auto">
+            <mat-label>Program<span class="color-warn">*</span></mat-label>
+            <mat-select placeholder="Program" [formControl]="programControl" formControlName="programVal">
+              <mat-option>-- None --</mat-option>
+              <mat-optgroup label="CITC" *ngFor="let group of programGroups" [label]="group.name" [disabled]="group.disabled">
+                <mat-option *ngFor="let program of group.program" [value]="program.value">
+                  {{program.viewValue}}
+                </mat-option>
+              </mat-optgroup>
+            </mat-select>
+            <mat-error *ngIf="submitProposal.get('programVal').hasError('required')">
+              <small>Program is required <strong>required</strong></small>
+            </mat-error>
+          </mat-form-field>
+          <small *ngIf="hideAdd"><a mat-button (click)="addProgram(1)"><i class="fas fa-plus-circle"></i> Add Program</a></small>
+        </div>
+
 
         <mat-form-field floatLabel="auto">
-          <mat-label>Accreditation Level<span class="color-warn">*</span></mat-label>
+          <mat-label>Accreditation Level</mat-label>
           <mat-select [(ngModel)]="accre_level" formControlName="accreditationLevel" required>
             <mat-option value="Level I">Level I</mat-option>
             <mat-option value="Level II">Level II</mat-option>
@@ -79,7 +102,6 @@
         </mat-form-field>
 
         <mat-form-field floatLabel="auto">
-          <mat-label>Total Number of Hours<span class="color-warn">*</span></mat-label>
           <mat-label> Estimated Total Number of Hours<span class="color-warn">*</span></mat-label>
           <mat-select [(ngModel)]="total_hours" formControlName="tHours" required>
             <mat-option value="0.5">Less than 8 Hours</mat-option>

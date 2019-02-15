@@ -49,8 +49,8 @@ export class RegisterComponent implements OnInit {
   thirdFormGroup: FormGroup;
 
   username: string;
-  password: string = '123';
-  confirmP: string = '123';
+  password = '123';
+  confirmP = '123';
   email: string;
   position: string;
   dept: any;
@@ -113,7 +113,7 @@ export class RegisterComponent implements OnInit {
       // firstPass: ['', [Validators.required, Validators.minLength(6)]],
       // firstPassConfirm: ['', Validators.required],
       firstEmail: ['', [Validators.required, Validators.email]]
-    }, 
+    },
     // { validator: this.checkPasswords }
     );
     this.secondFormGroup = this._formBuilder.group({
