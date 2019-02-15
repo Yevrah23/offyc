@@ -147,7 +147,7 @@ export class ViewPorposalComponent implements OnInit {
           const file = this.files[0];
           console.log(file);
 
-          this.upload.uploadFile(file, 'proposal', this.title)
+          this.upload.uploadFile(this.files, 'proposal', this.title)
             .subscribe(
               event => {
                 if (event.type === HttpEventType.UploadProgress) {
@@ -390,7 +390,7 @@ export class ViewPorposalComponent implements OnInit {
           console.log(file);
 
               if (response) {
-                this.upload.uploadFile(file, 'accomplishment-report', this.title)
+                this.upload.uploadFile(this.files, 'accomplishment-report', this.title)
                   .subscribe(
                     event => {
                       if (event.type === HttpEventType.UploadProgress) {

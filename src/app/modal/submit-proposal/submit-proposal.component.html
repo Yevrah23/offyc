@@ -158,7 +158,7 @@
         <div class="upload">
           <label>Proposal Document<span class="color-warn">*</span> : </label><br>
           <button mat-raised-button color="primary" (click)="fileInput.click()">Select file</button>
-          <input hidden type="file" #fileInput (change)="getFiles($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf"
+          <input multiple hidden type="file" #fileInput (change)="getFiles($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf"
             formControlName="upload">
           <input class="mt-2" id="fileName" type="text" placeholder="No file chosen" readonly="true" matInput>
           <mat-error *ngIf="submitProposal.get('upload').hasError('required')">

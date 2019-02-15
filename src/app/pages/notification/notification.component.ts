@@ -12,10 +12,15 @@ export class NotificationComponent implements OnInit {
   constructor(private user: UserServices, private cookies: CookieService) { }
 
   ngOnInit() {
+    this.getNotifs();
+  }
+
+
+
+  getNotifs(){
     this.user.getNotifs(this.cookies.get('id')).subscribe(
       (response) => {
-        console.log(response);
-        if (response[0]) {
+          if (response[0]) {
           response[1].forEach(element => {
             if (element.notif_type_id === '1') {
               element.notif_type_id = 'sent an Extension Project Proposal';

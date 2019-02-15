@@ -138,7 +138,7 @@ export class SubmitProposalComponent implements OnInit {
           const file = this.files[0];
           console.log(file);
 
-          this.upload.uploadFile(file, 'proposal', this.title)
+          this.upload.uploadFile(this.files, 'proposal', this.title)
             .subscribe(
               event => {
                 if (event.type === HttpEventType.UploadProgress) {
@@ -175,15 +175,9 @@ export class SubmitProposalComponent implements OnInit {
   getFiles(event) {
     // this.file = files.item(0);
     this.files = event.target.files;
+    this.fileName = this.files[0]['name'];
+    $('#fileName').val(this.files[0]['name']);
     console.log(this.files);
-    if (this.files[0].size > 2000000) {
-      $('#fileName').val('File is greater than 2 MB, Choose another file');
-      this.files = null;
-    } else {
-      this.fileName = this.files[0]['name'];
-      $('#fileName').val(this.files[0]['name']);
-    }
-
   }
   upload_moa(event) {
 

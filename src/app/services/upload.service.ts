@@ -9,9 +9,13 @@ export class UploadService {
   constructor(private http: HttpClient, private cookies: CookieService) { }
 
   // file from event.target.files[0]
-  uploadFile(file: File, type, folder): Observable<HttpEvent<any>> {
+  uploadFile(file: FileList, type, folder): Observable<HttpEvent<any>> {
     const formData = new FormData();
-    formData.append('upload', file);
+
+    for (let index = 0; index < file.length; index++) {
+      formData.append('upload'+index, file[index]);      
+    }
+    
     formData.append('id', this.cookies.get('id'));
     formData.append('file_type', type);
     formData.append('folder', folder);

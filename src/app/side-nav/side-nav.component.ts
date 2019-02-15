@@ -89,6 +89,11 @@ export class SideNavComponent implements OnInit {
     this.get_notifs();
     this.get_profile();
 
+
+    setInterval(() => {
+      this.get_notifs();
+    }, 3500);  
+
   }
 
   expand() {
@@ -111,7 +116,6 @@ export class SideNavComponent implements OnInit {
       (response) => {
         this.profile = response;
         this.user.college = this.profile.ui_college;
-        console.log(this.profile);
       }
     );
   }
@@ -120,7 +124,6 @@ export class SideNavComponent implements OnInit {
     this.unread = [];
       this.user.getNotifs(this.cookies.get('id')).subscribe(
       (response) => {
-        console.log(response);
         if (response[0]) {
           response[1].forEach(element => {
             if (element.notif_type_id === '1') {
