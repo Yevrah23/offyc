@@ -133,6 +133,7 @@ export class HomeComponent implements OnInit {
       this.dataSource = new MatTableDataSource(data);
     });
   }
+
   // when seleted tab index
   // selectedPageIndex() {
   // }
@@ -178,11 +179,6 @@ export class HomeComponent implements OnInit {
             }
           }
         }
-        console.log(this.CITC[0]);
-        console.log(this.COT[0]);
-        console.log(this.CSM[0]);
-        console.log(this.CSTE[0]);
-        console.log(this.CEA[0]);
       }
     )
   }

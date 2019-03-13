@@ -37,17 +37,21 @@ export class SubmitProposalComponent implements OnInit {
   isUserSubmit: boolean;
   submitProposal: FormGroup;
 
+
+  progs = 0;
+  pro_acc = [{number:this.progs}];
+
   proposal = [];
   title: string;
   sdate: string;
   edate: string;
   beneficiary: string;
   bene_gender: string;
-  program: string;
+  program: string = "IT";
   partner: string;
   venue: string;
   proponents: string;
-  accre_level: string;
+  accre_level: string = "Level IV";
   total_hours: string;
   budget_ustp: string;
   budget_partner: string;
@@ -199,37 +203,40 @@ export class SubmitProposalComponent implements OnInit {
       'budget_partner': this.budget_partner
       // 'file' : this.files[0]
     });
-    this.user.submit_proposal(this.proposal).subscribe(
-      (response) => {
-        if (response) {
-          console.log(response);
-          const file = this.files[0];
-          console.log(file);
 
-          this.upload.uploadFile(this.files, 'proposal', this.title)
-            .subscribe(
-              event => {
-                if (event.type === HttpEventType.UploadProgress) {
-                  const percentDone = Math.round(100 * event.loaded / event.total);
-                  console.log(`File is ${percentDone}% loaded.`);
-                } else if (event instanceof HttpResponse) {
-                  console.log('File is completely loaded!');
-                }
-              },
-              (err) => {
-                console.log('Upload Error:', err);
+
+    const file = this.files[0];
+    console.log(file);
+
+    this.upload.uploadFile(this.files, 'proposal', this.title)
+      .subscribe(
+        event => {
+          if (event.type === HttpEventType.UploadProgress) {
+            const percentDone = Math.round(100 * event.loaded / event.total);
+            console.log(`File is ${percentDone}% loaded.`);
+          } else if (event instanceof HttpResponse) {
+            console.log('File is completely loaded!');
+          }
+          console.log(event);
+        },
+        (err) => {
+          this.dialogRef.close(err);
+
+        }, () => {
+          console.log('Upload done');
+          this.user.submit_proposal(this.proposal).subscribe(
+            (response) => {
+              if (response) {
+                console.log(response);
                 this.dialogRef.close('Proposal Successfully Submitted');
 
-              }, () => {
-                console.log('Upload done');
-                this.dialogRef.close('Proposal Successfully Submitted');
+                const page = 'fromProposal';
+                this.showSuccess(page);
               }
-            );
+            }
+          );
         }
-      }
-    );
-    const page = 'fromProposal';
-    this.showSuccess(page);
+      );
   }
 
   // upload(){
@@ -273,14 +280,11 @@ export class SubmitProposalComponent implements OnInit {
     $('#accompName').val(this.files[0]['name']);
   }
 
-  addProgram(item) {
+  addProgram() {
+    this.progs++;
+    this.pro_acc.push({number:this.progs});
 
-    if ( item === 1 ) {
-      this.newProgram = item;
-      this.hideAdd = false;
-    } else {
-      this.hideAdd = true;
-    }
+    console.log(this.pro_acc);
   }
 
 

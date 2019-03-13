@@ -21,6 +21,7 @@ export class RecordsComponent implements OnInit {
   isAdmin = false;
   isUser = false;
   token: any;
+  valid : boolean;
 
   // tempo: any;
 
@@ -38,7 +39,7 @@ export class RecordsComponent implements OnInit {
   ceaColumns: string[] = ['proposal_title', 'proposal_beneficiaries', 'proposal_venue', 'Settings'];
   csmColumns: string[] = ['proposal_title', 'proposal_beneficiaries', 'proposal_venue', 'Settings'];
   csteColumns: string[] = ['proposal_title', 'proposal_beneficiaries', 'proposal_venue', 'Settings'];
-  archiveColumns: string[] = ['proposal_title', 'proposal_beneficiaries', 'proposal_venue', 'Settings'];
+  archiveColumns: string[] = ['proposal_title', 'proposal_beneficiaries', 'ui_college', 'Settings'];
 
   CITC: MatTableDataSource<any>;
   COT: MatTableDataSource<any>;
@@ -99,7 +100,7 @@ export class RecordsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      console.log(result);
+      console.log(result.error.message);
     });
   }
 
@@ -147,23 +148,24 @@ export class RecordsComponent implements OnInit {
   }
 
   // tslint:disable-next-line:use-life-cycle-interface
-  ngDoCheck() {
-    if (this.user.user || this.user.admin) {
-      if (this.user.admin) {
-        this.isAdmin = true;
-      } else {
-        this.isUser = true;
-      }
-      this.adminSpinner = false;
-    }
-  }
-
   ngOnInit() {
 
     setTimeout(() => {
       this.showSpinner = true;
       this.check_proposal();
-    }, 1000);
+      this.get_archived();
+    }, 1500);
+
+    setInterval(()=>{
+      if (this.user.user || this.user.admin) {
+        if (this.user.admin) {
+          this.isAdmin = true;
+        } else {
+          this.isUser = true;
+        }
+        this.adminSpinner = false;
+      }
+    },1000);
   }
 
 
@@ -181,7 +183,6 @@ export class RecordsComponent implements OnInit {
             this.CEA = new MatTableDataSource(response[1].CEA);
             this.CSM = new MatTableDataSource(response[1].CSM);
             this.CSTE = new MatTableDataSource(response[1].CSTE);
-            this.ARCHIVE = new MatTableDataSource(response[1].ARCHIVE);
 
             // mat table
             this.CITC.paginator = this.citcPaginator;
@@ -189,14 +190,12 @@ export class RecordsComponent implements OnInit {
             this.CEA.paginator = this.ceaPaginator;
             this.CSM.paginator = this.csmPaginator;
             this.CSTE.paginator = this.cstePaginator;
-            this.ARCHIVE.paginator = this.archivePaginator;
 
             this.CITC.sort = this.citcSort;
             this.COT.sort = this.cotSort;
             this.CEA.sort = this.ceaSort;
             this.CSM.sort = this.csmSort;
             this.CSTE.sort = this.csteSort;
-            this.ARCHIVE.sort = this.archiveSort;
           }
         }
       );
@@ -219,6 +218,17 @@ export class RecordsComponent implements OnInit {
         }
       );
     }
+  }
+
+
+  get_archived(){
+    this.user.get_archived().subscribe(
+      (response: any []) => {
+        this.ARCHIVE = new MatTableDataSource(response);
+        this.ARCHIVE.paginator = this.archivePaginator;
+        this.ARCHIVE.sort = this.archiveSort;
+      }
+    )
   }
 
   applyFilter(filterValue: string) {
@@ -258,53 +268,5 @@ export class RecordsComponent implements OnInit {
       this.User.paginator.firstPage();
     }
   }
-  // applyFilterCITC(filterValue: string) {
-  //   this.User.filter = filterValue.trim().toLowerCase(); // user only
-  //   // // this.unregistered.filter = filterValue.trim().toLowerCase();
-
-  //   if (this.User.paginator) {
-  //     this.User.paginator.firstPage();
-  //   }
-  // }
-  // applyFilterCOT(filterValue: string) {
-  //   this.User.filter = filterValue.trim().toLowerCase(); // user only
-  //   // // this.unregistered.filter = filterValue.trim().toLowerCase();
-
-  //   if (this.User.paginator) {
-  //     this.User.paginator.firstPage();
-  //   }
-  // }
-  // applyFilterCSTE(filterValue: string) {
-  //   this.User.filter = filterValue.trim().toLowerCase(); // user only
-  //   // // this.unregistered.filter = filterValue.trim().toLowerCase();
-
-  //   if (this.User.paginator) {
-  //     this.User.paginator.firstPage();
-  //   }
-  // }
-  // applyFilterCSM(filterValue: string) {
-  //   this.User.filter = filterValue.trim().toLowerCase(); // user only
-  //   // // this.unregistered.filter = filterValue.trim().toLowerCase();
-
-  //   if (this.User.paginator) {
-  //     this.User.paginator.firstPage();
-  //   }
-  // }
-  // applyFilterCEA(filterValue: string) {
-  //   this.User.filter = filterValue.trim().toLowerCase(); // user only
-  //   // // this.unregistered.filter = filterValue.trim().toLowerCase();
-
-  //   if (this.User.paginator) {
-  //     this.User.paginator.firstPage();
-  //   }
-  // }
-  // applyFilterArchive(filterValue: string) {
-  //   this.User.filter = filterValue.trim().toLowerCase(); // user only
-  //   // // this.unregistered.filter = filterValue.trim().toLowerCase();
-
-  //   if (this.User.paginator) {
-  //     this.User.paginator.firstPage();
-  //   }
-  // }
 
 }

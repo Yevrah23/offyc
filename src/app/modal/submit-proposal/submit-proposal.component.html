@@ -38,50 +38,36 @@
         </mat-form-field>
 
         <div id="program" class="programSelect">
-          <mat-form-field floatLabel="auto">
-            <mat-label>Program<span class="color-warn">*</span></mat-label>
-            <mat-select placeholder="Program" [formControl]="programControl" formControlName="programVal">
-              <mat-option>-- None --</mat-option>
-              <mat-optgroup label="CITC" *ngFor="let group of programGroups" [label]="group.name" [disabled]="group.disabled">
-                <mat-option *ngFor="let program of group.program" [value]="program.value">
-                  {{program.viewValue}}
-                </mat-option>
-              </mat-optgroup>
-            </mat-select>
-            <mat-error *ngIf="submitProposal.get('programVal').hasError('required')">
-              <small>Program is required <strong>required</strong></small>
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field *ngIf="newProgram === 1" floatLabel="auto">
-            <mat-label>Program<span class="color-warn">*</span></mat-label>
-            <mat-select placeholder="Program" [formControl]="programControl" formControlName="programVal">
-              <mat-option>-- None --</mat-option>
-              <mat-optgroup label="CITC" *ngFor="let group of programGroups" [label]="group.name" [disabled]="group.disabled">
-                <mat-option *ngFor="let program of group.program" [value]="program.value">
-                  {{program.viewValue}}
-                </mat-option>
-              </mat-optgroup>
-            </mat-select>
-            <mat-error *ngIf="submitProposal.get('programVal').hasError('required')">
-              <small>Program is required <strong>required</strong></small>
-            </mat-error>
-          </mat-form-field>
-          <small *ngIf="hideAdd"><a mat-button (click)="addProgram(1)"><i class="fas fa-plus-circle"></i> Add Program</a></small>
+          <div  *ngFor="let prog of pro_acc" >
+            <mat-form-field floatLabel="auto">
+              <mat-label>Program<span class="color-warn">*</span></mat-label>
+              <mat-select placeholder="Program">
+                <mat-option>-- None --</mat-option>
+                <mat-optgroup label="CITC" *ngFor="let group of programGroups" [label]="group.name" [disabled]="group.disabled">
+                  <mat-option *ngFor="let program of group.program" [value]="program.value">
+                    {{program.viewValue}}
+                  </mat-option>
+                </mat-optgroup>
+              </mat-select>
+              <mat-error *ngIf="submitProposal.get('programVal').hasError('required')">
+                <small>Program is required <strong>required</strong></small>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field floatLabel="auto">
+              <mat-label>Accreditation Level</mat-label>
+              <mat-select placeholder="Accreditation Level">
+                <mat-option value="Level I">Level I</mat-option>
+                <mat-option value="Level II">Level II</mat-option>
+                <mat-option value="Level III">Level III</mat-option>
+                <mat-option value="Level IV">Level IV</mat-option>
+              </mat-select>
+              <mat-error *ngIf="submitProposal.get('accreditationLevel').hasError('required')">
+                <small>Accreditation is required <strong>required</strong></small>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <small><a mat-button (click)="addProgram()"><i class="fas fa-plus-circle"></i> Add Program</a></small>
         </div>
-
-
-        <mat-form-field floatLabel="auto">
-          <mat-label>Accreditation Level</mat-label>
-          <mat-select [(ngModel)]="accre_level" formControlName="accreditationLevel" required>
-            <mat-option value="Level I">Level I</mat-option>
-            <mat-option value="Level II">Level II</mat-option>
-            <mat-option value="Level III">Level III</mat-option>
-          </mat-select>
-          <mat-error *ngIf="submitProposal.get('accreditationLevel').hasError('required')">
-            <small>Accreditation is required <strong>required</strong></small>
-          </mat-error>
-        </mat-form-field>
 
         <mat-form-field>
           <input type="month" [(ngModel)]="sdate" formControlName="sDate" matInput placeholder="Start Month">
@@ -200,7 +186,7 @@
 
             <label>Proposal Cover (Signed)<span class="color-warn">*</span> : </label><br>
             <button mat-raised-button color="primary" (click)="fileInput2.click()">Select file</button>
-            <input hidden type="file" #fileInput2 (change)="upload_signed($event)" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/pdf"
+            <input hidden type="file" #fileInput2 (change)="upload_signed($event)" accept="application/msword, application/pdf"
               formControlName="uploadPC">
             <input class="mt-2" id="signedName" type="text" placeholder="No file chosen" readonly="true" matInput
               required>

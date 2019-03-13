@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class UserServices {
-    private serverUrl = 'http://localhost/';
-    // private serverUrl = 'http://192.168.0.19/';
+    // private serverUrl = 'http://localhost/';
+    private serverUrl = 'http://192.168.43.31/';
     college: any;
     isLoggedIn = false;
     admin = false;
@@ -83,6 +83,7 @@ export class UserServices {
             'budget_partner': params[0].budget_partner
         });
     }
+
     update_proposal(params) {
         // this.fileToGo = params[0].file;
         console.log(params);
@@ -106,6 +107,7 @@ export class UserServices {
             'prop_id': params[0].prop_id,
         });
     }
+    
     proposal_approval(params) {
         console.log(params);
         return this.http.post(this.serverUrl + 'codeigniter/api/Users/proposal_approval', {
@@ -208,4 +210,13 @@ export class UserServices {
     get_chart(){
         return this.http.get(this.serverUrl + 'codeigniter/api/Users/get_project_count');
     }
+
+    get_archived(){
+        return this.http.get(this.serverUrl + 'codeigniter/api/Users/get_archived');
+    }
+
+    get_settings(){
+        return this.http.get(this.serverUrl + 'codeigniter/api/Users/restrictions');
+    }
+
 }

@@ -114,7 +114,6 @@ export class SideNavComponent implements OnInit {
     this.user.update_notifs(this.profile.ui_school_id).subscribe(
       (response) => {
         if (response) {
-          this.get_notifs();
         }
       }
     );
@@ -128,6 +127,7 @@ export class SideNavComponent implements OnInit {
       }
     );
   }
+  
   get_notifs() {
     this.read = [];
     this.unread = [];
