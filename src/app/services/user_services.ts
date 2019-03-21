@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class UserServices {
-    // private serverUrl = 'http://localhost/';
-    private serverUrl = 'http://192.168.43.31/';
+    private serverUrl = 'http://localhost/';
+    // private serverUrl = 'http://192.168.43.31/';
     college: any;
     isLoggedIn = false;
     admin = false;
