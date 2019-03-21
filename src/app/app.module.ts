@@ -33,6 +33,7 @@ import { ProfileSettingsComponent } from './modal/profile-settings/profile-setti
 import { CookieService } from 'ngx-cookie-service';
 // spinner
 import { DataSpinnerComponent } from './loading/data-spinner/data-spinner.component';
+import { ActivitiesComponent } from './pages/activities/activities.component';
 
 
 
@@ -56,6 +57,7 @@ import { DataSpinnerComponent } from './loading/data-spinner/data-spinner.compon
     CommentComponent,
     RegViewComponent,
     ProfileSettingsComponent,
+    ActivitiesComponent
   ],
   imports: [
     BrowserModule,

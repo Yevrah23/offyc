@@ -5,13 +5,13 @@
       <div class="brand"> <a routerLink='dashboard'> <img src="../../assets/img/logo.png" alt=""></a></div>
     </mat-toolbar>
     <mat-nav-list>
-      <a (click)="check_notifs" mat-list-item routerLink='dashboard' routerLinkActive="active"><i class="fas fa-home"></i><span>Dashboard</span></a>
-      <a (click)="check_notifs" mat-list-item routerLink='notification' routerLinkActive="active"><i class="far fa-bell"></i><span>Notification<span
+      <a mat-list-item routerLink='dashboard' routerLinkActive="active"><i class="fas fa-home"></i><span>Dashboard</span></a>
+      <a mat-list-item routerLink='notification' routerLinkActive="active"><i class="far fa-bell"></i><span>Notification<span
             *ngIf="hasNotif">({{notif_count}})</span></span></a>
-      <a (click)="check_notifs" mat-list-item routerLink='records' routerLinkActive="active"><i class="fas fa-list-ul"></i><span>Records</span></a>
-      <a *ngIf="false" (click)="check_notifs" mat-list-item routerLink='activites' routerLinkActive="active"><i class="fas fa-history"></i><span>Activities</span></a>
-      <a (click)="check_notifs" mat-list-item routerLink='assesment' *ngIf="isAdmin" routerLinkActive="active"><i class="fas fa-clipboard-list"></i><span>Assesment</span></a>
-      <a (click)="check_notifs" mat-list-item *ngIf="isAdmin" (click)="dropdownTrigger($event)"><i class="fas fa-cog"></i><span>Settings <i class="fas fa-angle-down text-right"></i></span></a>
+      <a mat-list-item routerLink='records' routerLinkActive="active"><i class="fas fa-list-ul"></i><span>Records</span></a>
+      <a *ngIf="false" mat-list-item routerLink='activites' routerLinkActive="active"><i class="fas fa-history"></i><span>Activities</span></a>
+      <a mat-list-item routerLink='assesment' *ngIf="isAdmin" routerLinkActive="active"><i class="fas fa-clipboard-list"></i><span>Assesment</span></a>
+      <a mat-list-item *ngIf="isAdmin" (click)="dropdownTrigger($event)"><i class="fas fa-cog"></i><span>Settings <i class="fas fa-angle-down text-right"></i></span></a>
       <div *ngIf="dropdown" [@dropdownTrigger]="dropdownAnimate" class="dropdown-container">
         <a mat-list-item routerLink='fileSettings'>File Upload</a>
       </div>

@@ -55,6 +55,7 @@ export class SubmitProposalComponent implements OnInit {
   total_hours: string;
   budget_ustp: string;
   budget_partner: string;
+  ProjType: string;
 
   file: File = null;
   moa_file: File = null;
